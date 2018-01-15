@@ -4,6 +4,7 @@
     <p>
       <router-link to="/">Go To Home</router-link>
       <router-link to="/about">Go To About</router-link>
+      <router-link to="/item/1">Go To Item 1</router-link>
     </p>
     <router-view></router-view>
   </div>

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../components/Home.vue';
 import About from '../components/About.vue';
+import Item from '../components/Item.vue';
 // const Home = () => import('../components/Home.vue');
 // const About = () => import('../components/About.vue');
 
@@ -12,7 +13,8 @@ export function createRouter () {
     mode: 'history',
     routes: [
       { path: '/', component: Home },
-      { path: '/about', component: About }
+      { path: '/about', component: About },
+      { path: '/item/:id', component: Item }
     ]
   });
 }

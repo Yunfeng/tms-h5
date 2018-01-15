@@ -16,6 +16,7 @@ export function createStore () {
       fetchItem ({ commit }, id) {
         // return the Promise via `store.dispatch()` so that we know
         // when the data has been fetched
+        console.log(fetchItem)
         return fetchItem(id).then(item => {
           commit('setItem', { id, item })
         })

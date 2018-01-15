@@ -13,6 +13,7 @@ export default context => {
     // wait until router has resolved possible async components and hooks
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents();
+      // console.log(matchedComponents)
       // no matched routes, reject with 404
       if (!matchedComponents.length) {
         return reject({ code: 404 });

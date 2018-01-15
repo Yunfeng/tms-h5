@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "node server.js",
     "start": "npm run build && npm run start-server",
     "build": "npm run build-client && npm run build-server",
     "build-client": "cross-env NODE_ENV=production webpack --config webpack.client.config.js --progress --hide-modules",
@@ -13,7 +14,10 @@
     "start-server": "node server.js"
   },
   "nodemonConfig": {
-    "ignore": ["dist/*", "docs/*"],
+    "ignore": [
+      "dist/*",
+      "docs/*"
+    ],
     "delay": "2500"
   },
   "dependencies": {
@@ -42,6 +46,8 @@
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "webpack-dev-middleware": "^2.0.4",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-hot-middleware": "^2.21.0"
   }
 }
