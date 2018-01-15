@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.config')
 
-var webpackConfig = merge(baseWebpackConfig, {
+module.exports = merge(baseWebpackConfig, {
   target: 'node',
   entry: {
     app: './src/entry-server.js'
@@ -26,4 +26,3 @@ var webpackConfig = merge(baseWebpackConfig, {
     })
   ]
 })
-module.exports = webpackConfig
