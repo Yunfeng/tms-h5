@@ -13,8 +13,11 @@ export function createRouter () {
     mode: 'history',
     routes: [
       { path: '/', component: Home },
+      // { path: '/about', component: About },
       { path: '/about', component: About },
-      { path: '/item/:id', component: Item }
+      { path: '/item/:id', component: Item },
+      { path: '/login', component: () => System.import('../components/Login.vue')},
+      { path: '/airports', component: () => System.import('../components/Airports.vue')}
     ]
   });
 }

@@ -9,6 +9,9 @@ module.exports = merge(baseWebpackConfig, {
   output: {
     filename: '[name].js'
   },
+  externals: {
+    "jquery": "jQuery"
+  },
   plugins: [
   	new webpack.optimize.CommonsChunkPlugin({
       name: "manifest",

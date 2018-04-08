@@ -2,9 +2,6 @@ import { createApp } from './main.js';
 
 const { app, router, store } = createApp()
 
-// this assumes App.vue template root element has `id="app"`
-// app.$mount('#app')
-
 if (window.__INITIAL_STATE__) {
 	store.replaceState(window.__INITIAL_STATE__)
 }

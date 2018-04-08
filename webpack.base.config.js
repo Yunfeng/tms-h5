@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   output: {
@@ -71,6 +72,9 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    }),
+    new HTMLWebpackPlugin({
+      title: 'Code Splitting'
     })
   ])
 }

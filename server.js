@@ -1,4 +1,5 @@
 const express = require('express');
+const proxy = require('http-proxy-middleware')
 const fs = require('fs');
 const path = require('path');
 const LRU = require('lru-cache');
@@ -54,9 +55,22 @@ if (isProd) {
   )
 }
 
+const serve = (path, cache) => express.static(resolve(path), {
+  maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
+})
 
+server.use('/api', proxy({
+  target: 'http://localhost:8080',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api': '/Flight'
+  }
+}))
 
 server.use('/dist', express.static(path.join(__dirname, './dist')));
+server.use('/public', serve('./public', true));
+
+
 
 //start server
 server.get('*', (req, res) => {
@@ -83,4 +97,6 @@ server.get('*', (req, res) => {
   })
 })
 
-server.listen(8080);
+
+
+server.listen(8090);
