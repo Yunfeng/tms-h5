@@ -63,7 +63,7 @@ const serve = (path, cache) => express.static(resolve(path), {
 
 //tomcat应用设置的cookie在这个路径下
 if (!isProd) {
-  server.use('/Flight', proxy({
+  server.use('/eotms', proxy({
     target: 'http://localhost:8080',
     changeOrigin: true
     // pathRewrite: {
