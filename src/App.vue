@@ -1,15 +1,26 @@
 <template>
   <div id="app">
-      <router-link to="/">Go To Home</router-link>
-      <router-link to="/about">Go To About</router-link>
-      <router-link to="/item/1">Go To Item 1</router-link>
-      <router-link to="/login">Login Page</router-link>
-      <router-link to="/airports">Airports</router-link>
+    <my-loading></my-loading>
+
     <router-view></router-view>
-    Hello world!
+
+    <div class="row mb-5">
+      &nbsp;
+    </div>
+    <bottom-tabbar></bottom-tabbar>
   </div>
 </template>
+
 <script>
+  import BottomTabbar from './components/my-bottom-tabbar.vue'  
+  import TopTips from './components/my-top-tips.vue'	
+  import MyLoading from './components/my-loading.vue'
+
   export default {
-  };
+    components: {
+      BottomTabbar,
+      TopTips,
+      MyLoading
+    }
+  }
 </script>

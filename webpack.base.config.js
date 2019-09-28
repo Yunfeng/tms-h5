@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   output: {
@@ -40,7 +41,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve(__dirname, 'src')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
@@ -52,6 +54,9 @@ module.exports = {
   performance: {
     hints: false
   },
+  plugins: [
+    new VueLoaderPlugin(),
+  ],  
   devtool: '#eval-source-map'
 }
 
@@ -64,17 +69,33 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: true,
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
-    new HTMLWebpackPlugin({
-      title: 'Code Splitting'
-    })
+    // new HTMLWebpackPlugin({
+    //   title: 'Code Splitting'
+    // })
   ])
+
+  module.exports.optimization = {
+    splitChunks: {
+      // include all types of chunks
+      chunks: "all"
+    }
+  }
+} else {
+  module.exports.mode = 'development'
+  module.exports.devtool = '#source-map'
+  module.exports.optimization = {
+    splitChunks: {
+      // include all types of chunks
+      chunks: "all"
+    }
+  }
 }

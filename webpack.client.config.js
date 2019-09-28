@@ -13,10 +13,10 @@ module.exports = merge(baseWebpackConfig, {
     "jquery": "jQuery"
   },
   plugins: [
-  	new webpack.optimize.CommonsChunkPlugin({
-      name: "manifest",
-      minChunks: Infinity
-    }),
+  	// new webpack.optimize.CommonsChunkPlugin({
+   //    name: "manifest",
+   //    minChunks: Infinity
+   //  }),
     // This plugins generates `vue-ssr-client-manifest.json` in the
     // output directory.
     new VueSSRClientPlugin()

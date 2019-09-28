@@ -12,6 +12,8 @@ const serverInfo =
 
 const server = express();
 
+console.log('isProd: ' + isProd)
+
 function createRenderer (bundle, options) {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
   return createBundleRenderer(bundle, Object.assign(options, {
@@ -59,13 +61,24 @@ const serve = (path, cache) => express.static(resolve(path), {
   maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
 })
 
-server.use('/api', proxy({
-  target: 'http://localhost:8080',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/api': '/Flight'
-  }
-}))
+//tomcat应用设置的cookie在这个路径下
+if (!isProd) {
+  server.use('/Flight', proxy({
+    target: 'http://localhost:8080',
+    changeOrigin: true
+    // pathRewrite: {
+    //   '^/api': '/Flight'
+    // },
+    // xfwd: true
+  }))
+} else {
+  server.use('/Flight', proxy({
+    target: 'http://10.205.176.4:8085',
+    changeOrigin: true
+  }))  
+}
+
+
 
 server.use('/dist', express.static(path.join(__dirname, './dist')));
 server.use('/public', serve('./public', true));
