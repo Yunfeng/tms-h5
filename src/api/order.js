@@ -1,26 +1,44 @@
-import { WEBAPP_PATH, callService } from './common.js'
-
-export function searchOrders(params, cbDone, cbAlways) {
-  const url = WEBAPP_PATH + '/searchTmcBuyOrder.do'
-  callService(url, {
-    data: params,
-    cbDone: cbDone,
-    cbAlways: cbAlways
-  })
-}
-
-export function searchOrderDetail(params, cbDone, cbAlways) {
-  const url = WEBAPP_PATH + '/searchTmcOrderDetail.do'
-  callService(url, {
-    data: params,
-    cbDone: cbDone,
-    cbAlways: cbAlways
-  })
-}
+import { WEBAPP_NAME, callService } from '../common/common.js'
 
 
 export function payForTmcOrder(params, cbDone) {
-  const url = WEBAPP_PATH + '/orders/payForTmcOrder.do'
+  const url = WEBAPP_NAME + '/orders/payForTmcOrder.do'
+  callService(url, {
+    data: params,
+    cbDone: cbDone
+  })
+}
+
+export function searchOrders(params, cbDone, cbFail, cbAlways) {
+  const url = WEBAPP_NAME + '/orders/search.do'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbFail: cbFail,
+    cbAlways: cbAlways
+  })
+}
+
+export function cancelOrder(params, cbDone, cbFail, cbAlways) {
+  const url = WEBAPP_NAME + '/orders/cancelTmcOrder.do'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbFail: cbFail,
+    cbAlways: cbAlways
+  })
+}
+
+export function confirmTicketNoCorrect(params, cbDone) {
+  const url = WEBAPP_NAME + '/orders/confirmOrderTicketCorrect.do'
+  callService(url, {
+    data: params,
+    cbDone: cbDone
+  })
+}
+
+export function confirmTicketNoWrong(params, cbDone) {
+  const url = WEBAPP_NAME + '/orders/confirmOrderTicketWrong.do'
   callService(url, {
     data: params,
     cbDone: cbDone
@@ -46,6 +64,22 @@ export function processOrder(url, params, done, fail, always) {
 
 
 
+export function searchOrderDetail(params, done, fail, always) {
+  $.ajax({
+    type: 'post',
+    url: '/Flight/orders/searchOrderDetail',
+    data: params,
+    dataType: 'json',
+  }).done(function (jsonResult) {
+    done(jsonResult)
+  }).fail(function (jqXHR, textStatus, errorThrown) {
+    fail(jqXHR.status, jqXHR.statusText)
+  }).always(function () {
+    always()
+    // setTimeout(() => { always() }, 5000)
+  })
+}
+
 export function searchPolicies(params, done, fail, always) {
   $.ajax({
     type: 'post',
@@ -62,21 +96,7 @@ export function searchPolicies(params, done, fail, always) {
   })
 }
 
-export function cancelOrder(params, done, fail, always) {
-  $.ajax({
-    type: 'post',
-    url: '/Flight/orders/cancelTmcOrder.do',
-    data: params,
-    dataType: 'json',
-  }).done(function (jsonResult) {
-    done(jsonResult)
-  }).fail(function (jqXHR, textStatus, errorThrown) {
-    fail(jqXHR.status, jqXHR.statusText)
-  }).always(function () {
-    always()
-    // setTimeout(() => { always() }, 5000)
-  })
-}
+
 
 export function commitRefundRequest(params, done, fail, always) {
   $.ajax({
@@ -280,4 +300,24 @@ export function denyTripOrder(id, params, done, fail, always) {
     always()
     // setTimeout(() => { always() }, 5000)
   })
+}
+
+export function showOrderStatusDesc (status) {
+  var desc = ''
+  switch (status) {
+    case 0: desc = '等待接单'; break
+    case 1: desc = '待支付'; break
+    case 2: desc = '付款确认中 '; break
+    case 4: desc = '已拒单'; break
+    case 8: desc = '等待开票'; break
+    case 12: desc = '开票中'; break
+    case 16: desc = '已出票'; break
+    case 32: desc = '已完成'; break
+    case 64: desc = '订单结束'; break
+    case 128: desc = '已取消'; break
+    case 1024: desc = '未提交'; break
+    default:
+      desc = status
+  }
+  return desc
 }

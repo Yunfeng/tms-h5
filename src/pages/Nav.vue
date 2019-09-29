@@ -6,31 +6,40 @@ import { getURLParameter } from '../common/common.js'
 
 export default {
   mounted: function () {
-    var to = getURLParameter('to')
-    var id = getURLParameter('id')
-
-    this.$store.commit('init')
-
-    var code = getURLParameter('code')
-
-    if (code !== undefined && code !== null && code.length > 0) {
-      this.$store.dispatch('setWxCode', code)
-    } else {
-      // 方便开发测试的时候直接使用openid 参数
-      var openid = getURLParameter('openid')
-      if (openid !== undefined && openid !== null && openid.length > 0) {
-        this.$store.dispatch('setWxOpenid', openid)
-      }
+    // console.log("/")
+    let to = getURLParameter('to')
+    const id = getURLParameter('id')
+    if (to !== undefined) {
+      // console.log(to)
+      to = decodeURIComponent(to)
     }
 
-    if (to !== undefined && to.length > 0) {
-      var path = '/' + to
-      if (id !== undefined && id.length > 0) {
-        path = path + '/' + id
-      }
-      this.$router.replace(path)
+    const code = getURLParameter('code')
+    const state = getURLParameter('state')
+
+    if (code !== undefined && code !== null && code.length > 0) {
+      this.$store.dispatch('getWorkWxUserId', {code, state}).finally(() => {
+        this.jumpToPage(to, id)
+      })
     } else {
-      this.$router.push('/login')
+      this.jumpToPage(to, id)
+    }
+  },
+  methods: {
+    jumpToPage: function (to, id) {
+      if (to !== undefined && to.length > 0) {
+        if (to === 'alert') {
+          this.$store.dispatch('showAlertMsg', { 'errMsg': id, 'errMsgType': 'danger' })
+        } else {
+          let path = to
+          if (id !== undefined && id.length > 0) {
+            path = path + '/' + id
+          }
+          this.$router.push(path)
+        }
+      } else {
+        this.$router.push('/home')
+      }      
     }
   }
 }

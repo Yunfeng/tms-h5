@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Customers.vue matches snapshot 1`] = `
+<div id="customers">
+  <div class="card">
+    <div class="card-header bg-info text-white">
+      客户信息
+    </div>
+    <div class="card-body">
+      <form id="frmSearchUser" class="form-inline"><input type="hidden" name="sc.pageNo" value="1">
+        <div class="form-group"><input type="textfield" placeholder="公司名称" name="sc.name" size="15" class="form-control"></div>
+        <div class="form-group"><select class="form-control form-control-sm ml-1">
+            <option value="-1">所有</option>
+            <option value="0">企业散客</option>
+            <option value="1">企业客户</option>
+          </select></div> <label>排序</label> <select class="form-control">
+          <option value="0">默认</option>
+          <option value="1">协议截止日期（倒序）</option>
+        </select> <label>状态</label> <select class="form-control">
+          <option value="-1">全部</option>
+          <option value="0">停用</option>
+          <option value="1">启用</option>
+        </select>
+        <my-date-picker-stub placeholder="协议截止日期" value="" id="endDate" sizing="sm"></my-date-picker-stub> <label>记录数</label> <select class="form-control">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+        </select>
+        <div class="form-group"><button type="button" class="btn btn-primary ml-1">查找</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" title="清空查找条件" class="btn btn-secondary btn-sm">重置</button></div>
+        <router-link-stub to="/customer" class="btn btn-success ml-auto">新建</router-link-stub>
+      </form>
+    </div>
+  </div>
+  <table class="table table-striped table-sm small">
+    <thead>
+      <tr>
+        <th>公司名称</th>
+        <th>客户编号</th>
+        <th>排序拼音</th>
+        <th>联系人</th>
+        <th>电话</th>
+        <th>结算方式</th>
+        <th>结算周期</th>
+        <th>协议截止日期</th>
+        <th>状态</th>
+        <th class="text-right"></th>
+        <th class="text-right"></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <nav id="pagination-box" class="float-right">
+    <my-pagination-stub rowcount="0" pageno="1" pagetotal="0" name="pagination"></my-pagination-stub>
+  </nav>
+</div>
+`;

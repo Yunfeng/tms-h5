@@ -8,6 +8,7 @@ export default context => {
     const { app, router,store } = createApp();
 
     // set server-side router's location
+    // console.log(context)
     router.push(context.url);
       
     // wait until router has resolved possible async components and hooks

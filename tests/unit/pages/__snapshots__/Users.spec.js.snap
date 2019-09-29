@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Users.vue matches snapshot 1`] = `
+<div id="users">
+  <div class="card">
+    <div class="card-body">
+      <form class="form-inline">
+        <div class="form-group"><input type="textfield" placeholder="用户名" size="10" class="form-control"></div>
+        <div class="form-group ml-1"><input type="textfield" placeholder="手机" size="10" class="form-control"></div>
+        <div class="form-group"><button type="button" class="btn btn-primary ml-1">查找</button> <button type="button" class="btn btn-secondary btn-sm ml-1">重置</button></div> <span class="ml-auto"><button type="button" id="btnNewUser" class="btn btn-success btn-lg">新建</button></span>
+      </form>
+    </div>
+    <table class="table table-striped table-hover table-sm small">
+      <thead>
+        <tr>
+          <th>用户名</th>
+          <th>全名</th>
+          <th>手机</th>
+          <th>邮件</th>
+          <th>部门</th>
+          <th>企业微信id</th>
+          <th>eterm用户名</th>
+          <th>状态</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <nav id="pagination-box" class="float-right">
+    <my-pagination-stub rowcount="0" pageno="1" pagetotal="0" name="pagination"></my-pagination-stub>
+  </nav>
+  <div id="modalPolicyManage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="myModalLabel" class="modal-title">新增用户</h4> <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <form id="frmUser" role="form" class="form-horizontal"><input type="hidden" id="frmUser_id" name="user.id" value="0">
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                用户名*
+              </label>
+              <div class="col-8"><input type="text" id="frmUser_username" name="user.username" placeholder="用户名" class="form-control"> <span class="help-block">登录系统用的用户名</span></div>
+            </div>
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                真实姓名*
+              </label>
+              <div class="col-8"><input type="text" id="frmUser_fullname" name="user.empname" placeholder="真实姓名" class="form-control"> <span class="help-block"></span></div>
+            </div>
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                手机
+              </label>
+              <div class="col-8"><input type="text" id="frmUser_mobile" name="user.mobileNo" placeholder="手机号" class="form-control"></div>
+            </div>
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                电子邮件
+              </label>
+              <div class="col-8"><input type="text" id="frmUser_email" name="user.email" placeholder="电子邮件" class="form-control"></div>
+            </div>
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                eterm用户名
+              </label>
+              <div class="col-8"><input type="text" id="frmUser_email" name="user.etermUsername" placeholder="eterm用户名" class="form-control"></div>
+            </div>
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                部门
+              </label>
+              <div class="col-8"><select multiple="multiple" size="3" class="form-control"></select></div>
+            </div>
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                职位
+              </label>
+              <div class="col-8"><input type="text" placeholder="职务" class="form-control"></div>
+            </div>
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                状态
+              </label>
+              <div class="col-8">
+                <div class="form-check form-check-inline"><input type="radio" value="4" class="form-check-input"> <label class="form-check-label text-danger">停用</label></div>
+                <div class="form-check form-check-inline"><input type="radio" value="1" class="form-check-input"> <label class="form-check-label">正常</label></div>
+              </div>
+            </div>
+            <div class="form-group row"><label class="control-label col-3 text-right">
+                与企业微信同步
+              </label>
+              <div class="col-8">
+                <div class="form-check form-check-inline"><input type="radio" value="0" class="form-check-input"> <label class="form-check-label text-danger">暂不</label></div>
+                <div class="form-check form-check-inline"><input type="radio" value="1" class="form-check-input"> <label class="form-check-label">是</label></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default">取消</button> <button type="button" class="btn btn-primary">保存</button></div>
+      </div>
+    </div>
+  </div>
+  <my-modal-prompt-stub nullable="true"><span></span></my-modal-prompt-stub>
+</div>
+`;

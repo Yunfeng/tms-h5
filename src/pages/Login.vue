@@ -1,114 +1,61 @@
 <template>
-  <div id="login" class="row">
+  <div id="login" class="col-12 account-pages mt-5 mb-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          
+          <div class="card">
 
-    <template v-if="logined === false">
-      <div class="card col-12 no-gutters">
-        <div class="card-header text-center text-success"  v-if="openid.length === 0">
-            登录
-        </div>
-        <div class="media card-block border-0"  v-if="openid.length > 0">
-          <img class="d-flex align-self-center mr-3" :src="headimgurl" style="width: 5rem; height: 5rem">
-          <div class="media-body">
-            <h5 class="mt-0">{{nickname}}</h5>
-            未登录
+              <!-- Logo -->
+              <div class="card-header pt-4 pb-4 text-center bg-primary">
+                  <a href="index.html">
+                      <span><img src="/public/images/logo.png" alt="" height="18"></span>
+                  </a>
+              </div>
+
+              <div class="card-body p-4">
+                  
+                  <div class="text-center w-75 m-auto">
+                      <h4 class="text-dark-50 text-center mt-0 font-weight-bold">登录</h4>
+                      <p class="text-muted mb-4"></p>
+                  </div>
+
+                  <form action="#">
+
+                      <div class="form-group">
+                          <label for="emailaddress">用户名</label>
+                          <input id="username" class="form-control" type="text" required="" placeholder="请在此处输入用户名" v-model.trim="username">
+                      </div>
+
+                      <div class="form-group">
+                          <label for="password">密码</label>
+                          <input id="password" class="form-control" type="password" placeholder="请在此处输入密码" v-model.trim="password">
+                      </div>
+
+                                                  
+
+                      <div class="form-group mb-0 text-center">
+                        <button id="btnLogin" type="button" class="btn btn-primary btn-block" :disabled="logining" @click.stop="login()">登录</button>
+                      </div>
+
+                  </form>
+              </div> <!-- end card-body -->
           </div>
-        </div>        
-        <div class="card-block no-gutters pb-0">
-          <div class="form-group">
-              <input class="form-control" type="text" placeholder="用户名" v-model="username">
-          </div>
-          <div class="form-group">
-              <input class="form-control" type="password" placeholder="密码" v-model="password">
-          </div>
-          <template v-if="openid.length === 0">
-            <my-vcode label-text="验证码" img-id="kaptchaImage" v-model="vcode"></my-vcode>
-          </template>
-        </div>
-        <div class="card-block text-center bg-faded text-white">
-          <button class="btn btn-success btn-block" @click.stop="login()">登录</button> 
-        </div>
-        <div class="card-block">
-          <span><small><a href="#/password">找回密码</a></small></span>
-          <span class="float-right"><small><a href="#/register">这里注册</a></small></span>
-        </div>
+          <!-- end card -->
+
+        </div> <!-- end col -->
       </div>
-    </template>
-    <template v-else>
-      <div class="card col-12">
-        <div class="media card-block border-0" v-if="openid.length === 0">
-          <img class="d-flex align-self-center mr-3" :src="headimgurl" style="width: 5rem; height: 5rem">
-          <div class="media-body">
-            <h5 class="mt-0">{{fullname}}</h5>
-            <small>当前用户：{{sessionUsername}}</small>
-          </div>
-        </div>
-        <div class="media card-block border-0"  v-if="openid.length > 0">
-          <img class="d-flex align-self-center mr-3" :src="headimgurl" style="width: 5rem; height: 5rem">
-          <div class="media-body">
-            <h5 class="mt-0">{{nickname}}</h5>
-            <small>当前用户：{{sessionUsername}}</small>
-          </div>
-        </div>  
-          
-        <table class="table">
-          <tr>
-            <td class="text-right">现金账户</td>
-            <td>{{userInfo.cashBalance}} <small>元</small></td>
-            <td><small><router-link to="/recharge" class="btn btn-sm btn-outline-danger">充值</router-link></small></td>
-          </tr>
-          <tr>
-            <td class="text-right">积分</td>
-            <td>{{userInfo.freeBalance}}</td>
-            <td>
-              <button class="btn btn-sm btn-outline-success" @click.stop="checkIn()">
-                签到
-              </button>
-            </td>
-          </tr>
-        </table>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <router-link to="/order" class="card-link">我的订单</router-link>
-          </li>
-          <li class="list-group-item">
-            <router-link to="/changes" class="card-link">我的改期</router-link>
-          </li>
-          <li class="list-group-item">
-            <router-link to="/refunds" class="card-link">我的退票</router-link>
-          </li>
-          <li class="list-group-item">
-            <router-link to="/refunds" class="card-link">我的退票</router-link>
-          </li>
-          <li class="list-group-item">
-            <router-link to="/home" class="card-link text-success">
-              更多功能
-            </router-link>
-          </li>
-        </ul>
-          
-        <div class="card-footer">
-          <button class="btn btn-danger btn-block" @click="logout()">退出</button>
-        </div>         
-      </div>      
-    </template>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
   </div>
 </template>
 
 <script>
-import MyButton from '../components/my-button.vue'
-import MyInput from '../components/my-input.vue'
-import MyVcodeInput from '../components/my-vcode.vue'
 import $ from 'jquery'
 import { login } from '../api/user.js'
 
 export default {
-  asyncData ({ store, route }) {
-  },
-  components: {
-    'my-button': MyButton,
-    'my-input': MyInput,
-    'my-vcode': MyVcodeInput
-  },
   data () {
     return {
       username: '',
@@ -116,60 +63,13 @@ export default {
       vcode: '',
       errMsg: '',
       errAlert: false,
-      justLogout: false
+      justLogout: false,
+      logining: false
     }
   },
   computed: {
-    logined () { return this.$store.state.logined },
-    sessionUsername () {
-      var username = this.$store.state.username
-      if (username.length === 0) {
-        // username = $.cookie('username')
-        // if (username === undefined) username = ''
-      }
-      return username
-    },
-    fullname () { return this.$store.state.fullname },
-    historyStep () { return this.$store.state.historyStep },
-    userInfo () { return this.$store.state.userInfo },
-    openid () {
-      var openid = this.$store.state.wxInfo.openid
-      if (openid.length === 0) {
-        // openid = $.cookie('openid')
-        // if (openid === undefined) openid = ''
-      }
-      return openid
-    },
-    nickname () {
-      var nickname = this.$store.state.wxInfo.nickname
-      if (nickname.length === 0) {
-        // nickname = $.cookie('nickname')
-        // if (nickname === undefined) nickname = ''
-      }
-      return nickname
-    },
-    headimgurl () {
-      var headimgurl = this.$store.state.wxInfo.headimgurl
-      if (headimgurl.length === 0) {
-        // headimgurl = $.cookie('headimgurl')
-        // if (headimgurl === undefined) headimgurl = ''
-      }
-      return headimgurl
-    }
-  },
-  mounted: function () {
-    // if (this.logined === false) {
-    //   var username = $.cookie('username')
-    //   var token = $.cookie('token')
-    //   if (username !== undefined && token !== undefined) {
-    //     this.$store.commit('setUsername', { 'username': username, 'logined': true })
-    //   }
-    // }
-
-    if (!this.logined) {
-      this.refreshKaptcha()
-    }
-  },
+    workMode () { return this.$store.state.workMode }
+  },  
   updated: function () {
     if (this.logined === false && this.justLogout) {
       this.justLogout = false
@@ -179,65 +79,61 @@ export default {
       $('#kaptchaImage').click(self.refreshKaptcha)
     }
   },
+  mounted: function () {
+    this.$store.commit('readCookies')
+    $('#kaptchaImage').click(() => { this.refreshKaptcha() })
+    this.refreshKaptcha()
+  },
   methods: {
-    showErrMsg: function (msg) {
-      this.$store.dispatch('showAlertMsg', { 'errMsg': msg })
+    showErrMsg: function (msg, msgType) {
+      this.$store.dispatch('showAlertMsg', { 'errMsg': msg, 'errMsgType': msgType })
     },
     login: function () {
-      const params = { 'username': this.username, 'password': this.password, 'captchaValue': this.vcode }
+      this.logining = true
+      const params = {
+        'username': this.username,
+        'password': this.password,
+        'captchaValue': this.vcode
+      }
 
-      login(params, v => {
-        if (v.status === 'OK') {
-          var u = {
-            'username': v.username,
-            'logined': true,
-            'fullname': v.fullname
+      login(params, (jsonResult) => {
+        if (jsonResult.status === 'OK') {
+          if (jsonResult.expireDate !== undefined && jsonResult.expireDate !== null) {
+            if (jsonResult.expireDays < 30 && jsonResult.expireDays >= 0) {
+              this.showErrMsg('您的会员有效期到' + jsonResult.expireDate + '截止，请及时续费！', 'danger')
+            } else if (jsonResult.expireDays < 0) {
+              this.showErrMsg('您的会员已过期！')
+            }
           }
-          this.$store.commit('setUsername', u)
 
-          $.cookie('token', v.token, { expires: 30, path: '/' })
-          $.cookie('username', v.username, { expires: 30, path: '/' })
-          $.cookie('fullname', v.fullname, { expires: 30, path: '/' })
-
-          if (self.historyStep !== 0) {
-            // self.$router.go(self.historyStep)
+          const u = {
+            'username': jsonResult.username,
+            'logined': true,
+            'fullname': jsonResult.fullname,
+            'token': jsonResult.token,
+            'enterpriseId': jsonResult.enterpriseId,
+            'userId': jsonResult.userId,
+            'sid': jsonResult.sid
+          }
+          this.$store.dispatch('setLoginInfo', u)
+          if (this.workMode === 'h5') {
+            this.$router.push('/h5/flt/orders')
+          } else {
+            this.$router.push('/home')  
           }
         } else {
-          if (v.errMsg !== null) {
-            self.showErrMsg(v.errMsg)
-          } else {
-            self.showErrMsg('登录失败')
-          }
+          this.showErrMsg(jsonResult.errMsg, 'danger')
+          this.refreshKaptcha()
+          this.vcode = ''
         }
-      })
-    },
-    logout: function () {
-      var self = this
-
-      $.ajax({
-        type: 'post',
-        url: '/Flight/logout0',
-        dataType: 'json',
-        success: function (jsonResult) {
-          if (jsonResult.status === 'OK') {
-            self.justLogout = true
-            self.$store.commit('logout')
-          }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-        },
-        complete: function (XMLHttpRequest, textStatus) {
-        }
+      }, () => {
+        this.logining = false
       })
     },
     refreshKaptcha: function () {
       $('#kaptchaImage').attr('src',
         '/Flight/captcha.do?' + Math.floor(Math.random() * 100)).fadeIn()
     }
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-    })
   }
 }
 </script>

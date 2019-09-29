@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="e2e.test"
+    errors="0" failures="0" hostname="" id="" package="e2e" skipped="0"
+    tests="2" time="5.287" timestamp="">
+  
+    <testcase name="login" classname="e2e.test" time="3.110" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="step two: search tbooking orders" classname="e2e.test" time="2.177" assertions="1">
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

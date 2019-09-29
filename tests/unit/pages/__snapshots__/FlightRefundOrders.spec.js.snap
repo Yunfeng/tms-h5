@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlightRefundOrders.vue matches snapshot 1`] = `
+<div id="flightRefunds">
+  <div class="card">
+    <div class="card-header bg-info text-white">
+      退票单
+    </div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="col">
+          <my-date-picker-stub placeholder="开始日期" value="" id="beginDate"></my-date-picker-stub>
+        </div>
+        <div class="col">
+          <my-date-picker-stub placeholder="截止日期" value="" id="endDate"></my-date-picker-stub>
+        </div>
+        <div class="col"><input type="textfield" size="8" placeholder="退票单号" class="form-control"></div>
+        <div class="col"><input type="textfield" size="6" placeholder="姓名" class="form-control"></div>
+        <div class="col"><input type="textfield" size="10" placeholder="证件号" class="form-control"></div>
+        <div class="col"><input type="textfield" size="10" placeholder="后10位票号" class="form-control"></div>
+        <div class="col"><input type="textfield" size="6" placeholder="编码" class="form-control"></div>
+        <div class="col">
+          <my-select-customer-stub customerid="-1" minid="-1" status="1" enterprisetype="-1"></my-select-customer-stub>
+        </div>
+        <div class="col"><select class="form-control ml-1">
+            <option value="-1">属性</option>
+            <option value="0">国内</option>
+            <option value="1">国际</option>
+          </select></div>
+        <div class="col"><select class="form-control ml-1">
+            <option value="-1">订单状态</option>
+            <option value="0">待处理</option>
+            <option value="1">处理中</option>
+            <option value="2">已提交</option>
+            <option value="8">航司预退</option>
+            <option value="16">已退客户</option>
+            <option value="32">已完成</option>
+          </select></div>
+        <div class="col"><select class="form-control ml-1">
+            <option value="-1">航司实退状态</option>
+            <option value="0">未退</option>
+            <option value="1">已退</option>
+          </select></div>
+        <div class="col"><select class="form-control form-control-sm ml-1">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select></div>
+      </div>
+    </div>
+    <div class="card-footer"><button type="button" class="btn btn-primary btn-lg ml-1">查找</button> <button type="button" class="btn btn-secondary btn-sm ml-1">重置</button></div>
+  </div>
+  <flight-refund-list-stub datalist=""></flight-refund-list-stub>
+  <nav id="pagination-box" class="float-right">
+    <my-pagination-stub rowcount="0" pageno="1" pagetotal="0" name="pagination"></my-pagination-stub>
+  </nav>
+  <div class="text-muted small">
+    说明：粗体数字为工作人员填写的</div>
+</div>
+`;

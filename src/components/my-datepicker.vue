@@ -1,5 +1,5 @@
 <template>
-  <input :id="id" type="text" :placeholder="placeholder" :value="value" @input="updateValue($event.target.value)">
+  <input class="form-control" :id="id" :name="name" type="text" :placeholder="placeholder" :value="value" @input="updateValue($event.target.value)" :class="className" style="min-width: 80px; max-width: 110px">
 </template>
 
 <script>
@@ -9,12 +9,22 @@ export default {
   props: {
     placeholder: '',
     value: '',
-    id: ''
+    id: '',
+    name: '',
+    sizing: ''
+  },
+  computed: {
+    className: function () {
+      return {
+        'form-control-sm': this.sizing === 'sm'
+      }
+    }
   },
   mounted: function () {
-    var self = this
-    const id = '#' + this.id
-    $(id).datepicker({
+    const self = this
+    // console.log('my-datepicker.vue mounted')
+
+    $(this.$el).datepicker({
       dateFormat: 'yy-mm-dd',
       autoSize: true,
       showButtonPanel: false,
@@ -26,9 +36,18 @@ export default {
         self.updateValue(dateText)
       },
       beforeShow: function (input) {
-        $(input).css({ position: 'relative', zIndex: '1000' })
+        $(input).css({ position: 'relative', zIndex: '1100' })
+      },
+      onClose: function () {
+        $(this).css({ position: 'relative', zIndex: '0' })
       }
     })
+  },
+  updated: function () {
+    // console.log('my-datepicker.vue updated')
+  },
+  activated: function () {
+    // console.log('my-datepicker.vue activated')
   },
   methods: {
     updateValue: function (value) {

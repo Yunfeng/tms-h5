@@ -1,10 +1,16 @@
-import { callService } from './common.js'
+import { WEBAPP_NAME } from '../common/common.js'
 
-export function searchAirports(params, cbDone) {
-  const url = 'http://127.0.0.1:8080/Flight/data/airports'
-  callService(url, {
-    data: params,
-    cbDone: cbDone
+export function searchCities(done, fail, always) {
+  $.ajax({
+    type: 'post',
+    url: WEBAPP_NAME + '/api/cities',
+    dataType: 'json',
+  }).done(function (jsonResult) {
+    done(jsonResult)
+  }).fail(function (jqXHR, textStatus, errorThrown) {
+    // fail(jqXHR.status, jqXHR.statusText)
+  }).always(function () {
+    if (always !== undefined)
+      always()
   })
 }
-

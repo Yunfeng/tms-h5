@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`flight-order-refund-list.vue matches snapshot 1`] = `
+<table id="flight-refund-list" class="table table-sm table-striped table-hover">
+  <thead>
+    <tr>
+      <th>退票单号</th>
+      <th>票号</th>
+      <th>乘客/公司</th>
+      <th>PNR</th>
+      <th colspan="5" class="bg-info text-center text-white">所退行程</th>
+      <th>提交时间</th>
+      <th>状态</th>
+      <th class="text-right">航司预/实退</th>
+      <th class="text-right">实退客人</th>
+      <th class="text-right">利润</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+`;

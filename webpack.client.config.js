@@ -7,7 +7,7 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 module.exports = merge(baseWebpackConfig, {
   entry: './src/entry-client.js',
   output: {
-    filename: '[name].js'
+    filename: '[name].[chunkhash].js'
   },
   externals: {
     "jquery": "jQuery"
@@ -20,5 +20,13 @@ module.exports = merge(baseWebpackConfig, {
     // This plugins generates `vue-ssr-client-manifest.json` in the
     // output directory.
     new VueSSRClientPlugin()
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      // include all types of chunks
+      chunks: "all",
+      minSize: 30000,
+      name: true
+    }
+  }
 })

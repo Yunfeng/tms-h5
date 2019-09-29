@@ -11,6 +11,27 @@ router.onReady(() => {
  // Doing it after initial route is resolved so that we don't double-fetch
  // the data that we already have. Using `router.beforeResolve()` so that all
  // async components are resolved.
+  router.beforeEach((to, from, next) => {
+    // console.log(from)
+    // console.log(to)
+
+    if (!store.state.initialized && !to.meta.validatePage) {
+      // console.log('initializing...')
+      store.dispatch('init', (status) => {
+        if (status) {
+          // console.log('login page')
+          router.push('login')
+        } else {
+          // router.replace('/my/page')
+          next()
+        }
+      })
+    }
+    else {
+      next()
+    }
+  })
+ 
  router.beforeResolve((to, from, next) => {
    const matched = router.getMatchedComponents(to)
    const prevMatched = router.getMatchedComponents(from)

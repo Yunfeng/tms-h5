@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="tests.e2e.global"
+    errors="0" failures="0" hostname="" id="" package="e2e" skipped="0"
+    tests="1" time="6.126" timestamp="Sat, 10 Nov 2018 03:34:10 GMT">
+  
+    <testcase name="global login" classname="tests.e2e.global" time="6.126" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

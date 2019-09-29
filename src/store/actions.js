@@ -1,26 +1,43 @@
-import axios from 'axios'
+import { checkLoginStatus, searchPrivileges } from '../api/user.js'
+import { authWorkWeixinUser } from '../api/workweixin.js'
+import { searchCustomers } from '../api/customer.js'
 
 export const actions = {
-  fetchItem ({ commit }, id) {
-    // return the Promise via `store.dispatch()`   so that we know
-    // when the data has been fetched
-    // console.log(fetchItem)
-    return fetchItem(id).then(item => {
-      commit('setItem', { id, item })
-    })
+  init (context, cb) {
+    // 仅初始化一次
+    if (context.state.initialized) return    
+    context.state.initialized = true
+
+    checkLoginStatus((jsonResult) => {
+      // console.log(jsonResult)
+      if (jsonResult.status === 'OK') {
+        // 初始化，读取cookie中的数据
+        context.commit('readCookies')        
+        cb(false)
+
+        const u = {
+          'username': jsonResult.username,
+          'logined': true,
+          'fullname': jsonResult.fullname,
+          'token': jsonResult.token,
+          'enterpriseId': jsonResult.enterpriseId,
+          'userId': jsonResult.userId,
+          'sid': jsonResult.sid,
+          'redmineUrl': jsonResult.redmineUrl
+        }
+        context.dispatch('setLoginInfo', u)
+
+        context.dispatch('searchPrivileges')
+      } else {
+        context.commit('logout')
+        // context.dispatch('showAlertMsg', {errMsg: '您需要重新登录!'})
+        cb(true)
+      }
+    })    
   },
-  getAirports ({ commit }, sc) {
-    // console.log(1 + '1 ')
-    // console.log('getAirports')
-    // console.log(sc)
-    axios.get('/api/data/airports', {
-      params: sc
-    }).then(v => {
-      commit('setAirports', v.data)
-    }).catch(function(error) {
-      console.log('error')
-      console.log(error)
-    })
+  setLoginInfo (context, payload) {
+    context.commit('setUsername', payload)
+    context.dispatch('searchPrivileges')
   },
   showAlertMsg(context, payload) {
     if (payload.errMsgType === undefined) {
@@ -42,5 +59,80 @@ export const actions = {
     }
 
     setTimeout(() => { context.state.errAlert = false }, timeout)
+  },
+  showLoading(context, payload) {
+    context.state.loading = true
+    if (payload === undefined || payload.loadingText === undefined) {
+      context.state.loadingText = '数据加载中...'
+    } else {
+      context.state.loadingText = payload.loadingText  
+    }
+  },    
+  hideLoading(context) {
+    context.state.loading = false
+  },
+  searchPrivileges(context) {
+    searchPrivileges((privileges) => {
+      // console.log(privileges)
+      for ( let info of privileges) {
+        context.commit('addPrivilege', info)
+      }
+    })
+  },
+  getWorkWxUserId(context, payload) {
+    return new Promise((resolve, reject) => {
+      const params = {
+        'code': payload.code,
+        'state': payload.state
+      }
+      authWorkWeixinUser(params, v => {
+        context.dispatch('setWorkWxUserid', v)
+        resolve()
+      })
+    })
+  }, 
+  setWorkWxUserid(context, payload) {
+    context.state.wxInfo.userid = payload.userid
+    $.cookie('userid', payload.userid, { expires: 30, path: '/' })
+  },
+  addFlight(context, payload) {
+    context.state.order.flights.push(payload);
+    if (context.state.order.psgs.length === 0) {
+      context.dispatch('addPsg')
+    }
+  },
+  addPsg(context, p) {
+    if (p === undefined || p === null) {
+      p = {
+        'selected': true,
+        'psgName': '',
+        'idNo': '',
+        'idType': 1,
+        'psgType': 0,
+        'mobile': '',
+        'ffpNo': ''
+      };
+    }
+
+    context.state.order.psgs.push(p);
+  },
+  deletePsg(context, index) {
+    context.state.order.psgs.splice(index, 1);
+    if (context.state.order.psgs.length === 0) {
+      context.dispatch('addPsg');
+    }
+  },
+  searchCustomer(context) {
+    const params = {
+      'sc.pageNo': 1,
+      'sc.pageSize': 10000
+      // 'sc.status': this.status,
+      // 'sc.enterpriseType': this.enterpriseType
+    }
+
+    searchCustomers(params, (jsonResult) => {
+      this.customers = jsonResult.dataList
+      context.commit('setCustomers', jsonResult.dataList)
+    })
   }
 }

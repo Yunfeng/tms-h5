@@ -18,7 +18,7 @@ function createRenderer (bundle, options) {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
   return createBundleRenderer(bundle, Object.assign(options, {
     // for component caching
-    cache: LRU({
+    cache: new LRU({
       max: 1000,
       maxAge: 1000 * 60 * 15
     }),
@@ -66,19 +66,8 @@ if (!isProd) {
   server.use('/eotms', proxy({
     target: 'http://localhost:8080',
     changeOrigin: true
-    // pathRewrite: {
-    //   '^/api': '/Flight'
-    // },
-    // xfwd: true
   }))
-} else {
-  server.use('/Flight', proxy({
-    target: 'http://10.205.176.4:8085',
-    changeOrigin: true
-  }))  
 }
-
-
 
 server.use('/dist', express.static(path.join(__dirname, './dist')));
 server.use('/public', serve('./public', true));
@@ -88,15 +77,16 @@ server.use('/public', serve('./public', true));
 //start server
 server.get('*', (req, res) => {
   const s = Date.now()
+  console.log('url:' + req.url)
   const context = { url: req.url, 
-    meta: `<meta description="vuejs server side render">`,
-    title: 'yunfeng\'s title is: manager'
+    meta: `<meta description="差旅管理系统 TMS vuejs ssr">`,
+    title: '差旅管理系统TMS'
   }
   // No need to pass an app here because it is auto-created by
   // executing the bundle. Now our server is decoupled from our Vue app!
   renderer.renderToString(context, (err, html) => {
     if (err) {
-      console.log('error: ' + err)
+      console.log('error: ' + err.code)
       console.log('context:' + context)
       if (err.code === 404) {
         res.status(404).end('Page not found')

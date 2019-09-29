@@ -1,84 +1,81 @@
 <template>
-	<div id="searching" class="row" style="background-color: #2E9CDF;">
-    <div class="col-12 bg-info text-center text-white">
-      <span class="fa-2">国内机票</span>
+	<div id="searching" class="row">
+    <div class="col-12 bg-info text-center text-white mb-1">
+      <span class="fa-2">航班预定</span>
     </div> 
 
-    <div class="card col-12 mt-2 mb-2 p-0 border-0">
-      <div class="card-block">
-        <div class="form-group row">
-          <div class="col-5" style="border-bottom: 1px solid #5bc0de;">
-              <input class="form-control border-0 " type="text" placeholder="出发城市" v-model="dcityName" @focus="dcityFocusedEvent()">
-          </div>
-          <div class="col-2 text-center">
-            <span @click="switchCity()"><i class="fa fa-exchange align-middle" aria-hidden="true"></i></span>
-          </div>
-          <div class="col-5" style="border-bottom: 1px solid #5bc0de;">
-            <input class="form-control text-right border-0" type="text" placeholder="到达城市" v-model="acityName" @focus="acityFocusedEvent()">
+    <div class="card ml-auto mr-auto col-8">
+      <div class="card-body">
+        <form>
+          <!-- <label>出发</label> -->
+          <div class="form-row col-12">
+            <div class="form-group col-4 px-0">
+              <label>出发</label>
+              <my-city-select2 :target="`Dcity`"></my-city-select2>
+            </div>
+
+            <!-- <label class="ml-1">到达</label> -->
+            <div class="form-group col-4 px-0">
+              <label>到达</label>
+              <my-city-select2 :target="`Acity`"></my-city-select2>
+            </div>
+
+            <div class="form-group col-4 px-0">
+              <label>日期</label>
+              <input class="form-control" type="text" placeholder="出发日期" v-model="ddate" id="ddate">
+            </div>
           </div>
 
-        </div>
-
-        <div class="form-group row">
-          <label class="col-4 col-form-label text-right">日期</label>
-          <div class="col-8" style="border-bottom: 1px solid #5bc0de;">
-            <input class="form-control border-0" type="text" placeholder="出发日期" v-model="ddate" id="ddate">
+          <div class="form-row">
+            <div class="form-group col-4 px-0 ml-1">
+              <label>航空公司</label>
+              <select class="form-control" v-model="onlyCarrier">
+                  <option value="">不限</option>
+                  <option value="CA">中国国航-CA</option>
+                  <option value="CZ">南方航空-CZ</option>
+                  <option value="MU">东方航空-MU</option>
+                  <option value="">——————</option>
+                  <option value="BK">A-奥凯航空公司-BK</option>
+                  <option value="JD">B-北京首都航空有限公司-JD</option>
+                  <option value="GJ">C-长龙航空公司-GJ</option>
+                  <option value="9C">C-春秋航空公司-9C</option>
+                  <option value="EU">C-成都航空有限公司-EU</option>
+                  <option value="CN">D-大新华航空公司-CN</option>
+                  <option value="DZ">D-东海航空公司-DZ</option>
+                  <option value="NS">H-河北航空公司-NS</option>
+                  <option value="HU">H-海南航空公司-HU</option>
+                  <option value="G5">H-华夏航空公司-G5</option>
+                  <option value="HO">J-吉祥航空公司-HO</option>
+                  <option value="KY">K-昆明航空有限公司-KY</option>
+                  <option value="QW">Q-青岛航空公司-QW</option>
+                  <option value="3U">S-四川航空公司-3U</option>
+                  <option value="SC">S-山东航空公司-SC</option>
+                  <option value="ZH">S-深圳航空公司-ZH</option>
+                  <option value="FM">S-上海航空公司-FM</option>
+                  <option value="GS">T-天津航空有限责任公司-GS</option>
+                  <option value="PN">X-西部航空公司-PN</option>
+                  <option value="TV">X-西藏航空公司-TV</option>
+                  <option value="JR">X-幸福航空有限责任公司-JR</option>
+                  <option value="MF">X-厦门航空有限公司-MF</option>
+                  <option value="8L">X-祥鹏航空公司-8L</option>
+                  <option value="YI">Y-英安航空公司-YI</option>
+                  <option value="KN">Z-中国联合航空公司-KN</option>
+              </select>
+            </div>
+            
+            <div class="form-group col-4 px-0">
+              <label>排序方式</label>
+              <select v-model="sortBy" class="form-control" >
+                      <option value="0">起飞时间升序</option>
+                      <option value="1">起飞时间降序</option>
+                      <option value="2">最低价格升序</option>
+                      <option value="3">最低价格降序</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group row">
-          <label class="col-4 col-form-label text-right">航空公司</label>
-          <div class="col-8" style="border-bottom: 1px solid #5bc0de;">
-            <select class="form-control border-0" v-model="onlyCarrier">
-                <option value="">不限</option>
-                <option value="CA">中国国航-CA</option>
-                <option value="CZ">南方航空-CZ</option>
-                <option value="MU">东方航空-MU</option>
-                <option value="">——————</option>
-                <option value="BK">A-奥凯航空公司-BK</option>
-                <option value="JD">B-北京首都航空有限公司-JD</option>
-                <option value="GJ">C-长龙航空公司-GJ</option>
-                <option value="9C">C-春秋航空公司-9C</option>
-                <option value="EU">C-成都航空有限公司-EU</option>
-                <option value="CN">D-大新华航空公司-CN</option>
-                <option value="DZ">D-东海航空公司-DZ</option>
-                <option value="NS">H-河北航空公司-NS</option>
-                <option value="HU">H-海南航空公司-HU</option>
-                <option value="G5">H-华夏航空公司-G5</option>
-                <option value="HO">J-吉祥航空公司-HO</option>
-                <option value="KY">K-昆明航空有限公司-KY</option>
-                <option value="QW">Q-青岛航空公司-QW</option>
-                <option value="3U">S-四川航空公司-3U</option>
-                <option value="SC">S-山东航空公司-SC</option>
-                <option value="ZH">S-深圳航空公司-ZH</option>
-                <option value="FM">S-上海航空公司-FM</option>
-                <option value="GS">T-天津航空有限责任公司-GS</option>
-                <option value="PN">X-西部航空公司-PN</option>
-                <option value="TV">X-西藏航空公司-TV</option>
-                <option value="JR">X-幸福航空有限责任公司-JR</option>
-                <option value="MF">X-厦门航空有限公司-MF</option>
-                <option value="8L">X-祥鹏航空公司-8L</option>
-                <option value="YI">Y-英安航空公司-YI</option>
-                <option value="KN">Z-中国联合航空公司-KN</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-4 col-form-label text-right">排序方式</label>
-          <div class="col-8" style="border-bottom: 1px solid #5bc0de;">
-            <select v-model="sortBy" class="form-control border-0" >
-                    <option value="0">起飞时间升序</option>
-                    <option value="1">起飞时间降序</option>
-                    <option value="2">最低价格升序</option>
-                    <option value="3">最低价格降序</option>
-            </select>
-          </div>
-        </div>
-
-      </div>
-      <div class="card-footer text-center text-white border-0">
-        <button type="button" @click.stop="search()" class="btn btn-warning btn-block btn-lg">搜索</button>
+          <button type="button" @click.stop="search()" class="btn btn-primary">搜索</button>
+        </form>
       </div>
     </div>
 
@@ -97,13 +94,15 @@
 <script>
 import MyButton from '../components/my-button.vue'
 import MyCityPicker from '../components/my-citypicker.vue'
-import { addDate } from '../api/common.js'
+import MyCitySelect2 from '../components/my-citypicker-autocomplete.vue'
+import { addDate } from '../common/common.js'
 import $ from 'jquery'
 
 export default {
   components: {
     'my-button': MyButton,
-    'my-city-picker': MyCityPicker
+    'my-city-picker': MyCityPicker,
+    'my-city-select2': MyCitySelect2
   },
   data () {
     return {
@@ -159,15 +158,6 @@ export default {
       var date0 = new Date()
 
       const hours = date0.getHours()
-      // console.log(hours)
-
-      // var oDate = new Date(); //实例一个时间对象；
-      // oDate.getFullYear();   //获取系统的年；
-      // oDate.getMonth()+1;   //获取系统月份，由于月份是从0开始计算，所以要加1
-      // oDate.getDate(); // 获取系统日，
-      // oDate.getHours(); //获取系统时，
-      // oDate.getMinutes(); //分
-      // oDate.getSeconds(); //秒
 
       var cookieDate = $.cookie('ddate')
       // console.log('cookieDate: ' + cookieDate)
@@ -253,7 +243,7 @@ export default {
 
       // 查询航班
       this.searching = true
-      this.$router.push('/searchResult')
+      this.$router.push('/flt/search-result')
     },
     cityPickerClosed: function (val) {
       this.showPicker = val

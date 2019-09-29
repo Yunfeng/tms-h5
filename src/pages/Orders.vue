@@ -3,23 +3,41 @@
     <div class="col-12 bg-info text-center text-white">
         <span @click="back()" class="float-left fa-2">
           <i class="fa fa-angle-left fa-2" aria-hidden="true"></i></span>
-        <span class="fa-2">机票订单</span>
+        <span class="fa-2">订单</span>
     </div> 
     <template v-if="orders.length > 0">
-      <div class="card col-12"  v-for="info in orders" @click="showDetail(info)" :class="changeBgByStatus(info.status)">
-        <div class="card-block mt-1 mb-2 p-0">          
-          <small>订单日期：{{info.createDate}}</small> <br />
-          <small>{{info.shortDesc}}</small><br />
-          
-          <small>订单状态：</small><span>{{showStatusDesc(info.status)}}</span>
-          <span class="float-right"><small>总金额：</small>{{info.totalPrice}}</span>
-        </div>
+      <div class="card col-12 px-0">
+        <table class="table table-striped table-sm small">
+          <thead>
+            <tr>
+              <th class="text-center">日期</th>
+              <th class="text-center">出发</th>
+              <th class="text-center">到达</th>
+              <th class="text-right">金额</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="info in orders" @click="showDetail(info)">
+              <td class="text-center">
+                {{info.flights[0].departureDate}}
+              </td>
+              <td class="text-center">{{info.flights[0].departureAirportName}}</td>
+              <td class="text-center">{{info.flights[0].arrivalAirportName}}</td>
+              <td class="text-right">{{info.ticketAmount}}</td>
+              <td class="" :class="changeBgByStatus(info.status)">
+                {{showStatusDesc(info.status)}}
+                <i class="fa fa-angle-right fa-2 float-right" aria-hidden="true"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </template>
     <template v-else>
       <div class="col-12 text-success text-center">
         <div class="card-block">
-          还没有机票订单，现在就去<router-link to="/search">预定</router-link>!
+          还没有订单，现在就去<router-link to="/search">预定</router-link>!
         </div>
       </div>
     </template>
@@ -28,8 +46,7 @@
 </template>
 
 <script>
-import { showOrderStatusDesc } from '../api/common.js'
-import { searchOrders } from '../api/order.js'
+import { searchOrders, showOrderStatusDesc } from '../api/order.js'
 
 export default {
   asyncData ({ store, route }) {
@@ -50,6 +67,9 @@ export default {
     back: function () {
       this.$router.go(-1)
     },
+    showErrMsg: function (msg, msgType) {
+      this.$store.dispatch('showAlertMsg', { 'errMsg': msg, 'errMsgType': msgType })
+    },    
     showLoading: function (loadingText) {
       this.$store.commit('showLoading', { 'loading': true, 'loadingText': loadingText })
     },
@@ -76,6 +96,12 @@ export default {
       searchOrders(params,
         (jsonResult) => {
           if (jsonResult !== null) { this.orders = jsonResult.dataList }
+        },
+        status => {
+          if (status === 403) {
+            this.showErrMsg('您可能需要先登录，或申请授权')
+            this.$store.commit('jumpToLogin', this.$router)
+          }
         },
         () => this.hideLoading()
       )

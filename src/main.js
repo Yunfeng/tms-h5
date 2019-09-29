@@ -4,6 +4,8 @@ import { createRouter } from './router/router.js'
 import { createStore } from './store'
 import { sync } from 'vuex-router-sync'
 
+require('./main.css')
+
 // export a factory function for creating fresh app, router and store
 // instances
 export function createApp() {

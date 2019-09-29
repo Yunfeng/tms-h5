@@ -1,0 +1,269 @@
+<template>
+  <div id="entReceipt">
+    <div class="card">
+      <div class="card-header bg-info text-white">
+        结算单
+      </div>
+      <div class="card-body py-1">
+        <form class="form-inline" id="frmSearch">
+          <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
+          <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
+
+          <div class="form-group col-2 px-0">
+            <my-select-customer :customerId.sync="customerId0" :enterpriseType="1"></my-select-customer>
+          </div>
+
+          <select class="form-control" v-model.number="status0">
+            <option value="-1">收款状态</option>
+            <option value="0">未收款</option>
+            <option value="1">已收款</option>
+          </select>
+
+          <input type="textfield" class="form-control" size="8" placeholder="结算单号" v-model.trim="settlementNo0">
+          <input type="textfield" class="form-control" size="6" placeholder="金额" v-model.trim="amount0">
+          <select class="form-control" v-model.number="sc.pageSize">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="500">500</option>
+              <option value="10000">10000</option>
+          </select>
+
+
+          <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
+          <button type="button" class="btn btn-secondary btn-sm ml-1" @click.stop="reset()">重置</button>
+          <button type="button" class="btn btn-success ml-auto" @click.stop="batchCreateSettle()">批量创建</button>
+        </form>
+      </div>
+      <div class="card-body py-1">
+        <span class="small text-muted">提示：金额为 0 的结算单，通过“结算单号”查找</span>
+      </div>
+    </div>
+    <table class="table table-striped table-sm small">
+        <thead>
+            <tr>
+                <th>单号</th>
+                <th>名称</th>
+                <th>公司名称</th>
+                <th class="text-right">金额</th>
+                <th>收款状态</th>
+                <th>创建时间</th>
+                <th>修改时间</th>
+                <th></th>
+            </tr>                        
+        </thead>
+        <tbody>
+            <tr v-if="dataList.length > 10">
+              <td colspan="3" class="text-right">金额合计：</td>
+              <td class="text-right">{{totalAmount}}</td>
+            </tr>
+            <tr v-for="(info, index) in dataList"  :class="{ 'bg-info text-white': info.paid === 1 }">
+              <td :class="{ 'text-danger': info.amount < 0 }">
+                {{info.settlementNo}}
+              </td>
+              <td  :class="{ 'text-danger': info.amount < 0 }">
+                {{info.name}} <a href="javascript:void(0)" @click.stop="editName(info.id)">修改</a>
+              </td>
+              <td>
+                <template v-if="info.customerType === 0">散客</template>
+                <template v-else-if="info.customer !== null">
+                  {{info.customer.vipName}}  
+                </template>                  
+              </td>
+              <td class="text-right"   :class="{ 'text-danger': info.amount < 0 }">{{info.amount}}</td>
+              <td>
+                <span class="text-danger small" v-if="info.paid === 0">未收款</span>
+                <span v-else>已收款</span>
+              </td>
+              <td>{{info.createTime}}</td>
+              <td>{{info.lastUpdate}}</td>
+              <td>
+                <router-link :to="`/ent/settlement/` + info.id">详情</router-link>
+              </td>
+              <td>
+                <router-link :to="`/ent/settlement/` + info.id + `/report?showTitle=0`" target="_blank">打印</router-link>
+              </td>
+              <td>
+                <a @click.stop="download(info.id)" href="javascript:void(0);">下载</a> 
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-right">金额合计：</td>
+              <td class="text-right">{{totalAmount}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+    <nav id="pagination-box" class="float-right">
+      <my-pagination name='pagination' :row-count='sc.rowCount' :page-total='sc.pageTotal' :page-no='sc.pageNo' @next-page='nextPage' @prev-page='prevPage' @direct-page='directPage'></my-pagination>
+    </nav>
+
+    <my-modal-date-range ref="modalDateRange">
+      <span slot="title">{{modalTitle}}</span>
+    </my-modal-date-range>
+
+    <my-modal-prompt ref="modalPrompt">
+      <span slot="title">{{modalTitle}}</span>
+    </my-modal-prompt>
+
+  </div>
+</template>
+
+<script>
+  import { APP_FLIGHT_PATH } from '../common/common.js'
+  import { searchSettlements, batchCreateSettlement, updateSettlementName } from '../api/bill.js'
+  import MyDatePicker from '../components/my-datepicker.vue'
+  import MyPagination from '../components/my-pagination.vue'
+  import MySelectCustomer from '../components/my-select2-customer.vue'
+  import MyModalDateRange from '../components/my-modal-date-range.vue'
+  import MyModalPrompt from '../components/my-modal-prompt.vue'
+
+  export default {
+    components: {
+      MyDatePicker,
+      MyPagination,
+      MySelectCustomer,
+      MyModalDateRange,
+      MyModalPrompt
+    },
+    data () {
+      return {
+        customerId: 0,
+        amount: 0,
+        remark: '',
+
+        dataList: [],
+        customers: [],
+        sc: {
+          rowCount: 0,
+          pageNo: 1,
+          pageSize: 10,
+          pageTotal: 0
+        },
+        beginDate: '',
+        endDate: '',
+        customerId0: -1,
+        status0: 0,
+        settlementNo0: '',
+        amount0: '',
+
+        modalTitle: '',
+
+        totalAmount: 0
+      }
+    },
+    mounted: function () {
+      this.search()
+    },
+    methods: {
+      showErrMsg: function (msg, msgType) {
+        this.$store.dispatch('showAlertMsg', { 'errMsg': msg, 'errMsgType': msgType })
+      },
+      showLoading: function (loadingText) {
+        this.$store.commit('showLoading', { 'loading': true, 'loadingText': loadingText })
+      },
+      hideLoading: function () {
+        this.$store.commit('showLoading', { 'loading': false })
+      },
+      commonShowMessage: function (jsonResult) {
+        if (jsonResult.status === 'OK') {
+          this.showErrMsg('操作成功：' + jsonResult.desc)
+          this.search()
+        } else {
+          this.showErrMsg('操作失败: ' + jsonResult.errmsg, 'danger')
+        }
+      },
+      search: function () {
+        let amount = Number.parseInt(this.amount0)
+        if (isNaN(amount)) {
+          amount = 0
+        }
+        const params = {
+          'sc.pageNo': this.sc.pageNo,
+          'sc.pageSize': this.sc.pageSize,
+          'sc.beginDate': this.beginDate,
+          'sc.endDate': this.endDate,
+          'sc.customerId': this.customerId0,
+          'sc.status': this.status0,
+          'sc.settlementNo': this.settlementNo0,
+          'sc.amount': amount
+        }
+
+        this.showLoading()
+
+        searchSettlements(params, 
+          v => {
+            this.dataList = v.dataList
+            this.sc = v.page
+            this.calcTotalAmount(this.dataList)
+          },
+          () => { this.hideLoading() }
+        )
+      },
+      reset: function () {
+        this.sc.pageNo = 1
+        this.beginDate = ''
+        this.endDate = ''
+        this.customerId0 = -1
+        this.settlementNo0 = ''
+        this.amount0 = ''
+      },
+      batchCreateSettle: function () {
+        this.modalTitle = '对指定日期范围内的待结算账单按企业客户自动创建结算单'
+        this.$refs.modalDateRange.modal().then(p => {
+          const params = {
+            'beginDate': p.beginDate,
+            'endDate': p.endDate,
+            'customerId': p.customerId
+          }
+
+          batchCreateSettlement(params, v => this.commonShowMessage(v))
+        }).catch((ex) => {})
+      },
+      calcTotalAmount: function (infos) {
+        this.totalAmount = 0
+        for (const info of this.dataList) {
+          this.totalAmount += info.amount
+        }
+
+        this.totalAmount = Math.round(this.totalAmount * 100) / 100
+      },
+      editName: function (id) {
+        this.modalTitle = '请输入新的结算单名称：'
+        this.$refs.modalPrompt.modal().then((remark) => {
+          // updateFlightOrderRemark(this.id, { 'remark': remark }, v => this.commonShowMessage(v))
+          if (remark.length === 0) return
+          console.log(remark)
+          console.log(remark.trim().length)
+
+          this.showLoading('处理中')
+
+          updateSettlementName(id, { 'name': remark},
+            v => this.commonShowMessage(v),
+            () => this.hideLoading()
+          )
+        }).catch((ex) => {})
+      },
+      download: function (id) {
+        const url = APP_FLIGHT_PATH + '/settlement/' + id + '/report/download'
+        window.open(url)
+      },
+      prevPage: function () {
+        this.sc.pageNo = this.sc.pageNo - 1
+        if (this.sc.pageNo < 1) this.sc.pageNo = 1
+        this.search()
+      },
+      nextPage: function () {
+        this.sc.pageNo = this.sc.pageNo + 1
+        this.search()
+      },
+      directPage: function (pageNo) {
+        this.sc.pageNo = pageNo
+        this.search()
+      }
+    }
+  }
+</script>

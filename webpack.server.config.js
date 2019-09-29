@@ -31,5 +31,11 @@ module.exports = merge(baseWebpackConfig, {
     //   }
     // }),
     new VueSSRServerPlugin()
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      // include all types of chunks
+      chunks: "all"
+    }
+  }
 })

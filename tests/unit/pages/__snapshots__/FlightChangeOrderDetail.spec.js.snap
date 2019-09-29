@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlightChangeOrderDetail.vue matches snapshot 1`] = `
+<div id="flight-refund-order-detail">
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item">
+        <router-link-stub to="/flt/change/orders">改签单</router-link-stub>
+      </li>
+      <li aria-current="page" class="breadcrumb-item active">详情</li> <span class="ml-auto">返回</span>
+    </ol>
+  </nav>
+  <!---->
+  <my-modal-prompt-stub nullable="true"><span></span></my-modal-prompt-stub>
+  <my-modal-change-ticket-finished-stub id="modalPrompt"><span></span></my-modal-change-ticket-finished-stub>
+  <my-modal-supplier-update-stub></my-modal-supplier-update-stub>
+  <my-modal-pay-method-update-stub></my-modal-pay-method-update-stub>
+  <my-modal-price-update-stub id="modalPrompt"><span></span> <span></span> <span></span></my-modal-price-update-stub>
+  <my-modal-change-ticket-stub id="modalPrompt"></my-modal-change-ticket-stub>
+  <my-modal-refund-ticket-stub id="modalPrompt"></my-modal-refund-ticket-stub>
+  <my-modal-flight-update-stub id="modalPrompt"></my-modal-flight-update-stub>
+  <my-modal-sms-stub ordertype="1005"><span></span></my-modal-sms-stub>
+</div>
+`;

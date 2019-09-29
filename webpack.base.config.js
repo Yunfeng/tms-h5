@@ -1,7 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+
 const { VueLoaderPlugin } = require('vue-loader')
+
+const nodeExternals = require('webpack-node-externals')
+
 
 module.exports = {
   output: {
@@ -16,7 +22,8 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ],
-      },      {
+      },      
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -28,7 +35,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -54,14 +61,19 @@ module.exports = {
   performance: {
     hints: false
   },
+  // devtool: '#eval-source-map',
   plugins: [
     new VueLoaderPlugin(),
-  ],  
-  devtool: '#eval-source-map'
+    // new HtmlWebpackPlugin(),
+    // new UglifyJsPlugin()
+  ],
+  externals: [nodeExternals()],
+  devtool: 'inline-cheap-module-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.mode = 'production'
+  
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -98,4 +110,5 @@ if (process.env.NODE_ENV === 'production') {
       chunks: "all"
     }
   }
+
 }

@@ -1,45 +1,34 @@
-import { WEBAPP_NAME } from '../common/common.js'
+import { APP_FLIGHT_PATH, callService } from '../common/common.js'
 
-export function createInsurance(params, done, fail, always) {
-  $.ajax({
-    type: 'post',
-    url: WEBAPP_NAME + '/p/insurance/create',
-    dataType: 'json',
-    data: params
-  }).done(function (jsonResult) {
-    done(jsonResult)
-  }).fail(function (jqXHR, textStatus, errorThrown) {
-    // fail(jqXHR.status, jqXHR.statusText)
-  }).always(function () {
-    always()
+export function createProduct(params, cbDone, fail, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/product'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
   })
 }
 
-export function searchInsurances(params, done, fail, always) {
-  $.ajax({
-    type: 'post',
-    url: WEBAPP_NAME + '/p/insurances',
-    dataType: 'json',
-    data: params
-  }).done(function (jsonResult) {
-    done(jsonResult)
-  }).fail(function (jqXHR, textStatus, errorThrown) {
-    // fail(jqXHR.status, jqXHR.statusText)
-  }).always(function () {
-    always()
+
+export function searchProducts(params, done, fail, always) {
+  callService(APP_FLIGHT_PATH + '/products', {
+    data: params,
+    cbDone: done,
+    cbAlways: always
   })
 }
 
-export function deleteInsurance(id, done, fail, always) {
-  $.ajax({
-    type: 'post',
-    url: WEBAPP_NAME + '/p/insurance/delete/' + id,
-    dataType: 'json'
-  }).done(function (jsonResult) {
-    done(jsonResult)
-  }).fail(function (jqXHR, textStatus, errorThrown) {
-    // fail(jqXHR.status, jqXHR.statusText)
-  }).always(function () {
-    always()
+export function deleteInsurance(id, cbDone, fail, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/product/' + id + '/delete'
+  callService(url, {
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+export function getServiceProduct(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/product/' + id
+  callService(url, {
+    cbDone: cbDone
   })
 }

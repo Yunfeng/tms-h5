@@ -1,170 +1,244 @@
 <template>
   <div id="book-form" class="row">
-    <div class="col-12 bg-info text-center text-white sticky-top">
+    <div class="col-12 bg-info text-center text-white">
       <span @click="back()" class="float-left fa-2">
         <i class="fa fa-angle-left fa-2" aria-hidden="true"></i>
       </span>
-      <span class="fa-2">机票预定</span>
+      <span>机票预定</span>
     </div> 
 
     <!-- 航班信息 -->
     <div class="card col-12">
-      <div class="card-body pt-0" v-for="(flt, index) in bookFlights">
-        <div class="d-flex flex-row justify-content-between">
-          <div>
-            <span class="ml-2 small text-info">行程{{index+1}}</span>
-          </div>
-          <div>
-            <span class="text-danger mr-2">
-              <a href="javascript:void(0)"  @click.stop="removeFlightInfo(index)">
-                <i class="fa fa-times" aria-hidden="true"></i>
+      <div class="card-header bg-warning text-white py-0">
+        航班信息
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>日期</th>
+            <th>航班号</th>
+            <th>出发</th>
+            <th>到达</th>
+            <th>舱位</th>
+            <th>票面价</th>
+            <th>税</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(flt, index) in flights">
+            <td>{{index+1}}</td>
+            <td>{{flt.ddate}}</td>
+            <td>{{flt.flightNo}} <small>{{flt.carrierName}}</small></td>
+            <td>{{flt.dportName}} <small>{{flt.dterm}}</small> {{flt.showDtime}}</td>
+            <td>{{flt.aportName}} <small>{{flt.aterm}}</small> {{flt.showAtime}}</td>
+            <td>{{flt.subclass}}</td>
+            <td><i class="fa fa-rmb text-warning"></i> {{flt.price}}</td>
+            <td>
+              {{flt.taxCN}} + {{flt.taxYQ}}
+            </td>
+            <td>
+              <a href="javascript:void(0)"  @click.stop="removeFlightInfo(index)" class="btn btn-sm btn-danger float-right">
+                <i class="fa fa-times" aria-hidden="true"></i>删除
               </a>
-            </span>
-          </div>
-        </div>
-        <div class="d-flex flex-row justify-content-around bg-faded">
-            <div class="fa-2 text-info">{{flt.dportName}} <small>{{flt.dterm}}</small></div>
-            <div class="fa-2 text-danger"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
-            <div class="fa-2 text-muted">{{flt.aportName}} <small>{{flt.aterm}}</small></div>
-        </div>
-        <div class="d-flex flex-row justify-content-around">
-            <div class="fa-2 text-info">
-              <small>{{flt.ddate}}</small>
-              {{flt.showDtime}}
-            </div>
-            <div class="fa-2 text-success"></div>
-            <div class="fa-2 text-muted">{{flt.showAtime}}</div>
-        </div>
 
-        <div class="d-flex flex-row justify-content-around bg-faded">
-            <div class="fa-2 text-info">
-              {{flt.flightNo}} <small>{{flt.carrierName}}</small>
-            </div>
-            <div class="fa-2 text-faded">
-              {{flt.subclass}}
-            </div>
-            <div class="fa-2">
-              <span class="text-danger">
-                <i class="fa fa-rmb text-warning"></i> {{flt.price}}
-              </span>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 m-1 text-center" v-if="fltCount === 1">
-      <a href="javascript:void(0)" @click.stop="searchReturn()" class="btn btn-success w-75">搜索返程</a>
-    </div>
-    <!-- 表单 -->
-    <form id="frmOrder" class="col-12">
-      <input type="hidden" name="tmcPolicyApply.policyId" :value="policyId" />
-      <input type="hidden" name="tmcPolicyApply.ticketAmount" value="0" />
-      <template v-for="(fltInfo, index) in bookFlights">
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].flightNo'" :value="fltInfo.flightNo" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].departureDate'" :value="fltInfo.ddate" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].subclass'" :value="fltInfo.subclass" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].departureAirportName'" :value="fltInfo.dportName" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].departureAirport'"  :value="fltInfo.dport" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].departureTerminal'"  :value="fltInfo.dterm" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].arrivalAirportName'" :value="fltInfo.aportName" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].arrivalTerminal'" :value="fltInfo.aterm" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].arrivalAirport'" :value="fltInfo.aport" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].departureTime'" :value="fltInfo.dtime"  />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].arrivalTime'" :value="fltInfo.atime" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].price'" :value="fltInfo.price" />
-        <input type="hidden" :name="'tmcPolicyApply.flights[' + index + '].returnPoint'" :value="fltInfo.returnPoint" />
-      </template>
-
-
-      <div class="card border-0">
-        <div class="card-header bg-warning text-white py-0">
-          乘客
-        </div>
-        <template v-for="(psg, index) in psgInfos">
-          <div class="card-body bg-faded p-0 mt-1">
-            <span class="text-muted">乘客 {{index+1}}</span>
-            <button type="button" @click.stop="selectPsg(index)" title="搜索并选择乘机人">
-              <i class="fa fa-search-plus text-success" aria-hidden="true"></i>
-            </button> 
-            <a href="javascript:void(0)" @click.stop="deletePsg(index)" class="float-right">
-              <i class="fa fa-times text-danger" aria-hidden="true"></i>
-            </a>
-          </div>
-
-          <div class="card-body" style="padding: 0">
-            <div class="form-group border-bottom-1">
-              <input type="text" class="form-control border-0" :name="'tmcPolicyApply.passengers[' + index + '].psgName'" placeholder="乘客姓名" v-model="psg.psgName"/>
-            </div>
-            <div class="form-group border-bottom-1">
-              <input type="text" class="form-control border-0" :name="'tmcPolicyApply.passengers[' + index + '].idNo'" placeholder="证件号" v-model="psg.idNo" />
-            </div>
-            <div class="form-group border-bottom-1">
-              <select class="form-control border-0" :name="'tmcPolicyApply.passengers[' + index + '].idType'" v-model="psg.idType">
-              <option v-for="item in idTypes" :value="item.idType">
-                {{ item.idName }}
-              </option>
-            </select>
-            </div>
-          </div>            
-        </template>
-
-        <div class="card-body px-0 pb-1">
-            <button type="button" @click.stop="addPsg()" class="btn btn-sm btn-outline-primary float-right">
-              <small>添加乘客</small>
-            </button>
-          </div>
-      </div>
-
-      <div class="card col-12 bg-white border-0 mt-1 px-0" v-if="insurances.length > 0">
-        <div class="card-header bg-warning text-white py-0">
-          <span>保险</span>
-        </div>
-        <table class="table">
-          <tr v-for="(info, index) in insurances">                
-            <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].productCode'" :value="info.productCode" />
-            <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].productName'" :value="info.productName" />
-            <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].price'" :value="info.price" />
-            <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].discount'" :value="info.discount" />
-            <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].count'" :value="psgInfos.length" />
-
-            <td>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" :name="'tmcPolicyApply.insurances[' + index + '].buyed'" value="1">
-                <label class="form-check-label">{{info.productName}}</label>                 
-              </div>
-            </td>
-            <td>
-              <i class="fa fa-rmb text-warning"></i>{{info.price-info.discount}}/份
-            </td>
-            <td>
-              <small>购买 {{psgInfos.length}} 份</small>
-            </td>
-            <td>
-              <small>{{info.productDesc}}</small>
             </td>
           </tr>
-        </table>  
-      </div>
+          <tr v-if="fltCount === 1">
+            <td colspan="9">
+              <a href="javascript:void(0)" @click.stop="searchReturn()" class="btn btn-success">搜索返程</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="card col-12 bg-white border-0 mt-1 px-0">
-        <div class="card-header bg-warning text-white py-0">
-            <span>联系人</span>
-          </div>
-        <div class="card-body px-0">
-          <div class="form-group border-bottom-1">
-            <input type="text" class="form-control border-0" name="tmcPolicyApply.linkPhone" placeholder="联系电话"/>
-          </div>
-          <div class="form-group border-bottom-1 mb-0">
-            <input type="text" class="form-control border-0" name="tmcPolicyApply.remark" placeholder="备注" />
-          </div>
-        </div>   
-      </div>
 
-      <div class="card col-12 border-0">
-        <div class="card-body">
-          <a class="btn btn-success btn-block text-white" @click.stop="createFlightOrder();">保存订单</a>
+    <div class="card col-12">
+      <div class="card-header bg-warning text-white py-0">
+        客户
+      </div>
+      <div class="card-body py-2">
+          <div class="form-group row">
+            <label class="col-2 control-label text-right">客户</label>
+            <div class="col-8">
+              <my-select-customer :minId="0" :customerId.sync="customerId"></my-select-customer>
+            </div>
+          </div>
+          <div class="form-group row" v-if="costCenters.length > 0">
+            <label class="col-2 control-label text-right">成本中心</label>
+            <div class="col-8">
+              <select class="form-control" v-model="costCenter">
+                <option value="">请选择</option>
+                <option :value="info.name" v-for="info in costCenters">{{info.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" v-if="projectNames.length > 0">
+            <label class="col-2 control-label text-right">项目名称</label>
+            <div class="col-8">
+              <select class="form-control" v-model="projectName">
+                <option value="">请选择</option>
+                <option :value="info.name" v-for="info in projectNames">{{info.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 control-label text-right">付款方式</label>
+            <div class="col-10">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="1" v-model.number="payType">
+                <label class="form-check-label">现付（现金等）</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="8" v-model.number="payType">
+                <label class="form-check-label">记账</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-group row" v-if="payType === 1">
+            <label class="col-2 control-label text-right">付款方式备注</label>
+            <div class="col-8">
+              <my-select-income :incomeRemark.sync="payRemark"></my-select-income>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- passengers -->
+    <div class="card col-12">
+      <div class="card-header bg-warning text-white py-0">
+        乘机人
+      </div>
+      <table class="table table-sm">
+        <thead>
+          <tr class="small">
+              <th>序号</th>
+              <th>姓名</th>
+              <th>证件号</th>
+              <th>证件类型</th>
+              <th>常旅客号</th>
+              <th>手机</th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            <template v-for="(psg, index) in psgInfos">
+              <tr>
+                <td>
+                  {{index+1}}
+                </td>
+                <td>  
+                  <input type="text" class="form-control" placeholder="乘机人姓名" v-model.trim="psg.psgName"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" placeholder="证件号" v-model.trim="psg.idNo" />
+                </td>
+                <td>
+                    <select class="form-control" v-model.number="psg.idType">
+                      <option value="1">身份证</option>
+                      <option value="2">护照</option>
+                      <option value="99">其它</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control" placeholder="常旅客号" v-model.trim="psg.ffpNo" /></td>
+                <td><input type="text" class="form-control" placeholder="手机号" v-model.trim="psg.mobile" /></td>
+                <td>
+                    <select class="form-control" v-model.number="psg.psgType">
+                      <option value="0">成人</option>
+                      <option value="1">儿童</option>
+                      <option value="2">婴儿</option>
+                    </select>
+                </td>
+                <td>
+                  <a href="javascript:void(0)" @click.stop="deletePsg(index)"  class="btn btn-sm btn-danger float-right">删除</a>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+      </table>
+      <div class="card-foter">
+        <button type="button" @click.stop="addPsg()" class="btn btn-success">
+          添加乘客
+        </button>
         </div>
+    </div>
+
+    <div class="card col-12 bg-white border-0 mt-1 px-0" v-if="insurances.length > 0">
+      <div class="card-header bg-warning text-white py-0">
+        <span>保险</span>
       </div>
-    </form>
+      <table class="table">
+        <tr v-for="(info, index) in insurances">                
+          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].productCode'" :value="info.productCode" />
+          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].productName'" :value="info.productName" />
+          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].price'" :value="info.price" />
+          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].discount'" :value="info.discount" />
+          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].count'" :value="psgInfos.length" />
+
+          <td>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" :name="'tmcPolicyApply.insurances[' + index + '].buyed'" value="1">
+              <label class="form-check-label">{{info.productName}}</label>                 
+            </div>
+          </td>
+          <td>
+            <i class="fa fa-rmb text-warning"></i>{{info.price-info.discount}}/份
+          </td>
+          <td>
+            <small>购买 {{psgInfos.length}} 份</small>
+          </td>
+          <td>
+            <small>{{info.productDesc}}</small>
+          </td>
+        </tr>
+      </table>  
+    </div>
+
+    <div class="card col-12">
+      <div class="card-header bg-warning text-white py-0">
+        结算信息
+      </div>
+      <div class="card-body bg-info text-white py-0"></div>
+      <my-price-input psgTypeName="成人" v-bind.sync="adultPrice" key="adultPriceInput" v-if="adultCount > 0">
+          </my-price-input>
+      <my-price-input psgTypeName="儿童" v-bind.sync="childPrice" key="childPriceInput" v-if="childCount > 0">
+          </my-price-input>  
+      <my-price-input psgTypeName="婴儿" v-bind.sync="infantPrice" key="infantPriceInput" v-if="infantCount > 0">
+          </my-price-input>  
+      <table class="table bg-info text-white">
+        <tr>
+          <td>总计</td>
+          <td>人数：{{psgCount}}</td>
+          <td>总应收：{{totalAmount}}</td>
+          <td>总应付：{{totalCost}}</td>
+          <td><span class="text-success">利润：{{totalProfit}}</span></td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="card col-12 bg-white">
+      <div class="card-header bg-warning text-white py-0">
+          <span>联系人</span>
+        </div>
+      <div class="card-body px-0">
+        <div class="form-group">
+          <input type="text" class="form-control" name="tmcPolicyApply.linkPhone" placeholder="联系电话"/>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="tmcPolicyApply.remark" placeholder="备注" />
+        </div>
+      </div>   
+    </div>
+
+    <div class="card col-12">
+      <div class="card-body text-center">
+        <a class="btn btn-success text-white" @click.stop="createFlightOrder();">保存订单</a>
+      </div>
+    </div>
 
     <div class="clear"></div>
     <my-psg-picker :show="showPicker" @close="psgPickerClosed"></my-psg-picker>
@@ -172,143 +246,232 @@
 </template>
 
 <script>
-import { addDate } from '../common/common.js'
-import MyPsgPicker from '../components/my-psg-picker.vue'
-import { searchInsurances } from '../api/product.js'
-import $ from 'jquery'
+  import { mapState } from 'vuex'
+  import $ from 'jquery'
+  import { addDate } from '../common/common.js'
+  import MyPsgPicker from '../components/my-psg-picker.vue'
+  import MyPriceInput from '../components/flight-price-input.vue'
+  import PriceInfo from '../common/PriceInfo.js'
+  import { createFlightOrder } from '../api/flight.js'
+  import MySelectCustomer from '../components/my-select2-customer.vue'
+  import MySelectIncome from '../components/my-select-income.vue'
 
-export default {
-  components: {
-    'my-psg-picker': MyPsgPicker
-  },
-  data () {
-    return {
-      psgSelected: -1,
+  export default {
+    components: {
+      MyPsgPicker,
+      MyPriceInput,
+      MySelectCustomer,
+      MySelectIncome
+    },
+    data () {
+      return {
+        psgSelected: -1,
 
-      idTypes: [
-        { idType: 1, idName: '身份证' },
-        { idType: 2, idName: '护照' },
-        { idType: 10, idName: '其它' }
-      ],
-      showPicker: false,
+        idTypes: [
+          { idType: 1, idName: '身份证' },
+          { idType: 2, idName: '护照' },
+          { idType: 10, idName: '其它' }
+        ],
+        showPicker: false,
 
-      insurances: []
-    }
-  },
-  computed: {
-    bookFlights () { return this.$store.state.order.flights },
-    psgInfos () { return this.$store.state.order.psgs },
-    policyId () { return this.$store.state.order.policyId },
-    ddate () { return this.$store.state.searchParams.ddate },
-    fltCount () { return this.bookFlights.length }
-  },
-  mounted: function () {
-    this.$store.commit('hideBottomTabBar')
-    this.searchInsurances()
-  },
-  beforeDestroy: function () {
-    this.$store.commit('showBottomTabBar')
-  },
-  methods: {
-    back: function () {
-      this.$router.go(-1)
-    },
-    showErrMsg: function (msg, msgType) {
-      this.$store.dispatch('showAlertMsg', { 'errMsg': msg, 'errMsgType': msgType })
-    },
-    showLoading: function (loadingText) {
-      this.$store.commit('showLoading', { 'loading': true, 'loadingText': loadingText })
-    },
-    hideLoading: function () {
-      this.$store.commit('showLoading', { 'loading': false })
-    },
-    addPsg: function () {
-      this.$store.commit('addPsg')
-    },
-    deletePsg: function (index) {
-      this.$store.commit('deletePsg', index)
-    },
-    removeFlightInfo: function (index) {
-      this.$store.commit('deleteFlt', index)
-      if (this.bookFlights.length === 0) {
-        this.$router.replace('/search')
+        insurances: [],
+
+        adultPrice: new PriceInfo(),
+        childPrice: new PriceInfo(),
+        infantPrice: new PriceInfo(),
+        adultCount: 0,
+        childCount: 0,
+        infantCount: 0,
+
+        // 0 - 国内票; 1 - 国际或港澳台
+        intlTicket: 0,
+
+        customerId: 0,
+        costCenter: '',
+        projectName: '',
+        costCenters: [],
+        projectNames: [],
+        payType: 1,
+        payRemark: ''
       }
     },
-    createFlightOrder: function () {
-      if (this.bookFlights.length === 0) {
-        this.$router.push('/search')
-        return
-      }
-      var self = this
+    computed: mapState({
+      flights: state => state.order.flights,
+      psgInfos: state => state.order.psgs,
+      policyId: state => state.order.policyId,
+      ddate: state => state.searchParams.ddate,
+      fltCount () { return this.flights.length },
+      psgCount: function () {
+        let count = 0
+        this.adultCount = 0
+        this.childCount = 0
+        this.infantCount = 0
 
-      self.showLoading()
+        for (const psg of this.psgInfos) {
+          count++
 
-      $.ajax({
-        type: 'post',
-        url: '/Flight/orders/createFlightOrder',
-        data: $('#frmOrder').serialize(),
-        dataType: 'json',
-        success: function (jsonResult) {
-          if (jsonResult.status !== 'OK') {
-            if (jsonResult.errcode === -10001) {
-              self.$store.commit('jumpToLogin', self.$router)
-            } else {
-              self.showErrMsg(jsonResult.errmsg, 'danger')
-            }
-          } else {
-            // 清空预定信息
-            self.$store.commit('resetOrderInfo')
-
-            self.$store.commit('setOrderId', jsonResult.returnCode)
-            self.$router.push('/order/detail/' + jsonResult.returnCode)
+          if (psg.psgType === 1) {
+            this.childCount++
+          } else if (psg.psgType === 2) {
+            this.infantCount++
           }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-          if (XMLHttpRequest.status === 403) {
-            self.$store.commit('jumpToLogin', self.$router)
-          }
-        },
-        complete: function (XMLHttpRequest, textStatus) {
-          self.hideLoading()
         }
-      })
-    },
-    selectPsg: function (index) {
-      this.psgSelected = index
-      this.showPicker = true
-    },
-    psgPickerClosed: function (status, name, idType, idNo) {
-      this.showPicker = false
-      if (status === 1) {
-        this.$store.commit('updatePsg', { 'index': this.psgSelected, 'name': name, 'idType': idType, 'idNo': idNo })
-      }
-    },
-    searchReturn: function () {
-      this.$store.commit('switchCity')
 
-      var newDate = addDate(this.ddate, 1)
-      this.$store.commit('setDdate', newDate)
-      this.$router.push('/search')
-    },
-    searchInsurances: function () {
-      var params = { 'sc.pageNo': 1,
-        'sc.pageSize': 10
-      }
+        this.adultCount = count - this.childCount - this.infantCount
 
-      searchInsurances(params,
-        (jsonResult) => {
-          this.insurances = jsonResult.dataList
-        },
-        null,
-        () => {}
-      )
+        this.adultPrice.ticketCount = this.adultCount
+        this.childPrice.ticketCount = this.childCount
+        this.infantPrice.ticketCount = this.infantCount
+
+        if (this.adultPrice.price === 0) {
+
+          this.adultPrice.price = 0
+          this.adultPrice.parvalue = 0
+          this.adultPrice.tax = 0
+
+          for(let flt of this.flights) {
+            this.adultPrice.price += flt.price
+            this.adultPrice.parvalue += flt.price
+            this.adultPrice.tax += flt.taxCN + flt.taxYQ
+          }
+        }
+
+        return count
+      },
+      totalAmount: function () {
+        return this.adultPrice.amount * this.adultCount +
+          this.childPrice.amount * this.childCount +
+          this.infantPrice.amount * this.infantCount
+      },
+      totalCost: function () {
+        return this.adultPrice.cost * this.adultCount +
+          this.childPrice.cost * this.childCount +
+          this.infantPrice.cost * this.infantCount
+      },
+      totalProfit: function () {
+        return this.adultPrice.profit * this.adultCount +
+          this.childPrice.profit * this.childCount +
+          this.infantPrice.profit * this.infantCount
+      }
+    }),      
+    mounted: function () {
+      // this.searchInsurances()
+    },
+    methods: {
+      back: function () {
+        this.$router.go(-1)
+      },
+      showErrMsg: function (msg, msgType) {
+        this.$store.dispatch('showAlertMsg', { 'errMsg': msg, 'errMsgType': msgType })
+      },
+      showLoading: function (loadingText) {
+        this.$store.commit('showLoading', { 'loading': true, 'loadingText': loadingText })
+      },
+      hideLoading: function () {
+        this.$store.commit('showLoading', { 'loading': false })
+      },
+      addPsg: function () {
+        this.$store.dispatch('addPsg')
+      },
+      deletePsg: function (index) {
+        this.$store.dispatch('deletePsg', index)
+      },
+      removeFlightInfo: function (index) {
+        this.$store.commit('deleteFlt', index)
+        if (this.flights.length === 0) {
+          this.$router.replace('/flt/search')
+        }
+      },
+      createFlightOrder: function () {
+        if (this.intlTicket !== 0 && this.intlTicket !== 1) {
+          this.showErrMsg('请确定订单为国内订单，还是国际订单', 'danger')
+          return
+        }
+
+        let flights = []
+        for(let info of this.flights) {
+          flights.push({
+            'flight': {
+              'departureAirport': info.dport,
+              'arrivalAirport': info.aport,
+              'departureDate': info.ddate,
+              'flightNo': info.flightNo,
+              'subclass': info.subclass,
+              'price': info.price,
+              'departureTerminal': info.dterm,
+              'arrivalTerminal': info.aterm,
+              'departureTime': info.dtime,
+              'arrivalTime': info.atime
+            }
+          })
+        }
+
+        const params = {
+          'customerId': this.customerId,
+          'costCenter': this.costCenter,
+          'projectName': this.projectName,
+          'payType': this.payType,
+          'payRemark': this.payRemark,
+
+          'adultPrice': this.adultPrice,
+          'childPrice': this.childPrice,
+          'infantPrice': this.infantPrice,
+
+          'totalAmount': this.totalAmount,
+          'totalProfit': this.totalProfit,
+
+          'tktlDate': this.etdzDate,
+          'tktlTime': this.etdzTime,
+          'itineraryType': this.itineraryType,
+          'itineraryMailingAddress': this.itineraryMailingAddress,
+          'itineraryMailingMemo': this.itineraryMailingMemo,
+          'itineraryRecipient': this.itineraryRecipient,
+          'itineraryRecipientMobile': this.itineraryRecipientMobile,
+          'deliveryDate': this.deliveryDate,
+          'linkman': this.linkman,
+          'linkPhone': this.linkPhone,
+          'intlTicket': this.intlTicket,
+          'flights': flights,
+          'passengers': this.psgInfos,
+
+          'supplierId': this.supplierId,
+          'paymentMethodId': this.paymentMethodId,
+          'op1': this.op1
+        }
+
+        const jsonParams = JSON.stringify(params)
+
+        this.showLoading('保存中')
+
+        createFlightOrder(jsonParams,
+          (jsonResult) => {
+            if (jsonResult.status !== 'OK') {
+              this.showErrMsg(jsonResult.errmsg, 'danger')
+            } else {
+              this.showErrMsg('保存成功，跳转到订单详情页面')
+              this.$router.push('/flt/order/' + jsonResult.returnCode)
+            }
+          },
+          () => { this.hideLoading() }
+        )
+      },
+      selectPsg: function (index) {
+        this.psgSelected = index
+        this.showPicker = true
+      },
+      psgPickerClosed: function (status, name, idType, idNo) {
+        this.showPicker = false
+        if (status === 1) {
+          this.$store.commit('updatePsg', { 'index': this.psgSelected, 'name': name, 'idType': idType, 'idNo': idNo })
+        }
+      },
+      searchReturn: function () {
+        this.$store.commit('switchCity')
+
+        var newDate = addDate(this.ddate, 1)
+        this.$store.commit('setDdate', newDate)
+        this.$router.push('/flt/search')
+      }
     }
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      // 通过 `vm` 访问组件实例
-      window.scroll(0, 0)
-    })
   }
-}
 </script>

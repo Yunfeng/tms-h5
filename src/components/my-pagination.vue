@@ -1,8 +1,8 @@
 <template>
-  <nav class="float-right" aria-label="Page navigation example" v-if="rowCount > 0">
+  <nav class="float-right" aria-label="Page navigation example" v-if="pageTotal > 0">
     <ul class="pagination">
         <li class="page-item">
-          <a class="page-link small">共{{rowCount}}, 第{{pageNo}}页</a>
+          <a class="page-link small">共{{rowCount}}条记录, 第{{pageNo}}页</a>
         </li>
         <template v-if="pageTotal > 1">
           <li class="page-item" :class="{active: pageNo === 1}"><a @click="goDirectPage('1')" class="page-link">1</a></li>        

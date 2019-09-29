@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import domCities from '../data/domCities.js'
+import domCities from '../domCities.js'
 
 export default {
   props: {
@@ -105,7 +105,6 @@ export default {
 </script>
 
 <style>
-
 .weui-cell.city-selected:hover {
   background-color: #d0e9c6;
 }
@@ -113,6 +112,4 @@ export default {
 .weui-cell.city-selected.weui-cell_selected {
   background-color: #d9edf7;
 }
-
-
 </style>

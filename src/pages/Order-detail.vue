@@ -91,7 +91,7 @@
           <small>结算信息</small>
         </div>
         <dl class="row mb-0">
-          <dt class='col-4 text-right px-0'>总价</dt>
+          <dt class='col-4 text-right px-0'>原价</dt>
           <dd class='col-8'>
             <i class="fa fa-rmb text-warning"></i><span class="text-info fa-2"> {{info.totalPrice}}</span>
           </dd>
@@ -103,16 +103,10 @@
               </dd>
             </template>
             <template v-if="info.ticketAmount > 0">
-              <dt class='col-4 text-right px-0'>应付票款</dt>
+              <dt class='col-4 text-right px-0'>应付</dt>
               <dd class='col-8'>
                 <i class='fa fa-rmb text-warning'></i>
                 <span class="text-danger fa-2"> {{info.ticketAmount}}</span>
-              </dd>
-            </template>
-            <template v-if="info.serviceFee > 0">
-              <dt class='col-4 text-right px-0'>服务费</dt>
-              <dd class='col-8'>
-                <span class="text-danger"><i class='fa fa-rmb text-warning'></i> {{info.serviceFee}}</span>
               </dd>
             </template>
             <template v-if="info.ticketAmount > 0 && costSaving > 0">
@@ -140,51 +134,16 @@
       </div>
 
       <template v-if='info.status === 1024 && info.enterpriseId > 0'>
-        <template v-if="policies.length > 0">
-          <div class="card-body py-0 bg-faded text-info">
-            特殊政策 <small>(票面低于实际付款金额)</small>
-          </div>
-          <table class='table table-sm table-striped table-condensive'>
-            <thead>
-                <tr>
-                    <th>航司</th>
-                    <th>舱位</th>
-                    <th class="text-right">返点</th>
-                    <th class="text-right">最低票面</th>
-                    <th></th>
-                </tr>                        
-            </thead>
-            <tbody>
-                <tr v-for='(info, index) in policies' @click='showPolicyDetail(info)'>
-                    <td>{{info.carrier}}</td>
-                    <td>{{info.subclass}}</td>
-                    <td class="text-right">{{info.returnPoint}}</td>
-                    <td class="text-right">{{info.minPrice}}</td>
-                    <td class="text-center"><button class='btn btn-success btn-sm' @click.stop='selectPolicy(info)'>选择</button></td>
-                </tr>
-            </tbody>
-          </table>
-          <div class="card-body py-0 bg-faded text-info">
-            <small>备注</small>
-          </div>
-          <table class="table">
-            <tr>
-              <td>
-                <input type="input" class="form-control" placeholder="请在此输入备注信息" v-model="remark">
-              </td>
-            </tr>                  
-          </table>                
-        </template>
-
         <div class="card col-12 border-0 mb-2 px-0">
           <div class="card-body">
-            <template v-if="info.enterpriseId === info.seller">              
-              <button type='button' class='btn btn-outline-danger w-100 mb-3' @click.stop='specifyBuyerPayOrder(info.id)'>通知买家付款</button>
+            <template v-if="info.totalPrice > 0 && info.ticketAmount > 0">
+              <button type='button' class='btn btn-success w-100' @click.stop='commitTmcOrder(info.id)'>请求出票</button>  
             </template>
-
-            <button type='button' class='btn btn-success w-100' @click.stop='commitTmcOrder(info.id)'>申请出票</button>
-
-            <button type='button' class='btn btn-outline-danger w-100 mt-3' @click.stop='cancelTmcOrder(info.id)'>取消</button>
+            <template v-else>
+              <span class="text-info small float-right">请耐心等待工作人员核验价格</span>
+            </template>
+            
+            <button type='button' class='btn btn-outline-danger w-100 mt-2' @click.stop='cancelTmcOrder(info.id)'>取消</button>
           </div>
         </div>
       </template>
@@ -192,18 +151,6 @@
       <template v-if='info.status === 1  && info.enterpriseId > 0'>          
         <div class='card col-12 border-0 mb-5'>
           <button type='button' class='btn btn-success w-100' @click.stop='payForTmcOrder(info.id)'>支付</button>
-          <button type='button' class='btn btn-outline-success w-100 invisible' @click.stop='weixinPay1(info.id)'>
-            微信支付
-            <template v-if="wxpayRate>0">
-              <small>支付费率千分之 {{wxpayRate}}</small>
-            </template>
-          </button>
-          <button type='button' class='btn btn-outline-info w-100 invisible' @click.stop="aliPay1(info.id)">
-            支付宝
-            <template v-if="alipayRate>0">
-              <span class="small align-bottom">支付费率千分之 {{alipayRate}}</span>
-            </template>
-          </button>
         </div>
       </template>
       <template v-if='info.status === 4  && info.enterpriseId > 0'>
@@ -226,9 +173,9 @@
       </template>
       <template v-if='info.status === 16  && info.enterpriseId > 0 && info.policyId > 0'>
         <div class='card col-12 border-0 mb-2'>
-          <button type='button' class='weui-btn weui-btn_primary' @click='confirmOrderTicketRight(info.id)'>票号正确 ({{ticketCorrectConfirmTimes}})</button>
+          <button type='button' class='weui-btn weui-btn_primary' @click='confirmOrderTicketRight(info.id)'>票号正确</button>
 
-          <button type='button' class='weui-btn weui-btn_warn' @click='confirmOrderTicketWrong(info.id)'>票号有误 ({{ticketWrongConfirmTimes}})</button>
+          <button type='button' class='weui-btn weui-btn_warn' @click='confirmOrderTicketWrong(info.id)'>票号有误</button>
         </div>
       </template>
       <template v-if='info.status === 8  && info.enterpriseId === 0 && info.seller > 0'>          
@@ -244,30 +191,35 @@
         </div>
       </template>
     </template> 
+
+    <my-modal-prompt ref="modalPrompt">
+      <span slot="title">{{modalTitle}}</span>
+    </my-modal-prompt>
   </div>
 </template>
 
 <script>
-import { showIdTypeDesc, showOrderStatusDesc } from '../api/common.js'
+import MyModalPrompt from '../components/my-modal-prompt.vue'
+import { showIdTypeDesc,  } from '../common/common.js'
 import { getDomainUrl } from '../api/wx.js'
 import MyButton from '../components/my-button.vue'
 import MyInput from '../components/my-input.vue'
 import $ from 'jquery'
-import { searchPolicies, searchOrderDetail, cancelOrder, searchPayRates, processOrder } from '../api/order.js'
-import { payForTmcOrder } from '../api/order.js'
+import { searchOrderDetail, cancelOrder, processOrder } from '../api/order.js'
+import { payForTmcOrder, showOrderStatusDesc, confirmTicketNoWrong, confirmTicketNoCorrect } from '../api/order.js'
 
 export default {
   components: {
     'my-button': MyButton,
-    'my-input': MyInput
+    'my-input': MyInput,
+    MyModalPrompt
   },
   data () {
     return {
-      policies: [],
       remark: '',
-      wxpayRate: 0,
-      alipayRate: 0,
-      domain: ''
+      domain: '',
+
+      modalTitle: ''
     }
   },
   computed: {
@@ -327,42 +279,32 @@ export default {
 
       var params = { 'id': id }
 
-      searchOrderDetail(params,
-        (jsonResult) => {
-          if (jsonResult !== null && jsonResult.id === id) {
-            this.$store.commit('setOrderDetail', jsonResult)
-
-            if (jsonResult.status === 1024) {
-              // this.searchPolicies()
-            } else if (jsonResult.status === 1) {
-              // 查找支付费率
-              this.searchPayRate()
-            }
+      searchOrderDetail(params, v => {
+          if (v !== null && v.id === id) {
+            this.$store.commit('setOrderDetail', v)
           }
         },
+        (status, statusText) => { this.showErrMsg(status + ', ' + statusText, 'danger') },
         () => this.hideLoading()
       )
     },
     cancelTmcOrder: function (id) {
-      if (window.confirm('确定取消订单？') === false) {
-        return
-      }
-      // 买家：取消订单
-      this.showLoading('取消中...')
-      var params = { 'id': id }
+      this.modalTitle = '确定取消订单吗？'
+      this.$refs.modalPrompt.modal('YesOrNo').then(() => {
+        // 买家：取消订单
+        const params = { 'id': id }
 
-      cancelOrder(params,
-        (jsonResult) => {
-          if (jsonResult.status === 'OK') {
-            this.showErrMsg('操作成功', 'success')
-            this.refreshOrderDetail()
-          } else {
-            this.showErrMsg(jsonResult.errmsg)
-          }
-        },
-        null,
-        () => this.hideLoading()
-      )
+        cancelOrder(params, v => {
+            if (v.status === 'OK') {
+              this.showErrMsg('操作成功', 'success')
+              this.refreshOrderDetail()
+            } else {
+              this.showErrMsg(v.errmsg)
+            }
+          }, null,
+          () => this.hideLoading()
+        )
+      }).catch((ex) => {})
     },
     commitTmcOrder: function (id) {
       // 买家
@@ -388,11 +330,6 @@ export default {
     },
     payForTmcOrder: function (id) {
       // 买家：支付订单
-      // var url = '/Flight/orders/payForTmcOrder.do'
-      // var postData = { id: id }
-      // var successHandler = this.refreshOrderDetail
-
-      // this.executeOrderOp(url, postData, successHandler)
       payForTmcOrder({ id }, v => {
         console.log(v)
         if (v.status === 'OK') {
@@ -424,32 +361,37 @@ export default {
       this.$router.push('/order/ticket')
     },
     confirmOrderTicketWrong: function (id) {
-      this.ticketWrongConfirmTimes--
-      if (this.ticketWrongConfirmTimes > 0) {
-        console.log(this.ticketWrongConfirmTimes)
-        return
-      }
+      this.modalTitle = '确定票号有错误吗？'
+      this.$refs.modalPrompt.modal('YesOrNo').then(() => {
+        const params = { 'id': id }
 
-      // 买家：票号错误
-      var url = '/Flight/orders/confirmOrderTicketWrong.do'
-      var postData = { id: id }
-      var successHandler = this.refreshOrderDetail
-
-      this.executeOrderOp(url, postData, successHandler)
+        confirmTicketNoWrong(params, v => {
+            if (v.status === 'OK') {
+              this.showErrMsg('操作成功', 'success')
+              this.refreshOrderDetail()
+            } else {
+              this.showErrMsg(v.errmsg)
+            }
+          }
+        )
+      }).catch((ex) => {})      
     },
     confirmOrderTicketRight: function (id) {
-      this.ticketCorrectConfirmTimes--
-      if (this.ticketCorrectConfirmTimes > 0) {
-        console.log(this.ticketCorrectConfirmTimes)
-        return
-      }
-
       // 买家：票号正确
-      var url = '/Flight/orders/confirmOrderTicketCorrect.do'
-      var postData = { id: id }
-      var successHandler = this.refreshOrderDetail
+      this.modalTitle = '已确认票号正确了吗？'
+      this.$refs.modalPrompt.modal('YesOrNo').then(() => {
+        const params = { 'id': id }
 
-      this.executeOrderOp(url, postData, successHandler)
+        confirmTicketNoCorrect(params, v => {
+            if (v.status === 'OK') {
+              this.showErrMsg('操作成功', 'success')
+              this.refreshOrderDetail()
+            } else {
+              this.showErrMsg(v.errmsg)
+            }
+          }
+        )
+      }).catch((ex) => {})      
     },
     executeOrderOp: function (url, postData, successHandler) {
       this.showLoading('处理中......')
@@ -526,13 +468,6 @@ export default {
       // 申请改期
       this.$store.commit('setChangeInfo', { 'ticketNo': ticketNo, 'psgName': psgName, 'orderId': orderId })
       this.$router.push('/change/apply')
-    },
-    searchPayRate: function () {
-      // searchPayRates((jsonResult) => {
-      //   // console.log(jsonResult)
-      //   this.wxpayRate = jsonResult.wxpayRate
-      //   this.alipayRate = jsonResult.alipayRate
-      // })
     },
     specifyBuyerPayOrder: function (id) {
       // 指定买家并通知买家付款

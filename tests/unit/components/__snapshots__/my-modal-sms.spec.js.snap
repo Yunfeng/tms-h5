@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`my-modal-sms.vue matches snapshot 1`] = `
+<div tabindex="-1" role="dialog" aria-hidden="true" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">
+          修改备注
+        </h6> <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <form role="form" class="form-horizontal">
+          <div class="form-group row"><label class="col-3 col-form-label">短信格式</label>
+            <div class="col-9"><select class="custom-select">
+                <option value="0">格式1</option>
+                <option value="1">格式2</option>
+                <option value="2">格式3</option>
+                <option value="3">格式4</option>
+                <option value="4">格式5</option>
+              </select></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-12"><label class="small">
+                短信内容：
+                <!----></label> <textarea rows="5" class="form-control"></textarea></div>
+          </div>
+          <div class="form-group form-check row mb-1">
+            <div class="col-12"><label class="form-check-label"><input type="checkbox" class="form-check-input">
+                使用我的短信内容
+              </label></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-12"><input type="text" placeholder="请在此输入接受信息的手机号" class="form-control"> <span class="small text-muted">请输入手机号（留空则使用订单中对应乘机人的手机号）</span></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-default">取消</button> <button type="button" class="btn btn-primary">确定</button></div>
+    </div>
+  </div>
+</div>
+`;

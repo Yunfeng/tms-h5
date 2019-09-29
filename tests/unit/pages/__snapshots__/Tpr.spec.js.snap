@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tpr.vue matches snapshot 1`] = `
+<div id="tpr-list">
+  <div class="card">
+    <div class="card-header bg-info text-white">
+      出票数据
+    </div>
+  </div>
+  <div class="card col-12 hidden-md-down">
+    <form class="form-inline">
+      <my-date-picker-stub placeholder="开始日期" value="" id="beginDate" class="form-control m-1"></my-date-picker-stub>
+      <my-date-picker-stub placeholder="截止日期" value="" id="endDate" class="form-control m-1"></my-date-picker-stub> <input type="text" placeholder="eterm用户名" size="10" class="form-control m-1"> <input type="text" placeholder="设备号" size="4" class="form-control m-1"> <input type="text" placeholder="票号" size="12" class="form-control m-1"> <button type="button" class="btn btn-success mr-2">确定</button> <button type="button" class="btn btn-info btn-sm">重置</button> <button type="button" class="btn btn-sm btn-success ml-auto">导入Excel</button> <button type="button" class="btn btn-sm btn-primary ml-2">导入TPR</button> <button type="button" class="btn btn-sm btn-secondary ml-2">下载</button>
+    </form>
+  </div>
+  <div class="card col-12 px-0">
+    <table class="table table-sm table-striped table-hover small">
+      <thead>
+        <tr>
+          <th>出票日期</th>
+          <th class="hidden-sm-down">设备号</th>
+          <th>票号</th>
+          <th>编码</th>
+          <th>出发</th>
+          <th>到达</th>
+          <th class="text-right">价格</th>
+          <th class="text-right">税</th>
+          <th class="text-right">佣金</th>
+          <th class="text-right">底价</th>
+          <th>ctcm</th>
+          <th>ctct</th>
+          <th>出票处</th>
+          <th>eterm用户名</th>
+          <th>生成时间</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="card-block">
+      <my-pagination-stub rowcount="0" pageno="1" pagetotal="0"></my-pagination-stub>
+    </div>
+  </div>
+  <div id="modalTpr" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="myModalLabel" class="modal-title">导入tpr指令结果</h4> <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group"><label for="exampleFormControlTextarea1">tpr指令结果</label> <textarea id="exampleFormControlTextarea1" rows="10" class="form-control"></textarea> <span class="text-muted small">请将tpr指令结果完全复制</span></div>
+        </div>
+        <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default">取消</button> <button type="button" class="btn btn-primary">保存</button></div>
+      </div>
+    </div>
+  </div>
+  <div id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="myModalLabel" class="modal-title">上传Excel文件导入机票数据</h4> <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">×</span> <span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <form id="uploadFileForm" method="post" enctype="multipart/form-data"><input type="hidden" name="fileContentType" value="100">
+            <div class="form-group"><label class="control-label">
+                供应商
+              </label>
+              <div><select name="supplierId" class="form-control">
+                  <option value="0">请选择供应商</option>
+                </select></div>
+            </div>
+            <div class="form-group"><label class="control-label">
+                Excel格式
+              </label>
+              <div><select name="formatNo" class="form-control">
+                  <option value="1">格式一 (出票日期、开始票号、截止票号、票数、支付金额、支付备注)</option>
+                  <option value="2">格式二 (票号、乘机人、PNR、航班号、支付金额、出票日期)</option>
+                </select></div> <span class="text-muted small">
+                              格式一（六列）：出票日期、开始票号、截止票号、票数、支付金额、支付备注；数据从第二行开始）<br>
+                              格式二（六列）：票号、乘机人、PNR、航班号、支付金额、出票日期；数据从第二行开始）<br></span>
+            </div>
+            <div class="form-group"><label>选择需要上传的文件</label> <input type="file" name="upfile" id="inputFileName" class="form-control-file"> <span class="text-muted small">
+                              文件名请不要有中文或全角字符，请使用字母或数字命名文件名。
+                            </span></div>
+          </form>
+        </div>
+        <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default btn-sm">取消</button> <button type="button" class="btn btn-primary btn-lg ml-2">
+            开始上传
+          </button></div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
