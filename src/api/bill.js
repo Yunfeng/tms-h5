@@ -11,6 +11,15 @@ export function searchBills(params, cbDone, cbAlways) {
   })
 }
 
+export function searchBillDetail(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/my/bill/' + id
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+
+
 export function searchUnreviewedBills(params, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/bills/unreviewed'
   callService(url, {
@@ -29,13 +38,6 @@ export function searchBillsToSettle(params, cbDone, cbAlways) {
   })
 }
 
-export function searchBillDetail(params, cbDone) {
-  const url = APP_FLIGHT_PATH + '/searchBillInfoDetail.do'
-  callService(url, {
-    data: params,
-    cbDone: cbDone
-  })
-}
 
 export function changeBillCustomer(billId, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/bill/' + billId + '/customer'

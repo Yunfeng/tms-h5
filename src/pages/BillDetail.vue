@@ -128,23 +128,18 @@
                 </template>
                 <template v-else-if="detail.bePaid === '1'">
                   <span class="text-success strong">已收</span>
-                  <button class="btn btn-sm btn-danger ml-2" @click.stop="undoWriteOff()" v-if="isAdmin">撤销</button>  
                 </template>
               </td>
               <td class="text-center">
                 <span class="text-danger" v-if="detail.paymentStatus ===0">未付</span>
                 <span class="text-success strong" v-else>
                   已付
-                  <button class="btn btn-sm btn-danger ml-2" @click.stop="undoFinishPayment()" v-if="isAdmin">撤销</button>
                 </span>
               </td>
 
               <td class="text-center">
                 {{detail.settleDate}}
                 <span class="text-info small">{{detail.settlementNo}}</span>
-                <template v-if="detail.settlementNo !== null && detail.bePaid === '0' && detail.paymentStatus === 0">
-                  <button type="button" class="btn btn-sm btn-danger" @click.stop="delSettlementNo()">删除</button>
-                </template>
               </td>
               <td class="text-center">
                 {{detail.writeOffDate}}
@@ -173,23 +168,6 @@
         <div class="card-body">
           <strong>备注：</strong>
                 {{detail.remark}}
-                <a href="javascript:void(0)" @click.stop="editRemark()" class="small pl-2">修改</a>
-        </div>
-        <div class="card-body text-center py-2">
-          <template v-if="detail.audited !== '1'">
-            <button  type="button" class="btn btn-success" @click.stop="auditBillDone()">审核通过</button>
-            <button type="button" class="btn btn-danger btn-sm float-right" @click.stop="deleteBill()">删除</button>
-          </template>
-          <template v-else-if="detail.bePaid !== '1'">
-            <button  type="button" class="btn btn-success float-left" @click.stop="writeOffBill()" v-if="isRoot">销账(已收款)</button>
-            
-            <button type="button" class="btn btn-danger btn-sm float-right" @click.stop="cancelBillAudited()">取消审核</button>
-          </template>
-
-          <template v-if="detail.paymentStatus === 0">
-            <button  type="button" class="btn btn-primary float-left ml-5" @click.stop="finishPayment()" v-if="isRoot">已付款</button>  
-          </template>
-          
         </div>
       </div>
       <template v-if="isFlightBill">
@@ -563,105 +541,19 @@
         </div>
       </template>
 
-      <div class="card">
-          <div class="card-header">
-              <button type="button" class="btn btn-info btn-sm float-right" @click.stop="searchHistories()">查看操作记录</button>
-          </div>
-          <table class="table table-sm table-striped small">
-            <tr>
-              <th>时间</th><th>内容</th><th>操作人</th>
-            </tr>
-            <tr v-for="info in histories" :key="info.id">
-              <td>{{info.createTime}}</td>
-              <td>{{info.content}}</td>
-              <td>{{info.operator}}</td>
-            </tr>
-          </table>
-      </div>
+      
     </template>
 
-    <div class="modal" id="modalEditPrice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">更改价格</h4>
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>                                                                
-                </div>
-                <div class="modal-body">
-                    <table class="table table-sm">
-                      <tr>
-                        <td>票面价</td>
-                        <td>销售价</td>
-                        <td>税</td>
-                        <td>保险费</td>
-                        <td>服务费</td>
-                      </tr>
-                      <tr>
-                        <td><input type="text" class="form-control" v-model.number="price"></td>
-                        <td><input type="text" class="form-control" v-model.number="parvalue"></td>
-                        <td><input type="text" class="form-control" v-model.number="tax"></td>
-                        <td><input type="text" class="form-control" v-model.number="insurance"></td>
-                        <td><input type="text" class="form-control" v-model.number="serviceCharge"></td>
-                      </tr>
-                      <tr>
-                        <td>代理费率</td>
-                        <td>代理费金额</td>
-                        <td>客户让利</td>
-                        <td>应收</td>
-                      </tr>
-                      <tr>
-                        <td><input type="text" class="form-control" v-model.number="commRate"></td>
-                        <td><input type="text" class="form-control" v-model.number="commission"></td>
-                        <td><input type="text" class="form-control" v-model.number="discount"></td>
-                        <td><input type="text" class="form-control" v-model.number="amount"></td>
-                      </tr>                      
-                     </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default"  data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" @click.stop="changeTicketPrice()">保存</button>
-                </div>
-            </div>
-        </div>                    
-    </div>
-
-    <my-modal-prompt ref="modalPrompt" :nullable="modalNullable">
-      <span slot="title">{{modalTitle}}</span>
-    </my-modal-prompt>
-    <my-modal-update-customer ref="updateCustomerModal"></my-modal-update-customer>
-    <my-modal-supplier-update ref="updateSupplierModal"></my-modal-supplier-update>
-    <my-modal-pay-method-update ref="updatePayMethodModal"></my-modal-pay-method-update>
-    <my-modal-op1-update ref="updateOp1Modal"></my-modal-op1-update>
-    <my-modal-change-date ref="updateDateModal">
-      <span slot="title">{{modalTitle}}</span>
-    </my-modal-change-date>
-    <my-modal-pay-type ref="modalPayType"></my-modal-pay-type>
   </div>
 </template>
 
 <script>
   import { BILL_FLIGHT, BILL_HOTEL, BILL_TRAIN, BILL_REFUND, BILL_VAS, BILL_CHANGE } from '../common/const.js'  
-  import { auditBill, cancelBillAudited, searchBillDetail, changeBillCustomer, updateBillFlightTicketPrice, deleteBill, searchBillInfoHistory, updateBillInfoSupplier, updateBillInfoPaymentMethod, updateBillInfoEtdzDate, updateBillInfoOp1, updateBillInfoRemark, updateBillInfoPayType, updateBillInfoOpDate, delSettlementNo, undoWriteOffBill, writeOffSingleBill, finishBillPayment, undoFinishBillPayment } from '../api/bill.js'
+  import { searchBillDetail } from '../api/bill.js'
   import $ from 'jquery'
-  import MyModalPrompt from '../components/my-modal-prompt.vue'
-  import MyModalSupplierUpdate from '../components/my-modal-supplier-update.vue'
-  import MyModalPayMethodUpdate from '../components/my-modal-pay-method-update.vue'
-  import MyModalOp1Update from '../components/my-modal-op1-update.vue'
-  import MyModalUpdateCustomer from '../components/my-modal-customer-update.vue'
-  import MyModalChangeDate from '../components/my-modal-change-date.vue'
-  import MyModalPayType from '../components/my-modal-pay-type.vue'
 
   export default {
     name: "BillDetail",
-    components: {
-      MyModalPrompt,
-      MyModalSupplierUpdate,
-      MyModalPayMethodUpdate,
-      MyModalOp1Update,
-      MyModalUpdateCustomer,
-      MyModalChangeDate,
-      MyModalPayType
-    },
     data () {
       return {
         detail: null,
@@ -728,36 +620,7 @@
       isVasBill () {
         return this.detail.billType === BILL_VAS
       }
-    },
-    watch: {
-      parvalue: function () {
-        this.calc()
-      },
-      tax: function () {
-        this.calc()
-      },
-      insurance: function () {
-        this.calc()
-      },
-      serviceCharge: function () {
-        this.calc()
-      },
-      discount: function () {
-        this.calc()
-      },
-      commission: function () {
-        this.calc()
-      },
-      commRate: function () {
-        this.calc()
-      },
-      discountRate: function () {
-        this.calc()
-      },
-      amount: function () {
-        this.caclDisCount()
-      }
-    },
+    },    
     mounted: function () {
       const printMode = this.$route.query.print
       // console.log(printMode)
@@ -780,15 +643,10 @@
         this.$store.dispatch('showAlertMsg', { 'errMsg': msg, 'errMsgType': msgType })
       },
       refresh: function () {
-        this.searchBillDetail()
+        this.searchBillDetail(this.id)
       },
       searchBillDetail: function () {
-        const params = {
-          'id': this.id,
-          'billNum': this.billNum
-        }
-
-        searchBillDetail(params,
+        searchBillDetail(this.id,
           (jsonResult) => {
             this.detail = jsonResult
             if (this.id === 0) {
@@ -796,109 +654,7 @@
             }
           }
         )
-      },
-      auditBillDone: function () {
-        auditBill(this.id, v => this.commonShowMessage(v))
-      },
-      cancelBillAudited: function () {
-        this.modalTitle = '请输入取消审核的原因'
-        this.$refs.modalPrompt.modal().then((remark) => {
-          cancelBillAudited(this.id, { remark }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      changeCustomer: function () {
-        this.$refs.updateCustomerModal.modal(0).then((info) => {
-          changeBillCustomer(this.id, {
-            'customerId': info.customerId,
-            'costCenter': info.costCenter,
-            'projectName': info.projectName }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      editTicketPrice: function (obj) {
-        console.log(obj)
-        this.ticketId = obj.id
-        this.price = obj.price
-        this.parvalue = obj.parvalue
-        this.tax = obj.tax
-        this.insurance = obj.insurance
-        this.serviceCharge = obj.serviceCharge
-        this.commRate = obj.commissionRate
-        this.commission = obj.commission
-        this.discountRate = obj.discountRate
-        this.discount = obj.discount
-        this.profit = obj.profit
-
-        this.calc()
-
-        $('#modalEditPrice').modal()
-      },
-      calc: function () {
-        if (this.commRate > 0) {
-          this.commission = this.parvalue * this.commRate / 100
-        }
-        if (this.discountRate > 0) {
-          this.discount = this.parvalue * this.discountRate / 100
-        }
-
-        this.amount = this.parvalue + this.tax + this.insurance + this.serviceCharge - this.discount
-        this.totalAmount = this.amount
-        this.profit = (this.commission + this.serviceCharge - this.discount)
-      },
-      caclDisCount: function () {
-        this.discount = this.parvalue + this.tax + this.insurance + this.serviceCharge - this.amount
-
-        this.totalAmount = this.amount
-        this.profit = this.commission + this.serviceCharge - this.discount
-        this.totalProfit = this.profit
-      },
-      changeTicketPrice: function () {
-        const params = {
-          'id': this.ticketId,
-          'price': this.price,
-          'parvalue': this.parvalue,
-          'tax': this.tax,
-          'insurance': this.insurance,
-          'serviceCharge': this.serviceCharge,
-          'commRate': this.commRate,
-          'commission': this.commission,
-          'discountRate': this.discountRate,
-          'discount': this.discount,
-          'amount': this.amount,
-          'totalAmount': this.totalAmount,
-          'profit': this.profit
-        }
-
-        const str = JSON.stringify(params)
-
-        updateBillFlightTicketPrice(this.id, str,
-          (jsonResult) => {
-            if (jsonResult.status !== 'OK') {
-              this.showErrMsg('失败：' + jsonResult.errmsg)
-            } else {
-              this.showErrMsg('保存成功')
-              // this.priceEditing = 0
-              $('#modalEditPrice').modal('hide')
-              this.refresh()
-            }
-          }
-        )
-      },
-      deleteBill: function () {
-        this.modalTitle = '确定要删除此账单？'
-        this.$refs.modalPrompt.modal('YesOrNo').then((remark) => {
-          this.doDeleteBill()
-        }).catch((ex) => {})
-      },
-      doDeleteBill: function () {
-        deleteBill(this.id, (jsonResult) => {
-          if (jsonResult.status === 'OK') {
-            this.showErrMsg('删除成功')
-            this.back()
-          } else {
-            this.showErrMsg('删除失败: ' + jsonResult.errmsg)
-          }
-        })
-      },
+      },      
       commonShowMessage: function (jsonResult) {
         if (jsonResult.status === 'OK') {
           this.showErrMsg('操作成功')
@@ -906,105 +662,6 @@
         } else {
           this.showErrMsg('操作失败: ' + jsonResult.errmsg)
         }
-      },
-      searchHistories: function () {
-        searchBillInfoHistory(this.id, v => { this.histories = v })
-      },
-      editSupplier: function () {
-        this.$refs.updateSupplierModal.modal(this.supplierId).then((info) => {
-          updateBillInfoSupplier(this.id, { 'supplierId': info.supplierId }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      editPayment: function () {
-        this.$refs.updatePayMethodModal.modal(this.payMethodId).then((info) => {
-          updateBillInfoPaymentMethod(this.id, { 'paymentMethodId': info.payMethodId }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      editEtdzDate: function () {
-        this.modalTitle = '请输入新的出票日期（格式示例：2017-01-08)：'
-        this.$refs.updateDateModal.modal().then((remark) => {
-          updateBillInfoEtdzDate(this.id, { 'etdzDate': remark }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      editOp1: function () {
-        this.$refs.updateOp1Modal.modal(this.detail.op1).then((info) => {
-          updateBillInfoOp1(this.id, { 'op1': info.op1 }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      editRemark: function () {
-        this.modalTitle = '请输入新的账单备注：'
-        this.$refs.modalPrompt.modal().then((remark) => {
-          updateBillInfoRemark(this.id, { 'remark': remark }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      editPayType: function () {
-        this.$refs.modalPayType.modal(this.detail.payTypeNote).then((payType) => {
-          updateBillInfoPayType(this.id, { 'payType': payType }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      editOpDate: function () {
-        this.modalTitle = '请输入新的账单日期（格式示例：2017-01-08)：'
-        this.$refs.updateDateModal.modal().then((remark) => {
-          updateBillInfoOpDate(this.id, { 'opDate': remark }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      delSettlementNo: function () {
-        this.modalTitle = '确定从结算单中移除吗？'
-        this.$refs.modalPrompt.modal('YesOrNo').then(() => {
-          delSettlementNo(this.id, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      writeOffBill: function () {
-        writeOffSingleBill(this.id, v => {
-            if (v.status !== 'OK') {
-              this.showErrMsg(v.errmsg, 'danger')
-            } else {
-              this.showErrMsg('操作成功')
-              this.refresh()
-            }
-          })
-      },
-      undoWriteOff: function () {
-        this.modalTitle = '确定撤销销账吗？请输入 OK'
-
-        this.$refs.modalPrompt.modal('').then((remark) => {
-          const params = {
-            'billId': this.id,
-            'remark': remark
-          }
-          console.log(params)
-
-          undoWriteOffBill(params, v => {
-            if (v.status !== 'OK') {
-              this.showErrMsg(v.errmsg, 'danger')
-            } else {
-              this.showErrMsg('操作成功')
-              this.refresh()
-            }
-          })
-          
-        }).catch((ex) => {})        
-      },
-      finishPayment: function () {
-        //完成支付
-        finishBillPayment(this.id, v => {
-          if (v.status !== 'OK') {
-            this.showErrMsg(v.errmsg, 'danger')
-          } else {
-            this.showErrMsg('操作成功')
-            this.refresh()
-          }
-        })
-      },
-      undoFinishPayment: function () {
-        undoFinishBillPayment(this.id, v => {
-          if (v.status !== 'OK') {
-            this.showErrMsg(v.errmsg, 'danger')
-          } else {
-            this.showErrMsg('操作成功')
-            this.refresh()
-          }
-        })
       }
     }
   }
