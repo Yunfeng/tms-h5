@@ -19,6 +19,29 @@ export function searchBillDetail(id, cbDone) {
 }
 
 
+// 查找结算单
+export function searchSettlements(params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/my/settlements'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+export function getSettlementReport(id, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/my/settlement/' + id + '/report'
+  callService(url, {
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+
+
+
+
+
 
 export function searchUnreviewedBills(params, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/bills/unreviewed'
@@ -116,15 +139,7 @@ export function batchCreateSettlement(params, cbDone) {
   })
 }
 
-// 查找结算单
-export function searchSettlements(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/settlements'
-  callService(url, {
-    data: params,
-    cbDone: cbDone,
-    cbAlways: cbAlways
-  })
-}
+
 
 export function searchSettlementDetail(id, cbDone) {
   const url = APP_FLIGHT_PATH + '/settlement/' + id
@@ -418,13 +433,7 @@ export function searchSettlementTrains(id, params, cbDone, cbAlways) {
   })
 }
 
-export function getSettlementReport(id, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/settlement/' + id + '/report'
-  callService(url, {
-    cbDone: cbDone,
-    cbAlways: cbAlways
-  })
-}
+
 
 // 单张账单已支付 
 export function finishBillPayment(id, cbDone, cbAlways) {
