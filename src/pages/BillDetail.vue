@@ -15,17 +15,17 @@
               <th class="text-center">账单号</th>
               <th class="text-center">日期</th>
               <th class="text-center">国际</th>              
-              <th class="text-center">客户/成本中心/项目</th>
+              <th class="text-center">客户</th>
+              <th class="text-center">成本中心</th>
+              <th class="text-center">项目</th>
               <th class="text-center">出票日期</th>
               <th class="text-center">订票员</th>
-              <th class="text-center">出票员</th>
-              <th class="text-center">审核人</th>
-              <th class="text-center">供应商</th>
-              <th class="text-center">付款方式</th> 
+              
+              
+             
               <th class="text-center">收款方式</th>                           
               <th class="text-center">金额</th>
-              <th class="text-center">成本</th>
-              <th class="text-center">利润</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -42,12 +42,17 @@
                 <span class="text-danger" v-else-if="detail.intlTicket === 1">国际</span>
               </td>              
               <td class="text-center">
-                <template v-if="detail.customerType === 0">散客</template>
-                <template v-else-if="detail.customer !== null">{{detail.customer.vipName}}</template>
-                /{{detail.costCenter}}/{{detail.projectName}}
-                <template v-if="detail.audited !== '1'">
-                  <a href="javascript:void(0)" @click.stop="changeCustomer()" class="small">修改</a>
-                </template>
+                
+                <template v-if="detail.customer !== null">{{detail.customer.vipName}}</template>
+                
+              </td>
+              <td class="text-center">
+                {{detail.costCenter}}
+                
+              </td>
+              <td class="text-center">
+                {{detail.projectName}}
+                
               </td>
               <td class="text-center">
                 {{detail.etdzDate}}
@@ -61,41 +66,17 @@
                   <a href="javascript:void(0)" @click.stop="editOp1()" class="small">修改</a>
                 </template>
               </td>
-              <td class="text-center">{{detail.op2}}</td>
-              <td class="text-center">{{detail.op3}}</td>
-              <td class="text-center">
-                <template v-if="detail.supplier !== null">
-                  {{detail.supplier.name}}
-                </template>
-                <template v-if="detail.audited !== '1'">
-                  <a href="javascript:void(0)" @click.stop="editSupplier()" class="small pl-2">修改</a>
-                </template>
-              </td>                             
-              <td class="text-center">
-                <template v-if="detail.paymentMethod !== null">
-                  {{detail.paymentMethod.name}}
-                </template>
-                <template v-if="detail.audited !== '1'">
-                  <a href="javascript:void(0)" @click.stop="editPayment()" class="small pl-2">修改</a>
-                </template>
-
-              </td>                
+                            
               <td class="text-center">                  
                 <span class="text-danger" v-if="detail.bePaid === '0'"> {{detail.payTypeNoteDesc}}</span>
                 <span class="text-success" v-else>{{detail.payTypeNoteDesc}}</span>
-                <template v-if="detail.audited !== '1'">
-                  <a href="javascript:void(0)" @click.stop="editPayType()" class="small">修改</a>
-                </template>
+            
 
                 {{detail.payRemark}}
               </td>
               <td class="text-center">
                   {{detail.billSum}}
               </td>
-              <td class="text-center">{{detail.cost}}</td>
-              <td class="text-center">{{detail.profit}}</td>
-
-              
             </tr>
           </tbody>
         </table>
@@ -104,14 +85,10 @@
             <tr>
               <th class="text-center">审核日期</th>
               <th class="text-center">收款状态</th>
-              <th class="text-center">支出状态</th>
-              <th class="text-center">结算日期/单</th>
-              <th class="text-center">销账日期/备注</th>
-              <th class="text-center">收款单</th>
               <th class="text-center">
                   订单号
               </th>
-              <th class="text-center">原始单号</th>
+              
               <th class="text-center">录入时间</th>
             </tr>
           </thead>
@@ -130,37 +107,13 @@
                   <span class="text-success strong">已收</span>
                 </template>
               </td>
-              <td class="text-center">
-                <span class="text-danger" v-if="detail.paymentStatus ===0">未付</span>
-                <span class="text-success strong" v-else>
-                  已付
-                </span>
-              </td>
 
-              <td class="text-center">
-                {{detail.settleDate}}
-                <span class="text-info small">{{detail.settlementNo}}</span>
-              </td>
-              <td class="text-center">
-                {{detail.writeOffDate}}
-                <span class="text-info small">{{detail.writeOffMemo}}</span>
-              </td>
-              <td class="text-center">
-                {{detail.receiptNo}}
-              </td>
-               
+             
               <td class="text-center">                
-                <template v-if="isFlightBill">
-                  <router-link :to="`/flt/order/0?orderNo=` + detail.orderNo" class="small text-info">{{detail.orderNo}}</router-link> 
-                </template>
-                <template v-else-if="detail.billType === '5'">
-                  <router-link :to="`/flt/refund/order/0?orderNo=` + detail.orderNo" class="small text-info">{{detail.orderNo}}</router-link> 
-                </template>
-                <template v-else>
+                
                   {{detail.orderNo}}
-                </template>
               </td>   
-              <td class="text-center">{{detail.flightOrderNo}}</td>
+              
               <td class="text-center">{{detail.createTime}}</td>
             </tr>
           </tbody>
@@ -183,13 +136,10 @@
                     <th>票价</th>
                     <th>税</th>
                     <th>保险 </th>
-                    <th>代理费</th>
                     <th>服务费</th>
                     <th>优惠</th>
                     <th class="text-center bg-info text-white" colspan="7">行程</th>
                     <th>总计</th>
-                    <th>成本</th>
-                    <th>利润</th>
                     <th></th>
                 </tr>
             </thead>
@@ -204,7 +154,6 @@
                     <td>{{info.price}}</td>
                     <td>{{info.tax}}</td>
                     <td>{{info.insurance}}</td>
-                    <td>{{info.commission}}</td>
                     <td>{{info.serviceCharge}}</td>
                     <td>{{info.discount}}</td>
                     <td>
@@ -243,13 +192,7 @@
                         </template>
                     </td>
                     <td>{{info.accountRecv}}</td>
-                    <td>{{info.cost}}</td>
-                    <td>{{info.profit}}</td>
                     <td>
-                      <!-- 暂时禁用此处的修改，3个月后再删除此功能。2018-10-27 -->
-                      <!-- <template v-if="detail.audited !== '1'">
-                        <a href="javascript:void(0)" @click.stop="editTicketPrice(info)">修改</a>
-                      </template> -->
                     </td>
                 </tr>
               </template>
@@ -311,13 +254,9 @@
                       <th>房型</th>
                       <th>房间数</th>
                       <th>销售价</th>
-                      <th>底价</th>
                       <th>服务费</th>
                       <th>间夜</th>
                       <th>总金额</th>
-                      <th>总成本</th>
-                      <th>利润</th>
-                      <th>备注</th>
                   </tr>
               </thead>
               <tbody>
@@ -332,13 +271,9 @@
                         <td>{{info.roomType}}</td>
                         <td>{{info.roomCount}}</td>
                         <td>{{info.price}}</td>
-                        <td>{{info.bottomPrice}}</td>
                         <td>{{info.serviceCharge}}</td>
                         <td>{{info.count}}</td>
                         <td>{{info.totalAmount}}</td>
-                        <td>{{info.totalCost}}</td>
-                        <td>{{info.profit}}</td>
-                        <td>{{info.remark}}</td>
                       </tr>
                   </template>
 
@@ -359,9 +294,6 @@
                     <th>航司退票费</th>
                     <th>服务费</th>
                     <th>实退客户</th>
-                    <th>航司实退 </th>
-                    <th>利润</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -417,8 +349,6 @@
                     <td>{{info.airRefundCharge}}</td>
                     <td>{{info.serviceCharge}}</td>
                     <td>{{info.passengerRefundAmount}}</td>
-                    <td>{{info.airlineRefundAmount}}</td>
-                    <td>{{info.profit}}</td>
                 </tr>
               </template>
             </tbody>
@@ -436,9 +366,6 @@
                     <th>单价</th>
                     <th>数量</th>
                     <th>实收 </th>
-                    <th>成本</th>
-                    <th>利润</th>
-                    <th>备注</th>
                 </tr>
             </thead>
             <tbody>
@@ -450,9 +377,6 @@
                         {{info.count}}
                     </td>
                     <td>{{info.total}}</td>
-                    <td>{{info.cost}}</td>
-                    <td>{{info.profit}}</td>
-                    <td>{{info.remark}}</td>
                 </tr>
               </template>
             </tbody>
@@ -473,8 +397,6 @@
                     <th>税</th>
                     <th>航司收费</th>
                     <th>服务费</th>
-                    <th>利润</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -532,8 +454,6 @@
                     <td>{{info.tax}}</td>
                     <td>{{info.airChangeCharge}}</td>
                     <td>{{info.serviceCharge}}</td>
-                    <td>{{info.serviceCharge}}</td>
-                    <td></td>
                 </tr>
               </template>
             </tbody>
@@ -577,31 +497,13 @@
         totalAmount: 0,
         profit: 0,
 
-        modalTitle: '',
-        modalNullable: false,
-
-        histories: [],
-
+ 
         printMode: '0'
       }
     },
     computed: {
       isAdmin () { return this.$store.getters.isAdmin },
       isRoot () { return this.$store.state.isRoot },
-      supplierId: function () {
-        if (this.detail === null || this.detail.supplier === null) {
-          return 0
-        } else {
-          return this.detail.supplier.id
-        }
-      },
-      payMethodId: function () {
-        if (this.detail === null || this.detail.paymentMethod === null) {
-          return 0
-        } else {
-          return this.detail.paymentMethod.id
-        }
-      },
       isFlightBill () {
         return this.detail.billType === BILL_FLIGHT
       },

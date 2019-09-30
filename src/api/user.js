@@ -9,6 +9,31 @@ export function login(params, cbDone, cbAlways) {
   })
 }
 
+export function logout(cbDone) {
+  const url = APP_FLIGHT_PATH + '/my/logout'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+export function searchPrivileges(cbDone) {
+  const url = APP_FLIGHT_PATH + '/privileges'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
 export function searchUsers(cbDone) {
   const url = APP_FLIGHT_PATH + '/employees'
   callService(url, {
@@ -50,19 +75,6 @@ export function checkLoginStatus(cbDone) {
   })
 }
 
-export function logout(cbDone) {
-  const url = APP_FLIGHT_PATH + '/logout.do'
-  callService(url, {
-    cbDone: cbDone
-  })
-}
-
-export function searchPrivileges(cbDone) {
-  const url = APP_FLIGHT_PATH + '/privileges'
-  callService(url, {
-    cbDone: cbDone
-  })
-}
 
 // 删除机票订单中指定的额外服务
 export function deleteExtraService(id, extraId, cbDone) {

@@ -57,8 +57,7 @@
                 <th>审核日期</th>
                 <th>收支</th>
                 <th class="text-right">金额</th>
-                <th class="text-right">成本</th>
-                <th class="text-right">利润</th>
+               
                 <th>预订员</th>
                 <th></th>
                 <th></th>
@@ -98,21 +97,16 @@
                   </template>
                 </td>
                 <td>
-                  <span class="text-danger small" v-if="info.bePaid === '1'">已收 {{info.receiptNo}} / </span>
-                  <span class="small" v-if="info.paymentStatus === 1">已付</span>
+                  <span class="text-danger small" v-if="info.bePaid === '1'">已收</span>
                 </td>                
                 <td class="text-right">{{info.billSum}}</td>
-                <td class="text-right">{{info.cost}}</td>
-                <td class="text-right">{{info.profit}}</td>                
+                             
                 
                 <td>{{info.op1}}</td>       
                    
                 <td><router-link :to="`/bill/detail/` + info.id">详情</router-link></td>
             </tr>
-            <tr :key="info.id + `-memo`" v-if="info.remark">
-              <td colspan="15" class="text-right"><strong>备注：</strong>{{info.remark}}</td>
-              <td></td>
-            </tr>
+            
           </template>
         </tbody>
     </table>
