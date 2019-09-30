@@ -31,21 +31,6 @@
             <div class="col">
               <my-date-picker id="endDate" name="sc.endDate" v-model="endDate" placeholder="截止日期" sizing="sm"></my-date-picker>
             </div>            
-          </div>
-          <div class="form-row mt-1">
-            <div class="col">
-              <select class="form-control form-control-sm" v-model.number="payStatus">
-                <option value="-1">收款状态</option>
-                <option value="0">未收</option>
-                <option value="1">已收</option>
-              </select>
-            </div>
-            <div class="col">
-              <select class="form-control form-control-sm" v-model.number="workStatus">
-                <option value="0">完成状态</option>
-                <option value="1">未完成</option>
-              </select>
-            </div>
             <div class="col">
               <select class="form-control form-control-sm" v-model.number="intlTicket">
                 <option value="-1">所有</option>
@@ -74,14 +59,12 @@
               </select>
             </div>
             <div class="col">
+              <button type="button" class="btn btn-primary btn-sm" @click.stop="search()">查找</button>
             </div>
           </div>
           
           <div class="form-row">
-            <button type="button" class="btn btn-primary btn-sm" @click.stop="search()">查找</button>
             <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
-
-            <router-link class="btn btn-success ml-auto" to="/new/flt/order">新建订单</router-link>            
           </div>
         </form>
       </div>
@@ -95,23 +78,17 @@
 </template>
 
 <script>
-  import { searchFlightOrders, statFlightOrderStatus } from '../api/flight.js'
+  import { searchFlightOrders } from '../api/flight.js'
   import MyDatePicker from '../components/my-datepicker.vue'
   import MyPagination from '../components/my-pagination.vue'
   import FlightOrderList from '../components/flight-order-list.vue'
-  import MySelect2 from '../components/my-select2.vue'
-  import MySelectOp1 from '../components/my-select-operator.vue'
-  import MySelectCustomer from '../components/my-select2-customer.vue'
 
   export default {
     name: 'MyFlightOrders',
     components: {
       MyDatePicker,
       MyPagination,
-      FlightOrderList,
-      MySelect2,
-      MySelectOp1,
-      MySelectCustomer
+      FlightOrderList
     },
     data () {
       return {
@@ -142,24 +119,11 @@
         flightNo: '',
         ddate: '',
 
-        statTimer: 0,
         stat: null
       }
     },
-    mounted: function () {
-      // console.log('mounted')
-    },
     activated: function () {
       this.search()
-      // console.log('activated')
-      const self = this
-      // this.statTimer = setInterval(statFlightOrderStatus(v => { this.stat = v }), 1000 * 5)
-      this.statTimer = setInterval(function () { self.doStat() }, 1000 * 60)
-      // console.log(this.statTimer)
-    },
-    deactivated: function () {
-      // console.log('deactivated')
-      clearInterval(this.statTimer)
     },
     methods: {
       showLoading: function (loadingText) {
@@ -217,12 +181,6 @@
 
         this.customerId = -1
         // this.search()
-      },
-      doStat: function () {
-        statFlightOrderStatus(v => {
-          this.stat = v
-          // console.log(v)
-        })
       },
       prevPage: function () {
         this.sc.pageNo = this.sc.pageNo - 1

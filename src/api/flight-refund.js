@@ -10,6 +10,13 @@ export function searchRefundOrders(params, cbDone, cbAlways) {
   })
 }
 
+export function searchRefundOrderDetail(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/refund/order/' + id
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
 
 
 
@@ -42,14 +49,6 @@ export function createFlightRefund(params, cbDone) {
 }
 
 
-
-
-export function searchRefundOrderDetail(id, cbDone) {
-  const url = APP_FLIGHT_PATH + '/order/flight/refund/' + id
-  callService(url, {
-    cbDone: cbDone
-  })
-}
 
 export function searchRefundOrderDetailByOrderNo(refundOrderNo, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/refund/refundOrderNo/' + refundOrderNo

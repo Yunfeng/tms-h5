@@ -9,6 +9,15 @@ export function searchChangeOrders(params, cbDone, cbAlways) {
   })
 }
 
+export function searchChangeOrderDetail(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/change/order/' + id
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+
+
 
 
 
@@ -39,12 +48,7 @@ export function processPnrFlightContent(params, cbDone) {
 }
 
 
-export function searchChangeOrderDetail(id, cbDone) {
-  const url = APP_FLIGHT_PATH + '/order/flight/change/' + id
-  callService(url, {
-    cbDone: cbDone
-  })
-}
+
 
 export function searchChangeOrderHistory(id, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/change/' + id + '/history'

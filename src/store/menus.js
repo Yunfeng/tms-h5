@@ -47,24 +47,5 @@ export const menus = [
       { to: '/customer/departments', caption: '企业部门信息', authorized: 1 },
       { to: '/passengers', caption: '企业员工信息', authorized: 1 },
     ]
-  },
-  {
-    caption: '工具',
-    submenus: [
-      { to: '/tool/sms', caption: '短信', authorized: 1 },
-      { to: '/data/airports', caption: '机场', authorized: 0},
-      { to: '/data/airlines', caption: '航空公司', authorized: 0 },
-      { to: '/data/airline/schedules', caption: '航班时刻', authorized: 0 },      
-      { to: '/charter-flights', caption: '团队机票', authorized: 0},
-    ]
-  },
-  {
-    caption: '设置',
-    submenus: [
-      { to: '/admin/depts', caption: '部门管理', authorized: 1 },
-      { to: '/admin/users', caption: '员工管理', authorized: 1 },
-      { to: '/admin/role/privileges', caption: '角色权限', authorized: 1 },
-      { to: '/admin/groups', caption: '组管理', authorized: 1 },
-    ]
   }
 ]

@@ -22,49 +22,28 @@
             <input type="textfield" class="form-control" size="10" placeholder="证件号" v-model.trim="idno">
           </div>
           <div class="col">
-            <input type="textfield" class="form-control" size="10" placeholder="后10位票号" v-model.trim="ticketNo">
+            <input type="textfield" class="form-control" size="10" placeholder="票号" v-model.trim="ticketNo">
           </div>
           <div class="col">
-            <input type="textfield" class="form-control" size="6" placeholder="编码" v-model.trim="pnrNo">
-          </div>
-          <div class="col">
-            <select class="form-control ml-1" v-model.number="intlTicket">
+            <select class="form-control" v-model.number="intlTicket">
               <option value="-1">属性</option>
               <option value="0">国内</option>
               <option value="1">国际</option>
             </select>
           </div>
           <div class="col">
-            <select class="form-control ml-1" v-model.number="status">
-              <option value="-1">订单状态</option>
-              <option value="0">待处理</option>
-              <option value="1">处理中</option>
-              <option value="2">已提交</option>
-              <option value="8">航司预退</option>
-              <option value="16">已退客户</option>
-              <option value="32">已完成</option>
-            </select>
-          </div>
-          <div class="col">
-            <select class="form-control ml-1" v-model.number="airRefundStatus">
-              <option value="-1">航司实退状态</option>
-              <option value="0">未退</option>
-              <option value="1">已退</option>
-            </select>
-          </div>
-          <div class="col">
-            <select class="form-control form-control-sm ml-1" v-model.number="sc.pageSize">
+            <select class="form-control" v-model.number="sc.pageSize">
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="50">50</option>
             </select>
           </div>
+          <div class="col">
+            <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
+            <button type="button" class="btn btn-secondary btn-sm ml-1" @click.stop="reset()">重置</button>
+          </div>
         </div>
-      </div>
-      <div class="card-footer">
-          <button type="button" class="btn btn-primary btn-lg ml-1" @click.stop="search()">查找</button>
-          <button type="button" class="btn btn-secondary btn-sm ml-1" @click.stop="reset()">重置</button>
       </div>
     </div>
     <flight-refund-list :dataList="dataList"></flight-refund-list>
@@ -72,8 +51,6 @@
     <nav id="pagination-box" class="float-right">
       <my-pagination name='pagination' :row-count='sc.rowCount' :page-total='sc.pageTotal' :page-no='sc.pageNo' @next-page='nextPage' @prev-page='prevPage' @direct-page='directPage'></my-pagination>
     </nav>
-    <div class="text-muted small">
-      说明：粗体数字为工作人员填写的</div>
   </div>  
 </template>
 
@@ -82,7 +59,6 @@
   import MyDatePicker from '../components/my-datepicker.vue'
   import MyPagination from '../components/my-pagination.vue'
   import FlightRefundList from '../components/flight-order-refund-list.vue'
-  import MySelectCustomer from '../components/my-select2-customer.vue'
   
   export default {
     name: 'MyFlightRefundOrders',
@@ -90,7 +66,6 @@
       MyDatePicker,
       MyPagination,
       FlightRefundList,
-      MySelectCustomer
     },
     data () {
       return {
@@ -117,9 +92,6 @@
       }
     },
     mounted: function () {
-      this.search()
-    },
-    activated: function () {
       this.search()
     },
     methods: {

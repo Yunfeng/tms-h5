@@ -20,21 +20,18 @@
         <table class="table table-sm table-striped table-hover small">
           <thead>
             <tr>
-              <th>服务单号 </th>
+              <th>服务单号</th>
               <th>客户</th>
+              <th class="text-center">成本中心</th>
+              <th class="text-center">项目名称</th>
               <th>产品名称</th>
               <th class="text-right">数量</th>
               <th class="text-right">价格</th>
               <th class="text-right">折扣</th>
               <th class="text-right">总金额</th>
-              <th class="text-right">总成本</th>
-              <th class="text-right">利润</th>
               <th class="text-center">付款方式</th>
-              <th class="text-center">供应商/支出方式</th>
               <th>预定人</th>
-              <th>处理人</th>
               <th>状态</th>
-              <th></th>
             </tr>                        
           </thead>
           <tbody>
@@ -44,17 +41,18 @@
                       <template v-if="detail.customer !== null">
                         {{detail.customer.vipName}}
                     </template>
-                    <template v-else>
-                        散客
-                    </template>
                   </td>
+                  <td class="text-center">
+                  {{detail.costCenter}}
+                </td>
+                <td class="text-center">
+                  {{detail.projectName}}
+                </td>
                   <td>{{detail.productName}}</td>
                   <td class="text-right">{{detail.count}}</td>
                   <td class="text-right">{{detail.price}}</td>
                   <td class="text-right">{{detail.discount}}</td>
                   <td class="text-right">{{detail.totalAmount}}</td>
-                  <td class="text-right">{{detail.totalCost}}</td>
-                  <td class="text-right">{{detail.profit}}</td>
                   <td class="text-center">
                     {{getPayTypeDesc(detail.payType)}}
                     <template v-if="detail.payType !== 8 && detail.payStatus ===0">
@@ -63,85 +61,14 @@
                     </template>
                     <span class="small text-primary" v-if="detail.payStatus === 2">已销</span>
                   </td>
-                  <td class="text-center">
-                    <template v-if="detail.supplier !== null">
-                      {{detail.supplier.name}}
-                    </template>
-                    /
-                    <template v-if="detail.paymentMethod !== null">
-                      {{detail.paymentMethod.name}}
-                    </template>
-                  </td>
                   <td>{{detail.operator}}</td>
-                  <td>{{detail.ticketer}}</td>
                   <td>{{getStatusDesc(detail.status)}}</td>
-                  <td>
-                    <template v-if="detail.flightOrderId > 0">
-                      <router-link :to="`/flt/order/` + detail.flightOrderId" title="关联的机票订单">关联单</router-link>
-                    </template>
-                  </td>
               </tr>
           
           </tbody>
         </table>
-        <table class="table table-sm table-striped table-hover small">
-          <thead>
-            <tr>
-              <th class="text-center">成本中心</th>
-              <th class="text-center">项目名称</th>
-              <th class="text-center">供应商</th>
-              <th class="text-center">支出方式</th>
-              <th>预定人</th>
-              <th>处理人</th>
-            </tr>                        
-          </thead>
-          <tbody>
-              <tr>
-                <td class="text-center">
-                  {{detail.costCenter}}
-                </td>
-                <td class="text-center">
-                  {{detail.projectName}}
-                </td>
-
-                  <td class="text-center">
-                    <template v-if="detail.supplier !== null">
-                      {{detail.supplier.name}}
-                    </template>
-                  </td>
-                  <td class="text-center">
-                    <template v-if="detail.paymentMethod !== null">
-                      {{detail.paymentMethod.name}}
-                    </template>
-                  </td>
-                  <td>{{detail.operator}}</td>
-                  <td>{{detail.ticketer}}</td>
-              </tr>
-          
-          </tbody>
-        </table>
-        <div class="card-body">
-            <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 0">
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editTicketSupplier()">更改供应商</button>
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editTicketPayment()">更改支付方式</button>
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editPrice()">修改价格</button>
-              <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="processOrder()">处理订单</button>
-              <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
-            </div>
-            <div class="d-flex flex-row  justify-content-around" v-else-if="detail.status === 1">
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editTicketSupplier()">更改供应商</button>
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editTicketPayment()">更改支付方式</button>
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editPrice()">修改价格</button>
-              <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="finishOrder()">处理完毕</button>
-              <button class="btn btn-danger btn-sm ml-auto mr-auto" @click.stop="cancelOrder()">取消订单</button>
-            </div>
-            <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 2 && detail.payStatus !== 2">
-              <button class="btn btn-danger btn-sm ml-2" @click.stop="rollbackStatus()" v-if="isAdmin">
-                回滚
-              </button>
-            </div>
-
-        </div>
+        
+        
         <div class="card-body bg-info text-white py-0">乘客信息</div>
       
         <table class="table table-striped table-hover table-sm small">
@@ -150,7 +77,6 @@
                     <th>姓名</th>
                     <th>证件号</th>
                     <th>备注</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -160,11 +86,6 @@
                     </td>                             
                     <td>{{info.idNo}}</td>
                     <td>{{info.remark}}</td>
-                    <td>
-                        <template v-if="detail.status === 0">
-                            <a href="javascript:void(0)" @click.stop="editPsg(index)" class="small">修改</a>
-                        </template>
-                    </td>
                 </tr>                               
             </tbody>
         </table>
@@ -210,32 +131,9 @@
           </div>
           <div class="card-body">
               {{detail.remark}}
-              <br />
-              <template v-if="detail.status !== 2 && detail.status !== 4">
-                  <a href="javascript:void(0)" @click.stop="editRemark()" class="small float-right" title="修改备注">修改</a>
-              </template>
           </div>
       </div>
-      <div class="card">
-          <div class="card-header small">
-            <template v-if="detail.status === 2">
-              <button class="btn btn-success btn-sm ml-auto" @click.stop="outputBillInfo()">输出为账单</button>
-            </template>         
-              <a href="javascript:void(0)" class="float-right" @click.stop="viewHistory()">查看历史记录</a>
-          </div>
-          <table class="table table-sm table-striped small">
-              <tr>
-                  <td>操作员</td>
-                  <td>内容</td>
-                  <td>时间</td>
-              </tr>
-              <tr v-for="info in histories" :key="info.id">
-                  <td>{{info.operator}}</td>
-                  <td>{{info.content}}</td>
-                  <td>{{info.createTime}}</td>
-              </tr>
-          </table>
-      </div>
+      
     </template>
 
     <my-modal-prompt ref="modalPrompt">

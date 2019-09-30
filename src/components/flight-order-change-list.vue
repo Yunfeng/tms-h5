@@ -6,7 +6,6 @@
         <th>票号</th>
         <th></th>
         <th>乘客/公司</th>
-        <th>原编码</th>
         <th colspan="6" class="bg-info text-center text-white">行程</th>
         <th class="text-right">改签费</th>
         <th class="text-right">服务费</th>
@@ -35,7 +34,6 @@
           <br />
           <i><small>{{showCustomerName(info)}}</small></i>
         </td>
-        <td>{{info.oldPnrNo}}</td>
         <td>
           <template v-for="(flt, index) in info.flights">
             <span :class="{'font-italic small': flt.flightType === 0}" :key="index">
@@ -88,7 +86,7 @@
         </td>                
         <td class="text-right">{{info.airChangeCharge}}</td>
         <td class="text-right">{{info.serviceCharge}}</td>
-        <td>{{info.newTicketNo}} <br/>{{info.newPnrNo}}</td>                
+        <td>{{info.newTicketNo}}</td>                
         <td>{{info.createTime.substring(5, 16)}}</td>
         <td>
           {{getStatus(info.status)}}

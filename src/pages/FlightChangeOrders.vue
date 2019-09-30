@@ -11,7 +11,7 @@
           <input type="textfield" class="form-control" size="8" placeholder="改签单号" v-model.trim="changeOrderNo">
           <input type="textfield" class="form-control" size="6" placeholder="姓名" v-model.trim="name">
           <input type="textfield" class="form-control" size="10" placeholder="证件号" v-model.trim="idno">
-          <input type="textfield" class="form-control" size="10" placeholder="后10位票号" v-model.trim="ticketNo">
+          <input type="textfield" class="form-control" size="6" placeholder="票号" v-model.trim="ticketNo">
           <input type="textfield" class="form-control" size="6" placeholder="编码" v-model.trim="pnrNo">
           <select class="form-control ml-1" v-model.number="intlTicket">
             <option value="-1">所有</option>
@@ -51,15 +51,13 @@
   import MyDatePicker from '../components/my-datepicker.vue'
   import MyPagination from '../components/my-pagination.vue'
   import FlightChangeList from '../components/flight-order-change-list.vue'
-  import MySelectCustomer from '../components/my-select2-customer.vue'
   
   export default {
     name: 'MyFlightChangeOrders',
     components: {
       MyDatePicker,
       MyPagination,
-      FlightChangeList,
-      MySelectCustomer
+      FlightChangeList
     },
     data () {
       return {

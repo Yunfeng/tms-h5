@@ -16,6 +16,13 @@ export function searchInsuranceOrders(params, cbDone) {
   })
 }
 
+export function searchVasOrderDetail(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/vas/order/' + id
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
 export function showVasOrderStatus (status) {
   switch (status) {
     case 0: return '待处理'
@@ -39,12 +46,7 @@ export function createVasOrder(params, cbDone) {
   })
 }
 
-export function searchVasOrderDetail(id, cbDone) {
-  const url = APP_FLIGHT_PATH + '/order/vas/' + id
-  callService(url, {
-    cbDone: cbDone
-  })
-}
+
 
 export function searchVasOrderHistory(id, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/vas/' + id + '/history'

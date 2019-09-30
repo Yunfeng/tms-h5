@@ -4,15 +4,11 @@
       <tr>
         <th>订单号</th>
         <th>客户</th>
-        <th>编码</th>
         <th>乘机人</th>
         <th colspan="5" class="bg-info text-center text-white">行程</th>
         <th>预定员</th>
-        <th>行程单?</th>
         <th>订单日期</th>
         <th class="text-right">金额</th>
-        <th class="text-right">成本</th>
-        <th class="text-right">利润</th>
         <th>订单状态</th>
         <th></th>
       </tr>                        
@@ -33,16 +29,6 @@
               <template v-else>
                 {{info.customer.vipName}}
               </template>      
-              <br />        
-              <span class="text-danger small">{{info.customer.customerCode}}</span>
-            </template>
-          </td>
-          <td>
-            <template v-if="info.charterFlightId !== null">
-              <router-link :to="`/charter-flight/detail/` + info.charterFlightId">包机</router-link>
-            </template>
-            <template v-else>
-              {{info.pnrNo}}  
             </template>
           </td>
           <td>
@@ -75,17 +61,10 @@
 
          
           <td>{{info.operator}}</td>
-          <td>            
-            <span :class="{'text-danger': info.itineraryType !== 0 && info.itineraryMailingStatus === 0}">
-              {{getItineraryTypeDesc(info.itineraryType)}}
-            </span>
-          </td>
           <td>
-            {{info.createDate.substring(5)}}
+            {{info.createDate}}
           </td>
           <td class="text-right">{{info.totalAmount}}</td>
-          <td class="text-right">{{info.totalCost}}</td>
-          <td class="text-right">{{info.profit}}</td>
           <td>
             {{getStatusDesc(info.status)}}
             <span class="text-danger small" v-if="info.payStatus === 0">未收</span>

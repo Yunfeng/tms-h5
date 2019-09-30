@@ -9,6 +9,13 @@ export function searchFlightOrders(params, cbDone, cbAlways) {
   })
 }
 
+export function searchFlightOrder(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/flight/order/' + id
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
 
 
 
@@ -29,12 +36,7 @@ export function searchFlightOrdersToDelivery(params, cbDone) {
   })
 }
 
-export function searchFlightOrderDetail(id, cbDone) {
-  const url = APP_FLIGHT_PATH + '/order/flight/' + id
-  callService(url, {
-    cbDone: cbDone
-  })
-}
+
 
 export function searchFlightOrderDetailByOrderNo(orderNo, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/orderNo/' + orderNo

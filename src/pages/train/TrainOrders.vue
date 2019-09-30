@@ -27,7 +27,6 @@
           <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
           <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
 
-          <router-link to="/train/order" class="btn btn-success ml-auto">新建</router-link>
         </form>
       </div>
     </div>
@@ -47,7 +46,6 @@
                   <th>到达</th>
                   <th>等级</th>
                   <th>价格</th>
-                  <th>成本</th>
                   <th>服务费</th>
                   <th>外部订单号</th>
                   <th>生成时间</th>
@@ -67,7 +65,6 @@
                   <td>{{info.acity}}</td>
                   <td>{{info.seatClass}}</td>
                   <td>{{info.price}}</td>
-                  <td>{{info.cost}}</td>
                   <td>{{info.serviceCharge}}</td>
                   <td>{{info.externalOrderNo}}</td>
                   <td>{{info.createTime}}</td>
@@ -94,7 +91,7 @@
 
 <script>
   import $ from 'jquery'
-  import { searchTrainOrders, showTrainOrderStatus, uploadTrainOrders } from '../../api/train.js'
+  import { searchTrainOrders, showTrainOrderStatus } from '../../api/train.js'
   import MyDatePicker from '../../components/my-datepicker.vue'
   import MyPagination from '../../components/my-pagination.vue'
   
@@ -157,20 +154,6 @@
           }, 
           () => { this.hideLoading() }
         )
-      },
-      importExcel: function () {
-        this.$refs.modalUploadExcel.modal().then((formData) => {
-          this.showLoading('处理中......')
-          uploadTrainOrders(formData.data, v => {
-            if (v.status === 'OK') {
-              this.showErrMsg('操作成功')
-            } else {
-              this.showErrMsg('操作失败:' + v.errmsg, 'danger')
-            }
-          }, () => {
-            this.hideLoading()
-          })
-        }).catch((ex) => {})
       },
       getStatusDesc: function (status) {
         return showTrainOrderStatus(status)

@@ -203,7 +203,7 @@
 
 <script>
   import { createVasOrder } from '../../api/vas.js'
-  import { searchFlightOrderDetail } from '../../api/flight.js'
+  import { searchFlightOrder } from '../../api/flight.js'
   import { searchProducts } from '../../api/product.js'
   import { processPnrDetail } from '../../api/user.js'
   import MyDatePicker from '../../components/my-datepicker.vue'
@@ -260,7 +260,7 @@
         
         let int1 = setInterval(() => {
           
-          this.searchFlightOrderDetail(this.flightOrderId)  
+          this.searchFlightOrder(this.flightOrderId)  
           
           clearInterval(int1)
         } ,100)

@@ -23,11 +23,8 @@
               <th class="text-right">价格</th>
               <th class="text-right">折扣</th>
               <th class="text-right">总金额</th>
-              <th class="text-right">总成本</th>
-              <th class="text-right">利润</th>
               <th class="text-center">付款方式</th>
               <th>状态</th>
-              <th></th>
             </tr>                        
           </thead>
           <tbody>
@@ -47,8 +44,6 @@
                   <td class="text-right">{{detail.price}}</td>
                   <td class="text-right">{{detail.discount}}</td>
                   <td class="text-right">{{detail.totalAmount}}</td>
-                  <td class="text-right">{{detail.totalCost}}</td>
-                  <td class="text-right">{{detail.profit}}</td>
                   <td class="text-center">
                     {{getPayTypeDesc(detail.payType)}}
                     <template v-if="detail.payType !== 8 && detail.payStatus ===0">
@@ -58,11 +53,6 @@
                     <span class="small text-primary" v-if="detail.payStatus === 2">已销</span>
                   </td>
                   <td>{{getStatusDesc(detail.status)}}</td>
-                  <td>
-                    <template v-if="detail.flightOrderId > 0">
-                      <router-link :to="`/flt/order/` + detail.flightOrderId" title="关联的机票订单">关联单</router-link>
-                    </template>
-                  </td>
               </tr>
           
           </tbody>
@@ -72,10 +62,7 @@
             <tr>
               <th class="text-center">成本中心</th>
               <th class="text-center">项目名称</th>
-              <th class="text-center">供应商</th>
-              <th class="text-center">支出方式</th>
               <th>预定人</th>
-              <th>处理人</th>
             </tr>                        
           </thead>
           <tbody>
@@ -86,42 +73,11 @@
                   <td class="text-center">
                     {{detail.projectName}}
                   </td>
-                  <td class="text-center">
-                    <template v-if="detail.supplier !== null">
-                      {{detail.supplier.name}}
-                    </template>
-                  </td>
-                  <td class="text-center">
-                    <template v-if="detail.paymentMethod !== null">
-                      {{detail.paymentMethod.name}}
-                    </template>
-                  </td>
                   <td>{{detail.operator}}</td>
-                  <td>{{detail.ticketer}}</td>
               </tr>
           
           </tbody>
-        </table>
-        <div class="card-body">
-            <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 0">
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editTicketSupplier()">更改供应商</button>
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editTicketPayment()">更改支付方式</button>
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editPrice()">修改价格</button>
-              <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
-            </div>
-            <div class="d-flex flex-row  justify-content-around" v-else-if="detail.status === 1">
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editTicketSupplier()">更改供应商</button>
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editTicketPayment()">更改支付方式</button>
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editPrice()">修改价格</button>
-              <button class="btn btn-danger btn-sm ml-auto mr-auto" @click.stop="cancelOrder()">取消订单</button>
-            </div>
-            <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 2 && detail.payStatus !== 2">
-              <button class="btn btn-danger btn-sm ml-2" @click.stop="rollbackStatus()" v-if="isAdmin">
-                回滚
-              </button>
-            </div>
-
-        </div>
+        </table>        
         <div class="card-body bg-info text-white py-0">乘客信息</div>
       
         <table class="table table-striped table-hover table-sm small">
@@ -130,7 +86,6 @@
                     <th>姓名</th>
                     <th>证件号</th>
                     <th>备注</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -140,11 +95,6 @@
                     </td>                             
                     <td>{{info.idNo}}</td>
                     <td>{{info.remark}}</td>
-                    <td>
-                        <template v-if="detail.status === 0">
-                            <a href="javascript:void(0)" @click.stop="editPsg(index)" class="small">修改</a>
-                        </template>
-                    </td>
                 </tr>                               
             </tbody>
         </table>
@@ -190,66 +140,20 @@
           </div>
           <div class="card-body">
               {{detail.remark}}
-              <br />
-              <template v-if="detail.status !== 2 && detail.status !== 4">
-                  <a href="javascript:void(0)" @click.stop="editRemark()" class="small float-right" title="修改备注">修改</a>
-              </template>
           </div>
       </div>
-      <div class="card">
-          <div class="card-header small">
-            <template v-if="detail.status === 2">
-              <button class="btn btn-success btn-sm ml-auto" @click.stop="outputBillInfo()">输出为账单</button>
-            </template>         
-              <a href="javascript:void(0)" class="float-right" @click.stop="viewHistory()">查看历史记录</a>
-          </div>
-          <table class="table table-sm table-striped small">
-              <tr>
-                  <td>操作员</td>
-                  <td>内容</td>
-                  <td>时间</td>
-              </tr>
-              <tr v-for="info in histories" :key="info.id">
-                  <td>{{info.operator}}</td>
-                  <td>{{info.content}}</td>
-                  <td>{{info.createTime}}</td>
-              </tr>
-          </table>
-      </div>
+      
     </template>
 
-    <my-modal-prompt ref="modalPrompt">
-      <span slot="title">{{modalTitle}}</span>
-    </my-modal-prompt>
-    <my-modal-supplier-update ref="updateSupplierModal"></my-modal-supplier-update>
-    <my-modal-pay-method-update ref="updatePayMethodModal"></my-modal-pay-method-update>
-    <my-modal-vas-price-update ref="updateVasPriceModal"></my-modal-vas-price-update>
-    <modal-update-passenger ref="modalUpdatePassenger"></modal-update-passenger>
   </div>
 </template>
 
 <script>
   import $ from 'jquery'
   import { showPayType } from '../../common/common.js'
-  import { searchVasOrderDetail, searchVasOrderHistory, showVasOrderStatus } from '../../api/vas.js'
-  import { processVasOrder, cancelVasOrder, finishVasOrder } from '../../api/vas.js'
-  import { updateVasOrderRemark, updateVasOrderPassenger, updateVasOrderSupplier, updateVasOrderPrice, updateVasOrderPayment, outputVasOrder2Bill } from '../../api/vas.js'
+  import { searchVasOrderDetail, showVasOrderStatus } from '../../api/vas.js'
   
-  import MyModalPrompt from '../../components/my-modal-prompt.vue'
-  import MyModalSupplierUpdate from '../../components/my-modal-supplier-update-v2.vue'
-  import MyModalPayMethodUpdate from '../../components/my-modal-pay-method-update.vue'
-  import MyModalVasPriceUpdate from '../../components/my-modal-vas-price-update.vue'
-  import ModalUpdatePassenger from '../../components/my-modal-update-passenger.vue'
-  import { rollbackVasOrderStatus } from '../../api/admin.js'
-
   export default {
-    components: {
-      MyModalPrompt,
-      MyModalSupplierUpdate,
-      MyModalPayMethodUpdate,
-      MyModalVasPriceUpdate,
-      ModalUpdatePassenger
-    },
     data () {
       return {
         detail: null,
@@ -266,20 +170,6 @@
       }
     },
     computed: {
-      supplierId: function () {
-        if (this.detail === null || this.detail.supplier === null) {
-          return 0
-        } else {
-          return this.detail.supplier.id
-        }
-      },
-      payMethodId: function () {
-        if (this.detail === null || this.detail.paymentMethod === null) {
-          return 0
-        } else {
-          return this.detail.paymentMethod.id
-        }
-      },
       isAdmin () { return this.$store.getters.isAdmin }
     },
     mounted: function () {
@@ -302,112 +192,6 @@
       getPayTypeDesc: function (payType) {
         return showPayType(payType)
       },
-      editRemark: function () {
-        this.modalTitle = '请输入新的备注：'
-        const promise = this.$refs.modalPrompt.modal()
-        promise.then((remark) => {
-          // 点击确定按钮的回调处理
-          if (remark === '') {
-            return
-          }
-          this.remark = remark
-          this.doUpdateRemark()
-        }).catch((r) => {
-          // console.log('catch: ' + r)
-        })
-      },
-      doUpdateRemark: function () {
-        const params = {
-          'remark': this.remark
-        }
-
-        updateVasOrderRemark(this.id, params,
-          (jsonResult) => {
-            if (jsonResult.status !== 'OK') {
-              this.showErrMsg('失败：' + jsonResult.errmsg)
-            } else {
-              this.showErrMsg('保存成功')
-              this.search()
-            }
-          }
-        )
-      },
-      editPsg: function (index) {
-        this.$refs.modalUpdatePassenger.modal(this.detail.passengers[index]).then((info) => {
-          updateVasOrderPassenger(this.id, info, v => this.commonShowMessage(v))
-        }).catch(ex => {})
-      },
-      cancelOrder: function () {
-        this.modalTitle = '请输入取消订单的理由：'
-        const promise = this.$refs.modalPrompt.modal()
-        promise.then((remark) => {
-          // 点击确定按钮的回调处理
-          if (remark === '') {
-            this.showErrMsg('请填写取消订单的理由')
-            return
-          }
-          this.doCancelOrder(remark)
-        }).catch((r) => {
-          // 点击取消按钮的回调处理
-          // console.log('catch: ' + r)
-        })
-      },
-      doCancelOrder: function (remark) {
-        const params = {
-          'remark': remark
-        }
-        cancelVasOrder(this.id, params, v => this.commonShowMessage(v))
-      },
-      editTicketSupplier: function () {
-        const promise = this.$refs.updateSupplierModal.modal(this.supplierId, this.payMethodId)
-        promise.then((info) => {
-          this.doUpdateSupplier(info.supplierId, info.paymentMethodId)
-        }).catch(() => {
-          // this.showErrMsg('canceled')
-        })
-      },
-      doUpdateSupplier: function (supplierId, paymentMethodId) {
-        const params = {
-          'supplierId': supplierId,
-          'paymentMethodId': paymentMethodId
-        }
-
-        updateVasOrderSupplier(this.id, params, v => this.commonShowMessage(v))
-      },
-      editTicketPayment: function () {
-        this.$refs.updatePayMethodModal.modal(this.payMethodId).then((info) => {
-          updateVasOrderPayment(this.id, { 'paymentMethodId': info.payMethodId }, v => this.commonShowMessage(v))
-        }).catch((ex) => {})
-      },
-      editPrice: function () {
-        this.$refs.updateVasPriceModal.modal(this.detail.price, this.detail.discount, this.detail.cost)
-          .then(v => this.doUpdatePrice(v)).catch(() => {})
-      },
-      doUpdatePrice: function (v) {
-        const params = {
-          'price': v.price,
-          'discount': v.discount,
-          'cost': v.cost
-        }
-
-        updateVasOrderPrice(this.id, params, v => this.commonShowMessage(v))
-      },
-      processOrder: function () {
-        processVasOrder(this.id, v => this.commonShowMessage(v))
-      },
-      finishOrder: function () {
-        this.modalTitle = '请输入备注：'
-        const promise = this.$refs.modalPrompt.modal()
-        promise.then((remark) => {
-          if (remark === '') {
-            return
-          }
-          finishVasOrder(this.id, { remark }, v => this.commonShowMessage(v))
-        }).catch((r) => {})
-      },
-      viewHistory: function () {
-        searchVasOrderHistory(this.id, (jsonResult) => { this.histories = jsonResult })
-      },
       commonShowMessage: function (jsonResult) {
         if (jsonResult.status !== 'OK') {
           this.showErrMsg('操作失败：' + jsonResult.errmsg, 'danger')
@@ -419,19 +203,6 @@
           }
           this.search()
         }
-      },
-      outputBillInfo: function () {
-        outputVasOrder2Bill(this.id, v => this.commonShowMessage(v))
-      },
-      rollbackStatus: function () {
-        this.modalTitle = '确定回滚订单吗？请输入理由：'
-
-        this.$refs.modalPrompt.modal().then((remark) => {
-          rollbackVasOrderStatus(this.id,
-            { remark },
-            v => this.commonShowMessage(v)
-          )
-        }).catch((ex) => { console.log(ex) })
       }
     }
   }

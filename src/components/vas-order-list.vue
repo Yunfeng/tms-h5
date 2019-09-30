@@ -10,9 +10,7 @@
             <th>付款方式</th>
             <th>预订员</th>
             <th>提交时间</th>
-            <th class="text-right">订单金额</th>
-            <th class="text-right">成本</th>
-            <th class="text-right">利润</th>
+            <th class="text-right">金额</th>
             <th>状态</th>
             <th></th>
         </tr>                        
@@ -92,8 +90,6 @@
               
             </td>
             <td class="text-right">{{info.totalAmount}}</td>
-            <td class="text-right">{{info.totalCost}}</td>
-            <td class="text-right">{{info.profit}}</td>
             <td>{{getStatusDesc(info.status)}}</td>
 
             <td>

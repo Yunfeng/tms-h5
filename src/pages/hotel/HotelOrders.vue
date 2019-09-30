@@ -20,7 +20,7 @@
           <input type="textfield" class="form-control" size="6" placeholder="订单号" v-model.trim="orderNo" />
           <input type="textfield" class="form-control ml-1" size="10" placeholder="入住人" v-model.trim="name">
           <input type="textfield" class="form-control ml-1" size="10" placeholder="酒店名称" v-model.trim="hotelName">
-          <select class="form-control form-control-sm" v-model.number="status" name="sc.status">
+          <select class="form-control" v-model.number="status" name="sc.status">
             <option value="-1">订单状态</option>
             <option value="0">待处理</option>
             <option value="1">处理中</option>
@@ -33,7 +33,6 @@
               <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div> 
 
-          <router-link to='/hotel/order' class="btn btn-success ml-auto">新建</router-link>
         </form>
       </div>
       <table class="table table-striped table-sm small">
@@ -51,8 +50,6 @@
                 <th>服务费</th>
                 <th>预订人</th>
                 <th>总金额</th>
-                <th>总成本</th>
-                <th>利润</th>
                 <th>生成时间</th>
                 <th>状态</th>
                 <th></th>
@@ -77,8 +74,6 @@
                 <td>{{info.serviceCharge}}</td>
                 <td>{{info.operator}}</td>
                 <td>{{info.totalAmount}}</td>
-                <td>{{info.totalCost}}</td>
-                <td>{{info.profit}}</td>
                 <td>{{info.createTime}}</td>
                 <td>{{getStatusDesc(info.status)}}</td>
                 <td class="">
