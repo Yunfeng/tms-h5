@@ -112,16 +112,7 @@ export function createRouter () {
       {path: '/charter-flight/order/new',         component: () => import('../pages/CharterFlightOrderNew.vue') },
 
       {path: '/report/sale/month',         component: () => import('../pages/report/SaleReportMonth.vue') },
-      {path: '/report/monthly/op1',         component: () => import('../pages/report/SaleReportMonthByOp1.vue') },
-
-      {path: '/report/refund/month',         component: () => import('../pages/report/ReportFlightRefundOrderMonth.vue') },
       {path: '/report/statistic/monthly',         component:() => import('../pages/report/SaleMonthStatistic.vue') },
-      {path: '/report/paymentMethod/statistic',         component: () => import('../pages/report/ReportPaymentMethodStatistic.vue') },
-      {path: '/report/stat/op1',         component: () => import('../pages/report/ReportStatByOp1.vue') },
-      {path: '/report/stat/op2',         component: () => import('../pages/report/ReportStatByOp2.vue') },
-      {path: '/report/stat/salesman',         component: () => import('../pages/report/ReportStatBySalesman.vue') },
-
-      {path: '/report/stat/supplier',         component: () => import('../pages/report/ReportStatBySupplier.vue') },
       {path: '/report/stat/airlines',         component: () => import('../pages/report/ReportStatByAirlines.vue') },
 
 

@@ -32,12 +32,7 @@ export const menus = [
     caption: '报表',
     submenus: [
       { to: '/report/sale/month', caption: '月报', authorized: 1 },
-      { to: '', caption: '' },
-      { to: '/report/refund/month', caption: '退票报表', authorized: 1 },
-      { to: '', caption: '' },
       { to: '/report/statistic/monthly', caption: '月统计', authorized: 1 },
-      { to: '/report/paymentMethod/statistic', caption: '支付方式统计', authorized: 1 },
-      { to: '/report/stat/supplier', caption: '供应商统计', authorized: 1 },
       { to: '/report/stat/airlines', caption: '航空公司统计', authorized: 1 },
     ]
   },
