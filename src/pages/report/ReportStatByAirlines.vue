@@ -6,7 +6,7 @@
       </div>
       <div class="card-body py-1">
         <form class="form-inline">
-          <label>出票日期</label>
+          <label>日期</label>
           <my-date-picker id="beginDate" v-model="beginDate" placeholder="开始日期" sizing="sm"></my-date-picker>
           <my-date-picker id="endDate" v-model="endDate" placeholder="截止日期" sizing="sm"></my-date-picker>
 
@@ -20,9 +20,6 @@
     
 
     <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link " id="home-tab" data-toggle="tab" href="#data-list">列表</a>
-      </li>
       <li class="nav-item">
         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#data-picture" >图形</a>
       </li>
@@ -108,6 +105,7 @@
     mounted: function () {
       this.endDate = today()
       this.beginDate = this.endDate.substr(0, 8) + '01'
+      // this.beginDate = '2019-01-01'
     },
     methods: {
       showLoading: function (loadingText) {

@@ -15,13 +15,10 @@
       </div>
     </div>
     <div class="card-body py-0 bg-info text-white text-center">
-      账单（包括机票、退票、改签、服务、酒店、火车票，使用账单日期）
+      账单（包括机票、退票、改签、服务、酒店、火车票）
     </div>
 
     <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link " id="home-tab" data-toggle="tab" href="#data-list">列表</a>
-      </li>
       <li class="nav-item">
         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#data-picture" >图形</a>
       </li>
@@ -119,9 +116,9 @@
           xAxisType: 'time'
         },
         chartData: {
-          columns: ['日期', '金额', '成本', '利润'],
+          columns: ['日期', '金额'],
           rows: [
-            { '日期': '2018-01-01', '金额': 1393, '成本': 1093, '利润': 0.32 }
+            { '日期': '2018-01-01', '金额': 1393 }
           ]
         }
 
@@ -140,6 +137,7 @@
     mounted: function () {
       this.endDate = today()
       this.beginDate = this.endDate.substr(0, 8) + '01'
+      this.beginDate = '2019-01-01'
       this.chartData.rows.splice(0)
     },
     methods: {

@@ -456,7 +456,7 @@
     mounted: function () {
       this.endDate = today()
       this.beginDate = this.endDate.substr(0, 8) + '01'
-      this.beginDate = '2019-01-01'
+      // this.beginDate = '2019-01-01'
     },
     methods: {
       searchTickets: function (obj) {
