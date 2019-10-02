@@ -70,14 +70,7 @@
                 <div class="modal-body">
                   <form id="frmUser" role="form" class="form-horizontal">
                     <input type="hidden" id="frmUser_id" name="user.id" v-model.number="id" />
-                    <div class="form-group row">
-                      <label class="control-label col-3 text-right">
-                        公司    
-                      </label>
-                      <div class="col-9">
-                        <my-select-customer :customerId.sync="customerId" :minId="1" :disabled="id > 0"></my-select-customer>
-                      </div>
-                    </div>
+                    
                     <div class="form-group row">
                         <label class="control-label col-3 text-right">
                             部门名称*    
@@ -147,15 +140,12 @@
 
 <script>
   import { createDepartment, searchDepartments } from '../api/user.js'
-  import { searchCustomers } from '../api/customer.js'
   import $ from 'jquery'
   import MyPagination from '../components/my-pagination.vue'
-  import MySelectCustomer from '../components/my-select2-customer.vue'
 
   export default {
     components: {
-      MyPagination,
-      MySelectCustomer
+      MyPagination
     },
     data () {
       return {
@@ -217,16 +207,11 @@
         this.email = ''
         this.remark = ''
 
-        this.searchCustomers()
-
         $('#modalPolicyManage').modal()
       },
       saveDept: function () {
         const params = {
           'id': this.id,
-          'customer': {
-            'id': this.customerId
-          },
           'name': this.name,
           'linkMan': this.linkMan,
           'mobile': this.mobile,
@@ -251,7 +236,6 @@
         const info = this.dataList[index]
 
         this.id = info.id
-        this.customerId = info.customer.id
         this.name = info.name
         this.linkMan = info.linkMan
         this.mobile = info.mobile
@@ -259,21 +243,12 @@
         this.email = info.email
         this.remark = info.remark
 
-        this.searchCustomers()
-
         $('#modalPolicyManage').modal()
       },
       reset: function () {
         this.name = ''
         this.sc.pageNo = 1
         this.search()
-      },
-      searchCustomers: function () {
-        if (this.customers.length === 0) {
-          searchCustomers(null, (jsonResult) => {
-            this.customers = jsonResult.dataList
-          })
-        }
       },
       prevPage: function () {
         this.sc.pageNo = this.sc.pageNo - 1

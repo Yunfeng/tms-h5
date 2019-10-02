@@ -3,7 +3,7 @@ import { APP_FLIGHT_PATH, callService } from '../common/common.js'
 
 
 export function searchBills(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/searchMyBillInfo.do'
+  const url = APP_FLIGHT_PATH + '/my/bills'
   callService(url, {
     data: params,
     cbDone: cbDone,

@@ -17,9 +17,6 @@
               <button type="button" class="btn btn-secondary btn-sm" title="清空查找条件" @click="reset();">重置</button>
           </div>
 
-          <router-link :to="`/passenger`" class="btn btn-success btn-lg ml-auto">新建</router-link>
-
-          <a class="btn btn-info btn-sm ml-5" @click.stop="download()" href="javascript:void(0)">下载</a> 
         </form>
       </div>
     </div>

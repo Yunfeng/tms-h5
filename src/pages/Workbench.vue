@@ -49,9 +49,6 @@
           <div class="form-row mt-1">
               <button type="button" class="btn btn-primary ml-2" @click.stop="search()">查找</button>
               <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
-
-              <router-link class="btn btn-success ml-auto mr-2" to="/new/flt/order">新建订单</router-link>
-
           </div>
         </form>
       </div>

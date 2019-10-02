@@ -23,14 +23,7 @@
           </div>
           <div class="card-body">
               <input type="hidden" v-model.number="id" />
-              <div class="form-group row">
-                <label class="control-label col-3 text-right">
-                  公司    
-                </label>
-                <div class="col-9">
-                  <my-select-customer :customerId.sync="customerId" :minId="0"></my-select-customer>
-                </div>
-              </div>
+              
               <div class="form-group row">
                 <label class="control-label col-3 text-right">
                     部门    
@@ -256,12 +249,11 @@
 </template>
 
 <script>
-  import { searchPassengerById, createPsg, deletePsgById } from '../api/user.js'
+  import { searchPassengerById, createPsg } from '../api/user.js'
   import { searchDepartmentsByCustomerId, searchCustomers } from '../api/customer.js'
   import $ from 'jquery'
   import MyPagination from '../components/my-pagination.vue'
   import MyDatePicker from '../components/my-datepicker.vue'
-  import MySelectCustomer from '../components/my-select2-customer.vue'
 
   export default {
     components: {

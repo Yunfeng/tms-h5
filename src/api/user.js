@@ -23,6 +23,38 @@ export function searchPrivileges(cbDone) {
   })
 }
 
+export function createDepartment(params, cbDone) {
+  const url = APP_FLIGHT_PATH + '/my/department'
+  callService(url, {
+    data: params,
+    contentType: 'application/json',
+    cbDone: cbDone
+  })
+}
+
+export function searchDepartments(params, cbDone) {
+  const url = APP_FLIGHT_PATH + '/my/departments'
+  callService(url, {
+    data: params,
+    cbDone: cbDone
+  })
+}
+
+export function searchPassengers(params, cbDone) {
+  const url = APP_FLIGHT_PATH + '/my/passengers'
+  callService(url, {
+    data: params,
+    cbDone: cbDone
+  })
+}
+
+export function searchPassengerById(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/my/passenger/' + id
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
 
 
 
@@ -190,22 +222,6 @@ export function searchFlightFixedCommission(params, cbDone) {
 
 
 
-export function createDepartment(params, cbDone) {
-  const url = APP_FLIGHT_PATH + '/department'
-  callService(url, {
-    data: params,
-    contentType: 'application/json',
-    cbDone: cbDone
-  })
-}
-
-export function searchDepartments(params, cbDone) {
-  const url = APP_FLIGHT_PATH + '/departments'
-  callService(url, {
-    data: params,
-    cbDone: cbDone
-  })
-}
 
 
 export function createPsg(params, cbDone) {
@@ -217,20 +233,7 @@ export function createPsg(params, cbDone) {
   })
 }
 
-export function searchPassengers(params, cbDone) {
-  const url = APP_FLIGHT_PATH + '/passengers'
-  callService(url, {
-    data: params,
-    cbDone: cbDone
-  })
-}
 
-export function searchPassengerById(id, cbDone) {
-  const url = APP_FLIGHT_PATH + '/passenger/' + id
-  callService(url, {
-    cbDone: cbDone
-  })
-}
 
 export function deletePsgById(id, cbDone) {
   const url = APP_FLIGHT_PATH + '/passenger/' + id + '/delete'

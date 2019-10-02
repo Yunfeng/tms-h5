@@ -79,8 +79,8 @@ server.get('*', (req, res) => {
   const s = Date.now()
   console.log('url:' + req.url)
   const context = { url: req.url, 
-    meta: `<meta description="差旅管理系统 TMS vuejs ssr">`,
-    title: '差旅管理系统TMS'
+    meta: `<meta description="企业在线差旅管理系统 Enterprise Online Travel Management System TMS vuejs ssr">`,
+    title: '企业差旅系统 - EOTMS'
   }
   // No need to pass an app here because it is auto-created by
   // executing the bundle. Now our server is decoupled from our Vue app!

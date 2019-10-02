@@ -35,13 +35,7 @@
                           <div class=" dropdown-header noti-title">
                               <h6 class="text-overflow m-0">欢迎 !</h6>
                           </div>
-
-                          <!-- item-->
-                          <router-link to="/my/worktime" class="dropdown-item notify-item">
-                            <i class="mdi mdi-account-settings-variant"></i>
-                              <span>设置</span>
-                          </router-link>
-
+                          
                           <!-- item-->
                           <router-link to="/my/histories" class="dropdown-item notify-item">
                             <i class="mdi mdi-lifebuoy"></i>

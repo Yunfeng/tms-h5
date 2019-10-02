@@ -48,7 +48,7 @@
                 <td>{{info.createTime}}</td>
                 <td>{{info.lastUpdate}}</td>
                 <td>
-                  <router-link :to="`/passenger?id=` + info.id">修改</router-link>
+                  
                 </td>
                 <td>
                   <router-link :to="`/passenger/` + info.id">详情</router-link>
