@@ -38,5 +38,13 @@ export const menus = [
       { to: '/customer/departments', caption: '企业部门信息', authorized: 1 },
       { to: '/passengers', caption: '企业员工信息', authorized: 1 },
     ]
+  },
+  {
+    caption: '工具',
+    submenus: [
+      { to: '/tool/pnrs', caption: 'PNR列表', authorized: 1 },
+      { to: '/tool/detr/result', caption: 'Detr结果', authorized: 1 },
+      { to: '/tprs', caption: 'TPR数据', authorized: 0 }
+    ]
   }
 ]

@@ -106,6 +106,9 @@ export function createRouter () {
       
 
       {path: '/tool/sms',         component: () => import('../pages/Sms.vue') },
+      {path: '/tool/pnrs',         component: () => import('../pages/pnr/Pnrs.vue') , meta: { keepAlive: true}},
+      {path: '/tool/detr/result',         component: () => import('../pages/DetrResult.vue') },
+      {path: '/tprs',         component: () => import('../pages/Tpr.vue') },
 
 
       {path: '/charter-flights',         component: () => import('../pages/CharterFlights.vue') },

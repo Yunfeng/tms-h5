@@ -61,7 +61,7 @@ export function uploadFdRequest(params, cbDone, cbAlways, cbFail) {
 }
 
 export function searchDetrResults(params, cbDone) {
-  const url = APP_FLIGHT_PATH + '/searchDetr.do'
+  const url = APP_FLIGHT_PATH + '/detrs'
   callService(url, {
     data: params,
     cbDone: cbDone
