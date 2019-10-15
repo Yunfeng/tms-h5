@@ -14,18 +14,14 @@ export const menus = [
       { to: '', caption: '' },
       { to: '/hotel/orders', caption: '酒店订单', authorized: 0 },
       { to: '/train/orders', caption: '火车票订单', authorized: 0 },
+      { to: '/train/refund/orders', caption: '火车退票单', authorized: 0 },
     ]
   },
   {
     caption: '账单',
     submenus: [
-      { to: '/bills', caption: '账单', authorized: 1 },      
-    ]
-  },
-  {
-    caption: '财务',
-    submenus: [
-      { to: '/ent/settlements', caption: '结算单', authorized: 1 },
+      { to: '/bills', caption: '账单', authorized: 1 },   
+      { to: '/ent/settlements', caption: '结算单', authorized: 1 }   
     ]
   },
   {

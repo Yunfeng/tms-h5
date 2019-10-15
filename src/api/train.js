@@ -28,6 +28,43 @@ export function searchTrainOrders(params, cbDone, cbAlways) {
   })
 }
 
+//查找火车票退票单
+export function searchTrainRefundOrders(params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/train/refund/orders'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+export function searchTrainRefundOrder(id, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/train/refund/order/' + id
+  callService(url, {
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export function createTrainOrder(params, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/train/order'
   callService(url, {

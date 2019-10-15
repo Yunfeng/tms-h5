@@ -58,6 +58,8 @@ export function createRouter () {
       {path: '/train/order/:id',         component: () => import('../pages/train/TrainOrder.vue')},
       {path: '/train/order',         component: () => import('../pages/train/TrainOrderNew.vue')},
 
+      {path: '/train/refund/orders',         component: () => import('../pages/train/TrainRefundOrders.vue'), meta: { keepAlive: true }},
+      {path: '/train/refund/order/:id',         component: () => import('../pages/train/TrainRefundOrder.vue')},
       {path: '/delivery/notes',         component: () => import('../pages/delivery/DeliveryNotes.vue'), meta: { keepAlive: true }},
       {path: '/delivery/note/:id',         component: () => import('../pages/delivery/DeliveryNote.vue')},
       {path: '/delivery/note',         component: () => import('../pages/delivery/DeliveryNoteNew.vue')},
