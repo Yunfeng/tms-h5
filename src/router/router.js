@@ -32,7 +32,7 @@ export function createRouter () {
       
       {path: '/flt/order/:id', component: () => import('../pages/FlightOrderDetail.vue'), name: 'flightOrderDetail' },
       {path: '/flt/order/:id/history',         component: () => import('../pages/FlightOrderHistory.vue') , name: 'flightOrderHistory'},
-      {path: '/new/flt/order',         component: () => import('../pages/NewFlightOrder.vue') },
+      {path: '/flt/order',         component: () => import('../pages/NewFlightOrder.vue') },
       
       {path: '/flt/refund/orders',         component: () => import('../pages/FlightRefundOrders.vue') , meta: { keepAlive: true }},
       {path: '/flt/refund/order/:id',         component: () => import('../pages/FlightRefundOrderDetail.vue') },

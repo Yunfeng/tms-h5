@@ -6,7 +6,6 @@
         <th>客户</th>
         <th>乘机人</th>
         <th colspan="5" class="bg-info text-center text-white">行程</th>
-        <th>预定员</th>
         <th>订单日期</th>
         <th class="text-right">金额</th>
         <th>订单状态</th>
@@ -58,9 +57,6 @@
               </tbody>
             </table>
           </td>
-
-         
-          <td>{{info.operator}}</td>
           <td>
             {{info.createDate}}
           </td>

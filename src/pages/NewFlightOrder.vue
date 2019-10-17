@@ -128,66 +128,10 @@
             <td>总计</td>
             <td>人数：{{psgCount}}</td>
             <td>总应收：{{totalAmount}}</td>
-            <td>总应付：{{totalCost}}</td>
-            <td>利润：<span class="text-danger">{{totalProfit}}</span></td>
           </tr>
         </table>
 
-        <div class="card-body bg-info text-white py-1">客户及付款信息</div>
-        <div class="card-body py-2">
-          <div class="form-group row" v-if="possibleCustomers.length > 0">
-            <label class="col-2 control-label text-right text-warning">可能是:</label>
-            <div class="col-8">
-              <template v-for="name in possibleCustomers">
-                <span class="text-primary">{{name}}</span>&nbsp;&nbsp;
-              </template>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-2 control-label text-right">客户</label>
-            <div class="col-8">
-              <my-select-customer :minId="0" :customerId.sync="customerId"></my-select-customer>
-            </div>
-          </div>
-          <div class="form-group row" v-if="costCenters.length > 0">
-            <label class="col-2 control-label text-right">成本中心</label>
-            <div class="col-8">
-              <select class="form-control" v-model="costCenter">
-                <option value="">请选择</option>
-                <option :value="info.name" v-for="info in costCenters">{{info.name}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row" v-if="projectNames.length > 0">
-            <label class="col-2 control-label text-right">项目名称</label>
-            <div class="col-8">
-              <select class="form-control" v-model="projectName">
-                <option value="">请选择</option>
-                <option :value="info.name" v-for="info in projectNames">{{info.name}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-2 control-label text-right">付款方式</label>
-            <div class="col-10">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="1" v-model.number="payType">
-                <label class="form-check-label">现付（现金等）</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="8" v-model.number="payType">
-                <label class="form-check-label">记账</label>
-              </div>
-            </div>
-
-          </div>
-          <div class="form-group row" v-if="payType === 1">
-            <label class="col-2 control-label text-right">付款方式备注</label>
-            <div class="col-8">
-              <my-select-income :incomeRemark.sync="payRemark"></my-select-income>
-            </div>
-          </div>
-        </div>
+     
 
         <div class="card-body bg-info text-white py-1">行程单/发票</div>
         <div class="card-body py-0">
@@ -212,85 +156,11 @@
               </div>
             </div>
           </div>
-          <template v-if="itineraryType > 0">
-            <div class="form-group row mb-1" >
-              <label class="col-2 control-label text-right">派送日期</label>
-              <div class="col-8">
-                  <my-date-picker id="deliveryDate" v-model.trim="deliveryDate"></my-date-picker>
-              </div>
-            </div>
-            <div class="form-group row mb-1">
-              <label class="col-2 control-label text-right">邮寄地址</label>
-              <div class="col-8">
-                  <input type="text" class="form-control" v-model.trim="itineraryMailingAddress">
-              </div>
-            </div>
-            <div class="form-group row mb-1">
-              <label class="col-2 control-label text-right">收件人</label>
-              <div class="col-8">
-                  <input type="text" class="form-control" v-model.trim="itineraryRecipient">
-              </div>
-            </div>
-            <div class="form-group row mb-1">
-              <label class="col-2 control-label text-right">联系电话</label>
-              <div class="col-8">
-                  <input type="text" class="form-control" v-model.trim="itineraryRecipientMobile">
-              </div>
-            </div>
-            <div class="form-group row mb-1">
-              <label class="col-2 control-label text-right">备注</label>
-              <div class="col-8">
-                  <input type="text" class="form-control" v-model.trim="itineraryMailingMemo">
-              </div>
-            </div>
-          </template>
         </div>
 
-        <div class="card-body bg-info text-white py-1">订票人</div>
-        <div class="card-body py-1">
-          <div class="form-group row mb-1">
-            <label class="col-2 control-label text-right">姓名</label>
-            <div class="col-8">
-                <input type="text" class="form-control" v-model.trim="linkman">
-            </div>
-          </div>
-          <div class="form-group row mb-1">
-            <label class="col-2 control-label text-right">电话</label>
-            <div class="col-8">
-                <input type="text" class="form-control" v-model.trim="linkPhone">
-            </div>
-          </div>
-        </div>
-
-        <div class="card-body bg-info text-white py-1">供应商及支出付款方式</div>
-        <div class="card-body py-1">
-          <div class="form-group row mb-1">
-            <label class="col-2 control-label text-right">供应商</label>
-            <div class="col-8">
-                <my-select-supplier :supplierId.sync="supplierId" :supplierType="supplierType"></my-select-supplier>
-            </div>
-          </div>
-          <div class="form-group row mb-1">
-            <label class="col-2 control-label text-right">支出付款方式</label>
-            <div class="col-8">
-                <my-select-payment :paymentId.sync="paymentMethodId"></my-select-payment>
-            </div>
-          </div>
-        </div>
 
         <div class="card-body bg-info text-white py-1">其它</div>
         <div class="card-body py-1">
-          <div class="form-group row mb-0 mt-1">
-            <label class="col-2 control-label text-right">时限</label>
-            <div class="col-4">
-            <my-date-picker id="etdzDate" v-model.trim="etdzDate"></my-date-picker>
-              <div class="text-muted">可留空，用于提醒开票</div>
-            </div>       
-            <div class="col-4">
-              <input type="text" class="form-control" v-model.trim="etdzTime" placeholder="时间格式：2330">
-              <div class="text-muted">时间部分格式：HHmm, 例如：2330</div>
-            </div>         
-          </div>
           <div class="form-group row mb-1">
             <label class="col-2 control-label text-right">备注</label>
             <div class="col-8">
@@ -300,14 +170,7 @@
         </div>
 
         <div class="card-body">
-          <div class="form-group row mb-1">
-            <label class="col-2 control-label text-right">预订人</label>
-            <div class="col-8">
-                <my-select-op1 sizing="sm" :username.sync="op1">
-                  <span slot="title">本人</span>
-                </my-select-op1>
-            </div>
-          </div>
+        
           <div class="form-group row mb-1">
             <label class="col-2 control-label text-right">记录编码</label>
             <div class="col-8">
@@ -343,19 +206,12 @@
 
 <script>
   import { SUPPLIER_FLIGHT } from '../common/const.js'
-  import { processPnrDetail, searchPriceByRoute, searchFlightFixedCommission } from '../api/user.js'
-  import { searchCustomers, searchPossibleCustomers } from '../api/customer.js'
+  import { processPnrDetail, searchPriceByRoute } from '../api/user.js'
   import { createFlightOrder } from '../api/flight.js'
   import { processPnrFlightContent } from '../api/flight-change.js'
-  import { searchNotesByCustomer } from '../api/customer.js'
   import MyDatePicker from '../components/my-datepicker.vue'
   import MyPriceInput from '../components/flight-price-input.vue'
-  import MySelectCustomer from '../components/my-select-customer.vue'
-  import MySelectIncome from '../components/my-select-income.vue'
   import PriceInfo from '../common/PriceInfo.js'
-  import MySelectPayment from '../components/my-select-payment.vue'
-  import MySelectSupplier from '../components/my-select2-supplier.vue'
-  import MySelectOp1 from '../components/my-select-operator.vue'
   import FltTr from '../components/flt-tr.vue'
 
   import $ from 'jquery'
@@ -364,11 +220,6 @@
     components: {
       MyDatePicker,
       MyPriceInput,
-      MySelectCustomer,
-      MySelectIncome,
-      MySelectPayment,
-      MySelectSupplier,
-      MySelectOp1,
       FltTr
     },
     data () {
@@ -376,15 +227,6 @@
         editing: false,
         pnrDetail: '',
         pnr: null,
-
-        customerId: 0,
-        costCenter: '',
-        projectName: '',
-        costCenters: [],
-        projectNames: [],
-
-        supplierId: 0,
-        paymentMethodId: 0,
 
         adultPrice: new PriceInfo(),
         childPrice: new PriceInfo(),
@@ -395,48 +237,22 @@
         infantCount: 0,
 
         memo: '',
-        etdzDate: '',
-        etdzTime: '',
-        payType: 1,
-        payRemark: '',
         itineraryType: 0,
-        itineraryMailingAddress: '',
-        itineraryMailingMemo: '',
-        itineraryRecipient: '',
-        itineraryRecipientMobile: '',
-        deliveryDate: '',
-        linkman: '',
-        linkPhone: '',
         intlTicket: -1,
-        op1: '',
         pnrNo: '',
 
         inputMode: 0,
         quickInput: '',
 
-        btnDisabled: false,
-
-        possibleCustomers: []
+        btnDisabled: false
       }
     },
     watch: {
-      customerId: function (newVal) {
-        if (newVal === 0) {
-          this.payType = 1
-        } else if (newVal > 0) {
-          this.payType = 8
-        }
-        this.getMailAddress()
-        this.getCostCenters()
-      },
       quickInput: function (newVal, oldVal) {
         this.processQuickInput()
       }
     },
     computed: {
-      supplierType: function () {
-        return SUPPLIER_FLIGHT
-      },
       flightCount: function () {
         if (this.pnr === null) {
           return 0
@@ -484,16 +300,6 @@
         return this.adultPrice.amount * this.adultCount +
           this.childPrice.amount * this.childCount +
           this.infantPrice.amount * this.infantCount
-      },
-      totalCost: function () {
-        return this.adultPrice.cost * this.adultCount +
-          this.childPrice.cost * this.childCount +
-          this.infantPrice.cost * this.infantCount
-      },
-      totalProfit: function () {
-        return this.adultPrice.profit * this.adultCount +
-          this.childPrice.profit * this.childCount +
-          this.infantPrice.profit * this.infantCount
       }
     },
     mounted: function () {
@@ -555,45 +361,6 @@
             }
 
             this.editing = true
-
-            //查找可能归属的公司
-            this.searchPossibleCustomers()
-          }
-        )
-      },
-      searchPossibleCustomers: function () {
-        this.possibleCustomers.splice(0)
-        let names = []
-        for (let i = 0; i < this.pnr.passengers.length; i++) {
-          names.push({
-            'name': this.pnr.passengers[i].psgName,
-            'idNo': this.pnr.passengers[i].idNo
-          })
-        }
-
-        const jsonParams = JSON.stringify(names)
-
-        searchPossibleCustomers(jsonParams,
-          v => {
-            this.possibleCustomers.push(...v)
-          }
-        )
-      },
-      searchPriceByPnr: function (carrier, subclass, dport, aport) {
-        const params = {
-          'sc.carrier': carrier,
-          'sc.subClass': subclass,
-          'sc.dport': dport,
-          'sc.aport': aport
-        }
-
-        searchPriceByRoute(params,
-          (jsonResult) => {
-            this.price = 0
-            if (jsonResult.dataList.length > 0) {
-              this.adultPrice.price = jsonResult.dataList[0].price
-              this.caclTicketAmount()
-            }
           }
         )
       },
@@ -609,38 +376,21 @@
         }
 
         const params = {
-          'customerId': this.customerId,
-          'costCenter': this.costCenter,
-          'projectName': this.projectName,
-          'payType': this.payType,
-          'payRemark': this.payRemark,
-
           'adultPrice': this.adultPrice,
           'childPrice': this.childPrice,
           'infantPrice': this.infantPrice,
 
           'totalAmount': this.totalAmount,
-          'totalProfit': this.totalProfit,
 
-          'tktlDate': this.etdzDate,
-          'tktlTime': this.etdzTime,
           'pnrNo': this.pnrNo,
           'pnrDetail': this.pnrDetail,
           'itineraryType': this.itineraryType,
-          'itineraryMailingAddress': this.itineraryMailingAddress,
-          'itineraryMailingMemo': this.itineraryMailingMemo,
-          'itineraryRecipient': this.itineraryRecipient,
-          'itineraryRecipientMobile': this.itineraryRecipientMobile,
-          'deliveryDate': this.deliveryDate,
+
           'linkman': this.linkman,
           'linkPhone': this.linkPhone,
           'intlTicket': this.intlTicket,
           'flights': this.pnr.flights,
-          'passengers': this.pnr.passengers,
-
-          'supplierId': this.supplierId,
-          'paymentMethodId': this.paymentMethodId,
-          'op1': this.op1
+          'passengers': this.pnr.passengers
         }
 
         const jsonParams = JSON.stringify(params)
@@ -717,23 +467,6 @@
       addPnrPsg: function () {
         this.pnr.passengers.push({ 'selected': true, 'psgName': '', 'idNo': '', 'idType': '', mobile: '' })
       },
-      searchFixedCommission: function () {
-        if (this.pnr === null || this.pnr.flights === null || this.pnr.flights.length < 1) return
-
-        const carrier = this.pnr.flights[0].flight.flightNo.substr(0, 2)
-        const subclass = this.pnr.flights[0].flight.subclass
-
-        const params = {
-          'carrier': carrier,
-          'subclass': subclass
-        }
-
-        searchFlightFixedCommission(params,
-          (jsonResult) => {
-            this.adultPrice.commission = jsonResult
-          }
-        )
-      },
       reset: function () {
         // body...
         this.pnrDetail = ''
@@ -750,51 +483,6 @@
         this.pnrNo = ''
 
         this.inputMode = 0
-      },
-      getMailAddress: function () {
-        this.itineraryMailingAddress = ''
-        this.itineraryType = 0
-        this.itineraryRecipient = ''
-        this.itineraryRecipientMobile = ''
-
-        if (this.customerId < 1) return
-
-        const params = {
-          'sc.pageNo': 1,
-          'sc.pageSize': 1,
-          'sc.customerId': this.customerId
-        }
-
-        searchCustomers(params, (jsonResult) => {
-          const customers = jsonResult.dataList
-
-          for (let i = 0; i < customers.length; i++) {
-            if (customers[i].id === this.customerId) {
-              // console.log(customers[i])
-              this.itineraryMailingAddress = customers[i].address
-              this.itineraryType = customers[i].itineraryType
-              this.itineraryRecipient = customers[i].linkman
-              this.itineraryRecipientMobile = customers[i].phone
-            }
-          }
-        })
-      },
-      getCostCenters: function () {
-        this.costCenter = ''
-        this.projectName = ''
-        this.costCenters.splice(0)
-        this.projectNames.splice(0)
-        if (this.customerId < 1) return
-
-        searchNotesByCustomer(this.customerId, (jsonResult) => {
-          for (const info of jsonResult) {
-            if (info.noteType === 100) {
-              this.costCenters.push(info)
-            } else if (info.noteType === 200) {
-              this.projectNames.push(info)
-            }
-          }
-        })
       },
       processQuickInput: function () {
         if (this.quickInput.length < 6) {

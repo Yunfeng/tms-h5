@@ -12,9 +12,24 @@ export function searchFlightOrders(params, cbDone, cbAlways) {
 export function searchFlightOrder(id, cbDone) {
   const url = APP_FLIGHT_PATH + '/flight/order/' + id
   callService(url, {
+    type: 'GET',
     cbDone: cbDone
   })
 }
+
+export function createFlightOrder(params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/flight/order'
+  callService(url, {
+    contentType: 'application/json',
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+
+
+
 
 
 
@@ -52,15 +67,7 @@ export function searchFlightOrderHistory(id, cbDone) {
   })
 }
 
-export function createFlightOrder(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/order/flight/new'
-  callService(url, {
-    contentType: 'application/json',
-    data: params,
-    cbDone: cbDone,
-    cbAlways: cbAlways
-  })
-}
+
 
 export function updateFlightOrderPrice(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/price'

@@ -33,7 +33,6 @@
                     <th>成本中心</th>
                     <th>项目名称</th>
                     <th>国际?</th>
-                    <th>预订人</th>
                     <th>收款方式</th>
                     <th>出票日期</th>
                     <th>收款状态</th>
@@ -54,7 +53,6 @@
                       <span class="text-danger" v-if="detail.intlTicket === 1">国际</span>
                       <span v-else>国内</span>
                     </td>
-                    <td>{{detail.operator}}</td>
                     <td>
                       {{getPayTypeDesc(detail.payType)}}
                       /{{detail.payRemark}}

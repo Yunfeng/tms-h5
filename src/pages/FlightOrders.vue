@@ -5,23 +5,13 @@
         机票订单
       </div>
       <div class="card-body py-1 px-1">
-        <form>
+        <form  class="form-inline">
           <div class="form-row">
-            <div class="col">
               <input type="textfield" class="form-control form-control-sm" size="6" placeholder="订单号" v-model.trim="orderNo">
-            </div>
-            <div class="col">
               <input type="textfield" class="form-control form-control-sm" size="6" placeholder="姓名" v-model.trim="name">
-            </div>
-            <div class="col">
               <input type="textfield" class="form-control form-control-sm" size="6" placeholder="证件号" v-model.trim="idno">
-            </div>
-            <div class="col">
               <input type="textfield" class="form-control form-control-sm" size="12" placeholder="票号" v-model.trim="ticketNo">
-            </div>
-            <div class="col">
               <input type="textfield" class="form-control form-control-sm" size="10" placeholder="航班号" v-model.trim="flightNo">
-            </div>
             <div class="col">
               <my-date-picker id="ddate" v-model="ddate" placeholder="航班日期" sizing="sm"></my-date-picker>
             </div>
@@ -66,6 +56,8 @@
           <div class="form-row">
             <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
           </div>
+
+          <router-link class="btn btn-success ml-auto" to="/flt/order">新建订单</router-link>
         </form>
       </div>
     </div>

@@ -22,41 +22,11 @@
             <span class="text-muted small">总的税金</span>
           </td>
           <td>
-            保险费
-            <input type="text" class="form-control" v-model.lazy.number="insurance0">
-            <span class="text-muted small">保险费(0利润)</span>
-          </td>
-          <td>
-            服务费
-            <input type="text" class="form-control" v-model.lazy.number="serviceCharge0">
-            <span class="text-muted small">服务费/人</span>
-          </td>
-          <td>代理费率<input type="text" class="form-control" v-model.lazy.number="commRate0"></td>
-          <td>
-            代理费
-            <input type="text" class="form-control" v-model.lazy.number="commission0">
-            <span class="text-muted small">包含在销售价中的代理费</span>        
-          </td>
-          <td>
-            客户让利
-            <input type="text" class="form-control" v-model.lazy.number="discount0">
-            <span class="text-muted small">正数表示优惠，负数表示加价</span>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-right">客户应付/{{psgTypeName}}</td>
-          <td>
+            客户应付/{{psgTypeName}}
             <input type="text" class="form-control" v-model.lazy.number="amount0">
             <span class="text-muted small">实际应付金额</span>
           </td>
-          <td class="text-right">底价/{{psgTypeName}}</td>
-          <td>
-            <input type="text" class="form-control" v-model.lazy.number="cost0">
-            <span class="text-muted small">实际成本</span>
-          </td>
-          <td></td>
           <td>人数: {{ticketCount}}</td>
-          <td>利润: {{totalProfit}}</td>
           <td>小计: {{totalAmount}}</td>
         </tr>
       </tbody>
