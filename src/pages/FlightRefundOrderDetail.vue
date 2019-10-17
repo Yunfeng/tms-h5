@@ -13,17 +13,15 @@
           <thead>
               <tr>
                   <th>退票单号</th>
-                  <th class="text-center">票号</th>
-                  <th></th>
-                  <th class="text-center">乘客</th>
-                  <th class="text-center">证件号</th>
+                  <th>票号</th>
+                  <th>乘客</th>
+                  <th>证件号</th>
                   
                   <th class="text-right">销售价</th>
                   <th class="text-right">税</th>
                   <th class="text-right">实收</th>
                   <th class="text-right">退票费</th>
                   <th class="text-right">服务费</th>
-                  <th>操作员</th>
                   <th>状态</th>
                   <th class="text-right">实退</th>
               </tr>                        
@@ -31,8 +29,7 @@
           <tbody>
               <tr>
                   <td>{{detail.refundOrderNo}}</td>
-                  <td>{{detail.balanceCode}}-{{detail.ticketNo}}</td>
-                  <td>
+                  <td>{{detail.balanceCode}}-{{detail.ticketNo}}
                     <span class="text-danger" v-if="detail.intlTicket === 1">国际</span>
                     <span v-else>国内</span>
                   </td>
@@ -42,8 +39,7 @@
                   <td class="text-right">{{detail.tax}}</td>
                   <td class="text-right">{{detail.ticketAmount}}</td>
                   <td class="text-right">{{detail.airRefundCharge}}</td>
-                  <td class="text-right">{{detail.serviceCharge}}</td>
-                  <td>{{detail.operator}}</td>                
+                  <td class="text-right">{{detail.serviceCharge}}</td>      
                   <td>
                     {{showRefundOrderStatus(detail.status)}}
                     <span class="small text-primary" v-if="detail.payStatus === 2">已销</span>

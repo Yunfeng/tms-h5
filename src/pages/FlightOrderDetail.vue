@@ -80,6 +80,7 @@
                       <th>手机号</th>
                       <th>乘客类型</th>
                       <th>票号</th>
+                      <th></th>
                   </tr>
               </thead>
               <tbody>
@@ -98,6 +99,11 @@
                         <template v-if="detail.status === 16 || detail.status === 32">
                         {{info.ticketNo}}
                           <template v-if="info.ticketCount > 1"> - {{info.ticketNoEnd}}</template>
+                        </template>
+                      </td>
+                      <td>
+                        <template v-if="detail.status === 32">
+                          <a href="javascript:void(0)" @click.stop="multiRefundTicket(index)" class="btn btn-sm btn-outline-danger ml-2">退票</a>                        
                         </template>
                       </td>
                   </tr>                               
@@ -204,6 +210,7 @@
     </div>    
 
 
+    <my-modal-refund-ticket-multi ref="multiRefundTicketModal"></my-modal-refund-ticket-multi>
 
   </div>
   
@@ -225,13 +232,15 @@
   import FlightRefundList from '../components/flight-order-refund-list.vue'
   import FlightChangeList from '../components/flight-order-change-list.vue'
   import VasOrderList from '../components/vas-order-list.vue'
+  import MyModalRefundTicketMulti from '../components/my-modal-refund-ticket-multi.vue'
 
   export default {
     components: {
       MyModalPrompt,
       FlightRefundList,
       FlightChangeList,
-      VasOrderList
+      VasOrderList,
+      MyModalRefundTicketMulti
     },
     data () {
       return {
@@ -328,6 +337,92 @@
       printItinerary: function () {
         const url = '/' + APP_FLIGHT_PATH + '/order/flight/' + this.id + '/itinerary'
         window.open(url)
+      },
+      multiRefundTicket: function (index) {
+        // 多人同时退废
+        const psgInfo = this.detail.passengers[index]
+        const psgType = psgInfo.psgType
+
+        let psgPrice
+        if (psgType === 0) {
+          this.setAdultPrice()
+          psgPrice = this.adultPrice
+        } else if (psgType === 1) {
+          this.setChildPrice()
+          psgPrice = this.childPrice
+        } else if (psgType === 2) {
+          this.setInfantPrice()
+          psgPrice = this.infantPrice
+        }
+
+        // 找到同类型的乘机人：成人，儿童，婴儿
+        const psgList = []
+        for (const info of this.detail.passengers) {
+          if (info.psgType === psgType) {
+            psgList.push({
+              'ticketNo': info.ticketNo,
+              'name': info.name,
+              'idNo': info.idNo,
+              'selected': false
+            })
+          }
+        }
+
+        this.$refs.multiRefundTicketModal.modal(psgList, this.id, this.detail.orderNo, this.detail.flights, this.detail.intlTicket, psgPrice.amount, psgPrice.cost, psgPrice.parvalue, psgPrice.tax).then((info) => {
+          this.doCreateRefundOrderMulti(info)
+        }).catch(ex => {})
+      },
+      doCreateRefundOrderMulti: function (info) {
+        createRefundOrderMulti(JSON.stringify(info), (jsonResult) => {
+          if (jsonResult.status !== 'OK') {
+            this.showErrMsg(jsonResult.errmsg, 'danger')
+          } else {
+            this.showErrMsg('操作成功')
+            this.$router.push('/flt/refund/order/' + jsonResult.returnCode)
+          }
+        })
+      },
+      setAdultPrice: function () {
+        this.adultPrice.price = this.detail.price
+        this.adultPrice.parvalue = this.detail.parvalue
+        this.adultPrice.tax = this.detail.tax
+        this.adultPrice.insurance = this.detail.insurance
+        this.adultPrice.serviceCharge = this.detail.serviceCharge
+        this.adultPrice.commRate = 0
+        this.adultPrice.commission = this.detail.commission
+        this.adultPrice.discountRate = 0
+        this.adultPrice.discount = this.detail.discount
+        this.adultPrice.amount = this.detail.amount
+        this.adultPrice.cost = this.detail.cost
+        this.adultPrice.ticketCount = this.detail.adultCount
+      },
+      setChildPrice: function () {
+        this.childPrice.price = this.detail.chdPrice
+        this.childPrice.parvalue = this.detail.chdParvalue
+        this.childPrice.tax = this.detail.chdTax
+        this.childPrice.insurance = this.detail.chdInsurance
+        this.childPrice.serviceCharge = this.detail.chdServiceCharge
+        this.childPrice.commRate = 0
+        this.childPrice.commission = this.detail.chdCommission
+        this.childPrice.discountRate = 0
+        this.childPrice.discount = this.detail.chdDiscount
+        this.childPrice.amount = this.detail.chdAmount
+        this.childPrice.cost = this.detail.chdCost
+        this.childPrice.ticketCount = this.detail.childCount
+      },
+      setInfantPrice: function () {
+        this.infantPrice.price = this.detail.infPrice
+        this.infantPrice.parvalue = this.detail.infParvalue
+        this.infantPrice.tax = this.detail.infTax
+        this.infantPrice.insurance = this.detail.infInsurance
+        this.infantPrice.serviceCharge = this.detail.infServiceCharge
+        this.infantPrice.commRate = 0
+        this.infantPrice.commission = this.detail.infCommission
+        this.infantPrice.discountRate = 0
+        this.infantPrice.discount = this.detail.infDiscount
+        this.infantPrice.amount = this.detail.infAmount
+        this.infantPrice.cost = this.detail.infCost
+        this.infantPrice.ticketCount = this.detail.infantCount
       }
     }
   }

@@ -36,16 +36,14 @@
                 <tr class="bg-info text-white">
                   <th>销售价</th>
                   <th>税</th>
-                  <th>成本</th>
                   <th>实收</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="text-center"><input type="text" class="form-control form-control-sm" v-model.number="parvalue" /></td>
-                  <td class="text-center"><input type="text" class="form-control form-control-sm" v-model.number="tax" /></td>
-                  <td class="text-center"><input type="text" class="form-control form-control-sm" v-model.number="cost" /></td>
-                  <td class="text-center"><input type="text" class="form-control form-control-sm" v-model.number="amount" /></td>
+                  <td class="text-center"><input type="text" readonly class="form-control-plaintext" v-model.number="parvalue" /></td>
+                  <td class="text-center"><input type="text" readonly class="form-control-plaintext" v-model.number="tax" /></td>
+                  <td class="text-center"><input type="text" readonly class="form-control-plaintext" v-model.number="amount" /></td>
                 </tr>
               </tbody>
             </table>            
@@ -94,10 +92,6 @@
                       <input class="form-check-input" type="radio" value="1" v-model.number="reasonCode">
                       <label class="form-check-label">非自愿</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" value="4" v-model.number="reasonCode">
-                      <label class="form-check-label">废</label>
-                    </div>
                   </div>
               </div>
               <div class="form-group row mb-1">
@@ -108,72 +102,7 @@
                     <input type="text" class="form-control form-control-sm" v-model.trim="reasonDesc" />
                   </div>
               </div>
-              <div class="form-group row mb-1" v-if="reasonCode !== 4">
-                  <label class="col-form-label col-4 text-right">
-                      航司退票费率（%）    
-                  </label>
-                  <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" v-model.number="airRefundFeeRate" />
-                      <span class="text-muted small">退票费率，用于计算退票费</span>
-                  </div>
-              </div>
-              <div class="form-group row mb-1">
-                  <label class="col-form-label col-4 text-right">
-                      {{labelAirFee}}    
-                  </label>
-                  <div class="col-8">
-                      <input type="text" class="form-control" v-model.number="airRefundFee" />
-                  </div>
-              </div>
-              <div class="form-group row mb-1">
-                  <label class="col-form-label col-4 text-right">
-                      我司服务费    
-                  </label>
-                  <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" v-model.number="serviceCharge" />
-                  </div>
-              </div>
-              <div class="form-group row mb-1">
-                  <label class="col-form-label col-4 text-right">
-                      实收客户   
-                  </label>
-                  <div class="col-8">
-                      <input type="text" class="form-control" v-model.number="total" />
-                      <span class="text-muted small">实收客户金额，用于计算我司服务费</span>
-                  </div>
-              </div>                            
-              <div class="form-group row mb-1">
-                  <label class="col-form-label col-4 text-right">
-                      备注    
-                  </label>
-                  <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" v-model="remark" />
-                  </div>
-              </div>
             </div> 
-            <table class="table table-sm table-striped mb-0">
-              <thead>
-              <tr>
-                <th class="text-center">预退客户</th>
-                <th class="text-center">航司预退</th>
-                <th class="text-center">利润</th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-center">{{psgRefund}}</td>
-                  <td class="text-center">{{airRefund}}</td>
-                  <td class="text-center">
-                    <template v-if="profit > 0">
-                      {{profit}}  
-                    </template>
-                    <template v-else>
-                      <span class="text-danger">{{profit}}</span>
-                    </template>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
         <div class="modal-footer">
@@ -276,11 +205,6 @@ export default {
       if (count === 0) {
         this.showErrMsg('请选择需要退票的航段', 'danger')
         return
-      }
-
-      if (this.airRefundFee === 0 && this.serviceCharge === 0 && this.remark.length === 0) {
-        this.showErrMsg('航司退（废）票费和我司服务费都为0时，请备注说明理由', 'danger')
-        return 
       }
 
       $(this.$el).modal('hide')
