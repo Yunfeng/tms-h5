@@ -53,6 +53,8 @@ export function createRouter () {
       {path: '/hotel/orders',         component: () => import('../pages/hotel/HotelOrders.vue'), meta: { keepAlive: true }},
       {path: '/hotel/order/:id',         component: () => import('../pages/hotel/HotelOrder.vue')},
       {path: '/hotel/order',         component: () => import('../pages/hotel/HotelOrderNew.vue')},
+      {path: '/hotel/order_v2',         component: () => import('../pages/hotel/HotelOrderNew_v2.vue')},
+      {path: '/hotel/search',         component: () => import('../pages/hotel/HotelSearch.vue')},
 
       {path: '/train/orders',         component: () => import('../pages/train/TrainOrders.vue'), meta: { keepAlive: true }},
       {path: '/train/order/:id',         component: () => import('../pages/train/TrainOrder.vue')},

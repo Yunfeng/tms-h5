@@ -1,18 +1,5 @@
 import { APP_FLIGHT_PATH, callService } from '../common/common.js'
 
-export function searchHotelOrders(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/hotel/orders'
-  callService(url, {
-    data: params,
-    cbDone: cbDone,
-    cbAlways: cbAlways
-  })
-}
-
-
-
-
-
 export function showHotelOrderStatus (status) {
   switch (status) {
     case 0: return '待处理'
@@ -23,6 +10,97 @@ export function showHotelOrderStatus (status) {
   }
 }
 
+export function showMealTypeDesc (type) {
+  switch (type) {
+    case 0: return '含餐'
+    case 1: return '早餐'
+    case 2: return '中餐'
+    case 3: return '晚餐'
+    case 6: return '早+中'
+    case 7: return '早+晚'
+    case 8: return '全餐'
+    case 9: return '中+晚'
+    case 10: return '无餐'
+    default : return '未知'
+  }
+}
+
+// 检查酒店是否可定
+export function checkHotelAvail(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/hotel/order/' + id + '/checkAvail'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+//同步代理通酒店订单详情
+export function syncHotelOrderDetail(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/hotel/order/' + id + '/syncOrderDetail'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+//取消供应商订单
+export function cancelSupplierHotelOrder(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/hotel/order/' + id + '/cancelOrder'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+//创建供应商订单
+export function createSupplierHotelOrder(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/hotel/order/' + id + '/createOrder'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+export function searchHotels_old(params, cbDone, cbAlways) {
+  const url = '/hotel-proxy/searchHotel'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+export function searchHotels(params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/hotel/avail'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+export function searchRoomPrices_old(params, cbDone, cbAlways) {
+  const url = '/hotel-proxy/searchRoomPrices'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+export function searchRoomPrices(params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/hotel/price'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+export function getAllCity(cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/hotel/cities'
+  callService(url, {
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
 export function searchHotelOrder(id, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/hotel/order/' + id
   callService(url, {
@@ -31,6 +109,14 @@ export function searchHotelOrder(id, cbDone, cbAlways) {
   })
 }
 
+export function searchHotelOrders(params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/hotel/orders'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
 
 export function createHotelOrder(params, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/hotel/order'

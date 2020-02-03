@@ -33,6 +33,7 @@
               <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div> 
 
+          <router-link to='/hotel/search' class="btn btn-warning ml-auto">查询酒店</router-link>
         </form>
       </div>
       <table class="table table-striped table-sm small">

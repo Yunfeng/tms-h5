@@ -94,20 +94,36 @@
             备注: {{detail.remark}}
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-body small"> 
+          <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 0">
+              <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
+            </div>
+        </div>
+      </div>
       
     </template>
+
+    <my-modal-prompt ref="modalPrompt" :nullable="modalNullable">
+      <span slot="title">{{modalTitle}}</span>
+    </my-modal-prompt>
 
   </div>
   
 </template>
 
 <script>
+  import MyModalPrompt from '../../components/my-modal-prompt.vue'
   import { APP_FLIGHT_PATH, SUPPLIER_HOTEL } from '../../common/const.js'
   import { showPayType, showPsgType } from '../../common/common.js'
 
-  import { searchHotelOrder, showHotelOrderStatus } from '../../api/hotel.js'
+  import { searchHotelOrder, showHotelOrderStatus, cancelHotelOrder } from '../../api/hotel.js'
 
   export default {
+    components: {
+      MyModalPrompt
+    },
     data () {
       return {
         detail: null,
@@ -163,6 +179,18 @@
       },
       getPayTypeDesc: function (payType) {
         return showPayType(payType)
+      },
+      cancelOrder: function () {
+        this.modalTitle = '请输入取消订单的理由：'
+        this.$refs.modalPrompt.modal().then(remark => {
+          // 点击确定按钮的回调处理
+          if (remark === '') {
+            this.showErrMsg('请填写取消订单的理由')
+            return
+          }
+          cancelHotelOrder(this.id, { remark }, v => this.commonShowMessage(v))
+
+        }).catch((r) => {})
       },
       commonShowMessage: function (jsonResult) {
         if (jsonResult.status !== 'OK') {
