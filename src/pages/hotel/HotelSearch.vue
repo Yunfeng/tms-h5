@@ -15,11 +15,6 @@
       <div class="card-body py-1">
         <form class="form-inline" id="frmSearch">
           城市
-          <select class="form-control form-control-sm" v-model.number="cityId">
-            <template v-for="info in cityList">
-              <option :value="info.id" :key="info.id">{{info.cityName}}</option>
-            </template>
-          </select>
           <div class="form-group col-1"> 
             <my-select-city :cityId.sync="cityId"></my-select-city>
           </div>
@@ -57,16 +52,10 @@
             <option value="3">三星</option>
             <option value="4">四星</option>
             <option value="5">五星</option>
-
           </select>
           <input type="textfield" class="form-control ml-1" size="10" placeholder="酒店名称" v-model.trim="hotelName">
           <input type="textfield" class="form-control ml-1" size="10" placeholder="行政区" v-model.trim="district">
           <input type="textfield" class="form-control ml-1" size="10" placeholder="商圈" v-model.trim="businessDistrict">
-
-          <select class="form-control form-control-sm" v-model.number="hotelType">
-            <option value="0">落地酒店</option>
-            <option value="3">透传酒店</option>
-          </select>
 
           <div class="form-group">
               <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
