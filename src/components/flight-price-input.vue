@@ -40,7 +40,7 @@
       id: '',
       psgTypeName: '',
       price: 0,
-      parvalue: 0,
+      parValue: 0,
       tax: 0,
       insurance: 0,
       serviceCharge: 0,
@@ -65,7 +65,7 @@
     },
     data: function () {
       return {
-        parvalue0: this.parvalue,
+        parvalue0: this.parValue,
         price0: this.price,
         tax0: this.tax,
         insurance0: this.insurance,

@@ -11,7 +11,7 @@ export function createProduct(params, cbDone, fail, cbAlways) {
 
 
 export function searchProducts(params, done, fail, always) {
-  callService(APP_FLIGHT_PATH + '/products', {
+  callService(APP_FLIGHT_PATH + '/vaas/services', {
     data: params,
     cbDone: done,
     cbAlways: always

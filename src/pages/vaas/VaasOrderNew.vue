@@ -24,7 +24,7 @@
         </div>
         <div class="form-group row">
             <label class="control-label col-md-4 text-right">
-                原价    
+                价格    
             </label>
             <div class="col-md-6">
                 <input type="text" class="form-control" v-model.number="price">
@@ -32,18 +32,10 @@
         </div>
         <div class="form-group row">
             <label class="control-label col-md-4 text-right">
-                折扣金额
+                折扣
             </label>
             <div class="col-md-6">
                 <input type="text" class="form-control" v-model.number="discount">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-4 text-right">
-                成本    
-            </label>
-            <div class="col-md-6">
-                <input type="text" class="form-control" v-model.number="cost">
             </div>
         </div>
         <div class="form-group row">
@@ -83,11 +75,11 @@
         </tr>
         </thead>
         <tr v-for="(flt, index) in flights">
-          <td>{{flt.flight.dport}}{{flt.flight.departureAirportName}}</td>
-          <td>{{flt.flight.aport}}{{flt.flight.arrivalAirportName}}</td>
-          <td>{{flt.flight.departureDate}}</td>
-          <td>{{flt.flight.flightNo}}</td>
-          <td>{{flt.flight.subclass}}</td>
+          <td>{{flt.dport}}{{flt.dportName}}</td>
+          <td>{{flt.aport}}{{flt.aportName}}</td>
+          <td>{{flt.ddate}}</td>
+          <td>{{flt.flightNo}}</td>
+          <td>{{flt.subclass}}</td>
           <td>
                 <a href="javascript:void(0)" @click.stop="deleteFlt(index)"  class="btn btn-sm btn-danger float-right">删除</a>
           </td>
@@ -141,30 +133,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-header">客户及付款信息</div>
-      <div class="card-body py-2">
-        <select-customer 
-          :customerId.sync="customerId"
-          :costCenter.sync="costCenter"
-          :projectName.sync="projectName"
-        >          
-        </select-customer>        
-
-      </div>
-      <div class="card-body">
-        <div class="form-group row mb-2">
-          <label class="control-label col-3 text-right">供应商</label>
-          <div class="col-9">
-            <my-select-supplier :supplierId.sync="supplierId" :supplierType="0" :paymentMethodId.sync="paymentId"></my-select-supplier>
-          </div>
-        </div>
-        <div class="form-group row mb-2">
-          <label class="control-label col-3 text-right">支付方式</label>
-          <div class="col-9">
-            <my-select-payment :paymentId.sync="paymentId"></my-select-payment>
-          </div>
-        </div>
-
+      <div class="card-body">      
         <div class="form-group row">
 
           <label class="col-2 control-label text-right">付款方式</label>
@@ -172,14 +141,6 @@
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" value="1" v-model.number="payType">
               <label class="form-check-label">现金</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" value="2" v-model.number="payType">
-              <label class="form-check-label">信用卡</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" value="4" v-model.number="payType">
-              <label class="form-check-label">支票</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" value="8" v-model.number="payType">
@@ -202,35 +163,22 @@
 </template>
 
 <script>
-  import { createVasOrder } from '../../api/vas.js'
+  import { createVaasOrder } from '../../api/vas.js'
   import { searchFlightOrder } from '../../api/flight.js'
   import { searchProducts } from '../../api/product.js'
   import { processPnrDetail } from '../../api/user.js'
   import MyDatePicker from '../../components/my-datepicker.vue'
   import ModalPnrContent from '../../components/my-modal-pnr-content.vue'
 
-  import SelectCustomer from '../../components/select-customer-costcenter.vue'
-  import MySelectSupplier from '../../components/my-select2-supplier.vue'
-  import MySelectPayment from '../../components/my-select-payment.vue'
-
-
   export default {
     components: {
       MyDatePicker,
-      ModalPnrContent,
-
-      SelectCustomer,
-      MySelectSupplier,
-      MySelectPayment
+      ModalPnrContent
     },
     data () {
       return {
-        customerId: 0,
         costCenter: '',
         projectName: '',
-
-        supplierId: 0,
-        paymentId: 0,
 
         extras: [],
         passengers: [],
@@ -241,13 +189,10 @@
         productDesc: '',
         price: 0,
         discount: 0,
-        cost: 0,
         remark: '',
         payType: 8,
         total: 0,
-        flightOrderId: 0,
-
-        orderType: 1
+        flightOrderId: 0
       }
     },
     mounted: function () {
@@ -300,8 +245,8 @@
       showErrMsg: function (msg, msgType) {
         this.$store.dispatch('showAlertMsg', { 'errMsg': msg, 'errMsgType': msgType })
       },
-      searchFlightOrderDetail: function (id) {
-        searchFlightOrderDetail(id,
+      searchFlightOrder: function (id) {
+        searchFlightOrder(id,
           (jsonResult) => {
             // console.log(jsonResult)
             if (jsonResult !== null && jsonResult.id === id) {
@@ -340,35 +285,25 @@
           'productName': this.productName,
           'price': this.price,
           'discount': this.discount,
-          'cost': this.cost,
           'count': this.count,
-          'customerId': this.customerId,
           'costCenter': this.costCenter,
           'projectName': this.projectName,
-          'supplierId': this.supplierId,
-          'paymentMethodId': this.paymentId,
           'payType': this.payType,
           'passengers': this.passengers,
           'flights': this.flights,
-          'remark': this.remark,
-          'orderType': this.orderType
+          'remark': this.remark
         }
 
         var jsonParams = JSON.stringify(params)
 
-        createVasOrder(jsonParams,
+        createVaasOrder(jsonParams,
           (jsonResult) => {
             if (jsonResult.status !== 'OK') {
               this.showErrMsg(jsonResult.errmsg)
             } else {
               this.showErrMsg('保存成功')
-              if (next === 0) {
-                console.log(this.productCode)
-                if (this.productCode.substring(0, 2) === '10') {
-                  this.$router.replace('/insurance/orders')
-                } else {
+              if (next === 0) {                
                   this.$router.replace('/vaas/orders')
-                }
               } else if (next === 1) {
                 this.reset()
               }
@@ -393,17 +328,13 @@
       },
       addFlt: function () {
 	      this.flights.push({
-	        'flight': {
-	          'flightNo': '',
-	          'departureDate': '',
-	          'subclass': '',
-	          'departureAirport': '',
-	          'dport': '',
-	          'arrivalAirport': '',
-	          'aport': '',
-	          'departureTime': '',
-	          'arrivalTime': ''
-	        }
+          'flightNo': '',
+          'ddate': '',
+          'subclass': '',
+          'dport': '',
+          'aport': '',
+          'dtime': '',
+          'atime': ''
 	      })
       },
       deleteFlt: function (index) {
@@ -417,7 +348,6 @@
         this.productDesc = ''
         this.price = 0
         this.discount = 0
-        this.cost = 0
         this.remark = ''
         // this.payType = 8
         this.total = 0
@@ -426,7 +356,6 @@
         this.productName = ''
         this.productDesc = ''
         this.price = 0
-        this.cost = 0
         this.discount = 0
 
         for (let i = 0; i < this.extras.length; i++) {
@@ -434,7 +363,8 @@
           if (info.productCode === newCode) {
             this.productName = info.productName
             this.productDesc = info.productDesc
-            this.cost = info.price - info.discount
+            this.price = info.price
+            this.discount = info.discount
 
 			      let remark = ""
             if (info.excludedAirlines.length > 0) {
@@ -465,14 +395,7 @@
         }
       },
       searchExtraServices: function () {
-        const params = {
-          'sc.pageNo': 1,
-          'sc.pageSize': 500,
-          'sc.status': 1,
-          'orderType': this.orderType
-        }
-
-        searchProducts(params, v => {
+        searchProducts(null, v => {
           this.extras = v.dataList
         })
       },
@@ -499,17 +422,13 @@
 
             for (const flt of v.flights) {
               this.flights.push({
-                'flight': {
-                  'flightNo': flt.flight.flightNo,
-                  'departureDate': flt.flight.departureDate,
-                  'subclass': flt.flight.subclass,
-                  'departureAirport': flt.flight.departureAirport,
-                  'dport': flt.flight.dport,
-                  'arrivalAirport': flt.flight.arrivalAirport,
-                  'aport': flt.flight.aport,
-                  'departureTime': flt.flight.departureTime,
-                  'arrivalTime': flt.flight.arrivalTime
-                }
+                'flightNo': flt.flightNo,
+                'ddate': flt.ddate,
+                'subclass': flt.subclass,
+                'dport': flt.dport,
+                'aport': flt.aport,
+                'dtime': flt.dtime,
+                'atime': flt.dtime
               })
             }
           }

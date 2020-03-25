@@ -10,7 +10,7 @@ export function createRouter () {
       { path: '/', component: () => import('../pages/Nav.vue')},
       { path: '/home', redirect: '/my/page'},
       { path: '/my/page', component: () => import('../pages/Workbench.vue'), meta: { keepAlive: true }},
-
+ 
 
       {path: '/login',         component: () => import('../pages/Login.vue') , name: 'login'},
       {path: '/logout',         component: () => import('../pages/Logout.vue') , name: 'logout'},
@@ -24,20 +24,20 @@ export function createRouter () {
       {path: '/admin/member/enterprise/:id',         component: () => import('../pages/MemberEnterprise.vue') },
       {path: '/admin/patcodes',         component: () => import('../pages/settings/PatCodes.vue') },
 
-      {path: '/flt/search',         component: () => import('../pages/FlightSearchForm.vue')},
-      {path: '/flt/search-result',         component: () => import('../pages/FlightSearchResult.vue')},
-      {path: '/flt/booking',         component: () => import('../pages/FlightBookingForm.vue')},
-      {path: '/flt/orders',         component: () => import('../pages/FlightOrders.vue'), meta: { keepAlive: true }},
-      {path: '/flt/orders/delivery',         component: () => import('../pages/FlightOrdersToDelivery.vue') , meta: { keepAlive: true }},  
+      {path: '/flt/search',         component: () => import('../pages/flight/FlightSearchForm.vue')},
+      {path: '/flt/search-result',         component: () => import('../pages/flight/FlightSearchResult.vue')},
+      {path: '/flt/booking',         component: () => import('../pages/flight/FlightBookingForm.vue')},
+      {path: '/flt/orders',         component: () => import('../pages/flight/FlightOrders.vue'), meta: { keepAlive: true }},
+      {path: '/flt/orders/delivery',         component: () => import('../pages/flight/FlightOrdersToDelivery.vue') , meta: { keepAlive: true }},  
       
-      {path: '/flt/order/:id', component: () => import('../pages/FlightOrderDetail.vue'), name: 'flightOrderDetail' },
-      {path: '/flt/order/:id/history',         component: () => import('../pages/FlightOrderHistory.vue') , name: 'flightOrderHistory'},
-      {path: '/flt/order',         component: () => import('../pages/NewFlightOrder.vue') },
+      {path: '/flt/order/:id', component: () => import('../pages/flight/FlightOrderDetail.vue'), name: 'flightOrderDetail' },
+      {path: '/flt/order/:id/history',         component: () => import('../pages/flight/FlightOrderHistory.vue') , name: 'flightOrderHistory'},
+      {path: '/flt/order',         component: () => import('../pages/flight/NewFlightOrder.vue') },
       
-      {path: '/flt/refund/orders',         component: () => import('../pages/FlightRefundOrders.vue') , meta: { keepAlive: true }},
-      {path: '/flt/refund/order/:id',         component: () => import('../pages/FlightRefundOrderDetail.vue') },
-      {path: '/flt/change/orders',         component: () => import('../pages/FlightChangeOrders.vue') , meta: { keepAlive: true }},
-      {path: '/flt/change/order/:id',         component: () => import('../pages/FlightChangeOrderDetail.vue') },
+      {path: '/flt/refund/orders',         component: () => import('../pages/flight/FlightRefundOrders.vue') , meta: { keepAlive: true }},
+      {path: '/flt/refund/order/:id',         component: () => import('../pages/flight/FlightRefundOrderDetail.vue') },
+      {path: '/flt/change/orders',         component: () => import('../pages/flight/FlightChangeOrders.vue') , meta: { keepAlive: true }},
+      {path: '/flt/change/order/:id',         component: () => import('../pages/flight/FlightChangeOrderDetail.vue') },
 
       {path: '/vas/orders',         component: () => import('../pages/VasOrders.vue') },
       {path: '/new/vas/order',         component: () => import('../pages/NewVasOrder.vue') },
@@ -100,7 +100,7 @@ export function createRouter () {
       {path: '/passenger',         component: () => import('../pages/Passenger.vue') },
       
       {path: '/ent/balances',         component: () => import('../pages/EntBalances.vue'), meta: { keepAlive: true } },
-      {path: '/flt/commissions/fixed',         component: () => import('../pages/FlightFixedCommissions.vue') },
+      {path: '/flt/commissions/fixed',         component: () => import('../pages/flight/FlightFixedCommissions.vue') },
       {path: '/setting/bill-templates',         component: () => import('../pages/settings/BillTemplates.vue') },
 
       {path: '/suppliers',         component: () => import('../pages/Suppliers.vue') },

@@ -43,7 +43,7 @@
                   <td class="text-right">{{detail.count}}</td>
                   <td class="text-right">{{detail.price}}</td>
                   <td class="text-right">{{detail.discount}}</td>
-                  <td class="text-right">{{detail.totalAmount}}</td>
+                  <td class="text-right">{{detail.total}}</td>
                   <td class="text-center">
                     {{getPayTypeDesc(detail.payType)}}
                     <template v-if="detail.payType !== 8 && detail.payStatus ===0">
@@ -52,7 +52,7 @@
                     </template>
                     <span class="small text-primary" v-if="detail.payStatus === 2">已销</span>
                   </td>
-                  <td>{{getStatusDesc(detail.status)}}</td>
+                  <td>{{getStatusDesc(detail.orderStatus)}}</td>
               </tr>
           
           </tbody>
@@ -114,22 +114,22 @@
             <tbody>
                 <tr v-for="info in detail.flights" :key="info.id">   
                     <td>
-                      <span class="text-success">{{info.flight.departureAirport}}</span>
-                        {{info.flight.departureAirportName}} 
-                        {{info.flight.departureTerminal}} 
+                      <span class="text-success">{{info.dport}}</span>
+                        {{info.dportName}} 
+                        {{info.dterm}} 
                         
                     </td>                             
                     <td>
-                      <span class="text-success">{{info.flight.arrivalAirport}}</span>
-                        {{info.flight.arrivalAirportName}}
-                        {{info.flight.arrivalTerminal}}
+                      <span class="text-success">{{info.aport}}</span>
+                        {{info.aportName}}
+                        {{info.aterm}}
                         
                     </td>
-                    <td>{{info.flight.departureDate}}</td>
-                    <td>{{info.flight.flightNo}}</td>
-                    <td>{{info.flight.departureTime}}</td>
-                    <td>{{info.flight.arrivalTime}}</td>
-                    <td>{{info.flight.subclass}}</td>
+                    <td>{{info.ddate}}</td>
+                    <td>{{info.flightNo}}</td>
+                    <td>{{info.dtime}}</td>
+                    <td>{{info.atime}}</td>
+                    <td>{{info.subclass}}</td>
                 </tr>                               
             </tbody>
         </table>
@@ -151,7 +151,7 @@
 <script>
   import $ from 'jquery'
   import { showPayType } from '../../common/common.js'
-  import { searchVasOrderDetail, showVasOrderStatus } from '../../api/vas.js'
+  import { searchVaasOrderDetail, showVasOrderStatus } from '../../api/vas.js'
   
   export default {
     data () {
@@ -184,7 +184,7 @@
         this.$store.dispatch('showAlertMsg', { 'errMsg': msg, 'errMsgType': msgType })
       },
       search: function () {
-        searchVasOrderDetail(this.id, v => { this.detail = v })
+        searchVaasOrderDetail(this.id, v => { this.detail = v })
       },
       getStatusDesc: function (status) {
         return showVasOrderStatus(status)

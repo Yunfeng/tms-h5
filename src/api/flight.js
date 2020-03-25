@@ -275,7 +275,7 @@ export function statFlightOrderStatus(cbDone) {
 }
 
 export function rav(params, done, fail, always) {
-  const url = APP_FLIGHT_PATH + '/rav'
+  const url =  '/api/gds/rav'
   callService(url, {
     timeout: 10000,
     data: params,

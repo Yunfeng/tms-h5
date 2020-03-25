@@ -20,6 +20,7 @@
             <span class="text-danger" v-if="info.intlTicket === 1"><br />国际</span>
           </td>
           <td>
+            {{info.customer.name}}
             <template v-if="info.customerType === 0">散客</template>
             <template v-else-if= "info.customer !== null">
               <template v-if="info.customer.enterpriseType === 1">
@@ -45,14 +46,14 @@
               <tbody>
                 <tr :key="flt.id" v-for="flt in info.flights">
                   <td class="m-0 p-0" width="30%">
-                    {{flt.flight.departureAirport}} {{flt.flight.departureAirportName}}
+                    {{flt.dport}} {{flt.dportName}}
                   </td>
                   <td class="m-0 p-0" width="30%">
-                    {{flt.flight.arrivalAirport}} {{flt.flight.arrivalAirportName}}
+                    {{flt.aport}} {{flt.aportName}}
                   </td>
-                  <td class="my-0 py-0" width="20%">{{flt.flight.departureDate}}</td>
-                  <td class="my-0 py-0" width="15%">{{flt.flight.flightNo}}</td>
-                  <td class="my-0 py-0" width="5%">{{flt.flight.subclass}}</td>
+                  <td class="my-0 py-0" width="20%">{{flt.ddate}}</td>
+                  <td class="my-0 py-0" width="15%">{{flt.flightNo}}</td>
+                  <td class="my-0 py-0" width="5%">{{flt.subclass}}</td>
                 </tr>
               </tbody>
             </table>
@@ -62,7 +63,7 @@
           </td>
           <td class="text-right">{{info.totalAmount}}</td>
           <td>
-            {{getStatusDesc(info.status)}}
+            {{getStatusDesc(info.orderStatus)}}
             <span class="text-danger small" v-if="info.payStatus === 0">未收</span>
             <span class="text-info small"   v-else-if="info.payStatus === 1">已收</span>
             <span class="text-primary small" v-else-if="info.payStatus === 2">已销</span>

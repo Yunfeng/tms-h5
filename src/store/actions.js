@@ -105,7 +105,7 @@ export const actions = {
     if (p === undefined || p === null) {
       p = {
         'selected': true,
-        'psgName': '',
+        'name': '',
         'idNo': '',
         'idType': 1,
         'psgType': 0,

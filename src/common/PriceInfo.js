@@ -1,8 +1,9 @@
 PriceInfo.prototype = {
   reset: function () {
+  	  this.priceType = 0
 	  this.ticketCount = 0
 	  this.price = 0
-	  this.parvalue = 0
+	  this.parValue = 0
 	  this.tax = 0
 	  this.insurance = 0
 	  this.serviceCharge = 0

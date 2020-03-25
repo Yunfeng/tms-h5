@@ -38,8 +38,8 @@
             <td>
               <template v-for="(flt, index) in info.flights">
                 <span :key="flt.id">
-                  <small class="text-success">{{flt.flight.departureAirport}}</small>
-                  {{flt.flight.departureAirportName}}
+                  <small class="text-success">{{flt.dport}}</small>
+                  {{flt.dportName}}
                   <template v-if="index < info.flights.length - 1 "><br/></template>
                 </span>
               </template>
@@ -47,8 +47,8 @@
             <td>
                 <template v-for="(flt, index) in info.flights">
                   <span :key="flt.id">
-                    <small class="text-success">{{flt.flight.arrivalAirport}}</small>
-                    {{flt.flight.arrivalAirportName}}
+                    <small class="text-success">{{flt.aport}}</small>
+                    {{flt.aportName}}
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </span>
                 </template>
@@ -56,7 +56,7 @@
             <td>
                 <template v-for="(flt, index) in info.flights">
                   <span :key="flt.id">
-                    {{flt.flight.departureDate}}
+                    {{flt.ddate}}
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </span>
                 </template>
@@ -64,7 +64,7 @@
             <td>
                 <template v-for="(flt, index) in info.flights">
                   <span :key="flt.id">
-                    {{flt.flight.flightNo}}
+                    {{flt.flightNo}}
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </span>
                 </template>
@@ -72,7 +72,7 @@
             <td>
                 <template v-for="(flt, index) in info.flights">
                   <span :key="flt.id">
-                    {{flt.flight.subclass}}
+                    {{flt.subclass}}
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </span>
                 </template>
@@ -89,7 +89,7 @@
               </template>
               
             </td>
-            <td class="text-right">{{info.totalAmount}}</td>
+            <td class="text-right">{{info.total}}</td>
             <td>{{getStatusDesc(info.status)}}</td>
 
             <td>

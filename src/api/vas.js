@@ -23,6 +23,25 @@ export function searchVasOrderDetail(id, cbDone) {
   })
 }
 
+export function searchVaasOrders(params, cbDone) {
+  const url = APP_FLIGHT_PATH + '/vaas/orders'
+  callService(url, {
+    type: 'get',
+    data: params,
+    cbDone: cbDone
+  })
+}
+
+export function searchVaasOrderDetail(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/vaas/order/' + id
+  callService(url, {
+    type: 'get',
+    cbDone: cbDone
+  })
+}
+
+
+
 export function showVasOrderStatus (status) {
   switch (status) {
     case 0: return '待处理'
@@ -39,6 +58,15 @@ export function showVasOrderStatus (status) {
 
 export function createVasOrder(params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/vas/new'
+  callService(url, {
+    contentType: 'application/json',
+    data: params,
+    cbDone: cbDone
+  })
+}
+
+export function createVaasOrder(params, cbDone) {
+  const url = APP_FLIGHT_PATH + '/vaas/order'
   callService(url, {
     contentType: 'application/json',
     data: params,

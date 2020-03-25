@@ -34,7 +34,7 @@
 
 <script>
   import { showPayType } from '../../common/common.js'
-  import { searchVasOrders, showVasOrderStatus } from '../../api/vas.js'
+  import { searchVaasOrders, showVasOrderStatus } from '../../api/vas.js'
   import MyDatePicker from '../../components/my-datepicker.vue'
   import MyPagination from '../../components/my-pagination.vue'
   import MySelectCustomer from '../../components/my-select2-customer.vue'
@@ -84,12 +84,9 @@
           'sc.beginDate': this.beginDate,
           'sc.endDate': this.endDate,
           'sc.status': this.status,
-          'sc.orderNo': this.orderNo,
-          'sc.customerId': this.customerId,
-          'sc.productCode': this.productCode,
-          'sc.orderType': this.orderType
+          'sc.orderNo': this.orderNo
         }
-        searchVasOrders(params, v => {
+        searchVaasOrders(params, v => {
 	        this.dataList = v.dataList
 	        this.sc = v.page
 	        if (this.dataList.length === 0) {
