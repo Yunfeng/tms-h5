@@ -24,6 +24,7 @@ export function createRouter () {
       {path: '/admin/member/enterprise/:id',         component: () => import('../pages/MemberEnterprise.vue') },
       {path: '/admin/patcodes',         component: () => import('../pages/settings/PatCodes.vue') },
 
+      {path: '/intlFlight/search',         component: () => import('../pages/flight/IntlFlightSearch.vue')},
       {path: '/flt/search',         component: () => import('../pages/flight/FlightSearchForm.vue')},
       {path: '/flt/search-result',         component: () => import('../pages/flight/FlightSearchResult.vue')},
       {path: '/flt/booking',         component: () => import('../pages/flight/FlightBookingForm.vue')},

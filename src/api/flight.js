@@ -285,6 +285,17 @@ export function rav(params, done, fail, always) {
   })
 }
 
+export function searchOne(params, done, fail, always) {
+  const url =  '/api/gds/searchOne'
+  callService(url, {
+    timeout: 10000,
+    data: params,
+    cbDone: done,
+    cbFail: fail,
+    cbAlways: always
+  })
+}
+
 
 export function searchTgq(params, done, fail, always) {
   $.ajax({

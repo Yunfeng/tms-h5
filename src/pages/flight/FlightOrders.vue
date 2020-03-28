@@ -57,7 +57,8 @@
             <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
           </div>
 
-          <router-link class="btn btn-primary ml-auto" to="/flt/search">查找航班</router-link>
+          <router-link class="btn btn-primary ml-auto" to="/flt/search">国内航班</router-link>
+          <router-link class="btn btn-primary ml-auto" to="/intlFlight/search">国际航班</router-link>
           <router-link class="btn btn-success ml-auto" to="/flt/order">新建手工订单</router-link>
         </form>
       </div>

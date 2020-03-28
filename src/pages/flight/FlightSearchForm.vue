@@ -1,7 +1,7 @@
 <template>
 	<div id="searching" class="row">
     <div class="col-12 bg-info text-center text-white mb-1">
-      <span class="fa-2">航班预定</span>
+      <span class="fa-2">国内航班预定</span>
     </div> 
 
     <div class="card ml-auto mr-auto col-8">
