@@ -67,7 +67,7 @@ export function searchHotels_old(params, cbDone, cbAlways) {
 }
 
 export function searchHotels(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/hotel/avail'
+  const url = '/api/hotel/avail'
   callService(url, {
     data: params,
     cbDone: cbDone,
@@ -85,7 +85,7 @@ export function searchRoomPrices_old(params, cbDone, cbAlways) {
 }
 
 export function searchRoomPrices(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/hotel/price'
+  const url = '/api/hotel/prices'
   callService(url, {
     data: params,
     cbDone: cbDone,
@@ -94,7 +94,7 @@ export function searchRoomPrices(params, cbDone, cbAlways) {
 }
 
 export function getAllCity(cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/hotel/cities'
+  const url = '/api/hotel/cities'
   callService(url, {
     cbDone: cbDone,
     cbAlways: cbAlways
