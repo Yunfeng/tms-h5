@@ -12,6 +12,8 @@ export const menus = [
       { to: '/vas/orders', caption: '服务订单', authorized: 1 },
       { to: '/vaas/orders', caption: '机场服务订单', authorized: 0 },
       { to: '', caption: '' },
+      { to: '/rental/car', caption: '租车', authorized: 0 },
+      { to: '', caption: '' },
       { to: '/hotel/orders', caption: '酒店订单', authorized: 0 },
       { to: '/train/orders', caption: '火车票订单', authorized: 0 },
       { to: '/train/refund/orders', caption: '火车退票单', authorized: 0 },
