@@ -13,6 +13,7 @@ export const menus = [
       { to: '/vaas/orders', caption: '机场服务订单', authorized: 0 },
       { to: '', caption: '' },
       { to: '/rental/car', caption: '租车', authorized: 0 },
+      { to: '/rental/car/orders', caption: '租车订单', authorized: 0 },
       { to: '', caption: '' },
       { to: '/hotel/orders', caption: '酒店订单', authorized: 0 },
       { to: '/train/orders', caption: '火车票订单', authorized: 0 },

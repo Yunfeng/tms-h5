@@ -113,10 +113,10 @@
 </template>
 
 <script>
-import MyPagination from '../components/my-pagination.vue'
-import MyDatePicker from '../components/my-datepicker.vue'
+import MyPagination from '../../components/my-pagination.vue'
+import MyDatePicker from '../../components/my-datepicker.vue'
 
-import { searchRentalCarOrders, showOrderStatusDesc, showUseTypeDesc } from '../api/rentalcar.js'
+import { searchRentalCarOrders, showOrderStatusDesc, showUseTypeDesc } from '../../api/rentalcar.js'
 import $ from 'jquery'
 
 export default {
@@ -168,13 +168,13 @@ export default {
       $('#modalSearch').modal('hide')
 
       const params = {
-        'sc.pageNo': this.sc.pageNo,
-        'sc.pageSize': this.sc.pageSize,
-        'sc.status': this.status,
-        'sc.orderNo': this.orderNo,
-        'sc.mobile': this.mobile,
-        'sc.ddate': this.ddate,
-        'sc.name': this.linkman
+        'pageNo': this.sc.pageNo,
+        'pageSize': this.sc.pageSize,
+        'status': this.status,
+        'orderNo': this.orderNo,
+        'mobile': this.mobile,
+        'useDate': this.ddate,
+        'linkman': this.linkman
       }
 
       this.showLoading()
@@ -195,7 +195,7 @@ export default {
       this.linkman = ''
     },
     showDetail: function (orderInfo) {
-      this.$router.push('/rentalcar/orders/' + orderInfo.id)
+      this.$router.push('/rental/car/orders/' + orderInfo.id)
     },
     showStatusDesc: function (status) {
       return showOrderStatusDesc(status)

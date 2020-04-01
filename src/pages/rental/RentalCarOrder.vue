@@ -34,17 +34,17 @@
             <dt class="col-4">到达地址</dt>
             <dd class="col-8">{{detail.arrivalAddress}}</dd>
 
-            <dt class="col-4">供应商</dt>
-            <dd class="col-8">{{detail.supplierName}}</dd>
+            <dt class="col-4">车型</dt>
+            <dd class="col-8">{{detail.vehicleTypeName}}</dd>
 
             <dt class="col-4">价格</dt>
             <dd class="col-8">{{detail.price}}</dd>
 
             <dt class="col-4">联系人：</dt>
-            <dd class="col-8">{{detail.name}}</dd>
+            <dd class="col-8">{{detail.linkman}}</dd>
 
             <dt class="col-4">联系电话：</dt>
-            <dd class="col-8">{{detail.mobile}}</dd>
+            <dd class="col-8">{{detail.linkPhone}}</dd>
 
             <dt class="col-4">备注</dt>
             <dd class="col-8">{{detail.remark}}</dd>
@@ -101,7 +101,7 @@
 </template>
 
 <script>
-  import { searchRentalCarOrder, searchRentalOrderHistory, cancelRentalCarOrder, showOrderStatusDesc, showUseTypeDesc } from '../api/rentalcar.js'
+  import { searchRentalCarOrder, searchRentalOrderHistory, cancelRentalCarOrder, showOrderStatusDesc, showUseTypeDesc } from '../../api/rentalcar.js'
 
   export default {
     data () {

@@ -49,7 +49,9 @@ export function createRouter () {
       {path: '/vaas/order/:id',         component: () => import('../pages/vaas/VaasOrderDetail.vue') },
 
       {path: '/rental/car',         component: () => import('../pages/rental/RentalCar.vue') },
-      
+      {path: '/rental/car/orders',         component: () => import('../pages/rental/RentalCarOrders.vue') },
+      {path: '/rental/car/orders/:id',         component: () => import('../pages/rental/RentalCarOrder.vue') },
+                  
 
       {path: '/insurance/orders',         component: () => import('../pages/InsuranceOrders.vue') },
 

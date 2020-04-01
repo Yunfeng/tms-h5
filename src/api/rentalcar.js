@@ -28,14 +28,14 @@ export function submitRentalCarOrder(params, cbDone) {
 }
 
 export function cancelRentalCarOrder(id, cbDone) {
-  const url = WEBAPP_NAME + '/rentalCar/orders/' + id + '/cancel'
+  const url = WEBAPP_NAME + '/rental/car/orders/' + id + '/cancel'
   callService(url, {
     cbDone: cbDone
   })
 }
 
 export function searchRentalCarOrders(params, cbDone, cbAlways) {
-  const url = WEBAPP_NAME + '/rentalCar/orders'
+  const url = WEBAPP_NAME + '/rental/car/orders'
   callService(url, {
     data: params,
     cbDone: cbDone,
@@ -44,7 +44,7 @@ export function searchRentalCarOrders(params, cbDone, cbAlways) {
 }
 
 export function searchRentalCarOrder(id, cbDone, cbAlways) {
-  const url = WEBAPP_NAME + '/rentalCar/orders/' + id
+  const url = WEBAPP_NAME + '/rental/car/orders/' + id
   callService(url, {
     cbDone: cbDone,
     cbAlways: cbAlways
