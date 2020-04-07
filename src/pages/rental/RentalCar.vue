@@ -299,10 +299,10 @@ export default {
         'remark': this.remark
       }
       submitRentalCarOrder(params, v => {
-        if (v.status === 'OK') {
+        if (v.errcode === 0) {
           this.showErrMsg('订单保存成功')
           this.reset()
-          this.$router.push('/rentalcar/orders/' + v.returnCode)
+          this.$router.push('/rental/car/orders/' + v.returnCode)
         } else {
           this.showErrMsg(v.errorCode + ' ' + v.errorMessage, 'danger')
         }
