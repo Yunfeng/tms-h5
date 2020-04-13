@@ -103,6 +103,7 @@
                       <td>
                         <template v-if="detail.orderStatus === 32">
                           <a href="javascript:void(0)" @click.stop="multiRefundTicket(index)" class="btn btn-sm btn-outline-danger ml-2">退票</a>                        
+                          <a href="javascript:void(0)" @click.stop="changeTicket(index)" class="btn btn-sm btn-warning">改签</a>
                         </template>
                       </td>
                   </tr>                               
@@ -217,7 +218,7 @@
 
 
     <my-modal-refund-ticket-multi ref="multiRefundTicketModal"></my-modal-refund-ticket-multi>
-
+    <my-modal-change-ticket ref="changeTicketModal"></my-modal-change-ticket>
   </div>
   
 </template>
@@ -239,6 +240,7 @@
   import FlightChangeList from '../../components/flight-order-change-list.vue'
   import VasOrderList from '../../components/vas-order-list.vue'
   import MyModalRefundTicketMulti from '../../components/my-modal-refund-ticket-multi.vue'
+  import MyModalChangeTicket from '../../components/my-modal-change-ticket-multi.vue'
 
   export default {
     components: {
@@ -246,7 +248,8 @@
       FlightRefundList,
       FlightChangeList,
       VasOrderList,
-      MyModalRefundTicketMulti
+      MyModalRefundTicketMulti,
+      MyModalChangeTicket
     },
     data () {
       return {
@@ -388,6 +391,73 @@
           } else {
             this.showErrMsg('操作成功')
             this.$router.push('/flt/refund/order/' + jsonResult.returnCode)
+          }
+        })
+      },
+      changeTicket: function (index) {
+        // 多人同时签转
+        const psgInfo = this.detail.passengers[index]
+        const psgType = psgInfo.psgType
+
+        let psgPrice
+        if (psgType === 0) {
+          this.setAdultPrice()
+          psgPrice = this.adultPrice
+        } else if (psgType === 1) {
+          this.setChildPrice()
+          psgPrice = this.childPrice
+        } else if (psgType === 2) {
+          this.setInfantPrice()
+          psgPrice = this.infantPrice
+        }
+
+        // 找到同类型的乘机人：成人，儿童，婴儿
+        const psgList = []
+        let onlyOneTicketAllowed = false
+        for (const info of this.detail.passengers) {
+          if (info.psgType === psgType) {
+            if (info.ticketNos.length == 0) {
+              psgList.push({
+                'ticketNo': info.ticketNo,
+                'name': info.name,
+                'idNo': info.idNo,
+                'selected': false
+              })
+            } else {
+              onlyOneTicketAllowed = true
+              for (const ticketNo of info.ticketNos) {
+                psgList.push({
+                  'ticketNo': ticketNo,
+                  'name': info.name,
+                  'idNo': info.idNo,
+                  'selected': false
+                })
+              }
+            }
+          }
+        }
+
+        const params = {
+          'orderId': this.id,
+          'orderNo': this.detail.orderNo,
+          'intlTicket': this.detail.intlTicket,
+          'oldPnrNo': this.detail.pnrNo,
+          'amount': psgPrice.amount,
+          'cost': psgPrice.cost,
+          'parvalue': psgPrice.parvalue,
+          'tax': psgPrice.tax,
+          'flights': this.detail.flights,
+          'onlyOneTicketAllowed': onlyOneTicketAllowed
+        }
+        this.$refs.changeTicketModal.modal(psgList, params).then(v => this.doCreateChangeOrder(v)).catch(ex => {})
+      },
+      doCreateChangeOrder: function (info) {
+        createChangeOrderMulti(JSON.stringify(info), (jsonResult) => {
+          if (jsonResult.status !== 'OK') {
+            this.showErrMsg(jsonResult.errmsg, 'danger')
+          } else {
+            this.showErrMsg('操作成功')
+            this.$router.push('/flt/change/order/' + jsonResult.returnCode)
           }
         })
       },

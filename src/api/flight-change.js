@@ -1,8 +1,9 @@
 import { APP_FLIGHT_PATH, callService } from '../common/common.js'
 
 export function searchChangeOrders(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/change/orders'
+  const url = APP_FLIGHT_PATH + '/flight/changes'
   callService(url, {
+    type: 'get',
     data: params,
     cbDone: cbDone,
     cbAlways: cbAlways
@@ -10,8 +11,9 @@ export function searchChangeOrders(params, cbDone, cbAlways) {
 }
 
 export function searchChangeOrderDetail(id, cbDone) {
-  const url = APP_FLIGHT_PATH + '/change/order/' + id
+  const url = APP_FLIGHT_PATH + '/flight/change/' + id
   callService(url, {
+    type: 'get',
     cbDone: cbDone
   })
 }
@@ -31,7 +33,7 @@ export function createChangeOrder(params, cbDone) {
 }
 
 export function createChangeOrderMulti(params, cbDone) {
-  const url = APP_FLIGHT_PATH + '/order/flight/change/createV2'
+  const url = APP_FLIGHT_PATH + '/flight/change'
   callService(url, {
     contentType: 'application/json',
     data: params,

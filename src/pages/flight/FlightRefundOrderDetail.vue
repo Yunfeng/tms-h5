@@ -35,7 +35,7 @@
                   </td>
                   <td>{{detail.psgName}}</td>
                   <td>{{detail.idNo}}</td>
-                  <td class="text-right">{{detail.parvalue}}</td>
+                  <td class="text-right">{{detail.parValue}}</td>
                   <td class="text-right">{{detail.tax}}</td>
                   <td class="text-right">{{detail.ticketAmount}}</td>
                   <td class="text-right">{{detail.airRefundCharge}}</td>

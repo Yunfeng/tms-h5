@@ -38,15 +38,13 @@
                 <tr class="bg-info text-white">
                   <th class="text-center">销售价</th>
                   <th class="text-center">税</th>
-                  <th class="text-center">成本</th>
                   <th class="text-center">实收</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="text-center">{{parvalue}}</td>
+                  <td class="text-center">{{parValue}}</td>
                   <td class="text-center">{{tax}}</td>
-                  <td class="text-center">{{cost}}</td>
                   <td class="text-center">{{amount}}</td>
                 </tr>
               </tbody>
@@ -136,33 +134,7 @@
                       <label class="form-check-label">签转</label>
                     </div>
                   </div>
-              </div>
-              <div class="form-group row mb-1">
-                  <label class="col-form-label col-3 text-right">
-                      航司收费    
-                  </label>
-                  <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" v-model.number="airChangeFee" />
-                  </div>
-              </div>
-              <div class="form-group row mb-1">
-                  <label class="col-form-label col-3 text-right">
-                      我司服务费    
-                  </label>
-                  <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" v-model.number="serviceCharge" />
-                      <span class="text-muted small">我司的利润</span>
-                  </div>
-              </div>
-              <div class="form-group row mb-1">
-                  <label class="col-form-label col-3 text-right">
-                      实收客户   
-                  </label>
-                  <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" v-model.number="total" />
-                      <span class="text-muted small">实收客户金额，用于计算我司服务费</span>
-                  </div>
-              </div>              
+              </div>       
               <div class="form-group row mb-1">
                   <label class="col-form-label col-3 text-right">
                       备注    
@@ -207,14 +179,11 @@ export default {
       oldPnrNo: '',
       cost: 0,
       amount: 0,
-      parvalue: 0,
+      parValue: 0,
       tax: 0,
       orderId: 0,
       orderNo: '',
       parentChangeOrderNo: '',
-      airChangeFee: 0,
-      serviceCharge: 0,
-      total: 0,
       remark: '',
       reasonCode: 0,
       intlTicket: -1,
@@ -238,15 +207,6 @@ export default {
   watch: {
     quickInput: function (newVal, oldVal) {
       this.processQuickInput()
-    },
-    serviceCharge: function () {
-      this.calc()
-    },
-    airChangeFee: function () {
-      this.calc()
-    },
-    total: function () {
-      this.calc2()
     }
   },
   methods: {
@@ -300,20 +260,17 @@ export default {
         changeFlights.push(flt)
       }
 
-      if (count === 0 || newCount === 0) {
-        this.showErrMsg('请填写签转内容', 'danger')
-        return
-      }
+      // if (count === 0 || newCount === 0) {
+      //   this.showErrMsg('请填写签转内容', 'danger')
+      //   return
+      // }
 
       $(this.$el).modal('hide')
       this.resolve({
         tickets: this.psgList,
-        parvalue: this.parvalue,
+        parValue: this.parValue,
         tax: this.tax,
         amount: this.amount,
-        cost: this.cost,
-        airChangeFee: this.airChangeFee,
-        serviceCharge: this.serviceCharge,
         orderId: this.orderId,
         orderNo: this.orderNo,
         parentChangeOrderNo: this.parentChangeOrderNo,
@@ -330,8 +287,6 @@ export default {
       this.reject(null)
     },
     reset: function () {
-      this.airChangeFee = 0
-      this.serviceCharge = 0
       this.remark = ''
       this.reasonDesc = ''
     },
@@ -346,7 +301,7 @@ export default {
       this.oldPnrNo = v.oldPnrNo
       this.amount = v.amount
       this.cost = v.cost
-      this.parvalue = v.parvalue
+      this.parValue = v.parvalue
       this.tax = v.tax
 
       this.orderId = v.orderId
@@ -361,17 +316,17 @@ export default {
       for (const flt of v.flights) {
         // console.log(flt)
         this.oldFlights.push({
-          dport: flt.flight.departureAirport,
-          dportName: flt.flight.departureAirportName,
-          dterm: flt.flight.departureTerminal,
-          aport: flt.flight.arrivalAirport,
-          aportName: flt.flight.arrivalAirportName,
-          aterm: flt.flight.arrivalTerminal,
-          ddate: flt.flight.departureDate,
-          flightNo: flt.flight.flightNo,
-          dtime: flt.flight.departureTime,
-          atime: flt.flight.arrivalTime,
-          subclass: flt.flight.subclass,
+          dport: flt.dport,
+          dportName: flt.dportName,
+          dterm: flt.dterm,
+          aport: flt.aport,
+          aportName: flt.aportName,
+          aterm: flt.aterm,
+          ddate: flt.ddate,
+          flightNo: flt.flightNo,
+          dtime: flt.dtime,
+          atime: flt.atime,
+          subclass: flt.subclass,
           selected: true,
           fltType: 0,
           fltId: this.newId()
@@ -436,12 +391,6 @@ export default {
     },
     removeNewFlights: function (index) {
       this.newFlights.splice(index, 1)
-    },
-    calc: function () {
-      this.total = this.airChangeFee + this.serviceCharge
-    },
-    calc2: function () {
-      this.serviceCharge = this.total - this.airChangeFee
     }
   }
 }

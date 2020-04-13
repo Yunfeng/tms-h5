@@ -36,50 +36,50 @@
         </td>
         <td>
           <template v-for="(flt, index) in info.flights">
-            <span :class="{'font-italic small': flt.flightType === 0}" :key="index">
-              {{flt.flight.departureAirport}}
-              {{flt.flight.departureAirportName}}
+            <span :class="{'font-italic small': flt.fltType === 0}" :key="index">
+              {{flt.dport}}
+              {{flt.dportName}}
               <br/>
             </span>
           </template>
         </td>
         <td>
           <template v-for="(flt, index) in info.flights">
-            <span :class="{'font-italic small': flt.flightType === 0}" :key="index">
-              {{flt.flight.arrivalAirport}}
-              {{flt.flight.arrivalAirportName}}
+            <span :class="{'font-italic small': flt.fltType === 0}" :key="index">
+              {{flt.aport}}
+              {{flt.aportName}}
               <br/>
             </span>
           </template>
         </td>
         <td>
           <template v-for="(flt, index) in info.flights">
-            <span :class="{'font-italic small': flt.flightType === 0}" :key="index">
-              {{flt.flight.departureDate.substring(5)}}
+            <span :class="{'font-italic small': flt.fltType === 0}" :key="index">
+              {{flt.ddate}}
               <br/>
             </span>
           </template>
         </td>
         <td>
           <template v-for="(flt, index) in info.flights">
-            <span :class="{'font-italic small': flt.flightType === 0}" :key="index">
-              {{flt.flight.flightNo}}
+            <span :class="{'font-italic small': flt.fltType === 0}" :key="index">
+              {{flt.flightNo}}
               <br/>
             </span>
           </template>
         </td>
         <td>
           <template v-for="(flt, index) in info.flights">
-            <span :class="{'font-italic small': flt.flightType === 0}" :key="index">
-              {{flt.flight.subclass}}
+            <span :class="{'font-italic small': flt.fltType === 0}" :key="index">
+              {{flt.subclass}}
               <br/>
             </span>
           </template>
         </td>
         <td class="text-center">
           <template v-for="(flt, index) in info.flights">
-            <span :class="{'font-italic small': flt.flightType === 0}" :key="index">
-              {{flt.flight.departureTime}}
+            <span :class="{'font-italic small': flt.fltType === 0}" :key="index">
+              {{flt.dtime}}
               <br/>
             </span>
           </template>

@@ -96,18 +96,18 @@
                     <td>
                       <span v-if="info.flightType === 1" class="text-success">新:</span>
                       <span v-if="info.flightType === 0" class="text-danger">原:</span>
-                        {{info.flight.departureAirportName}} 
-                        <small>{{info.flight.departureAirport}} {{info.flight.departureTerminal}}</small>
+                        {{info.dportName}} 
+                        <small>{{info.dport}} {{info.dterm}}</small>
                     </td>                             
                     <td>
-                        {{info.flight.arrivalAirportName}}
-                        <small>{{info.flight.arrivalAirport}} {{info.flight.arrivalTerminal}}</small>
+                        {{info.aportName}}
+                        <small>{{info.aport}} {{info.aterm}}</small>
                     </td>
-                    <td>{{info.flight.flightNo}}</td>
-                    <td>{{info.flight.subclass}}</td>
-                    <td>{{info.flight.departureDate}}</td>
-                    <td>{{info.flight.departureTime}}</td>
-                    <td>{{info.flight.arrivalTime}}</td>
+                    <td>{{info.flightNo}}</td>
+                    <td>{{info.subclass}}</td>
+                    <td>{{info.ddate}}</td>
+                    <td>{{info.dtime}}</td>
+                    <td>{{info.atime}}</td>
                 </tr>                               
             </tbody>
         </table>
