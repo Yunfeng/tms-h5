@@ -91,18 +91,18 @@
             <tbody>
                 <tr v-for="(info, index) in detail.flights" :key="index">   
                     <td>
-                        {{info.flight.departureAirportName}} 
-                        <small>{{info.flight.departureAirport}} {{info.flight.departureTerminal}}</small>
+                        {{info.dportName}} 
+                        <small>{{info.dport}} {{info.dterm}}</small>
                     </td>                             
                     <td>
-                        {{info.flight.arrivalAirportName}}
-                        <small>{{info.flight.arrivalAirport}}  {{info.flight.arrivaleTerminal}}</small>
+                        {{info.aportName}}
+                        <small>{{info.aport}}  {{info.aterm}}</small>
                     </td>
-                    <td>{{info.flight.departureDate}}</td>
-                    <td>{{info.flight.flightNo}}</td>
-                    <td>{{info.flight.departureTime}}</td>
-                    <td>{{info.flight.arrivalTime}}</td>
-                    <td>{{info.flight.subclass}}</td>
+                    <td>{{info.ddate}}</td>
+                    <td>{{info.flightNo}}</td>
+                    <td>{{info.dtime}}</td>
+                    <td>{{info.atime}}</td>
+                    <td>{{info.subclass}}</td>
                 </tr>                               
             </tbody>
         </table>

@@ -87,8 +87,7 @@
         airRefundStatus: -1,
         name: '',
         idno: '',
-        refundOrderNo: '',
-        customerId: -1
+        refundOrderNo: ''
       }
     },
     mounted: function () {
@@ -119,8 +118,7 @@
           'sc.airRefundStatus': this.airRefundStatus,
           'sc.name': this.name,
           'sc.idno': this.idno,
-          'sc.refundOrderNo': this.refundOrderNo,
-          'sc.customerId': this.customerId
+          'sc.refundOrderNo': this.refundOrderNo
         }
         searchRefundOrders(params, (jsonResult) => {
           this.dataList = jsonResult.dataList
@@ -139,7 +137,6 @@
         this.name = ''
         this.idno = ''
         this.refundOrderNo = ''
-        this.customerId = -1
       },
       getStatus: function (status) {
         return showRefundOrderStatus(status)

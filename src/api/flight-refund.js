@@ -2,8 +2,9 @@ import { APP_FLIGHT_PATH, callService } from '../common/common.js'
 
 
 export function searchRefundOrders(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/refund/orders'
+  const url = APP_FLIGHT_PATH + '/flight/refunds'
   callService(url, {
+    type: 'get',
     data: params,
     cbDone: cbDone,
     cbAlways: cbAlways
@@ -11,7 +12,7 @@ export function searchRefundOrders(params, cbDone, cbAlways) {
 }
 
 export function searchRefundOrderDetail(id, cbDone) {
-  const url = APP_FLIGHT_PATH + '/refund/order/' + id
+  const url = APP_FLIGHT_PATH + '/flight/refund/' + id
   callService(url, {
     type: 'get',
     cbDone: cbDone
@@ -19,7 +20,7 @@ export function searchRefundOrderDetail(id, cbDone) {
 }
 
 export function createRefundOrderMulti(params, cbDone) {
-  const url = APP_FLIGHT_PATH + '/refund/order'
+  const url = APP_FLIGHT_PATH + '/flight/refund'
   callService(url, {
     contentType: 'application/json',
     data: params,

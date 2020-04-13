@@ -138,40 +138,14 @@ export default {
       tax: 0,
       orderId: 0,
       orderNo: '',
-      airRefundFee: 0,
-      serviceCharge: 0,
-      remark: '',
       reasonCode: 0,
       reasonDesc: '',
       intlTicket: -1,
       flights: [],
 
-      airRefundFeeRate: 0,
-      psgRefund: 0,
-      airRefund: 0,
-      profit: 0,
-      total: 0,
-
       modalTitle: '申请退票',
       labelReasonDesc: '退票备注',
       labelAirFee: '航司退票费'
-    }
-  },
-  watch: {
-    airRefundFeeRate: function () {
-      this.calc()
-    },
-    airRefundFee: function () {
-      this.calc()
-    },
-    serviceCharge: function () {
-      this.calc()
-    },
-    reasonCode: function () {
-      this.changeOpMode()
-    },
-    total: function () {
-      this.calc2()
     }
   },
   methods: {
@@ -210,17 +184,13 @@ export default {
       $(this.$el).modal('hide')
       this.resolve({
         refundTickets: this.psgList,
-        parvalue: this.parvalue,
+        parValue: this.parvalue,
         tax: this.tax,
         amount: this.amount,
-        cost: this.cost,
-        airRefundFee: this.airRefundFee,
-        serviceCharge: this.serviceCharge,
         orderId: this.orderId,
         orderNo: this.orderNo,
         reasonCode: this.reasonCode,
         reasonDesc: this.reasonDesc,
-        remark: this.remark,
         intlTicket: this.intlTicket,
         flights: refundFlights
       })
@@ -230,10 +200,6 @@ export default {
       this.reject(null)
     },
     reset: function () {
-      this.airRefundFeeRate = 0
-      this.airRefundFee = 0
-      this.serviceCharge = 0
-      this.remark = ''
       this.reasonDesc = ''
     },
     modal: function (psgList, orderId, orderNo, flights, intlTicket, amount, cost, parvalue, tax) {
@@ -253,19 +219,19 @@ export default {
       this.flights.splice(0)
       this.intlTicket = intlTicket
       for (const flt of flights) {
-        // console.log(flt)
+        console.log(flt)
         this.flights.push({
-          dport: flt.flight.departureAirport,
-          dportName: flt.flight.departureAirportName,
-          dterm: flt.flight.departureTerminal,
-          aport: flt.flight.arrivalAirport,
-          aportName: flt.flight.arrivalAirportName,
-          aterm: flt.flight.arrivalTerminal,
-          ddate: flt.flight.departureDate,
-          flightNo: flt.flight.flightNo,
-          dtime: flt.flight.departureTime,
-          atime: flt.flight.arrivalTime,
-          subclass: flt.flight.subclass,
+          dport: flt.dport,
+          dportName: flt.dportName,
+          dterm: flt.dterm,
+          aport: flt.aport,
+          aportName: flt.aportName,
+          aterm: flt.aterm,
+          ddate: flt.ddate,
+          flightNo: flt.flightNo,
+          dtime: flt.dtime,
+          atime: flt.atime,
+          subclass: flt.subclass,
           selected: true
         })
       }

@@ -25,36 +25,36 @@
               </td>
               <td>
                 <strong>{{info.psgName}}</strong><br />
-                <small>{{showCustomerName(info)}}</small>
+                <small>{{showCustomerName(info.customer)}}</small>
               </td>
               <td>
                 <template v-for="(flt, index) in info.flights">
-                  <span :key="index">{{flt.flight.departureAirport}} {{flt.flight.departureAirportName}}<br /></span>
+                  <span :key="index">{{flt.dport}} {{flt.dportName}}<br /></span>
                 </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <span :key="index">{{flt.flight.arrivalAirport}} {{flt.flight.arrivalAirportName}}<br /></span>
+                    <span :key="index">{{flt.aport}} {{flt.aportName}}<br /></span>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <span :key="index">{{flt.flight.departureDate}}<br /></span>
+                    <span :key="index">{{flt.ddate}}<br /></span>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <span :key="index">{{flt.flight.flightNo}}<br /></span>
+                    <span :key="index">{{flt.flightNo}}<br /></span>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <span :key="index">{{flt.flight.subclass}}<br /></span>
+                    <span :key="index">{{flt.subclass}}<br /></span>
                   </template>
               </td>
               <td>{{info.createTime.substring(5, 16)}}</td>
               <td>
-                {{getStatus(info.status)}}
+                {{getStatus(info.orderStatus)}}
                 <span class="small text-primary" v-if="info.payStatus === 2">已销</span>
               </td>
               <td class="text-right">
@@ -62,7 +62,7 @@
               </td>
               <td>
                 <router-link :to="`/flt/refund/order/` + info.id" class="small text-info float-right">
-                  <template v-if="info.status === 32">详细</template>
+                  <template v-if="info.orderStatus === 32">详细</template>
                   <template v-else><span class="text-success">处理</span></template>
                 </router-link>  
               </td>
@@ -90,7 +90,10 @@
         return showReasonCodeDesc(status)
       },
       showCustomerName: function (info) {
-        return showCustomerName(info)
+        console.log(info)
+        // return 'xxx'
+        // return showCustomerName(info)
+        return info.name
       }
     }
   }

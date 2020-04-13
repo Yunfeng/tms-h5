@@ -63,14 +63,14 @@
                       <span class="text-primary" v-else-if="detail.payStatus === 2">已销账</span>
                     </td>
                     <td>
-                      {{getStatusDesc(detail.status)}}
+                      {{getStatusDesc(detail.orderStatus)}}
                     </td>
                 </tr>
             
             </tbody>
           </table>
           <div class="card-body bg-info text-white py-0">乘机人信息</div>      
-          <table class="table table-striped table-hover table-sm mb-0">
+          <table class="table table-hover table-sm mb-0">
               <thead>
                   <tr>
                       <th class="text-right">姓名</th>
@@ -83,7 +83,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr v-for="(info, index) in detail.passengers" :key="index">   
+                  <tr v-for="(info, index) in detail.passengers" :key="index" class="bg-white">   
                       <td class="text-right">
                           {{info.name}}
                           <span class="text-danger" v-if="info.vipLevel > 0">VIP-{{info.vipLevel}}</span>
@@ -95,13 +95,13 @@
                       <td>{{info.mobile}}</td>
                       <td>{{showPsgType(info.psgType)}}</td>
                       <td>
-                        <template v-if="detail.status === 16 || detail.status === 32">
+                        <template v-if="detail.orderStatus === 16 || detail.orderStatus === 32">
                         {{info.ticketNo}}
                           <template v-if="info.ticketCount > 1"> - {{info.ticketNoEnd}}</template>
                         </template>
                       </td>
                       <td>
-                        <template v-if="detail.status === 32">
+                        <template v-if="detail.orderStatus === 32">
                           <a href="javascript:void(0)" @click.stop="multiRefundTicket(index)" class="btn btn-sm btn-outline-danger ml-2">退票</a>                        
                         </template>
                       </td>
@@ -155,14 +155,14 @@
             <div class="card-body py-0">
               <div class="d-flex flex-row  justify-content-between" v-if="detail.adultCount > 0">
                 <div class="p-2 text-nowrap">成人</div>
-                <div class="p-2 text-nowrap">票面价: {{detail.price}}</div>
-                <div class="p-2 text-nowrap">销售价: {{detail.parvalue}}</div>
-                <div class="p-2 text-nowrap">税: {{detail.tax}}</div>
-                <div class="p-2 text-nowrap">保险费: {{detail.insurance}}</div>
-                <div class="p-2 text-nowrap">服务费: {{detail.serviceCharge}}</div>
-                <div class="p-2 text-nowrap">客户让利: {{detail.discount}}</div>
-                <div class="p-2 text-nowrap">人数: {{detail.adultCount}}</div>
-                <div class="p-2 text-nowrap">应收: {{detail.amount}}</div>
+                <div class="p-2 text-nowrap">票面价: {{this.adultPrice.price}}</div>
+                <div class="p-2 text-nowrap">销售价: {{this.adultPrice.parvalue}}</div>
+                <div class="p-2 text-nowrap">税: {{this.adultPrice.tax}}</div>
+                <div class="p-2 text-nowrap">保险费: {{this.adultPrice.insurance}}</div>
+                <div class="p-2 text-nowrap">服务费: {{this.adultPrice.serviceCharge}}</div>
+                <div class="p-2 text-nowrap">客户让利: {{this.adultPrice.discount}}</div>
+                <div class="p-2 text-nowrap">人数: {{this.adultPrice.ticketCount}}</div>
+                <div class="p-2 text-nowrap">应收: {{this.adultPrice.amount}}</div>
               </div>
               <div class="d-flex flex-row  justify-content-between" v-if="detail.childCount > 0">
                 <div class="p-2 text-nowrap">儿童</div>
@@ -308,7 +308,10 @@
       },
       searchOrderDetail: function () {
         if (this.id > 0) {
-          searchFlightOrder(this.id, (val) => { this.detail = val })
+          searchFlightOrder(this.id, (val) => { 
+            this.detail = val 
+            this.setAdultPrice()
+          })
         } else {
           searchFlightOrderDetailByOrderNo(this.orderNo, v => {
             this.detail = v
@@ -389,18 +392,35 @@
         })
       },
       setAdultPrice: function () {
-        this.adultPrice.price = this.detail.price
-        this.adultPrice.parvalue = this.detail.parvalue
-        this.adultPrice.tax = this.detail.tax
-        this.adultPrice.insurance = this.detail.insurance
-        this.adultPrice.serviceCharge = this.detail.serviceCharge
+        let priceInfo = null;
+        console.log(this.detail.prices)
+        for(let i = 0; i < this.detail.prices.length; i++) {
+          if (this.detail.prices[i].priceType === 0) {
+            priceInfo = this.detail.prices[i]
+            break
+          }
+        }
+
+        console.log(priceInfo)
+
+        if (priceInfo === null) {
+          return
+        }
+
+        this.adultPrice.price = priceInfo.price
+        this.adultPrice.parvalue = priceInfo.parValue
+        this.adultPrice.tax = priceInfo.tax
+        this.adultPrice.insurance = priceInfo.insurance
+        this.adultPrice.serviceCharge = priceInfo.serviceCharge
         this.adultPrice.commRate = 0
-        this.adultPrice.commission = this.detail.commission
+        this.adultPrice.commission = priceInfo.commission
         this.adultPrice.discountRate = 0
-        this.adultPrice.discount = this.detail.discount
-        this.adultPrice.amount = this.detail.amount
-        this.adultPrice.cost = this.detail.cost
+        this.adultPrice.discount = priceInfo.discount
+        this.adultPrice.amount = priceInfo.amount
+        this.adultPrice.cost = priceInfo.cost
         this.adultPrice.ticketCount = this.detail.adultCount
+
+        console.log(this.adultPrice)
       },
       setChildPrice: function () {
         this.childPrice.price = this.detail.chdPrice
