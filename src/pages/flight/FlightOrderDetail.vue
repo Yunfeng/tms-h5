@@ -197,6 +197,9 @@
             <li>联系电话：{{detail.linkPhone}}</li>
             <li>备注: {{detail.remark}}</li>
           </ul>
+          <ul class="list-unstyled" v-if="detail.policyCode !== null">
+            <li>机票优惠代码：{{detail.policyCode}}</li>
+          </ul>
 
           <div class="card">
             <div class="card-body"> 
