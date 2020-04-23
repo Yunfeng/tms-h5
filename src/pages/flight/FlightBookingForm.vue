@@ -382,6 +382,7 @@
         }
 
         let flights = []
+        let policyCode = null
         for(let info of this.flights) {
           flights.push({
               'dport': info.dport,
@@ -395,6 +396,12 @@
               'dtime': info.dtime,
               'atime': info.atime
           })
+
+          console.log(info.policyCode)
+
+          if (info.policyCode !== null  && policyCode === null) {
+            policyCode = info.policyCode
+          }
         }
 
         this.adultPrice.priceType = 0
@@ -420,6 +427,9 @@
           'linkman': this.linkman,
           'linkPhone': this.linkPhone,
           'intlTicket': this.intlTicket,
+
+          'policyCode': policyCode,
+
           'flights': flights,
           'passengers': this.psgInfos
         }

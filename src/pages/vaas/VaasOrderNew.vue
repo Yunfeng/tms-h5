@@ -279,6 +279,11 @@
         )
       },
       createVasOrder: function (next) {
+         //
+         for(let flt of this.flights) {
+          flt.subclass = null
+         } 
+
         const params = {
           'flightOrderId': this.flightOrderId,
           'productCode': this.productCode,

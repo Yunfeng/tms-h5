@@ -90,7 +90,8 @@
                       <td class="text-right">
                         <span v-if="info.seatCount < 10" class="text-danger"><small>{{info.seatCount}}张</small></span>
 
-                        <a @click.stop="bookFlight(flight, info);" :title="info.price + '元，余位' + info.seatStatus" class="btn btn-outline-info btn-sm">预定</a>              
+                        <a @click.stop="bookFlight(flight, info, null);" :title="info.price + '元，余位' + info.seatStatus" class="btn btn-outline-info btn-sm">预定</a>   
+                        <a @click.stop="bookFlight(flight, info, info.policyCode);" class="btn btn-outline-success btn-sm" v-if="info.policyCode !== null">优惠预定</a>            
                       </td>
                     </tr>
                   </tbody>
@@ -442,7 +443,7 @@ export default {
         return freshness + ' 分钟前'
       }
     },
-    bookFlight: function (flt0, subclass0) {
+    bookFlight: function (flt0, subclass0, policyCode) {
       console.log(flt0)
       var fltInfo = {
         'flightNo': flt0.flightNo,
@@ -461,7 +462,8 @@ export default {
         'subclass': subclass0.subClass,
         'price': subclass0.price,
         'returnPoint': subclass0.returnPoint,
-        'tax': subclass0.tax
+        'tax': subclass0.tax,
+        'policyCode': policyCode
       }
       console.log(fltInfo)
 
