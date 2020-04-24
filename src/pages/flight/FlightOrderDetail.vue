@@ -123,7 +123,8 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr v-for="(info, index) in detail.flights" :key="index">   
+                <template v-for="(info, index) in detail.flights">
+                  <tr>   
                       <td>
                         <span class="text-success">{{info.dport}}</span>
                           {{info.dportName}} 
@@ -149,7 +150,15 @@
                         {{info.atime}}                        
                       </td>
                       <td>{{info.subclass}}</td>
-                  </tr>                               
+                  </tr>  
+                  <tr>
+                    <td colspan="8">
+                      <strong>改签规则</strong>： {{info.changeRule}}<br/>
+                      <strong>退票规则</strong>： {{info.refundRule}}<br/>
+                    </td>
+                  </tr>
+                </template>
+                                               
               </tbody>
           </table>
           <div class="card-body bg-info text-white py-0">价格信息</div>          

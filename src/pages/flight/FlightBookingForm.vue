@@ -27,24 +27,32 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(flt, index) in flights">
-            <td>{{index+1}}</td>
-            <td>{{flt.ddate}}</td>
-            <td>{{flt.flightNo}} <small>{{flt.carrierName}}</small></td>
-            <td>{{flt.dportName}} <small>{{flt.dterm}}</small> {{flt.showDtime}}</td>
-            <td>{{flt.aportName}} <small>{{flt.aterm}}</small> {{flt.showAtime}}</td>
-            <td>{{flt.subclass}}</td>
-            <td><i class="fa fa-rmb text-warning"></i> {{flt.price}}</td>
-            <td>
-              {{flt.tax}}
-            </td>
-            <td>
-              <a href="javascript:void(0)"  @click.stop="removeFlightInfo(index)" class="btn btn-sm btn-danger float-right">
-                <i class="fa fa-times" aria-hidden="true"></i>删除
-              </a>
-
-            </td>
-          </tr>
+          <template v-for="(flt, index) in flights">
+            <tr >
+              <td>{{index+1}}</td>
+              <td>{{flt.ddate}}</td>
+              <td>{{flt.flightNo}} <small>{{flt.carrierName}}</small></td>
+              <td>{{flt.dportName}} <small>{{flt.dterm}}</small> {{flt.showDtime}}</td>
+              <td>{{flt.aportName}} <small>{{flt.aterm}}</small> {{flt.showAtime}}</td>
+              <td>{{flt.subclass}}</td>
+              <td><i class="fa fa-rmb text-warning"></i> {{flt.price}}</td>
+              <td>
+                {{flt.tax}}
+              </td>
+              <td>
+                <a href="javascript:void(0)"  @click.stop="removeFlightInfo(index)" class="btn btn-sm btn-danger float-right">
+                  <i class="fa fa-times" aria-hidden="true"></i>删除
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="8">改签规则：{{flt.changeRule}}</td>
+            </tr>
+            <tr>
+              <td colspan="8">退票规则：{{flt.refundRule}}</td>
+            </tr>
+            
+          </template>
           <tr v-if="fltCount === 1">
             <td colspan="9">
               <a href="javascript:void(0)" @click.stop="searchReturn()" class="btn btn-success">搜索返程</a>
@@ -394,7 +402,9 @@
               'dterm': info.dterm,
               'aterm': info.aterm,
               'dtime': info.dtime,
-              'atime': info.atime
+              'atime': info.atime,
+              'changeRule': info.changeRule,
+              'refundRule': info.refundRule
           })
 
           console.log(info.policyCode)

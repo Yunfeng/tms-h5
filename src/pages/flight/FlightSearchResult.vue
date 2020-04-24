@@ -463,7 +463,9 @@ export default {
         'price': subclass0.price,
         'returnPoint': subclass0.returnPoint,
         'tax': subclass0.tax,
-        'policyCode': policyCode
+        'policyCode': policyCode,
+        'changeRule': subclass0.changeRule,
+        'refundRule': subclass0.refundRule
       }
       console.log(fltInfo)
 
