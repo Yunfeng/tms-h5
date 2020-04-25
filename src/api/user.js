@@ -41,8 +41,9 @@ export function searchDepartments(params, cbDone) {
 }
 
 export function searchPassengers(params, cbDone) {
-  const url = APP_FLIGHT_PATH + '/my/passengers'
+  const url = APP_FLIGHT_PATH + '/passengers'
   callService(url, {
+    type: 'get',
     data: params,
     cbDone: cbDone
   })

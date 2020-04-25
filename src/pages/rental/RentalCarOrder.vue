@@ -40,6 +40,9 @@
             <dt class="col-4">价格</dt>
             <dd class="col-8">{{detail.price}}</dd>
 
+            <dt class="col-4">优惠</dt>
+            <dd class="col-8">{{detail.discount}}</dd>
+            
             <dt class="col-4">联系人：</dt>
             <dd class="col-8">{{detail.linkman}}</dd>
 

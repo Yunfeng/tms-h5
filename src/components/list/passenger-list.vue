@@ -5,17 +5,14 @@
                 <th>英文名</th>
                 <th>中文名</th>
                 <th>VIP</th>
+                <th>部门</th>
+                <th>职位</th>
                 <th>性别</th>
                 <th>生日</th>
                 <th>国籍</th>
                 <th>证件</th>
-                
-                
                 <th>喜好</th>
                 <th>备注</th>
-                <th>公司</th>
-                <th>创建时间</th>
-                <th>修改时间</th>
                 <th></th>
                 <th></th>
             </tr>                        
@@ -26,6 +23,12 @@
                 <td>{{info.nameCn}}</td>
                 <td>
                   <span class="text-danger" v-if="info.vipLevel > 0">VIP-{{info.vipLevel}}</span>                  
+                </td>
+                <td>
+                    {{info.departmentName}}          
+                </td>
+                <td>
+                  {{info.positionName}}
                 </td>
                 <td>{{getGenderDesc(info.gender)}}</td>
                 <td>{{info.birthday}}</td>
@@ -40,16 +43,7 @@
                 
                 <td>{{info.hobby}}</td>
                 <td>{{info.remark}}</td>
-                <td>
-                  <template v-if="info.customer !== null">
-                    {{info.customer.vipName}}
-                  </template>                  
-                </td>
-                <td>{{info.createTime}}</td>
-                <td>{{info.lastUpdate}}</td>
-                <td>
-                  
-                </td>
+                
                 <td>
                   <router-link :to="`/passenger/` + info.id">详情</router-link>
                 </td>

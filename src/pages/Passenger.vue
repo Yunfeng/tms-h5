@@ -285,6 +285,7 @@
         vipLevel: 0,
 
         idInfos: [],
+        ffpNos: [],
 
         dataList: [],
         customers: [],
@@ -373,6 +374,7 @@
         this.vipLevel = 0
 
         this.idInfos.splice(0)
+        this.ffpNos.splice(0)
       },
       savePsg: function () {
         const params = {
@@ -400,7 +402,8 @@
           'ffpNo': this.ffpNo,
           'remark': this.remark,
           'vipLevel': this.vipLevel,
-          'idInfos': this.idInfos
+          'idInfos': this.idInfos,
+          'ffpNos': this.ffpNos
         }
 
         const jsonParam = JSON.stringify(params)
@@ -444,6 +447,8 @@
         this.remark = info.remark
 
         this.idInfos = info.idInfos
+        this.ffpNos = info.ffpNos
+        
 
         this.searchCustomers()
       },

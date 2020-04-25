@@ -138,7 +138,8 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" :value="priceInfo.vehicleTypeId" v-model.number="vehicleTypeId">
             <label class="form-check-label">
-              {{priceInfo.supplierName}} - {{priceInfo.vehicleTypeName}} - {{priceInfo.price}}元
+              {{priceInfo.supplierName}} - {{priceInfo.vehicleTypeName}} - {{priceInfo.price}}元 
+              <span class="text-success"> 直减 {{priceInfo.discount}} 元</span>
             </label>
           </div>
         </li>
@@ -233,7 +234,7 @@ export default {
       this.terminalNo = 'T2'
       this.flightNo ='MU1234'
       this.cityId = 2
-      this.useDate = '2020-04-20'
+      this.useDate = '2020-05-20'
       this.useTime = '15:35'
       this.vehicleTypeId = 0
       this.linkPhone = ''
@@ -274,13 +275,14 @@ export default {
         return
       }
 
-      let price
+      let price, discount
       for(let priceInfo of this.orderInfo.prices) {
         // console.log(this.vehicleTypeId)
         // console.log(priceInfo.vehicleTypeId)
         // console.log(priceInfo)
         if (priceInfo.vehicleTypeId == this.vehicleTypeId) {
           price = priceInfo.price
+          discount = priceInfo.discount
           this.vehicleTypeName = priceInfo.vehicleTypeName
           break;
         }
@@ -294,6 +296,7 @@ export default {
         'vehicleTypeId': this.vehicleTypeId,
         'vehicleTypeName': this.vehicleTypeName,
         'price': price,
+        'discount': discount,
         'linkPhone': this.linkPhone,
         'linkman': this.linkMan,
         'remark': this.remark

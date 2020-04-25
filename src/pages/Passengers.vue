@@ -9,7 +9,10 @@
           <input type="hidden" name="sc.pageNo" v-model.number="sc.pageNo">
           <input type="hidden" name="sc.pageSize" v-model.number="sc.pageSize">
           <div class="form-group">
-              <input type="textfield" class="form-control" placeholder="姓名" name="sc.name" v-model.trim="searchName" size="15">
+              <input type="textfield" class="form-control" placeholder="姓名" v-model.trim="searchName" size="15">
+          </div>
+          <div class="form-group">
+              <input type="textfield" class="form-control" placeholder="证件号" v-model.trim="idNo" size="15">
           </div>
           <div class="form-group">
               <button type="button" class="btn btn-primary ml-1" @click="search()">查找</button>
@@ -55,7 +58,8 @@
           pageSize: 20,
           pageTotal: 0
         },
-        searchName: ''
+        searchName: '',
+        idNo: ''
       }
     },
     mounted: function () {
@@ -67,9 +71,10 @@
       },
       search: function () {
         const params = {
-          'sc.pageNo': this.sc.pageNo,
-          'sc.pageSize': this.sc.pageSize,
-          'sc.name': this.searchName
+          'pageNo': this.sc.pageNo,
+          'pageSize': this.sc.pageSize,
+          'name': this.searchName,
+          'idNo': this.idNo
         }
         // this.showLoading('查询中...')
         searchPassengers(params, (jsonResult) => {
@@ -80,6 +85,7 @@
       }, 
       reset: function () {
         this.searchName = ''
+        this.idNo = ''
         this.sc.pageNo = 1
         this.search()
       },
