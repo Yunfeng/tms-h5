@@ -127,8 +127,8 @@ export function createRouter () {
       {path: '/my/password',         component: () => import('../pages/MyPassword.vue') },
       {path: '/my/histories',         component: () => import('../pages/MyHistories.vue') },
       {path: '/my/worktime',         component: () => import('../pages/MyWorkTime.vue') },
-      {path: '/my/recharge',         component: () => import('../pages/recharge.vue') },
-      {path: '/my/recharge-result',         component: () => import('../pages/recharge-result.vue') },
+      {path: '/my/recharge',         component: () => import('../pages/Recharge.vue') },
+      {path: '/my/recharge-result',         component: () => import('../pages/Recharge-result.vue') },
 
       {path: '/data/airports',         component: () => import('../pages/Airports.vue') },
       {path: '/data/airlines',         component: () => import('../pages/Airlines.vue') }
