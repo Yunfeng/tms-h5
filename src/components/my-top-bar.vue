@@ -29,7 +29,9 @@
 
         <span class="nav navbar-nav navbar-right" id="loginBar">
           <template v-if="logined">
-            <a :href="`http://flights.ctrip.com/?AllianceID=23642&sid=` + sid + `&ouid=&app=0301C00`" target="_blank" class="buk-nav-item text-warning mr-2">机票酒店</a>            
+            <a :href="`http://flights.ctrip.com/?AllianceID=23642&sid=` + sid + `&ouid=&app=0301C00`" target="_blank" class="buk-nav-item text-warning mr-2">机票酒店</a> 
+
+            <router-link to="/my/recharge" class="text-white">充值</router-link>           
           </template>
         </span>
       </div>

@@ -119,11 +119,6 @@ export function createRouter () {
       {path: '/tprs',         component: () => import('../pages/Tpr.vue') },
 
 
-      {path: '/charter-flights',         component: () => import('../pages/CharterFlights.vue') },
-      {path: '/charter-flight/new',         component: () => import('../pages/CharterFlightNew.vue') },
-      {path: '/charter-flight/detail/:id',         component: () => import('../pages/CharterFlightDetail.vue') },
-      {path: '/charter-flight/order/new',         component: () => import('../pages/CharterFlightOrderNew.vue') },
-
       {path: '/report/sale/month',         component: () => import('../pages/report/SaleReportMonth.vue') },
       {path: '/report/statistic/monthly',         component:() => import('../pages/report/SaleMonthStatistic.vue') },
       {path: '/report/stat/airlines',         component: () => import('../pages/report/ReportStatByAirlines.vue') },
@@ -132,6 +127,8 @@ export function createRouter () {
       {path: '/my/password',         component: () => import('../pages/MyPassword.vue') },
       {path: '/my/histories',         component: () => import('../pages/MyHistories.vue') },
       {path: '/my/worktime',         component: () => import('../pages/MyWorkTime.vue') },
+      {path: '/my/recharge',         component: () => import('../pages/recharge.vue') },
+      {path: '/my/recharge-result',         component: () => import('../pages/recharge-result.vue') },
 
       {path: '/data/airports',         component: () => import('../pages/Airports.vue') },
       {path: '/data/airlines',         component: () => import('../pages/Airlines.vue') }

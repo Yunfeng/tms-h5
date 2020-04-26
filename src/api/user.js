@@ -190,7 +190,7 @@ export function buyPoints(cbDone) {
 }
 
 export function recharge(amount, cbDone) {
-  const url = APP_FLIGHT_PATH + '/recharge.do'
+  const url = APP_FLIGHT_PATH + '/recharge'
   callService(url, {
     data: { 'amount': amount },
     cbDone: cbDone
