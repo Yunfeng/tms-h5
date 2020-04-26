@@ -19,8 +19,8 @@
         </thead>
         <tbody>
             <tr v-for="(info, index) in dataList">
-                <td>{{info.nameEn}}</td>
-                <td>{{info.nameCn}}</td>
+                <td>{{info.englishName}}</td>
+                <td>{{info.name}}</td>
                 <td>
                   <span class="text-danger" v-if="info.vipLevel > 0">VIP-{{info.vipLevel}}</span>                  
                 </td>
