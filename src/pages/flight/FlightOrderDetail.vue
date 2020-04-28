@@ -200,7 +200,18 @@
                 <div class="p-2 text-nowrap text-success">总计: {{detail.totalAmount}}</div>
               </div>
             </div>
-        
+          <div class="card-body bg-info text-white py-0">子订单</div> 
+          <table class="table table-hover table-sm mb-0">
+            <template v-for="subOrder of detail.subOrders">
+              <tr>
+                <td>{{showOrderType(subOrder.orderType)}}</td>
+                <td>{{subOrder.orderNo}}</td>
+                <td>{{subOrder.orderStatus}}</td>
+                <td><router-link :to="`/vas/order/` + subOrder.id">查看</router-link></td>
+              </tr>
+            </template>
+          </table>
+
           <ul class="list-unstyled">
             <li>联系人：{{detail.linkman}}</li>
             <li>联系电话：{{detail.linkPhone}}</li>
@@ -534,6 +545,15 @@
       },
       addExtraService2: function () {
         this.$router.push({ path: '/vaas/order', query: { flightOrderId: this.id }})
+      },
+      showOrderType: function (orderType) {
+        switch (orderType) {
+          case 6000:
+            return '保险'
+          default:
+            return orderType
+        }
+
       }
     }
   }

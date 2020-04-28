@@ -32,3 +32,12 @@ export function getServiceProduct(id, cbDone) {
     cbDone: cbDone
   })
 }
+
+export function searchInsuranceProducts(params, done, fail, always) {
+  callService(APP_FLIGHT_PATH + '/vas/insurances', {
+    type: 'get',
+    data: params,
+    cbDone: done,
+    cbAlways: always
+  })
+}

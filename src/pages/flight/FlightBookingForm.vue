@@ -62,47 +62,6 @@
       </table>
     </div>
 
-
-    <div class="card col-12">
-      <div class="card-header bg-warning text-white py-0">
-        客户
-      </div>
-      <div class="card-body py-2">
-          <div class="form-group row" v-if="costCenters.length > 0">
-            <label class="col-2 control-label text-right">成本中心</label>
-            <div class="col-8">
-              <select class="form-control" v-model="costCenter">
-                <option value="">请选择</option>
-                <option :value="info.name" v-for="info in costCenters">{{info.name}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row" v-if="projectNames.length > 0">
-            <label class="col-2 control-label text-right">项目名称</label>
-            <div class="col-8">
-              <select class="form-control" v-model="projectName">
-                <option value="">请选择</option>
-                <option :value="info.name" v-for="info in projectNames">{{info.name}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-2 control-label text-right">付款方式</label>
-            <div class="col-10">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="1" v-model.number="payType">
-                <label class="form-check-label">现付（现金等）</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="8" v-model.number="payType">
-                <label class="form-check-label">记账</label>
-              </div>
-            </div>
-
-          </div>
-      </div>
-    </div>
-
     <!-- passengers -->
     <div class="card col-12">
       <div class="card-header bg-warning text-white py-0">
@@ -162,26 +121,91 @@
         </div>
     </div>
 
+    <div class="card col-12">
+      <div class="card-header bg-warning text-white py-0">
+        付款方式
+      </div>
+      <div class="card-body py-2">
+          <div class="form-group row" v-if="costCenters.length > 0">
+            <label class="col-2 control-label text-right">成本中心</label>
+            <div class="col-8">
+              <select class="form-control" v-model="costCenter">
+                <option value="">请选择</option>
+                <option :value="info.name" v-for="info in costCenters">{{info.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" v-if="projectNames.length > 0">
+            <label class="col-2 control-label text-right">项目名称</label>
+            <div class="col-8">
+              <select class="form-control" v-model="projectName">
+                <option value="">请选择</option>
+                <option :value="info.name" v-for="info in projectNames">{{info.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 control-label text-right">付款方式</label>
+            <div class="col-10">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="1" v-model.number="payType">
+                <label class="form-check-label">现付（现金等）</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="8" v-model.number="payType">
+                <label class="form-check-label">记账</label>
+              </div>
+            </div>
+
+          </div>
+      </div>
+    </div>
+    <div class="card col-12">
+      <div class="card-header bg-warning text-white py-0">
+        发票需求
+      </div>
+      <div class="card-body py-2">
+          <div class="form-group row">
+            <label class="col-2 control-label text-right">发票类型</label>
+            <div class="col-10">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="0" v-model.number="itineraryType">
+                <label class="form-check-label">不需要</label>
+              </div>
+              
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="1" v-model.number="itineraryType">
+                <label class="form-check-label">行程单</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="2" v-model.number="itineraryType">
+                <label class="form-check-label">发票</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="4" v-model.number="itineraryType">
+                <label class="form-check-label">行程单+附加服务</label>
+              </div>
+            </div>
+
+          </div>
+      </div>
+    </div>
+
+
     <div class="card col-12 bg-white border-0 mt-1 px-0" v-if="insurances.length > 0">
       <div class="card-header bg-warning text-white py-0">
         <span>保险</span>
       </div>
       <table class="table">
-        <tr v-for="(info, index) in insurances">                
-          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].productCode'" :value="info.productCode" />
-          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].productName'" :value="info.productName" />
-          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].price'" :value="info.price" />
-          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].discount'" :value="info.discount" />
-          <input type="hidden" :name="'tmcPolicyApply.insurances[' + index + '].count'" :value="psgInfos.length" />
-
+        <tr v-for="(info, index) in insurances">    
           <td>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" :name="'tmcPolicyApply.insurances[' + index + '].buyed'" value="1">
+              <input class="form-check-input" type="checkbox" v-model="serviceProductCodes" :value="info.productCode">
               <label class="form-check-label">{{info.productName}}</label>                 
             </div>
           </td>
           <td>
-            <i class="fa fa-rmb text-warning"></i>{{info.price-info.discount}}/份
+            <i class="fa fa-rmb text-warning"></i>{{info.price}}元/份 (优惠金额{{info.discount}})
           </td>
           <td>
             <small>购买 {{psgInfos.length}} 份</small>
@@ -222,13 +246,17 @@
         </div>
       <div class="card-body px-0">
         <div class="form-group">
-          <input type="text" class="form-control" name="linkman" placeholder="联系人"/>
+          <input type="text" class="form-control" v-model.trim="linkman" placeholder="联系人"/>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" name="linkPhone" placeholder="联系电话"/>
+          <input type="text" class="form-control" v-model.trim="linkPhone" placeholder="联系电话"/>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" name="remark" placeholder="备注" />
+          <input type="text" class="form-control" v-model.trim="remark" placeholder="备注" />
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" v-model.trim="address" placeholder="地址"/>
+          <span class="text-muted small">行程单或发票邮寄的地址、邮编等</span>
         </div>
       </div>   
     </div>
@@ -248,6 +276,7 @@
   import { mapState } from 'vuex'
   import $ from 'jquery'
   import { addDate } from '../../common/common.js'
+  import { searchInsuranceProducts } from '../../api/product.js'
   import MyPsgPicker from '../../components/my-psg-picker.vue'
   import MyPriceInput from '../../components/flight-price-input.vue'
   import PriceInfo from '../../common/PriceInfo.js'
@@ -291,9 +320,12 @@
         costCenters: [],
         projectNames: [],
         payType: 1,
+        itineraryType: 0,
         linkman: '',
         linkPhone: '',
-        remark: ''
+        remark: '',
+        address: '',
+        serviceProductCodes: []
       }
     },
     computed: mapState({
@@ -356,7 +388,7 @@
       }
     }),      
     mounted: function () {
-      // this.searchInsurances()
+      this.searchInsurances()
     },
     methods: {
       back: function () {
@@ -437,9 +469,12 @@
           'linkman': this.linkman,
           'linkPhone': this.linkPhone,
           'intlTicket': this.intlTicket,
-
+          
           'policyCode': policyCode,
+          'itineraryType': this.itineraryType,
+          'address': this.address,
 
+          'serviceProductCodes': this.serviceProductCodes,
           'flights': flights,
           'passengers': this.psgInfos
         }
@@ -476,6 +511,15 @@
         var newDate = addDate(this.ddate, 1)
         this.$store.commit('setDdate', newDate)
         this.$router.push('/flt/search')
+      },
+      searchInsurances: function () {
+        const params = {
+          'pageNo': 1,
+          'pageSize': 10
+        }
+        searchInsuranceProducts(params, v => {
+          this.insurances = v.dataList
+        })
       }
     }
   }

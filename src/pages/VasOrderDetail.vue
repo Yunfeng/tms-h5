@@ -14,9 +14,18 @@
           <li class="breadcrumb-item active" aria-current="page">详情</li>
           <span class="ml-auto" @click.stop="back()">返回</span>
         </ol>
-      </nav>
+      </nav>"
 
       <div class="card">
+        <table class="table-sm small" v-if="detail.parentOrder !== undefined">
+          <tr>
+            <td>上级订单：</td>
+            <td>{{detail.parentOrder.orderType}}</td>
+            <td>{{detail.parentOrder.orderNo}}</td>
+            <td>{{detail.parentOrder.orderStatus}}</td>
+            <td><router-link :to="`/flt/order/` + detail.parentOrder.id">查看</router-link></td>
+          </tr>
+        </table>
         <table class="table table-sm table-striped table-hover small">
           <thead>
             <tr>
@@ -105,22 +114,22 @@
             <tbody>
                 <tr v-for="info in detail.flights" :key="info.id">   
                     <td>
-                      <span class="text-success">{{info.flight.departureAirport}}</span>
-                        {{info.flight.departureAirportName}} 
-                        {{info.flight.departureTerminal}} 
+                      <span class="text-success">{{info.departureAirport}}</span>
+                        {{info.departureAirportName}} 
+                        {{info.departureTerminal}} 
                         
                     </td>                             
                     <td>
-                      <span class="text-success">{{info.flight.arrivalAirport}}</span>
-                        {{info.flight.arrivalAirportName}}
-                        {{info.flight.arrivalTerminal}}
+                      <span class="text-success">{{info.arrivalAirport}}</span>
+                        {{info.arrivalAirportName}}
+                        {{info.arrivalTerminal}}
                         
                     </td>
-                    <td>{{info.flight.departureDate}}</td>
-                    <td>{{info.flight.flightNo}}</td>
-                    <td>{{info.flight.departureTime}}</td>
-                    <td>{{info.flight.arrivalTime}}</td>
-                    <td>{{info.flight.subclass}}</td>
+                    <td>{{info.departureDate}}</td>
+                    <td>{{info.flightNo}}</td>
+                    <td>{{info.departureTime}}</td>
+                    <td>{{info.arrivalTime}}</td>
+                    <td>{{info.subclass}}</td>
                 </tr>                               
             </tbody>
         </table>
