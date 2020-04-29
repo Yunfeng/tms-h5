@@ -14,18 +14,20 @@
           <li class="breadcrumb-item active" aria-current="page">详情</li>
           <span class="ml-auto" @click.stop="back()">返回</span>
         </ol>
-      </nav>"
+      </nav>
 
-      <div class="card">
-        <table class="table-sm small" v-if="detail.parentOrder !== undefined">
+      <div class="card"  v-if="detail.parentOrder !== undefined">
+        <table class="table table-sm small bg-info text-white">
           <tr>
-            <td>上级订单：</td>
-            <td>{{detail.parentOrder.orderType}}</td>
-            <td>{{detail.parentOrder.orderNo}}</td>
-            <td>{{detail.parentOrder.orderStatus}}</td>
-            <td><router-link :to="`/flt/order/` + detail.parentOrder.id">查看</router-link></td>
+            <td><strong>上级订单</strong></td>
+            <td>类型：{{showOrderTypeDesc(detail.parentOrder.orderType)}}</td>
+            <td>订单号：{{detail.parentOrder.orderNo}}</td>
+            <td>订单状态：{{detail.parentOrder.orderStatus}}</td>
+            <td><router-link :to="`/flt/order/` + detail.parentOrder.id" class="text-white">查看</router-link></td>
           </tr>
         </table>
+      </div>
+      <div class="card">
         <table class="table table-sm table-striped table-hover small">
           <thead>
             <tr>
@@ -61,12 +63,11 @@
                   <td class="text-right">{{detail.count}}</td>
                   <td class="text-right">{{detail.price}}</td>
                   <td class="text-right">{{detail.discount}}</td>
-                  <td class="text-right">{{detail.totalAmount}}</td>
+                  <td class="text-right">{{detail.total}}</td>
                   <td class="text-center">
                     {{getPayTypeDesc(detail.payType)}}
                     <template v-if="detail.payType !== 8 && detail.payStatus ===0">
                       <span class="small text-danger">(未付)</span>
-                      <button class="btn btn-danger btn-sm" @click.stop="setOrderPaid()">已收款</button>
                     </template>
                     <span class="small text-primary" v-if="detail.payStatus === 2">已销</span>
                   </td>
@@ -157,7 +158,7 @@
 
 <script>
   import $ from 'jquery'
-  import { showPayType } from '../common/common.js'
+  import { showPayType, showOrderTypeDesc } from '../common/common.js'
   import { searchVasOrderDetail, searchVasOrderHistory, showVasOrderStatus } from '../api/vas.js'
   import { processVasOrder, cancelVasOrder, finishVasOrder } from '../api/vas.js'
   import { updateVasOrderRemark, updateVasOrderPassenger, updateVasOrderSupplier, updateVasOrderPrice, updateVasOrderPayment, outputVasOrder2Bill } from '../api/vas.js'
@@ -228,6 +229,9 @@
       },
       getPayTypeDesc: function (payType) {
         return showPayType(payType)
+      },
+      showOrderTypeDesc: function (orderType) {
+        return showOrderTypeDesc(orderType)
       },
       editRemark: function () {
         this.modalTitle = '请输入新的备注：'

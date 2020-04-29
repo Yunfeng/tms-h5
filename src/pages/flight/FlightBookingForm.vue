@@ -233,8 +233,6 @@
           <td>总计</td>
           <td>人数：{{psgCount}}</td>
           <td>总应收：{{totalAmount}}</td>
-          <td>总应付：{{totalCost}}</td>
-          <td><span class="text-success">利润：{{totalProfit}}</span></td>
         </tr>
       </table>
     </div>
@@ -325,7 +323,10 @@
         linkPhone: '',
         remark: '',
         address: '',
-        serviceProductCodes: []
+        serviceProductCodes: [],
+
+        //服务产品总额
+        serviceProductTotal: 0,
       }
     },
     computed: mapState({
@@ -333,7 +334,9 @@
       psgInfos: state => state.order.psgs,
       policyId: state => state.order.policyId,
       ddate: state => state.searchParams.ddate,
-      fltCount () { return this.flights.length },
+      fltCount () {
+        return this.flights.length 
+      },
       psgCount: function () {
         let count = 0
         this.adultCount = 0
@@ -347,25 +350,8 @@
             this.childCount++
           } else if (psg.psgType === 2) {
             this.infantCount++
-          }
-        }
-
-        this.adultCount = count - this.childCount - this.infantCount
-
-        this.adultPrice.ticketCount = this.adultCount
-        this.childPrice.ticketCount = this.childCount
-        this.infantPrice.ticketCount = this.infantCount
-
-        if (this.adultPrice.price === 0) {
-
-          this.adultPrice.price = 0
-          this.adultPrice.parValue = 0
-          this.adultPrice.tax = 0
-
-          for(let flt of this.flights) {
-            this.adultPrice.price += flt.price
-            this.adultPrice.parValue += flt.price
-            this.adultPrice.tax += flt.tax
+          } else {
+            this.adultCount++
           }
         }
 
@@ -375,19 +361,19 @@
         return this.adultPrice.amount * this.adultCount +
           this.childPrice.amount * this.childCount +
           this.infantPrice.amount * this.infantCount
-      },
-      totalCost: function () {
-        return this.adultPrice.cost * this.adultCount +
-          this.childPrice.cost * this.childCount +
-          this.infantPrice.cost * this.infantCount
-      },
-      totalProfit: function () {
-        return this.adultPrice.profit * this.adultCount +
-          this.childPrice.profit * this.childCount +
-          this.infantPrice.profit * this.infantCount
+          + this.serviceProductTotal
       }
-    }),      
+    }),    
+    watch: {
+      serviceProductCodes: function (newVal, oldVal) {
+        console.log("oldVal:" + oldVal)
+        console.log("newVal:" + newVal)
+        console.log("serviceProductCodes: " + this.serviceProductCodes)
+        this.calcServiceProductTotal()
+      }
+    }, 
     mounted: function () {
+      this.calc()
       this.searchInsurances()
     },
     methods: {
@@ -414,6 +400,7 @@
         if (this.flights.length === 0) {
           this.$router.replace('/flt/search')
         }
+        this.calc()
       },
       createFlightOrder: function () {
         if (this.intlTicket !== 0 && this.intlTicket !== 1) {
@@ -463,8 +450,6 @@
           'payRemark': this.payRemark,
 
           'totalAmount': this.totalAmount,
-          'totalProfit': this.totalProfit,
-
          
           'linkman': this.linkman,
           'linkPhone': this.linkPhone,
@@ -520,6 +505,34 @@
         searchInsuranceProducts(params, v => {
           this.insurances = v.dataList
         })
+      },
+      calcServiceProductTotal: function () {
+        this.serviceProductTotal = 0
+        for(const code of this.serviceProductCodes) {
+          for(const insurance of this.insurances) {
+            if (insurance.productCode === code) {
+              this.serviceProductTotal = this.serviceProductTotal + (insurance.price - insurance.discount) * this.psgCount * this.fltCount
+            }
+          }
+        }
+        console.log('serviceProductTotal: ' + this.serviceProductTotal)
+      },
+      calc: function () {
+        // this.adultCount = this.psgCount - this.childCount - this.infantCount
+
+        this.adultPrice.ticketCount = this.adultCount
+        this.childPrice.ticketCount = this.childCount
+        this.infantPrice.ticketCount = this.infantCount
+
+        this.adultPrice.price = 0
+        this.adultPrice.parValue = 0
+        this.adultPrice.tax = 0
+
+        for(let flt of this.flights) {
+          this.adultPrice.price += flt.price
+          this.adultPrice.parValue += flt.price
+          this.adultPrice.tax += flt.tax
+        }
       }
     }
   }

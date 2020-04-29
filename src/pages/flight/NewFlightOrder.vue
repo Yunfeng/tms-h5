@@ -370,9 +370,12 @@
           return
         }
 
+        let flights = []
         for(const fltInfo of this.pnr.flights) {
           fltInfo.flight.departureTime = fltInfo.flight.dtime
           fltInfo.flight.arrivalTime = fltInfo.flight.atime
+
+          flights.push(fltInfo.flight)
         }
 
         const params = {
@@ -389,7 +392,7 @@
           'linkman': this.linkman,
           'linkPhone': this.linkPhone,
           'intlTicket': this.intlTicket,
-          'flights': this.pnr.flights,
+          'flights': flights,
           'passengers': this.pnr.passengers
         }
 

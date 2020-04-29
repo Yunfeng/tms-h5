@@ -69,6 +69,19 @@
             
             </tbody>
           </table>
+          <template v-if="detail.subOrders.length > 0">
+            <div class="card-body bg-info text-white py-0">子订单</div> 
+            <table class="table table-hover table-sm mb-0">
+              <template v-for="subOrder of detail.subOrders">
+                <tr>
+                  <td>{{showOrderType(subOrder.orderType)}}</td>
+                  <td>{{subOrder.orderNo}}</td>
+                  <td>{{subOrder.orderStatus}}</td>
+                  <td><router-link :to="`/vas/order/` + subOrder.id">查看</router-link></td>
+                </tr>
+              </template>
+            </table>
+          </template>
           <div class="card-body bg-info text-white py-0">乘机人信息</div>      
           <table class="table table-hover table-sm mb-0">
               <thead>
@@ -200,17 +213,7 @@
                 <div class="p-2 text-nowrap text-success">总计: {{detail.totalAmount}}</div>
               </div>
             </div>
-          <div class="card-body bg-info text-white py-0">子订单</div> 
-          <table class="table table-hover table-sm mb-0">
-            <template v-for="subOrder of detail.subOrders">
-              <tr>
-                <td>{{showOrderType(subOrder.orderType)}}</td>
-                <td>{{subOrder.orderNo}}</td>
-                <td>{{subOrder.orderStatus}}</td>
-                <td><router-link :to="`/vas/order/` + subOrder.id">查看</router-link></td>
-              </tr>
-            </template>
-          </table>
+          
 
           <ul class="list-unstyled">
             <li>联系人：{{detail.linkman}}</li>
@@ -252,7 +255,7 @@
   import { updateFlightOrderPrice, updateFlightOrderPassenger, updateFlightOrderRemark, updateFlightOrderSupplier, updateFlightOrderTicket, cancelFlightOrder, submitFlightOrder, toticketFlightOrder, agreeFlightOrderCancelRequest, denyFlightOrderCancelRequest, finishFlightOrderDelivery, updateFlightOrderPaymentMethod, updateFlightOrderPnr, updateFlightOrderCustomer, finishFlightOrder, updateFlightOrderIntl, updateFlightOrderDeliveryDate, updateFlightOrderTicketer, setFlightOrderPaid } from '../../api/flight.js'
   import { searchFlightOrder, outputFlightOrder2Bill, searchFlightOrderDetailByOrderNo } from '../../api/flight.js'
   import { approveFlightOrder } from '../../api/flight.js'
-  import { showFlightOrderStatus, showPayType, showPsgType, showIdTypeDesc } from '../../common/common.js'
+  import { showFlightOrderStatus, showPayType, showPsgType, showIdTypeDesc, showOrderTypeDesc } from '../../common/common.js'
   import { createRefundOrderMulti } from '../../api/flight-refund.js'
   import { createChangeOrderMulti } from '../../api/flight-change.js'
   import { sendFlightOrderSms, sendFlightOrderApprovalSms } from '../../api/sms.js'
@@ -547,13 +550,7 @@
         this.$router.push({ path: '/vaas/order', query: { flightOrderId: this.id }})
       },
       showOrderType: function (orderType) {
-        switch (orderType) {
-          case 6000:
-            return '保险'
-          default:
-            return orderType
-        }
-
+        return showOrderTypeDesc(orderType)
       }
     }
   }

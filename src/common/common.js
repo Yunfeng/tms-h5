@@ -140,6 +140,18 @@ function showIdTypeDesc (idType) {
   return desc
 }
 
+function showOrderTypeDesc (orderType) {
+  var desc = ''
+  switch (orderType) {
+    case 1000: desc = '机票预订'; break
+    case 6000: desc = '保险'; break
+    default:
+      desc = status
+  }
+  return desc
+}
+
+
 function showOrderStatusDesc (status) {
   var desc = ''
   switch (status) {
@@ -324,6 +336,7 @@ export {
   callService,
   showFlightOrderStatus,
   showPayType,
+  showOrderTypeDesc,
   showItineraryType,
   showPsgType,
   showIdTypeDesc,

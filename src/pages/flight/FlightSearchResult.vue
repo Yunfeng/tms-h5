@@ -462,7 +462,9 @@ export default {
         'subclass': subclass0.subClass,
         'price': subclass0.price,
         'returnPoint': subclass0.returnPoint,
-        'tax': subclass0.tax,
+        'airportTax': flt0.airportTax,
+        'fuelSurcharge': flt0.fuelSurcharge,
+        'tax': flt0.airportTax + flt0.fuelSurcharge,
         'policyCode': policyCode,
         'changeRule': subclass0.changeRule,
         'refundRule': subclass0.refundRule
