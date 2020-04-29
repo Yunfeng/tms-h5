@@ -115,21 +115,21 @@
             <tbody>
                 <tr v-for="info in detail.flights" :key="info.id">   
                     <td>
-                      <span class="text-success">{{info.departureAirport}}</span>
-                        {{info.departureAirportName}} 
-                        {{info.departureTerminal}} 
+                      <span class="text-success">{{info.dport}}</span>
+                        {{info.dportName}} 
+                        {{info.dterm}} 
                         
                     </td>                             
                     <td>
-                      <span class="text-success">{{info.arrivalAirport}}</span>
-                        {{info.arrivalAirportName}}
-                        {{info.arrivalTerminal}}
+                      <span class="text-success">{{info.aport}}</span>
+                        {{info.aportName}}
+                        {{info.aterm}}
                         
                     </td>
-                    <td>{{info.departureDate}}</td>
+                    <td>{{info.ddate}}</td>
                     <td>{{info.flightNo}}</td>
-                    <td>{{info.departureTime}}</td>
-                    <td>{{info.arrivalTime}}</td>
+                    <td>{{info.dtime}}</td>
+                    <td>{{info.atime}}</td>
                     <td>{{info.subclass}}</td>
                 </tr>                               
             </tbody>

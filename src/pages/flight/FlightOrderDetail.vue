@@ -34,6 +34,7 @@
                     <th>项目名称</th>
                     <th>国际?</th>
                     <th>收款方式</th>
+                    <th>发票类型</th>
                     <th>出票日期</th>
                     <th>收款状态</th>
                     <th>订单状态</th>
@@ -56,6 +57,7 @@
                       {{getPayTypeDesc(detail.payType)}}
                       /{{detail.payRemark}}
                     </td>
+                    <td>{{showItineraryType(detail.itineraryType)}}</td>
                     <td>{{detail.etdzDate}}</td>
                     <td>
                       <span class="text-danger" v-if="detail.payStatus === 0">未收款</span>
@@ -72,11 +74,19 @@
           <template v-if="detail.subOrders.length > 0">
             <div class="card-body bg-info text-white py-0">子订单</div> 
             <table class="table table-hover table-sm mb-0">
+                <tr>
+                  <td>类型</td>
+                  <td>订单号</td>
+                  <td>状态</td>
+                  <td>金额</td>
+                  <td></td>
+                </tr>
               <template v-for="subOrder of detail.subOrders">
                 <tr>
                   <td>{{showOrderType(subOrder.orderType)}}</td>
                   <td>{{subOrder.orderNo}}</td>
                   <td>{{subOrder.orderStatus}}</td>
+                  <td>{{subOrder.total}}</td>
                   <td><router-link :to="`/vas/order/` + subOrder.id">查看</router-link></td>
                 </tr>
               </template>
@@ -210,7 +220,7 @@
                 <div class="p-2 text-nowrap">应收: {{detail.infAmount}}</div>
               </div>
               <div class="d-flex flex-row  justify-content-between">
-                <div class="p-2 text-nowrap text-success">总计: {{detail.totalAmount}}</div>
+                <div class="p-2 text-nowrap text-success">小计: {{detail.subTotal}}</div>
               </div>
             </div>
           
@@ -223,9 +233,14 @@
           <ul class="list-unstyled" v-if="detail.policyCode !== null">
             <li>机票优惠代码：{{detail.policyCode}}</li>
           </ul>
+          <ul class="list-unstyled">
+            <li>订单总金额: <strong>{{detail.totalAmount}}</strong></li>
+          </ul>
 
           <div class="card">
             <div class="card-body"> 
+              <button class="btn btn-sm btn-success ml-2" @click.stop="onlinePay()" v-if="detail.orderStatus === 0 && detail.payType === 1">支付</button>
+
               <button class="btn btn-sm btn-primary ml-2 float-right" @click.stop="addExtraService2()" v-if="detail.orderStatus !== 4">增加机场服务</button>
             </div>
           </div>
@@ -242,6 +257,7 @@
       </div>
     </div>    
 
+    <div id="paymentForm" ></div>
 
     <my-modal-refund-ticket-multi ref="multiRefundTicketModal"></my-modal-refund-ticket-multi>
     <my-modal-change-ticket ref="changeTicketModal"></my-modal-change-ticket>
@@ -254,8 +270,8 @@
   import { APP_FLIGHT_PATH, SUPPLIER_FLIGHT } from '../../common/const.js'
   import { updateFlightOrderPrice, updateFlightOrderPassenger, updateFlightOrderRemark, updateFlightOrderSupplier, updateFlightOrderTicket, cancelFlightOrder, submitFlightOrder, toticketFlightOrder, agreeFlightOrderCancelRequest, denyFlightOrderCancelRequest, finishFlightOrderDelivery, updateFlightOrderPaymentMethod, updateFlightOrderPnr, updateFlightOrderCustomer, finishFlightOrder, updateFlightOrderIntl, updateFlightOrderDeliveryDate, updateFlightOrderTicketer, setFlightOrderPaid } from '../../api/flight.js'
   import { searchFlightOrder, outputFlightOrder2Bill, searchFlightOrderDetailByOrderNo } from '../../api/flight.js'
-  import { approveFlightOrder } from '../../api/flight.js'
-  import { showFlightOrderStatus, showPayType, showPsgType, showIdTypeDesc, showOrderTypeDesc } from '../../common/common.js'
+  import { approveFlightOrder, payForFlightOrder } from '../../api/flight.js'
+  import { showFlightOrderStatus, showPayType, showPsgType, showIdTypeDesc, showOrderTypeDesc, showItineraryType } from '../../common/common.js'
   import { createRefundOrderMulti } from '../../api/flight-refund.js'
   import { createChangeOrderMulti } from '../../api/flight-change.js'
   import { sendFlightOrderSms, sendFlightOrderApprovalSms } from '../../api/sms.js'
@@ -359,6 +375,9 @@
       },
       showIdTypeDesc: function (idType) {
         return showIdTypeDesc(idType)
+      },
+      showItineraryType: function (itineraryType) {
+        return showItineraryType(itineraryType)
       },
       commonShowMessage: function (jsonResult) {
         if (jsonResult.status !== 'OK') {
@@ -551,6 +570,21 @@
       },
       showOrderType: function (orderType) {
         return showOrderTypeDesc(orderType)
+      },
+      onlinePay: function () {
+        payForFlightOrder(this.detail.id, 
+        v => {
+          if (v.status === 'OK') {
+            this.showErrMsg('如果没有打开在线支付新窗口，请检查您的浏览器是否阻止本网页打开新窗口。', 'info')
+            console.log(v.url)
+            $('#paymentForm').empty().html(v.url)
+            document.forms['alipaysubmit'].submit()            
+          } else {
+            this.showErrMsg(v.errmsg, 'danger')
+          }
+        }
+
+        )
       }
     }
   }

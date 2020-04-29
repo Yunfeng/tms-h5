@@ -257,6 +257,7 @@ function showItineraryType (type) {
     case 1: return '行程单'
     case 2: return '发票'
     case 3: return '信息单'
+    case 4: return '行程单+其它服务'
     default : return type
   }
 }

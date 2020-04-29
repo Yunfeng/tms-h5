@@ -28,6 +28,13 @@ export function createFlightOrder(params, cbDone, cbAlways) {
 }
 
 
+export function payForFlightOrder(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/flight/order/' + id + '/pay'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
 
 
 
