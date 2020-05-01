@@ -16,7 +16,7 @@
         </ol>
       </nav>
 
-      <div class="card"  v-if="detail.parentOrder !== undefined">
+      <div class="card"  v-if="detail.parentOrder !== undefined && detail.parentOrder !== null">
         <table class="table table-sm small bg-info text-white">
           <tr>
             <td><strong>上级订单</strong></td>
