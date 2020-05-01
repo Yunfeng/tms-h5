@@ -458,6 +458,7 @@
           'policyCode': policyCode,
           'itineraryType': this.itineraryType,
           'address': this.address,
+          'remark': this.remark,
 
           'serviceProductCodes': this.serviceProductCodes,
           'flights': flights,
