@@ -229,6 +229,10 @@
             <li>联系人：{{detail.linkman}}</li>
             <li>联系电话：{{detail.linkPhone}}</li>
             <li>备注: {{detail.remark}}</li>
+            <li>验价: {{detail.priceCheckedStatus}} {{detail.priceCheckedTime}}</li>
+            <li>指定审批人: {{detail.specifiedApprover}}</li>
+            <li>审批: {{detail.approvalStatus}} {{detail.approvalDenyReason}}</li>
+            <li>合规: {{detail.violationStatus}} {{detail.violationReason}}</li>
           </ul>
           <ul class="list-unstyled" v-if="detail.policyCode !== null">
             <li>机票优惠代码：{{detail.policyCode}}</li>
@@ -240,6 +244,13 @@
           <div class="card">
             <div class="card-body"> 
               <button class="btn btn-sm btn-success ml-2" @click.stop="onlinePay()" v-if="detail.orderStatus === 0 && detail.payType === 1">支付</button>
+
+              <template v-if="detail.orderStatus === 0">
+                <button class="btn btn-primary btn-sm ml-2 mr-auto" :disabled="btnDisabled" @click.stop="submitOrder()">申请开票</button>
+              </template>
+              <template v-if="detail.orderStatus === 1">
+                <button class="btn btn-primary btn-sm ml-2 mr-auto" :disabled="btnDisabled" @click.stop="approveOrder()">审批</button>
+              </template>
 
               <button class="btn btn-sm btn-primary ml-2 float-right" @click.stop="addExtraService2()" v-if="detail.orderStatus !== 4">增加机场服务</button>
             </div>
@@ -261,6 +272,7 @@
 
     <my-modal-refund-ticket-multi ref="multiRefundTicketModal"></my-modal-refund-ticket-multi>
     <my-modal-change-ticket ref="changeTicketModal"></my-modal-change-ticket>
+    <my-modal-confirm ref="confirmModal"></my-modal-confirm>
   </div>
   
 </template>
@@ -268,16 +280,16 @@
 <script>
   import $ from 'jquery'
   import { APP_FLIGHT_PATH, SUPPLIER_FLIGHT } from '../../common/const.js'
-  import { updateFlightOrderPrice, updateFlightOrderPassenger, updateFlightOrderRemark, updateFlightOrderSupplier, updateFlightOrderTicket, cancelFlightOrder, submitFlightOrder, toticketFlightOrder, agreeFlightOrderCancelRequest, denyFlightOrderCancelRequest, finishFlightOrderDelivery, updateFlightOrderPaymentMethod, updateFlightOrderPnr, updateFlightOrderCustomer, finishFlightOrder, updateFlightOrderIntl, updateFlightOrderDeliveryDate, updateFlightOrderTicketer, setFlightOrderPaid } from '../../api/flight.js'
+  import { updateFlightOrderPrice, updateFlightOrderPassenger, updateFlightOrderRemark, updateFlightOrderSupplier, updateFlightOrderTicket, cancelFlightOrder, toticketFlightOrder, agreeFlightOrderCancelRequest, denyFlightOrderCancelRequest, finishFlightOrderDelivery, updateFlightOrderPaymentMethod, updateFlightOrderPnr, updateFlightOrderCustomer, finishFlightOrder, updateFlightOrderIntl, updateFlightOrderDeliveryDate, updateFlightOrderTicketer, setFlightOrderPaid } from '../../api/flight.js'
   import { searchFlightOrder, outputFlightOrder2Bill, searchFlightOrderDetailByOrderNo } from '../../api/flight.js'
-  import { approveFlightOrder, payForFlightOrder } from '../../api/flight.js'
+  import { payForFlightOrder, submitFlightOrder, approveFlightOrder } from '../../api/flight.js'
   import { showFlightOrderStatus, showPayType, showPsgType, showIdTypeDesc, showOrderTypeDesc, showItineraryType } from '../../common/common.js'
   import { createRefundOrderMulti } from '../../api/flight-refund.js'
   import { createChangeOrderMulti } from '../../api/flight-change.js'
   import { sendFlightOrderSms, sendFlightOrderApprovalSms } from '../../api/sms.js'
   import { rollbackFlightOrderStatus } from '../../api/admin.js'
   import PriceInfo from '../../common/PriceInfo.js'
-  import MyModalPrompt from '../../components/my-modal-prompt.vue'
+  import MyModalConfirm from '../../components/my-modal-prompt-confirm.vue'
   import FlightRefundList from '../../components/flight-order-refund-list.vue'
   import FlightChangeList from '../../components/flight-order-change-list.vue'
   import VasOrderList from '../../components/vas-order-list.vue'
@@ -286,7 +298,7 @@
 
   export default {
     components: {
-      MyModalPrompt,
+      MyModalConfirm,
       FlightRefundList,
       FlightChangeList,
       VasOrderList,
@@ -585,6 +597,27 @@
         }
 
         )
+      },
+      submitOrder: function () {
+        // this.btnDisabled = true
+        this.showLoading('处理中')
+        submitFlightOrder(this.id, v => this.commonShowMessage(v), () => {
+          // this.btnDisabled = false
+          this.hideLoading()
+        })
+      },
+      approveOrder: function () {
+        this.$refs.confirmModal.modal('机票订单审批')
+          .then(v => {
+              this.showLoading('处理中')
+              const params = {
+                'denyCode': v.denyCode,
+                'denyReason': v.denyReason
+              }
+              approveFlightOrder(this.id, params, v => this.commonShowMessage(v), () => this.hideLoading())
+          })
+          .catch(ex => {})
+
       }
     }
   }

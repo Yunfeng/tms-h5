@@ -35,6 +35,26 @@ export function payForFlightOrder(id, cbDone) {
   })
 }
 
+export function submitFlightOrder(id, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/flight/order/' + id + '/ticketing'
+  callService(url, {
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+} 
+
+export function approveFlightOrder(id, params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/flight/order/' + id + '/approve'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+} 
+
+
+
+
 
 
 
@@ -133,22 +153,8 @@ export function setFlightOrderPaid(id, params, cbDone) {
   })
 } 
 
-export function submitFlightOrder(id, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/submit'
-  callService(url, {
-    cbDone: cbDone,
-    cbAlways: cbAlways
-  })
-} 
 
 
-export function approveFlightOrder(id, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/approved'
-  callService(url, {
-    cbDone: cbDone,
-    cbAlways: cbAlways
-  })
-} 
 
 export function toticketFlightOrder(id, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/toticket'
