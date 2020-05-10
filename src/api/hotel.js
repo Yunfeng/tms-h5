@@ -2,7 +2,9 @@ import { APP_FLIGHT_PATH, callService } from '../common/common.js'
 
 export function showHotelOrderStatus (status) {
   switch (status) {
-    case 0: return '待处理'
+    case 0: return '未提交'
+    case 10: return '已提交，待批准'
+    case 20: return '已批准，待处理'
     case 1: return '处理中'
     case 2: return '已完成'
     case 4: return '已取消'
@@ -136,6 +138,32 @@ export function cancelHotelOrder(id, params, cbDone) {
     cbDone: cbDone
   })
 }
+
+// 提交订单
+export function submitHotelOrder(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/hotel/order/' + id + '/status/submitted'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
+// 审批订单
+export function approveHotelOrder(id, params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/hotel/order/' + id + '/status/approved'
+  callService(url, {
+    data: params,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
+export function payForHotelOrder(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/hotel/order/' + id + '/pay'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
 
 // 处理订单
 export function processHotelOrder(id, cbDone) {

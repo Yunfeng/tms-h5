@@ -98,16 +98,25 @@
       <div class="card">
         <div class="card-body small"> 
           <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 0">
-              <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
-            </div>
+            <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
+            <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="submitOrder()">提交订单</button>
+          </div>
+          <div class="d-flex flex-row  justify-content-around" v-else-if="detail.status === 10">
+            <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
+            <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="approveOrder()">审批订单</button>
+          </div>
+          <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="onlinePay()">支付订单</button>
         </div>
       </div>
       
     </template>
 
+    <div id="paymentForm" ></div>
+
     <my-modal-prompt ref="modalPrompt" :nullable="modalNullable">
       <span slot="title">{{modalTitle}}</span>
     </my-modal-prompt>
+    <my-modal-confirm ref="confirmModal"></my-modal-confirm>
 
   </div>
   
@@ -115,14 +124,16 @@
 
 <script>
   import MyModalPrompt from '../../components/my-modal-prompt.vue'
+  import MyModalConfirm from '../../components/my-modal-prompt-confirm.vue'
   import { APP_FLIGHT_PATH, SUPPLIER_HOTEL } from '../../common/const.js'
   import { showPayType, showPsgType } from '../../common/common.js'
 
-  import { searchHotelOrder, showHotelOrderStatus, cancelHotelOrder } from '../../api/hotel.js'
+  import { searchHotelOrder, showHotelOrderStatus, cancelHotelOrder, submitHotelOrder, approveHotelOrder, payForHotelOrder } from '../../api/hotel.js'
 
   export default {
     components: {
-      MyModalPrompt
+      MyModalPrompt,
+      MyModalConfirm
     },
     data () {
       return {
@@ -191,6 +202,36 @@
           cancelHotelOrder(this.id, { remark }, v => this.commonShowMessage(v))
 
         }).catch((r) => {})
+      },
+      submitOrder: function () {
+        submitHotelOrder(this.id, v => this.commonShowMessage(v))
+      },
+      approveOrder: function () {
+        this.$refs.confirmModal.modal('酒店订单审批')
+          .then(v => {
+              this.showLoading('处理中')
+              const params = {
+                'denyCode': v.denyCode,
+                'denyReason': v.denyReason
+              }
+              approveHotelOrder(this.id, params, v => this.commonShowMessage(v), () => this.hideLoading())
+          })
+          .catch(ex => {})
+      },
+      submitOrder: function () {
+        submitHotelOrder(this.id, v => this.commonShowMessage(v))
+      },
+      onlinePay: function () {
+        payForHotelOrder(this.detail.id, v => {
+          if (v.status === 'OK') {
+            this.showErrMsg('如果没有打开在线支付新窗口，请检查您的浏览器是否阻止本网页打开新窗口。', 'info')
+            console.log(v.url)
+            $('#paymentForm').empty().html(v.url)
+            document.forms['alipaysubmit'].submit()            
+          } else {
+            this.showErrMsg(v.errmsg, 'danger')
+          }
+        })
       },
       commonShowMessage: function (jsonResult) {
         if (jsonResult.status !== 'OK') {
