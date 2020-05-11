@@ -82,6 +82,20 @@
         </tbody>
       </table>  
       <div class="card-body py-2">
+          <div class="form-group row">
+            <label class="col-2 control-label text-right">付款方式</label>
+            <div class="col-10">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="1" v-model.number="payType">
+                <label class="form-check-label">现付（现金等）</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="8" v-model.number="payType">
+                <label class="form-check-label">记账</label>
+              </div>
+            </div>
+
+          </div>
   
           <div class="form-group row  mb-1">
               <label class="control-label col-3 text-right">
