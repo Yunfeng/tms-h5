@@ -185,63 +185,65 @@
               </tbody>
           </table>
           <div class="card-body bg-info text-white py-0">价格信息</div>          
-            <div class="card-body py-0">
-              <div class="d-flex flex-row  justify-content-between" v-if="detail.adultCount > 0">
-                <div class="p-2 text-nowrap">成人</div>
-                <div class="p-2 text-nowrap">票面价: {{this.adultPrice.price}}</div>
-                <div class="p-2 text-nowrap">销售价: {{this.adultPrice.parvalue}}</div>
-                <div class="p-2 text-nowrap">税: {{this.adultPrice.tax}}</div>
-                <div class="p-2 text-nowrap">保险费: {{this.adultPrice.insurance}}</div>
-                <div class="p-2 text-nowrap">服务费: {{this.adultPrice.serviceCharge}}</div>
-                <div class="p-2 text-nowrap">客户让利: {{this.adultPrice.discount}}</div>
-                <div class="p-2 text-nowrap">人数: {{this.adultPrice.ticketCount}}</div>
-                <div class="p-2 text-nowrap">应收: {{this.adultPrice.amount}}</div>
-              </div>
-              <div class="d-flex flex-row  justify-content-between" v-if="detail.childCount > 0">
-                <div class="p-2 text-nowrap">儿童</div>
-                <div class="p-2 text-nowrap">票面价: {{detail.chdPrice}}</div>
-                <div class="p-2 text-nowrap">销售价: {{detail.chdParvalue}}</div>
-                <div class="p-2 text-nowrap">税: {{detail.chdTax}}</div>
-                <div class="p-2 text-nowrap">保险费: {{detail.chdInsurance}}</div>
-                <div class="p-2 text-nowrap">服务费: {{detail.chdServiceCharge}}</div>
-                <div class="p-2 text-nowrap">客户让利: {{detail.chdDiscount}}</div>
-                <div class="p-2 text-nowrap">人数: {{detail.childCount}}</div>
-                <div class="p-2 text-nowrap">应收: {{detail.chdAmount}}</div>
-              </div>
-              <div class="d-flex flex-row  justify-content-between" v-if="detail.infantCount > 0">
-                <div class="p-2 text-nowrap">婴儿</div>
-                <div class="p-2 text-nowrap">票面价: {{detail.infPrice}}</div>
-                <div class="p-2 text-nowrap">销售价: {{detail.infParvalue}}</div>
-                <div class="p-2 text-nowrap">税: {{detail.infTax}}</div>
-                <div class="p-2 text-nowrap">保险费: {{detail.infInsurance}}</div>
-                <div class="p-2 text-nowrap">服务费: {{detail.infServiceCharge}}</div>
-                <div class="p-2 text-nowrap">客户让利: {{detail.infDiscount}}</div>
-                <div class="p-2 text-nowrap">人数: {{detail.childCount}}</div>
-                <div class="p-2 text-nowrap">应收: {{detail.infAmount}}</div>
-              </div>
-              <div class="d-flex flex-row  justify-content-between">
-                <div class="p-2 text-nowrap text-success">小计: {{detail.subTotal}}</div>
-              </div>
+          <div class="card-body py-0">
+            <div class="d-flex flex-row  justify-content-between" v-if="detail.adultCount > 0">
+              <div class="p-2 text-nowrap">成人</div>
+              <div class="p-2 text-nowrap">票面价: {{this.adultPrice.price}}</div>
+              <div class="p-2 text-nowrap">销售价: {{this.adultPrice.parvalue}}</div>
+              <div class="p-2 text-nowrap">税: {{this.adultPrice.tax}}</div>
+              <div class="p-2 text-nowrap">保险费: {{this.adultPrice.insurance}}</div>
+              <div class="p-2 text-nowrap">服务费: {{this.adultPrice.serviceCharge}}</div>
+              <div class="p-2 text-nowrap">客户让利: {{this.adultPrice.discount}}</div>
+              <div class="p-2 text-nowrap">人数: {{this.adultPrice.ticketCount}}</div>
+              <div class="p-2 text-nowrap">应收: {{this.adultPrice.amount}}</div>
             </div>
-          
+            <div class="d-flex flex-row  justify-content-between" v-if="detail.childCount > 0">
+              <div class="p-2 text-nowrap">儿童</div>
+              <div class="p-2 text-nowrap">票面价: {{detail.chdPrice}}</div>
+              <div class="p-2 text-nowrap">销售价: {{detail.chdParvalue}}</div>
+              <div class="p-2 text-nowrap">税: {{detail.chdTax}}</div>
+              <div class="p-2 text-nowrap">保险费: {{detail.chdInsurance}}</div>
+              <div class="p-2 text-nowrap">服务费: {{detail.chdServiceCharge}}</div>
+              <div class="p-2 text-nowrap">客户让利: {{detail.chdDiscount}}</div>
+              <div class="p-2 text-nowrap">人数: {{detail.childCount}}</div>
+              <div class="p-2 text-nowrap">应收: {{detail.chdAmount}}</div>
+            </div>
+            <div class="d-flex flex-row  justify-content-between" v-if="detail.infantCount > 0">
+              <div class="p-2 text-nowrap">婴儿</div>
+              <div class="p-2 text-nowrap">票面价: {{detail.infPrice}}</div>
+              <div class="p-2 text-nowrap">销售价: {{detail.infParvalue}}</div>
+              <div class="p-2 text-nowrap">税: {{detail.infTax}}</div>
+              <div class="p-2 text-nowrap">保险费: {{detail.infInsurance}}</div>
+              <div class="p-2 text-nowrap">服务费: {{detail.infServiceCharge}}</div>
+              <div class="p-2 text-nowrap">客户让利: {{detail.infDiscount}}</div>
+              <div class="p-2 text-nowrap">人数: {{detail.childCount}}</div>
+              <div class="p-2 text-nowrap">应收: {{detail.infAmount}}</div>
+            </div>
+            <div class="d-flex flex-row  justify-content-between">
+              <div class="p-2 text-nowrap text-success">小计: {{detail.subTotal}}</div>
+            </div>
+          </div>
+          <div class="card-body">
 
-          <ul class="list-unstyled">
-            <li>联系人：{{detail.linkman}}</li>
-            <li>联系电话：{{detail.linkPhone}}</li>
-            <li>备注: {{detail.remark}}</li>
-            <li>验价: {{detail.priceCheckedStatus}} {{detail.priceCheckedTime}}</li>
-            <li>指定审批人: {{detail.specifiedApprover}}</li>
-            <li>审批: {{detail.approvalStatus}} {{detail.approvalDenyReason}}</li>
-            <li>合规: {{detail.violationStatus}} {{detail.violationReason}}</li>
-          </ul>
-          <ul class="list-unstyled" v-if="detail.policyCode !== null">
-            <li>机票优惠代码：{{detail.policyCode}}</li>
-          </ul>
-          <ul class="list-unstyled">
-            <li>订单总金额: <strong>{{detail.totalAmount}}</strong></li>
-          </ul>
+            <ul class="list-unstyled">
+              <li>联系人：{{detail.linkman}}</li>
+              <li>联系电话：{{detail.linkPhone}}</li>
+              <li>备注: {{detail.remark}}</li>
+            </ul>
+            <ul class="list-inline row">
+              <li class="list-inline-item mr-auto">价格校验: {{detail.priceCheckedStatus}}, {{detail.priceCheckedTime}}</li>
+              <li class="list-inline-item mr-auto">指定审批人: {{detail.specifiedApprover}}</li>
+              <li class="list-inline-item mr-auto">审批结果: {{detail.approvalStatus}}, {{detail.approvalDenyReason}}</li>
+              <li class="list-inline-item mr-auto">合规性校验: {{detail.violationStatus}}, {{detail.violationReason}}</li>
+            </ul>
+            <ul class="list-unstyled" v-if="detail.policyCode !== null">
+              <li>机票优惠代码：{{detail.policyCode}}</li>
+            </ul>
+            <ul class="list-unstyled">
+              <li>订单总金额: <strong>{{detail.totalAmount}}</strong></li>
+            </ul>
+          </div>
 
-          <div class="card">
             <div class="card-body"> 
               <button class="btn btn-sm btn-success ml-2" @click.stop="onlinePay()" v-if="detail.orderStatus === 0 && detail.payType === 1">支付</button>
 
@@ -254,7 +256,6 @@
 
               <button class="btn btn-sm btn-primary ml-2 float-right" @click.stop="addExtraService2()" v-if="detail.orderStatus !== 4">增加机场服务</button>
             </div>
-          </div>
         </div>
       </div>
       <div class="tab-pane fade" id="refundTab" role="tabpanel" aria-labelledby="refund-tab" v-if="detail !== null && detail.refunds.length > 0">

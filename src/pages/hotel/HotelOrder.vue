@@ -92,6 +92,17 @@
         </table>
         <div class="card-body py-0">
             备注: {{detail.remark}}
+            <ul class="list-inline row">
+              <li class="list-inline-item mr-auto">最晚到店时间: {{detail.lastArriveTime}}</li>
+              <li class="list-inline-item mr-auto">联系人: {{detail.linkman}}</li>
+              <li class="list-inline-item mr-auto">联系电话: {{detail.contactPhone}}</li>
+            </ul>
+            <ul class="list-inline row">
+              <li class="list-inline-item mr-auto">价格校验: {{detail.priceCheckedStatus}}, {{detail.priceCheckedTime}}</li>
+              <li class="list-inline-item mr-auto">指定审批人: {{detail.specifiedApprover}}</li>
+              <li class="list-inline-item mr-auto">审批结果: {{detail.approvalStatus}}, {{detail.approvalDenyReason}}</li>
+              <li class="list-inline-item mr-auto">合规性校验: {{detail.violationStatus}}, {{detail.violationReason}}</li>
+            </ul>
         </div>
       </div>
 
