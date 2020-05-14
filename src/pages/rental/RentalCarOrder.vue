@@ -79,6 +79,7 @@
             <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 1">
               <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
             </div>
+            <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="onlinePay()">支付订单</button>
         </div>
       </div>
       <div class="card">
@@ -100,11 +101,12 @@
       </div>
     </template>
 
+    <div id="paymentForm" ></div>
   </div>
 </template>
 
 <script>
-  import { searchRentalCarOrder, searchRentalOrderHistory, cancelRentalCarOrder, showOrderStatusDesc, showUseTypeDesc } from '../../api/rentalcar.js'
+  import { searchRentalCarOrder, searchRentalOrderHistory, cancelRentalCarOrder, showOrderStatusDesc, showUseTypeDesc, payForRentalCarOrder } from '../../api/rentalcar.js'
 
   export default {
     data () {
@@ -151,7 +153,19 @@
       },
       cancelOrder: function () {
         cancelRentalCarOrder(this.id, v => this.commonShowMessage(v))
-      }
+      },
+      onlinePay: function () {
+        payForRentalCarOrder(this.detail.id, v => {
+          if (v.status === 'OK') {
+            this.showErrMsg('如果没有打开在线支付新窗口，请检查您的浏览器是否阻止本网页打开新窗口。', 'info')
+            console.log(v.url)
+            $('#paymentForm').empty().html(v.url)
+            document.forms['alipaysubmit'].submit()            
+          } else {
+            this.showErrMsg(v.errmsg, 'danger')
+          }
+        })
+      },
     }
   }
   // 530

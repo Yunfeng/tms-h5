@@ -43,6 +43,13 @@ export function searchRentalCarOrders(params, cbDone, cbAlways) {
   })
 }
 
+export function payForRentalCarOrder(id, cbDone) {
+  const url = WEBAPP_NAME + '/rental/car/order/' + id + '/pay'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
 export function searchRentalCarOrder(id, cbDone, cbAlways) {
   const url = WEBAPP_NAME + '/rental/car/orders/' + id
   callService(url, {
@@ -84,3 +91,4 @@ export function showUseTypeDesc (status) {
   }
   return desc
 }
+

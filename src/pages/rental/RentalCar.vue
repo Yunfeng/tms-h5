@@ -148,6 +148,14 @@
 
         <div class="form-group row mb-1">
           <label class="col-sm-2 col-form-label">
+            联系人    
+          </label>
+          <div class="col-sm-10">
+            <input type="input" class="form-control" v-model="linkMan">
+          </div>
+        </div>
+        <div class="form-group row mb-1">
+          <label class="col-sm-2 col-form-label">
             联系电话    
           </label>
           <div class="col-sm-10">
@@ -156,11 +164,25 @@
         </div>
         <div class="form-group row mb-1">
           <label class="col-sm-2 col-form-label">
-            联系人    
+            电子邮件    
           </label>
           <div class="col-sm-10">
-            <input type="input" class="form-control" v-model="linkMan">
+            <input type="input" class="form-control" v-model="email">
           </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 control-label text-right">付款方式</label>
+            <div class="col-10">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="1" v-model.number="payType">
+                <label class="form-check-label">现付（现金等）</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="8" v-model.number="payType">
+                <label class="form-check-label">记账</label>
+              </div>
+            </div>
+
         </div>
         <div class="form-group row mb-1">
           <label class="col-sm-2 col-form-label">
@@ -204,6 +226,8 @@ export default {
       vehicleTypeName: '',
       linkPhone: '',
       linkMan: '',
+      email: '',
+      payType: 1,
       remark: '',
 
       orderInfo: null,
@@ -239,6 +263,8 @@ export default {
       this.vehicleTypeId = 0
       this.linkPhone = ''
       this.linkMan = ''
+      this.email = ''
+      this.payType = 1
       this.remark = ''
     },
     queryPrice: function () {
@@ -299,6 +325,8 @@ export default {
         'discount': discount,
         'linkPhone': this.linkPhone,
         'linkman': this.linkMan,
+        'email': this.email,
+        'payType': this.payType,
         'remark': this.remark
       }
       submitRentalCarOrder(params, v => {
@@ -343,6 +371,7 @@ export default {
       this.vehicleTypeId = 0
       this.linkPhone = ''
       this.linkMan = ''
+      this.payType = 1
       this.remark = ''
     },
     showUseTypeDesc: function (status) {
