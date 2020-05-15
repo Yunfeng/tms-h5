@@ -19,6 +19,7 @@
           <a href="javascript:void(0)" @click.stop="quickSearch(0)" class="small ml-1">待处理</a>
           <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
 
+            <router-link class="btn btn-success ml-auto" to="/vaas/order">新建</router-link>
         </form>
 
       </div>

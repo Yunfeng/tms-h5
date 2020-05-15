@@ -85,6 +85,7 @@
                 <tr>
                     <th>姓名</th>
                     <th>证件号</th>
+                    <th>手机</th>
                     <th>备注</th>
                 </tr>
             </thead>
@@ -94,6 +95,7 @@
                         {{info.name}}
                     </td>                             
                     <td>{{info.idNo}}</td>
+                    <td>{{info.mobile}}</td>
                     <td>{{info.remark}}</td>
                 </tr>                               
             </tbody>
@@ -142,16 +144,21 @@
               {{detail.remark}}
           </div>
       </div>
+      <div class="card">
+        <div class="card-body py-1">
+            <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="onlinePay()">支付订单</button>
+        </div>
+      </div>
       
     </template>
-
+    <div id="paymentForm" ></div>
   </div>
 </template>
 
 <script>
   import $ from 'jquery'
   import { showPayType } from '../../common/common.js'
-  import { searchVaasOrderDetail, showVasOrderStatus } from '../../api/vas.js'
+  import { searchVaasOrderDetail, showVasOrderStatus, payVaasOrder } from '../../api/vas.js'
   
   export default {
     data () {
@@ -203,7 +210,19 @@
           }
           this.search()
         }
-      }
+      },
+      onlinePay: function () {
+        payVaasOrder(this.detail.id, v => {
+          if (v.status === 'OK') {
+            this.showErrMsg('如果没有打开在线支付新窗口，请检查您的浏览器是否阻止本网页打开新窗口。', 'info')
+            console.log(v.url)
+            $('#paymentForm').empty().html(v.url)
+            document.forms['alipaysubmit'].submit()            
+          } else {
+            this.showErrMsg(v.errmsg, 'danger')
+          }
+        })
+      },
     }
   }
   // 530

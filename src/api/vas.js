@@ -40,6 +40,13 @@ export function searchVaasOrderDetail(id, cbDone) {
   })
 }
 
+export function payVaasOrder(id, cbDone) {
+  const url = APP_FLIGHT_PATH + '/vaas/order/' + id + '/pay'
+  callService(url, {
+    cbDone: cbDone
+  })
+}
+
 
 
 export function showVasOrderStatus (status) {
