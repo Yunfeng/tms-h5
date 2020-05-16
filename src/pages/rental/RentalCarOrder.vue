@@ -76,9 +76,14 @@
           </dl>
         </div>
         <div class="card-body py-1">
+            <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 10">
+              <button class="btn btn-danger btn-sm ml-auto mr-auto" @click.stop="cancelOrder()">取消订单</button>
+              <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="approveOrder()">审批订单</button>
+            </div>
             <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 1">
               <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
             </div>
+            
             <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="onlinePay()">支付订单</button>
         </div>
       </div>
@@ -102,13 +107,19 @@
     </template>
 
     <div id="paymentForm" ></div>
+    <my-modal-confirm ref="confirmModal"></my-modal-confirm>
+
   </div>
 </template>
 
 <script>
-  import { searchRentalCarOrder, searchRentalOrderHistory, cancelRentalCarOrder, showOrderStatusDesc, showUseTypeDesc, payForRentalCarOrder } from '../../api/rentalcar.js'
+  import { searchRentalCarOrder, searchRentalOrderHistory, cancelRentalCarOrder, showOrderStatusDesc, showUseTypeDesc, payForRentalCarOrder, approveRentalCarOrder } from '../../api/rentalcar.js'
+  import MyModalConfirm from '../../components/my-modal-prompt-confirm.vue'
 
   export default {
+    components: {
+      MyModalConfirm
+    },
     data () {
       return {
         detail: null,
@@ -153,6 +164,19 @@
       },
       cancelOrder: function () {
         cancelRentalCarOrder(this.id, v => this.commonShowMessage(v))
+      },
+      approveOrder: function () {
+        this.$refs.confirmModal.modal('用车订单审批')
+          .then(v => {
+              // this.showLoading('处理中')
+              const params = {
+                'denyCode': v.denyCode,
+                'denyReason': v.denyReason
+              }
+              console.log(params)
+              approveRentalCarOrder(this.id, params, v => this.commonShowMessage(v), () => this.hideLoading())
+          })
+          .catch(ex => {})
       },
       onlinePay: function () {
         payForRentalCarOrder(this.detail.id, v => {

@@ -50,6 +50,16 @@ export function payForRentalCarOrder(id, cbDone) {
   })
 }
 
+
+export function approveRentalCarOrder(id, params, cbDone) {
+  const url = WEBAPP_NAME + '/rental/car/order/' + id + '/approve'
+  callService(url, {
+    data: params,
+    cbDone: cbDone
+  })
+}
+
+
 export function searchRentalCarOrder(id, cbDone, cbAlways) {
   const url = WEBAPP_NAME + '/rental/car/orders/' + id
   callService(url, {
@@ -71,6 +81,7 @@ export function showOrderStatusDesc (status) {
   var desc = ''
   switch (status) {
     case 0: desc = '未提交'; break
+    case 10: desc = '已提交，待审批'; break;
     case 1: desc = '待处理'; break
     case 2: desc = '处理中'; break
     case 4: desc = '已取消'; break
