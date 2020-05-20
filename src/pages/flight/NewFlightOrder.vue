@@ -62,8 +62,11 @@
           <tr class="small">
               <th></th>
               <th>姓名</th>
-              <th>证件号</th>
+              <th>姓</th>
+              <th>名</th>
+              <th>性别</th>
               <th>证件类型</th>
+              <th>证件号</th>
               <th>常旅客号</th>
               <th>手机</th>
               <th></th>
@@ -78,8 +81,18 @@
                 <td>  
                   <input type="text" class="form-control form-control-sm" placeholder="乘机人姓名" v-model.trim="info.psgName"/>
                 </td>
+                <td>  
+                  <input type="text" class="form-control form-control-sm" placeholder="姓" v-model.trim="info.lastName"/>
+                </td>
+                <td>  
+                  <input type="text" class="form-control form-control-sm" placeholder="名" v-model.trim="info.firstName"/>
+                </td>
                 <td>
-                    <input type="text" class="form-control form-control-sm" placeholder="证件号" v-model.trim="info.idNo" />
+                    <select class="form-control form-control-sm" v-model.number="info.gender" placeholder="">
+                      <option value="0"></option>
+                      <option value="1">男</option>
+                      <option value="2">女</option>
+                    </select>
                 </td>
                 <td>
                     <select class="form-control form-control-sm" v-model.number="info.idType" placeholder="证件类型">
@@ -90,8 +103,12 @@
                       <option value="99">其它</option>
                     </select>
                 </td>
+                <td>
+                    <input type="text" class="form-control form-control-sm" placeholder="证件号" v-model.trim="info.idNo" />
+                </td>
                 <td><input type="text" class="form-control form-control-sm" placeholder="常旅客号" v-model.trim="info.ffpNo" /></td>
                 <td><input type="text" class="form-control form-control-sm" placeholder="手机号" v-model.trim="info.mobile" /></td>
+                <td><input type="text" class="form-control form-control-sm" placeholder="Email" v-model.trim="info.email" /></td>
                 <td>
                     <select class="form-control form-control-sm" v-model.number="info.psgType" placeholder="">
                       <option value="0">成人</option>
@@ -338,7 +355,7 @@
             this.etdzDate = this.pnr.tktlDate
             this.etdzTime = this.pnr.tktlTime
             this.adultPrice.price = this.pnr.price
-            this.adultPrice.parvalue = this.pnr.parvalue
+            this.adultPrice.parValue = this.pnr.parValue
             this.adultPrice.tax = this.pnr.tax
             this.adultPrice.commRate = this.pnr.commRate
             this.adultCount = this.pnr.adultCount
@@ -347,7 +364,7 @@
             if (this.pnr.childCount > 0) {
               this.childCount = this.pnr.childCount
               this.childPrice.price = this.pnr.chdPrice
-              this.childPrice.parvalue = this.pnr.chdParvalue
+              this.childPrice.parValue = this.pnr.chdParValue
               this.childPrice.tax = this.pnr.chdTax
               this.childPrice.commRate = this.pnr.chdCommRate
             }
@@ -355,7 +372,7 @@
             if (this.pnr.infantCount > 0) {
               this.infantCount = this.pnr.infantCount
               this.infantPrice.price = this.pnr.infPrice
-              this.infantPrice.parvalue = this.pnr.infParvalue
+              this.infantPrice.parValue = this.pnr.infParValue
               this.infantPrice.tax = this.pnr.infTax
               this.infantPrice.commRate = this.pnr.infCommRate
             }
@@ -378,10 +395,17 @@
           flights.push(fltInfo.flight)
         }
 
+        this.adultPrice.priceType = 0
+        this.childPrice.priceType = 1
+        this.infantPrice.priceType = 2
+
+        let prices = []
+        prices.push(this.adultPrice)
+        prices.push(this.childPrice)
+        prices.push(this.infantPrice)
+
         const params = {
-          'adultPrice': this.adultPrice,
-          'childPrice': this.childPrice,
-          'infantPrice': this.infantPrice,
+          'prices': prices,
 
           'totalAmount': this.totalAmount,
 
@@ -468,7 +492,17 @@
         })
       },
       addPnrPsg: function () {
-        this.pnr.passengers.push({ 'selected': true, 'psgName': '', 'idNo': '', 'idType': '', mobile: '' })
+        this.pnr.passengers.push({ 
+          'selected': true, 
+          'psgName': '',
+          'firstName': '',
+          'lastName': '',
+          'gender': 0, 
+          'idNo': '', 
+          'idType': '', 
+          'mobile': '',
+          'email': '' 
+        })
       },
       reset: function () {
         // body...

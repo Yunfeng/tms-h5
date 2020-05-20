@@ -97,9 +97,13 @@
               <thead>
                   <tr>
                       <th class="text-right">姓名</th>
+                      <th class="text-right">姓</th>
+                      <th class="text-right">名</th>
+                      <th class="">性别</th>
                       <th>证件</th>
                       <th>常旅客号</th>
                       <th>手机号</th>
+                      <th>Email</th>
                       <th>乘客类型</th>
                       <th>票号</th>
                       <th></th>
@@ -110,12 +114,17 @@
                       <td class="text-right">
                           {{info.name}}
                           <span class="text-danger" v-if="info.vipLevel > 0">VIP-{{info.vipLevel}}</span>
-                      </td>                             
+                      </td>
+                      <td>{{info.lastName}}</td>                             
+                      <td>{{info.firstName}}</td>                             
+                      <td>{{showGender(info.gender)}}</td>                           
                       <td>
                         <span class="text-info">{{showIdTypeDesc(info.idType)}}</span> {{info.idNo}}
                       </td>
                       <td>{{info.ffpNo}}</td>
                       <td>{{info.mobile}}</td>
+                      <td>{{info.email}}</td>
+
                       <td>{{showPsgType(info.psgType)}}</td>
                       <td>
                         <template v-if="detail.orderStatus === 16 || detail.orderStatus === 32">
@@ -385,6 +394,13 @@
       },
       showPsgType: function (psgType) {
         return showPsgType(psgType)
+      },
+      showGender: function (val) {
+        switch (val) {
+          case 1: return '男'
+          case 2: return '女'
+          default: return ''
+        }
       },
       showIdTypeDesc: function (idType) {
         return showIdTypeDesc(idType)

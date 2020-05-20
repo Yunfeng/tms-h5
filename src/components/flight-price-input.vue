@@ -13,7 +13,7 @@
           </td>
           <td>
             销售价
-            <input type="text" class="form-control" v-model.lazy.number="parvalue0">
+            <input type="text" class="form-control" v-model.lazy.number="parValue0">
             <span class="text-muted small">航司的实际卖价</span>
           </td>
           <td>
@@ -65,7 +65,7 @@
     },
     data: function () {
       return {
-        parvalue0: this.parValue,
+        parValue0: this.parValue,
         price0: this.price,
         tax0: this.tax,
         insurance0: this.insurance,
@@ -86,8 +86,8 @@
       price0: function (newValue) {
         this.$emit('update:price', newValue)
       },
-      parvalue0: function (newValue) {
-        this.$emit('update:parvalue', newValue)
+      parValue0: function (newValue) {
+        this.$emit('update:parValue', newValue)
         this.calc()
       },
       tax0: function (newValue) {
@@ -141,26 +141,26 @@
     methods: {
       calc: function () {
         if (this.commRate0 > 0) {
-          this.commission0 = this.parvalue0 * this.commRate0 / 100
+          this.commission0 = this.parValue0 * this.commRate0 / 100
         }
         if (this.discountRate0 > 0) {
-          this.discount0 = this.parvalue0 * this.discountRate0 / 100
+          this.discount0 = this.parValue0 * this.discountRate0 / 100
         }
 
-        this.cost0 = this.parvalue0 + this.tax0 + this.insurance0 - this.commission0
+        this.cost0 = this.parValue0 + this.tax0 + this.insurance0 - this.commission0
         this.totalCost0 = this.cost0 * this.ticketCount
 
-        this.amount0 = this.parvalue0 + this.tax0 + this.insurance0 + this.serviceCharge0 - this.discount0
+        this.amount0 = this.parValue0 + this.tax0 + this.insurance0 + this.serviceCharge0 - this.discount0
         this.totalAmount0 = this.amount0 * this.ticketCount
         this.caclProfit()
 
         this.emitAll()
       },
       caclDisCount: function () {
-        this.cost0 = this.parvalue0 + this.tax0 + this.insurance0 - this.commission0
+        this.cost0 = this.parValue0 + this.tax0 + this.insurance0 - this.commission0
         this.totalCost0 = this.cost0 * this.ticketCount
 
-        this.discount0 = this.parvalue0 + this.tax0 + this.insurance0 + this.serviceCharge0 - this.amount0
+        this.discount0 = this.parValue0 + this.tax0 + this.insurance0 + this.serviceCharge0 - this.amount0
 
         this.totalAmount0 = this.amount0 * this.ticketCount
         this.caclProfit()
@@ -169,7 +169,7 @@
       },
       caclDisCountBycost: function () {
         // this.commRate0 = 0
-        this.commission0 = this.parvalue0 + this.tax0 + this.insurance0 - this.cost0
+        this.commission0 = this.parValue0 + this.tax0 + this.insurance0 - this.cost0
         this.caclProfit()
 
         this.emitAll()

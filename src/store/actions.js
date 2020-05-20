@@ -106,6 +106,9 @@ export const actions = {
       p = {
         'selected': true,
         'name': '',
+        'firstName': '',
+        'lastName': '',
+        'gender': 0,
         'idNo': '',
         'idType': 1,
         'psgType': 0,

@@ -72,10 +72,14 @@
           <tr class="small">
               <th>序号</th>
               <th>姓名</th>
-              <th>证件号</th>
+              <th>姓</th>
+              <th>名</th>
+              <th>性别</th>
               <th>证件类型</th>
+              <th>证件号</th>
               <th>常旅客号</th>
               <th>手机</th>
+              <th>电子邮件</th>
               <th></th>
           </tr>
         </thead>
@@ -88,15 +92,29 @@
                 <td>  
                   <input type="text" class="form-control" placeholder="乘机人姓名" v-model.trim="psg.name"/>
                 </td>
-                <td>
-                    <input type="text" class="form-control" placeholder="证件号" v-model.trim="psg.idNo" />
+                <td>  
+                  <input type="text" class="form-control" placeholder="乘机人姓" v-model.trim="psg.lastName"/>
                 </td>
+                <td>  
+                  <input type="text" class="form-control" placeholder="乘机人名" v-model.trim="psg.firstName"/>
+                </td>
+                <td>
+                    <select class="form-control" v-model.number="psg.gender">
+                      <option value="0">保密</option>
+                      <option value="1">男</option>
+                      <option value="2">女</option>
+                    </select>
+                </td>
+               
                 <td>
                     <select class="form-control" v-model.number="psg.idType">
                       <option value="1">身份证</option>
                       <option value="2">护照</option>
                       <option value="99">其它</option>
                     </select>
+                </td>
+                 <td>
+                    <input type="text" class="form-control" placeholder="证件号" v-model.trim="psg.idNo" />
                 </td>
                 <td><input type="text" class="form-control" placeholder="常旅客号" v-model.trim="psg.ffpNo" /></td>
                 <td><input type="text" class="form-control" placeholder="手机号" v-model.trim="psg.mobile" /></td>
