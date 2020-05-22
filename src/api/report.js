@@ -1,6 +1,15 @@
 import { APP_FLIGHT_PATH, callService } from '../common/common.js'
 
 
+export function searchMonthlyReport(params, cbDone) {
+  const url = APP_FLIGHT_PATH + '/report/monthly'
+  callService(url, {
+    type: 'get',
+    data: params,
+    cbDone: cbDone
+  })
+}
+
 export function searchMonthlyFlightReport(params, cbDone) {
   const url = APP_FLIGHT_PATH + '/report/monthly/flight'
   callService(url, {

@@ -55,13 +55,13 @@
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-flight">
         <div class="card-body py-0 bg-info text-warning text-center">
-          机票出票
+          机票
         </div>
         <table class="table table-sm table-striped small">
           <thead>
             <tr>
               <th>序号</th>
-              <th>出票日期</th>
+              <th>账单日期</th>
               <th>票号</th>
               <th>乘机人</th>
               <th colspan="5" class="text-center bg-info">行程</th>
@@ -82,22 +82,22 @@
               <td class="text-center">{{index + 1}}</td>
               <td >{{info.etdzDate}}</td>
               <td >{{info.balanceCode}}-{{info.ticketNo}}</td>
-              <td class="">{{info.passengerName}}</td>              
+              <td class="">{{info.name}}</td>              
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <small class="text-success">{{flt.departureAirport}}</small>
+                    <small class="text-success">{{flt.dportName}}</small>
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <small class="text-success">{{flt.arrivalAirport}}</small>
+                    <small class="text-success">{{flt.aportName}}</small>
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    {{flt.departureDate}}
+                    {{flt.ddate}}
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
@@ -113,12 +113,12 @@
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
-              <td class="">{{info.op1}}</td>
-              <td class="text-right">{{info.parvalue}}</td>
+              <td class="">{{info.operator}}</td>
+              <td class="text-right">{{info.parValue}}</td>
               <td class="text-right">{{info.tax}}</td>
               <td class="text-right">{{info.serviceCharge}}</td>
               <td class="text-right">{{info.discount}}</td>
-              <td class="text-right">{{info.accountRecv}}</td>
+              <td class="text-right">{{info.total}}</td>
             </tr>
             <tr v-if="dataList.length > 0" class="bg-info text-white">
               <td colspan="14">小计：</td>
@@ -154,25 +154,25 @@
             </tr>            
             <tr v-for="(info, index) in refunds">
               <td class="text-right">{{index + 1}}</td>
-              <td >{{info.opDate}}</td>
+              <td >{{info.billDate}}</td>
               <td >{{info.balanceCode}}-{{info.ticketNo}}</td>
-              <td class="">{{info.passengerName}}</td>
+              <td class="">{{info.name}}</td>
               <td>{{info.reasonCodeDesc}}</td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <small class="text-success">{{flt.departureAirport}}</small>
+                    <small class="text-success">{{flt.dportName}}</small>
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <small class="text-success">{{flt.arrivalAirport}}</small>
+                    <small class="text-success">{{flt.aportName}}</small>
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    {{flt.departureDate}}
+                    {{flt.ddate}}
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
@@ -188,11 +188,11 @@
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
-              <td class="">{{info.op1}}</td>
+              <td class="">{{info.operator}}</td>
               <td class="text-right">{{info.ticketAmount}}</td>
               <td class="text-right">{{info.airRefundCharge}}</td>
               <td class="text-right">{{info.serviceCharge}}</td>
-              <td class="text-right">{{info.passengerRefundAmount}}</td>
+              <td class="text-right">{{info.total}}</td>
             </tr>
             <tr v-if="refunds.length > 0" class="bg-info text-white">
               <td colspan="14">小计：</td>
@@ -212,7 +212,6 @@
               <th>日期</th>
               <th>票号</th>
               <th>乘客</th>
-              <th>类型</th>
               <th colspan="5" class="text-center bg-info">行程</th>
               <th>提交人</th>
               <th class="text-right">销售价</th>
@@ -224,41 +223,44 @@
           </thead>
           <tbody>
             <tr v-if="changes.length > 10" class="bg-info text-white">
-              <td colspan="15">小计：</td>
+              <td colspan="14">小计：</td>
               <td class="text-right">{{totalChangeAmount}}</td>
             </tr>            
             <tr v-for="(info, index) in changes">
               <td class="text-right">{{index + 1}}</td>
-              <td >{{info.opDate}}</td>
+              <td >{{info.billDate}}</td>
               <td >
                 <u>{{info.balanceCode}}-{{info.ticketNo}}</u>
                 <br />
                 {{info.newTicketNo}}
               </td>
-              <td class="">{{info.passengerName}}</td>
-              
-              <td>{{info.reasonCodeDesc}}</td>
+              <td class="">{{info.name}}</td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <small class="text-success">{{flt.departureAirport}}</small>
+                    <small class="text-success">{{flt.dportName}}</small>
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <small class="text-success">{{flt.arrivalAirport}}</small>
+                    <small class="text-success">{{flt.aportName}}</small>
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    {{flt.departureDate}}
+                    {{flt.ddate}} {{flt.dtime}}
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    {{flt.flightNo}}
+                    <span v-if="flt.fltType === 0">
+                      <del>{{flt.flightNo}}</del>
+                    </span>
+                    <span v-else>
+                      {{flt.flightNo}}
+                    </span>
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
@@ -268,15 +270,15 @@
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
-              <td class="">{{info.op1}}</td>
-              <td class="text-right">{{info.parvalue}}</td>
+              <td class="">{{info.operator}}</td>
+              <td class="text-right">{{info.parValue}}</td>
               <td class="text-right">{{info.tax}}</td>
               <td class="text-right">{{info.airChangeCharge}}</td>
               <td class="text-right">{{info.serviceCharge}}</td>
               <td class="text-right">{{info.airChangeCharge + info.serviceCharge}}</td>
             </tr>
             <tr v-if="changes.length > 0" class="bg-info text-white">
-              <td colspan="15">小计：</td>
+              <td colspan="14">小计：</td>
               <td class="text-right">{{totalChangeAmount}}</td>
             </tr>
           </tbody>
@@ -306,10 +308,10 @@
             </tr>
             <tr v-for="(info, index) in vasList">
               <td class="text-right">{{index + 1}}</td>
-              <td >{{info.opDate}}</td>
+              <td >{{info.billDate}}</td>
               <td >{{info.productName}}</td>
               
-              <td class="">{{info.op1}}</td>
+              <td class="">{{info.operator}}</td>
               <td class="text-right">{{info.price}}</td>
               <td class="text-right">{{info.count}}</td>
               <td class="text-right">{{info.total}}</td>
@@ -347,14 +349,14 @@
             </tr>            
             <tr v-for="(info, index) in hotelList">
               <td class="text-right">{{index + 1}}</td>
-              <td >{{info.opDate}}</td>
+              <td >{{info.billDate}}</td>
               <td >{{info.hotelName}}</td>
               <td >{{info.roomType}}</td>
               <td >{{info.checkIn}}</td>
               <td >{{info.checkOut}}</td>
               <td >{{info.roomCount}}</td>
               
-              <td class="">{{info.op1}}</td>
+              <td class="">{{info.operator}}</td>
               <td class="text-right">{{info.total}}</td>
             </tr>
             <tr v-if="hotelList.length > 0" class="bg-info text-white">
@@ -390,14 +392,14 @@
             </tr>
             <tr v-for="(info, index) in trainList">
               <td class="text-right">{{index + 1}}</td>
-              <td >{{info.opDate}}</td>
+              <td >{{info.billDate}}</td>
               <td >{{info.trainNo}}</td>
               <td >{{info.dcity}}</td>
               <td >{{info.acity}}</td>
               <td >{{info.ddate}}</td>
               <td >{{info.seatClass}}</td>
               
-              <td class="">{{info.op1}}</td>
+              <td class="">{{info.operator}}</td>
               <td class="text-right">{{info.total}}</td>
             </tr>
             <tr v-if="trainList.length > 0" class="bg-info text-white">
@@ -412,7 +414,7 @@
 </template>
 
 <script>
-  import { searchMonthlyFlightReport, searchMonthRefundReport, searchMonthChangeReport, searchMonthVasReport, searchMonthHotelReport, searchMonthTrainReport } from '../../api/report.js'
+  import { searchMonthlyReport, searchMonthlyFlightReport, searchMonthRefundReport, searchMonthChangeReport, searchMonthVasReport, searchMonthHotelReport, searchMonthTrainReport } from '../../api/report.js'
   import { today } from '../../common/common.js'
   import MyDatePicker from '../../components/my-datepicker.vue'
 
@@ -456,7 +458,8 @@
     mounted: function () {
       this.endDate = today()
       this.beginDate = this.endDate.substr(0, 8) + '01'
-      // this.beginDate = '2019-01-01'
+      this.beginDate = '2019-01-01'
+      this.endDate = '2019-6-30'
     },
     methods: {
       searchTickets: function (obj) {
@@ -474,43 +477,59 @@
           'endDate': this.endDate
         }
 
-        searchMonthlyFlightReport(params, v => {
-            this.dataList = v
-            this.calcTicketTotal()
-          }
-        )
+        searchMonthlyReport(params, v => {
+          this.dataList = v.flights
+          this.refunds = v.refunds
+          this.changes = v.changes
+          this.vasList = v.services
+          this.hotelList = v.hotels
+          this.trainList = v.trains
 
-        searchMonthRefundReport(params, v => {
-          this.refunds = v
+          this.calcTicketTotal()
           this.calcRefundTotal()
-        })
-
-        searchMonthChangeReport(params, v => {
-          this.changes = v
           this.calcChangeTotal()
-        })
-
-        searchMonthVasReport(params, v => {
-          this.vasList = v
           this.calcVasTotal()
-        })
-
-        searchMonthHotelReport(params, v => {
-          this.hotelList = v
           this.calcHotelTotal()
-        })
-
-        searchMonthTrainReport(params, v => {
-          this.trainList = v
           this.calcTrainTotal()
         })
+
+        // searchMonthlyFlightReport(params, v => {
+        //     this.dataList = v
+        //     this.calcTicketTotal()
+        //   }
+        // )
+
+        // searchMonthRefundReport(params, v => {
+        //   this.refunds = v
+        //   this.calcRefundTotal()
+        // })
+
+        // searchMonthChangeReport(params, v => {
+        //   this.changes = v
+        //   this.calcChangeTotal()
+        // })
+
+        // searchMonthVasReport(params, v => {
+        //   this.vasList = v
+        //   this.calcVasTotal()
+        // })
+
+        // searchMonthHotelReport(params, v => {
+        //   this.hotelList = v
+        //   this.calcHotelTotal()
+        // })
+
+        // searchMonthTrainReport(params, v => {
+        //   this.trainList = v
+        //   this.calcTrainTotal()
+        // })
       },
       calcTicketTotal: function () {
         this.totalTicketAmount = 0
         this.ticketCount = 0
 
         for (const t of this.dataList) {
-          this.totalTicketAmount += t.accountRecv
+          this.totalTicketAmount += t.total
           this.ticketCount++
         }
 
@@ -521,7 +540,7 @@
         this.refundCount = 0
 
         for (const t of this.refunds) {
-          this.totalRefundAmount += t.passengerRefundAmount
+          this.totalRefundAmount += t.total
           this.refundCount++
         }
 

@@ -28,14 +28,7 @@
             <td class="text-right text-info">性别</td>
             <td>{{getGenderDesc(psgInfo.gender)}}</td>
           </tr>        
-          <tr>
-            <td class="text-right text-info">公司</td>
-            <td>
-              <template v-if="psgInfo.customer !== null">
-                {{psgInfo.customer.vipName}}
-              </template>                  
-            </td>
-          </tr>
+          
           <tr>
             <td class="text-right text-info">手机</td>
             <td>{{psgInfo.mobile}}
