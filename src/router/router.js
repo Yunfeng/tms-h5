@@ -51,6 +51,12 @@ export function createRouter () {
       {path: '/rental/car',         component: () => import('../pages/rental/RentalCar.vue') },
       {path: '/rental/car/orders',         component: () => import('../pages/rental/RentalCarOrders.vue') },
       {path: '/rental/car/orders/:id',         component: () => import('../pages/rental/RentalCarOrder.vue') },
+
+      {path: '/attractions',         component: () => import('../pages/attraction/Attractions.vue') },
+      {path: '/attraction/:id',         component: () => import('../pages/attraction/AttractionDetail.vue') },
+      {path: '/attractions/ticket/orders',         component: () => import('../pages/attraction/TicketOrders.vue') },
+      {path: '/attractions/ticket/order/:id',         component: () => import('../pages/attraction/TicketOrder.vue') },
+      
                   
 
       {path: '/insurance/orders',         component: () => import('../pages/InsuranceOrders.vue') },
