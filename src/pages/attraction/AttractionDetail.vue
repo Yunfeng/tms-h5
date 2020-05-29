@@ -162,7 +162,7 @@
 </template>
 
 <script>
-  import { getAttraction, searchAttractionPrices, createAttractionOrder } from '../../api/attraction.js'
+  import { getAttraction, searchAttractionPrices, createAttractionOrder, payTicketOrder } from '../../api/attraction.js'
   import $ from 'jquery'
   import MyPagination from '../../components/my-pagination.vue'
   import MyDatePicker from '../../components/my-datepicker.vue'

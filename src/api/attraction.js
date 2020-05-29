@@ -99,6 +99,14 @@ export function cancelTicketOrder(id, params, cbDone, cbAlways) {
   })
 }
 
+export function payTicketOrder(id, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/attraction/ticket/order/' + id + '/pay'
+  callService(url, {
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}
+
 export function getAttraction(id, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/attraction/' + id
   callService(url, {

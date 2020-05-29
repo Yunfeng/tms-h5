@@ -99,7 +99,7 @@
   import { APP_FLIGHT_PATH, SUPPLIER_HOTEL } from '../../common/const.js'
   import { showPayType, showPsgType } from '../../common/common.js'
 
-  import { searchTicketOrders, getTicketOrder, showTicketOrderStatus, cancelTicketOrder } from '../../api/attraction.js'
+  import { searchTicketOrders, getTicketOrder, showTicketOrderStatus, cancelTicketOrder, payTicketOrder } from '../../api/attraction.js'
 
   export default {
     components: {
@@ -193,7 +193,7 @@
         submitHotelOrder(this.id, v => this.commonShowMessage(v))
       },
       onlinePay: function () {
-        payForHotelOrder(this.detail.id, v => {
+        payTicketOrder(this.detail.id, v => {
           if (v.status === 'OK') {
             this.showErrMsg('如果没有打开在线支付新窗口，请检查您的浏览器是否阻止本网页打开新窗口。', 'info')
             console.log(v.url)
