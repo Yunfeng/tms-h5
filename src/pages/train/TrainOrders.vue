@@ -27,6 +27,8 @@
           <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
           <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
 
+          
+
         </form>
       </div>
     </div>

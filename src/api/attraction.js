@@ -2,7 +2,7 @@ import { APP_FLIGHT_PATH, callService } from '../common/common.js'
 
 export function showTicketOrderStatus (status) {
   switch (status) {
-    case 0: return '未提交'
+    case 0: return '未提交，待支付'
     case 1: return '已提交，待处理'
     case 2: return '处理中'
     case 8: return '已完成'
@@ -116,3 +116,16 @@ export function getAttraction(id, cbDone, cbAlways) {
   })
 }
 
+// 上传门票订单
+export function uploadTicketOrder(params, cbDone, cbAlways) {
+  const url = APP_FLIGHT_PATH + '/attraction/ticket/order/upload'
+  callService(url, {
+    data: params,
+    contentType: false,
+    cache: false,
+    processData: false,
+    timeout: 0,
+    cbDone: cbDone,
+    cbAlways: cbAlways
+  })
+}

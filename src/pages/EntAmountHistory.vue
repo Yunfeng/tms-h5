@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import { searchCustomerTrans } from '../api/bill.js'
+  import { searchMyTrans } from '../api/user.js'
   import MyPagination from '../components/my-pagination.vue'
 
   export default {
@@ -69,7 +69,7 @@
           'sc.pageNo': this.sc.pageNo,
           'sc.pageSize': this.sc.pageSize
         }
-        searchCustomerTrans(this.id, params, v => {
+        searchMyTrans(this.id, params, v => {
           this.histories = v.dataList
           this.sc = v.page
         })

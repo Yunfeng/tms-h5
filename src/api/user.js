@@ -57,7 +57,14 @@ export function searchPassengerById(id, cbDone) {
 }
 
 
-
+// 查询的交易记录
+export function searchMyTrans(id, params, cbDone) {
+  const url = APP_FLIGHT_PATH + '/my/trans'
+  callService(url, {
+    data: params,
+    cbDone: cbDone
+  })
+}
 
 
 

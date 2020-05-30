@@ -32,6 +32,8 @@
               <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div> 
 
+          <button type="button" class="btn btn-primary ml-auto" @click.stop="importExcel()">导入Excel</button>
+
           
         </form>
       </div>
@@ -54,7 +56,7 @@
           <template v-for="info in dataList" >
             <tr :class="{'table-dark': info.status === 4}" style="color: black">
                 <td>                  
-                  <router-link :to="`/hotel/order/` + info.id">{{info.orderNo}}</router-link>
+                  {{info.orderNo}}
                 </td>
                 <td>
                     {{info.attractionName}}  
@@ -86,19 +88,26 @@
     <nav id="pagination-box" class="float-right">
       <my-pagination name='pagination' :row-count='sc.rowCount' :page-total='sc.pageTotal' :page-no='sc.pageNo' @next-page='nextPage' @prev-page='prevPage' @direct-page='directPage'></my-pagination>
     </nav>
+
+    <modal-excel-upload ref="modalUploadExcel">
+        用Excel导入门票订单
+        <template v-slot:excelFormatDesc>Excel格式说明: 票号，销售日期(可空)</template>
+    </modal-excel-upload>
   </div>	
 </template>
 
 <script>
-  import { searchTicketOrders, showTicketOrderStatus } from '../../api/attraction.js'
+  import { searchTicketOrders, showTicketOrderStatus, uploadTicketOrder } from '../../api/attraction.js'
   import MyDatePicker from '../../components/my-datepicker.vue'
   import MyPagination from '../../components/my-pagination.vue'
+  import ModalExcelUpload from '../../components/my-modal-excel-upload-ticket-orders.vue'
 
 
   export default {
     components: {
       MyDatePicker,
-      MyPagination
+      MyPagination,
+      ModalExcelUpload
     },
     data () {
       return {
@@ -172,7 +181,22 @@
       },
       getStatusDesc: function (status) {
         return showTicketOrderStatus(status)
-      },      
+      }, 
+      importExcel: function () {
+        this.$refs.modalUploadExcel.modal().then((formData) => {
+          this.showLoading('处理中......')
+          uploadTicketOrder(formData.data, v => {
+            if (v.status === 'OK') {
+              this.showErrMsg('操作成功')
+              this.search()
+            } else {
+              this.showErrMsg('操作失败:' + v.errmsg, 'danger')
+            }
+          }, () => {
+            this.hideLoading()
+          })
+        }).catch((ex) => {})
+      },     
       prevPage: function () {
         this.sc.pageNo = this.sc.pageNo - 1
         if (this.sc.pageNo < 1) this.sc.pageNo = 1

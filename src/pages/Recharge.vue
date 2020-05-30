@@ -4,7 +4,7 @@
     <div class="card">
       <div class="card-header bg-info text-white" >
           充值 
-          <router-link to="/trans/histories" class="float-right">交易记录</router-link>
+          <router-link to="/my/trans/histories" class="float-right">交易记录</router-link>
       </div>
       <div class="card-body py-1">
           <div class="row">
