@@ -23,8 +23,6 @@
      */
     LeftSidebar.prototype._reset = function() {
         this.body.removeAttr('data-leftbar-theme');
-        $('#side-main-logo').attr('src', 'assets/images/logo.png');
-        $('#side-sm-main-logo').attr('src', 'assets/images/logo_sm.png');
     },
 
     /**
@@ -67,8 +65,6 @@
      */
     LeftSidebar.prototype.activateLightTheme = function() {
         this._reset();
-        $('#side-main-logo').attr('src', 'assets/images/logo-dark.png');
-        $('#side-sm-main-logo').attr('src', 'assets/images/logo_sm_dark.png');
         this.body.attr('data-leftbar-theme', 'light');
     },
 
@@ -188,39 +184,51 @@ function ($) {
      * Initilizes the menu
      */
     Topbar.prototype.initMenu = function() {
-        $('.topnav-menu li a').each(function () {
-            var pageUrl = window.location.href.split(/[?#]/)[0];
-            if (this.href == pageUrl) {
-                $(this).addClass('active');
-                $(this).parent().parent().addClass('active'); // add active to li of the current link
-                $(this).parent().parent().parent().parent().addClass('active');
-                $(this).parent().parent().parent().parent().parent().parent().addClass('active');
+        if ($('.topnav-menu').length) {
+            $('.topnav-menu li a').each(function () {
+                var pageUrl = window.location.href.split(/[?#]/)[0];
+                if (this.href == pageUrl) {
+                    $(this).addClass('active');
+                    $(this).parent().parent().addClass('active'); // add active to li of the current link
+                    $(this).parent().parent().parent().parent().addClass('active');
+                    $(this).parent().parent().parent().parent().parent().parent().addClass('active');
+                }
+            });
+
+            // Topbar - main menu
+            $('.navbar-toggle').on('click', function () {
+                $(this).toggleClass('open');
+                $('#navigation').slideToggle(400);
+            });
+        }
+    },
+    // init search
+    Topbar.prototype.initSearch = function() {
+        // Serach Toggle
+        var navDropdowns = $('.navbar-custom .dropdown:not(.app-search)');
+
+        // hide on other click
+        $(document).on('click', function (e) {
+            if($(e.target).closest('#search-dropdown').length === 0) {
+                $('#search-dropdown').removeClass('d-block');
             }
+            return true;
         });
 
-        // Topbar - main menu
-        $('.navbar-toggle').on('click', function () {
-            $(this).toggleClass('open');
-            $('#navigation').slideToggle(400);
-        });
-
-        $('.dropdown-menu a.dropdown-toggle').on('click', function () {
-            if (
-                !$(this)
-                    .next()
-                    .hasClass('show')
-            ) {
-                $(this)
-                    .parents('.dropdown-menu')
-                    .first()
-                    .find('.show')
-                    .removeClass('show');
-            }
-            var $subMenu = $(this).next('.dropdown-menu');
-            $subMenu.toggleClass('show');
-
+        // Serach Toggle
+        $('#top-search').on('click', function (e) {
+            e.preventDefault();
+            navDropdowns.children('.dropdown-menu.show').removeClass('show');
+            $('#search-dropdown').addClass('d-block');
             return false;
         });
+
+        // hide search on opening other dropdown
+        navDropdowns.on('show.bs.dropdown', function () {
+            $('#search-dropdown').removeClass('d-block');
+        });
+
+
     },
 
     /**
@@ -228,6 +236,8 @@ function ($) {
      */
     Topbar.prototype.init = function() {
         this.initMenu();
+
+        this.initSearch();
     },
     $.Topbar = new Topbar, $.Topbar.Constructor = Topbar
 }(window.jQuery),
@@ -431,16 +441,23 @@ function ($) {
     */
     LayoutThemeApp.prototype._saveConfig = function(newConfig) {
         $.extend(this._config, newConfig);
-        sessionStorage.setItem('_HYPER_CONFIG_', JSON.stringify(this._config));
+        // sessionStorage.setItem('_HYPER_CONFIG_', JSON.stringify(this._config));
     },
 
     /**
      * Get the stored config
      */
     LayoutThemeApp.prototype._getStoredConfig = function() {
-        // getting the saved config if available
-        var config = sessionStorage.getItem('_HYPER_CONFIG_');
-        return !config ? DEFAULT_CONFIG : JSON.parse(config);
+        var bodyConfig = this.body.data('layoutConfig');
+        var config = DEFAULT_CONFIG;
+        if (bodyConfig) {
+            config['sideBarTheme'] = bodyConfig['leftSideBarTheme'];
+            config['isBoxed'] = bodyConfig['layoutBoxed'];
+            config['isCondensed'] = bodyConfig['leftSidebarCondensed'];
+            config['isScrollable'] = bodyConfig['leftSidebarScrollable'];
+            config['isDarkModeEnabled'] = bodyConfig['darkMode'];
+        }
+        return config;
     },
 
     /**
@@ -488,7 +505,7 @@ function ($) {
      */
     LayoutThemeApp.prototype._adjustLayout = function() {
         // in case of small size, add class enlarge to have minimal menu
-        if (this.window.width() >= 767 && this.window.width() <= 1028) {
+        if (this.window.width() >= 750 && this.window.width() <= 1028) {
             this.activateCondensedSidebar(true);
         } else {
             var config = this._getStoredConfig();
@@ -599,7 +616,6 @@ function ($) {
      * Clear out the saved config
      */
     LayoutThemeApp.prototype.clearSavedConfig = function() {
-        sessionStorage.removeItem('_HYPER_CONFIG_');
         this._config = DEFAULT_CONFIG;
     },
 
@@ -650,11 +666,8 @@ function ($) {
             self._adjustLayout();
         });
 
-        // if horizontal layout - activate topbar
-        var layout = $('body').data('layout');
-        if (layout && layout === 'topnav') {
-            $.Topbar.init();
-        }
+        // topbar
+        $.Topbar.init();
     },
 
     $.LayoutThemeApp = new LayoutThemeApp, $.LayoutThemeApp.Constructor = LayoutThemeApp
@@ -834,7 +847,6 @@ function($) {
      * Initilize
     */
    AdvanceFormApp.prototype.init = function() {
-        var $this = this;
         this.initSelect2();
         this.initMask();
         this.initDateRange();
@@ -927,6 +939,21 @@ function($) {
             return true;
         });
     },
+
+    Components.prototype.initShowHidePassword = function () {
+        $("[data-password]").on('click', function() {
+            if($(this).attr('data-password') == "false"){
+                $(this).siblings("input").attr("type", "text");
+                $(this).attr('data-password', 'true');
+                $(this).addClass("show-password");
+            } else {
+                $(this).siblings("input").attr("type", "password");
+                $(this).attr('data-password', 'false');
+                $(this).removeClass("show-password");
+            }
+        });
+    },
+
     Components.prototype.initSyntaxHighlight = function() {
         //syntax
         var entityMap = {
@@ -973,11 +1000,11 @@ function($) {
 
     //initilizing
     Components.prototype.init = function() {
-        var $this = this;
         this.initTooltipPlugin(),
         this.initPopoverPlugin(),
         this.initToastPlugin(),
         this.initFormValidation(),
+        this.initShowHidePassword(),
         this.initSyntaxHighlight();
     },
 
@@ -1106,7 +1133,8 @@ function ($) {
         $.RightBar.init();
 
         // showing the sidebar on load if user is visiting the page first time only
-        if (window.sessionStorage) {
+        var bodyConfig = this.$body.data('layoutConfig');
+        if (window.sessionStorage && bodyConfig && bodyConfig.hasOwnProperty('showRightSidebarOnStart') && bodyConfig['showRightSidebarOnStart']) {
             var alreadyVisited = sessionStorage.getItem("_HYPER_VISITED_");
             if (!alreadyVisited) {
                 $.RightBar.toggleRightSideBar();

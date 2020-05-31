@@ -1,8 +1,8 @@
 <template>
-  <div id="login" class="col-12 account-pages mt-5 mb-5">
-    <div class="container">
+  <div id="login" class="col-12 account-pages mt-5 mb-5 px-0">
+    <div class="container-fluid px-0">
       <div class="row justify-content-center">
-        <div class="col-lg-5">
+        <div class="col-12 col-lg-5">
           
           <div class="card">
 

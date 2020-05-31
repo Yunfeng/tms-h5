@@ -9,33 +9,25 @@
     </nav>
 
     <template v-if="detailInfo !== null">
-      <div class="card">
-        <table class="table table-striped table-sm small">
-          <tr>
-            <td class="text-info">名称</td>
-            <td class="text-info">地址</td>
-            <td class=" text-info">开业时间</td>
-            <td class=" text-info">状态</td>
-            <td class=" text-info">备注</td>
-          </tr>
-          <tr>
-            <td>
-              {{detailInfo.name}}
-            </td>
-            <td>
-              {{detailInfo.address}}
-            </td>
-            <td>
-              {{detailInfo.openTime}}
-            </td>
-            <td>
-              {{detailInfo.status}}
-            </td>
-            <td>
-              {{detailInfo.remark}}
-            </td>
-          </tr>                                  
-        </table>
+      <div class="media mb-3">
+        <img class="d-flex mr-3 rounded-circle" src="" alt="图片" height="64">
+        <div class="media-body">
+            <h5 class="mt-0">{{detailInfo.name}}</h5>
+            <dl class="row">
+              <dt class="col-sm-3">地址</dt>
+              <dd class="col-sm-9">{{detailInfo.address}}</dd>
+
+              <dt class="col-sm-3">开放时间</dt>
+              <dd class="col-sm-9">
+                {{detailInfo.openTime}}
+              </dd>
+              <dt class="col-sm-3">状态</dt>
+              <dd class="col-sm-9">
+                <span class="text-success" v-if="detailInfo.status === 1">正常</span>
+                <span class="text-danger" v-else>停用</span>
+              </dd>
+            </dl>
+        </div>
       </div>
       <template v-if="booking === false">
         <div class="card">
@@ -47,7 +39,6 @@
               <tr>
                 <th>日期</th>
                 <th>价格</th>
-                <th>备注</th>
                 <th></th>
               </tr>
             </thead>
@@ -55,7 +46,6 @@
               <tr v-for="info in prices" :key="`price` + info.id">
                 <td>{{info.effectDate}}</td>
                 <td>{{info.price}}</td>
-                <td>{{info.remark}}</td>
                 <td>
                   <button class="btn btn-danger btn-sm" @click.stop="buyTicket(info.id)">下单</button>
                 </td>
@@ -283,11 +273,11 @@
               this.showErrMsg(jsonResult.errmsg)
             } else {
               this.showErrMsg('保存成功')
-              if (next === 0) {                
-                  this.$router.replace('/attraction/orders')
-              } else if (next === 1) {
+              // if (next === 0) {                
+                  this.$router.replace('/attractions/ticket/orders')
+              // } else if (next === 1) {
                 // this.reset()
-              }
+              // }
             }
           }
         )

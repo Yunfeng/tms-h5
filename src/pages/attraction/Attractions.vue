@@ -7,74 +7,35 @@
         <li class="breadcrumb-item ml-auto"><router-link to='/attractions/ticket/orders'>门票订单</router-link></li>
       </ol>
     </nav>
-    <div class="card">
-        <div class="card-header bg-info text-white">景点信息</div>
-        <div class="card-body">
-        <form class="form-inline" id="frmSearch">
-          <div class="form-group">
-            <label>状态</label>
-            <select class="form-control" v-model.number="status">
-                <option value="-1">全部</option>
-                <option value="0">停用</option>
-                <option value="1">启用</option>
-            </select>
+    <template v-for="(info, index) in dataList">
+      <div class="media mb-3">
+        <img class="d-flex mr-3 rounded-circle" src="" alt="图片" height="64">
+        <div class="media-body">
+            <h5 class="mt-0">{{info.name}}</h5>
+            <dl class="row">
+              <dt class="col-sm-3">地址</dt>
+              <dd class="col-sm-9">{{info.address}}</dd>
 
-              <select class="form-control form-control-sm" v-model.number="sc.pageSize">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="50">50</option>
-              </select>
-
-              <button type="button" class="btn btn-primary ml-1" v-on:click="search()">查找</button>
-          </div>
-          
-        </form>
-      </div>
-    </div>
-
-    <table class="table table-hover table-sm">
-      <thead>
-        <tr>
-          <th>名称</th>
-          <th>地址</th>
-          <th>开放时间</th>
-          <th>备注</th>
-          <th>状态</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <template v-for="(info, index) in dataList">
-          <tr>
-            <td>{{info.name}}</td>
-            <td>
-              {{info.address}}
-            </td>
-            <td>
-              {{info.openTime}}
-            </td>
-            <td>
-              {{info.remark}}
-            </td>
-            <td>
-              <span class="text-success" v-if="info.status === 1">正常</span>
-              <span class="text-danger" v-else>停用</span>
-            </td>
-            <td>
-              <router-link :to="`/attraction/` + info.id" class="btn btn-success btn-sm">
+              <dt class="col-sm-3">开放时间</dt>
+              <dd class="col-sm-9">
+                {{info.openTime}}
+              </dd>
+              <dt class="col-sm-3">状态</dt>
+              <dd class="col-sm-9">
+                <span class="text-success" v-if="info.status === 1">正常</span>
+                <span class="text-danger" v-else>停用</span>
+              </dd>
+            </dl>
+            <router-link :to="`/attraction/` + info.id" class="btn btn-success btn-sm float-right">
                 采购
               </router-link>
-            </td>
-          </tr>
-        </template>
-      </tbody>
-    </table>
+        </div>
+      </div>
+    </template>
 
     <nav id="pagination-box" class="float-right">
       <my-pagination name='pagination' :row-count='sc.rowCount' :page-total='sc.pageTotal' :page-no='sc.pageNo' @next-page='nextPage' @prev-page='prevPage' @direct-page='directPage'></my-pagination>
     </nav>
-
 
   </div>
 </template>
