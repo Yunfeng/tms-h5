@@ -195,10 +195,12 @@
       onlinePay: function () {
         payTicketOrder(this.detail.id, v => {
           if (v.status === 'OK') {
-            this.showErrMsg('如果没有打开在线支付新窗口，请检查您的浏览器是否阻止本网页打开新窗口。', 'info')
-            console.log(v.url)
-            $('#paymentForm').empty().html(v.url)
-            document.forms['alipaysubmit'].submit()            
+            this.showErrMsg('支付完成')
+            // this.showErrMsg('如果没有打开在线支付新窗口，请检查您的浏览器是否阻止本网页打开新窗口。', 'info')
+            // console.log(v.url)
+            // $('#paymentForm').empty().html(v.url)
+            // document.forms['alipaysubmit'].submit()     
+            this.$router.push('/attractions/ticket/orders')       
           } else {
             this.showErrMsg(v.errmsg, 'danger')
           }
