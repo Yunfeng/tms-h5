@@ -20,6 +20,9 @@
       <li class="nav-item" v-if="detail !== null && detail.services.length > 0">
         <a class="nav-link" id="service-tab" data-toggle="tab" href="#serviceTab" role="tab" aria-controls="service" aria-selected="false">服务及保险({{detail.services.length}})</a>
       </li>
+      <li class="nav-item" v-if="detail !== null">
+        <a class="nav-link" id="comment-tab" data-toggle="tab" href="#commentTab" role="tab" aria-controls="comment" aria-selected="false">留言({{comments.length}})</a>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="orderDetailTab" role="tabpanel" aria-labelledby="order-tab" v-if="detail !== null">
@@ -276,6 +279,50 @@
       <div class="tab-pane fade" id="serviceTab" role="tabpanel" aria-labelledby="service-tab" v-if="detail !== null && detail.services.length > 0">
         <vas-order-list :dataList="detail.services"></vas-order-list>
       </div>
+      <div class="tab-pane fade" id="commentTab" role="tabpanel" aria-labelledby="comment-tab" v-if="detail !== null">
+        <div class="row">
+          <div class="col-12">
+            <ul class="nav nav-tabs nav-bordered mb-3" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" id="detail-tab" data-toggle="tab" href="#newComment">新建留言</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" id="login-tab" data-toggle="tab" href="#comments">留言列表</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show" id="newComment">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="form-group">
+                     
+                      <textarea class="form-control" rows="3" v-model.trim="commentContent"></textarea>
+                    </div>
+                    <button class="btn btn-primary" @click.stop="saveComment()">保存</button>
+                  </div>
+                  <table></table>
+                </div>
+              </div>
+              <div class="tab-pane fade show active" id="comments">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>留言内容</th>
+                      <th>留言人</th>
+                      <th>留言时间</th>
+                    </tr>
+                  </thead>
+                  <tr v-for="info in comments">
+                    <td>{{info.comment}}</td>
+                    <td>{{info.username}}</td>
+                    <td>{{info.createTime}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>         
+          </div>
+        </div>
+      </div>
     </div>    
 
     <div id="paymentForm" ></div>
@@ -297,8 +344,11 @@
   import { createRefundOrderMulti } from '../../api/flight-refund.js'
   import { createChangeOrderMulti } from '../../api/flight-change.js'
   import { sendFlightOrderSms, sendFlightOrderApprovalSms } from '../../api/sms.js'
+  import { saveComment, searchComments } from '../../api/comment.js'
   import { rollbackFlightOrderStatus } from '../../api/admin.js'
+
   import PriceInfo from '../../common/PriceInfo.js'
+  
   import MyModalConfirm from '../../components/my-modal-prompt-confirm.vue'
   import FlightRefundList from '../../components/flight-order-refund-list.vue'
   import FlightChangeList from '../../components/flight-order-change-list.vue'
@@ -327,6 +377,8 @@
 
         priceEditing: 0,
         remark: '',
+        commentContent: '',
+        comments: [],
         extras: [],
         modalTitle: '',
         modalTitle2: '',
@@ -356,6 +408,7 @@
         // console.log(this.orderNo)
       }
       this.searchOrderDetail()
+      this.searchComments()
     },
     updated: function () {
       $('[data-toggle="tooltip"]').tooltip()
@@ -635,6 +688,29 @@
           })
           .catch(ex => {})
 
+      },
+      saveComment: function () {
+        const params = {
+          'orderType': 1000,
+          'orderId': this.id,
+          'content': this.commentContent
+        }
+        saveComment(params, v => {
+          this.commonShowMessage(v)
+          if (v.status === 'OK') {
+            //刷新评论
+            this.searchComments()
+          }
+        })
+      },
+      searchComments: function () {
+        const params = {
+          'orderType': 1000,
+          'orderId': this.id
+        }
+        searchComments(params, v => {
+          this.comments = v
+        })        
       }
     }
   }
