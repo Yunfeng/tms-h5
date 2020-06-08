@@ -21,7 +21,7 @@ export function searchBillDetail(id, cbDone) {
 
 // 查找结算单
 export function searchSettlements(params, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/my/settlements'
+  const url = APP_FLIGHT_PATH + '/settlements'
   callService(url, {
     data: params,
     cbDone: cbDone,
@@ -30,8 +30,9 @@ export function searchSettlements(params, cbDone, cbAlways) {
 }
 
 export function getSettlementReport(id, cbDone, cbAlways) {
-  const url = APP_FLIGHT_PATH + '/my/settlement/' + id + '/report'
+  const url = APP_FLIGHT_PATH + '/settlement/' + id
   callService(url, {
+    type: 'get',
     cbDone: cbDone,
     cbAlways: cbAlways
   })

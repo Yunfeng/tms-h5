@@ -709,7 +709,7 @@
           'orderId': this.id
         }
         searchComments(params, v => {
-          this.comments = v
+          this.comments = v.dataList
         })        
       }
     }

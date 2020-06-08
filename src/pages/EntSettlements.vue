@@ -60,14 +60,14 @@
               </td>
               <td>
               
-                <template v-if="info.customer !== null">
-                  {{info.customer.vipName}}  
-                </template>                  
+               
+                  {{info.customerName}}  
+                         
               </td>
               <td class="text-right"   :class="{ 'text-danger': info.amount < 0 }">{{info.amount}}</td>
               <td>
-                <span class="text-danger small" v-if="info.paid === 0">未收款</span>
-                <span v-else>已收款</span>
+                <span class="text-danger small" v-if="info.payStatus === 0">未收款</span>
+                <span v-else-if="info.payStatus === 1">已收款</span>
               </td>
               <td>{{info.createTime}}</td>
               <td>{{info.lastUpdate}}</td>
@@ -153,14 +153,12 @@
           amount = 0
         }
         const params = {
-          'sc.pageNo': this.sc.pageNo,
-          'sc.pageSize': this.sc.pageSize,
-          'sc.beginDate': this.beginDate,
-          'sc.endDate': this.endDate,
-          'sc.customerId': this.customerId0,
-          'sc.status': this.status0,
-          'sc.settlementNo': this.settlementNo0,
-          'sc.amount': amount
+          'pageNo': this.sc.pageNo,
+          'pageSize': this.sc.pageSize,
+          'beginDate': this.beginDate,
+          'endDate': this.endDate,
+          'payStatus': this.status0,
+          'settlementNo': this.settlementNo0
         }
 
         this.showLoading()

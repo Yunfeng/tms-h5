@@ -15,19 +15,12 @@
             <tbody>
                 <tr >
                     <td>{{detail.settlementNo}}</td>
-                    <td>{{detail.name}}</td>
+                    <td>{{detail.settlementName}}</td>
                     <td>
-                      <template v-if="detail.customerType === 0">
-                        散客
-                      </template>
-                      <template v-else-if="detail.customer !== null">
-                        {{detail.customer.name}}  
-                      </template>                    
+                        {{detail.customerName}}             
                     </td>
                     <td>
-                      <template v-if="detail.customer !== null">
-                        {{detail.customer.customerCode}}  
-                      </template>                    
+                        {{detail.customerCode}}              
                     </td>
                     <td>
                         {{detail.amount}}
@@ -76,13 +69,10 @@
                   <td class="text-right">{{info.amount}}</td>
                   <td>
                     <template v-if="info.ticketType === 0">
-                      {{info.balanceCode}}-{{info.ticketNo}}
-                      <template v-if="info.ticketCount > 1">
-                        -{{info.ticketNoEnd}}
-                      </template>                      
+                      {{info.showTicketNo}}               
                     </template>
                     <template v-if="info.ticketType === 1">
-                      {{info.balanceCode}}-{{info.ticketNo}}
+                      {{info.showTicketNo}}
                       <span class="text-danger small">退</span>
                     </template>
                     <template v-if="info.ticketType === 2">
@@ -128,7 +118,7 @@
                     <td class="text-right"></td>
                     <td class="text-right">{{info.amount}}</td>
                     <td>
-                      {{info.balanceCode}}-{{info.ticketNo}}
+                      {{info.showTicketNo}}
                     </td>
                     <td>退票</td>
                   </tr>
