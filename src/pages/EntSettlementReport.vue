@@ -15,7 +15,7 @@
             <tbody>
                 <tr >
                     <td>{{detail.settlementNo}}</td>
-                    <td>{{detail.settlementName}}</td>
+                    <td>{{detail.settlementTitle}}</td>
                     <td>
                         {{detail.customerName}}             
                     </td>
@@ -63,7 +63,7 @@
                   <td>{{flt.ddate}} </td>
                   <td>{{flt.dtime}}</td>
                   <td class="text-right">
-                    {{info.showParvalue}}
+                    {{info.showParValue}}
                   </td>
                   <td class="text-right">{{info.tax}}</td>
                   <td class="text-right">{{info.amount}}</td>
@@ -229,13 +229,13 @@
             <!-- hotel -->
             <template v-if="detail.hotels.length > 0">
               <tr v-for="info in detail.hotels">
-                    <td>{{info.saleDate}}</td>
+                    <td>{{info.orderDate}}</td>
                     <td>{{info.passengerName}}</td>
                     <td></td>
                     <td></td>
                     <td>{{info.hotelName}}</td>
-                    <td>{{info.ddate}}</td>
-                    <td>{{info.leaveDate}}</td>
+                    <td>{{info.checkInDate}}</td>
+                    <td>{{info.checkOutDate}}</td>
                     <td class="text-right">{{info.totalAmount}}</td>
                     <td>&nbsp;</td>
                     <td class="text-right">{{info.totalAmount}}</td>
@@ -247,16 +247,16 @@
             <!-- train -->
             <template v-if="detail.trains.length > 0">
               <tr v-for="info in detail.trains">
-                    <td>{{info.saleDate}}</td>
+                    <td>{{info.orderDate}}</td>
                     <td>{{info.passengerName}}</td>
                     <td>{{info.dcity}}</td>
                     <td>{{info.acity}}</td>
                     <td>{{info.trainNo}}</td>
                     <td>{{info.ddate}}</td>
                     <td></td>
-                    <td class="text-right">{{info.total}}</td>
+                    <td class="text-right">{{info.totalAmount}}</td>
                     <td>&nbsp;</td>
-                    <td class="text-right">{{info.totalCost}}</td>
+                    <td class="text-right">{{info.totalAmount}}</td>
                     <td></td>
                     <td>火车票</td>
                 </tr>
@@ -334,7 +334,7 @@
 
         //火车票
         this.totalTrain = 0
-        this.detail.trains.forEach( x => this.totalTrain += x.total)
+        this.detail.trains.forEach( x => this.totalTrain += x.totalAmount)
 
         // 服务单
         this.totalVas = 0
