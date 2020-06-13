@@ -69,7 +69,7 @@ export function searchHotels_old(params, cbDone, cbAlways) {
 }
 
 export function searchHotels(params, cbDone, cbAlways) {
-  const url = '/api/hotel/avail'
+  const url = '/api/hotel/avail2'
   callService(url, {
     data: params,
     cbDone: cbDone,
