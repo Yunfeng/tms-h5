@@ -288,7 +288,8 @@
         searchHotels(params, 
           v => {
             if (v.rowCount > 0) {
-              this.dataList = v.hotels
+              // this.dataList = v.hotels
+              this.dataList = v.masterHotels
 
               this.sc.pageTotal = v.pageTotal
               this.sc.rowCount = v.rowCount
