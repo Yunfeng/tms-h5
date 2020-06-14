@@ -125,7 +125,8 @@
                             <div class="card-body py-0">
                               <table class="table table-sm py-0 my-0">
                                 <tr v-for="(ratePlan, index) in roomTypeInfo.ratePlans" :key="index">
-                                  <td class="col-2">{{ratePlan.roomName}}({{ratePlan.hotelId}},{{ratePlan.supplierRoomId}})</td>
+                                  <td class="col-2">{{ratePlan.roomName}}</td>
+                                  <td class="col-2">{{ratePlan.hotelId}},{{ratePlan.supplierRoomId}}</td>
                                   <td class="col-1">
                                     <template v-if="ratePlan.cancelPolicies.length > 0">
                                       <span class="text-danger" v-if="ratePlan.cancelPolicies[0].canCancel === false">不可取消</span>
