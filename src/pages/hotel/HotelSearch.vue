@@ -161,7 +161,7 @@
                                       <button class="btn btn-disabled">满房</button>
                                     </template>
                                     <template v-else>
-                                      <button class="btn btn-success" @click.stop="getReservation(info.id, info.hotelName, roomTypeInfo.roomTypeId, roomTypeInfo.roomTypeName, ratePlan.roomId, ratePlan.roomName)">预订</button>
+                                      <button class="btn btn-success" @click.stop="getReservation(ratePlan.hotelId, info.hotelName, roomTypeInfo.roomTypeId, roomTypeInfo.roomTypeName, ratePlan.roomId, ratePlan.roomName)">预订</button>
                                     </template>
                                     
                                   </td>
