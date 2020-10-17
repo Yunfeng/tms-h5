@@ -292,7 +292,7 @@
   import { mapState } from 'vuex'
   import $ from 'jquery'
   import { addDate } from '../../common/common.js'
-  import { searchInsuranceProducts } from '../../api/product.js'
+  import { searchInsuranceProducts } from '../api/product.js'
   import MyPsgPicker from '../../components/my-psg-picker.vue'
   import MyPriceInput from '../../components/flight-price-input.vue'
   import PriceInfo from '../../common/PriceInfo.js'
