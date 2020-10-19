@@ -4,17 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
-  <link rel="stylesheet" href="/public/css/jquery-ui.min.css" />
-  <link rel="stylesheet" href="/public/css/weui.min.css" />
+  <!-- <link rel="stylesheet" href="/public/css/jquery-ui.min.css" /> -->
+  <!-- <link rel="stylesheet" href="/public/css/weui.min.css" /> -->
 
   <!-- third party css -->
-  <link href="/public/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <!-- <link href="/public/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" /> -->
   <!-- third party css end -->
 
   <!-- App css -->
   <link href="/public/css/icons.min.css" rel="stylesheet" type="text/css" />
   <!-- CSS Hyper Template -->
-  <link href="/public/css/app-modern.css" rel="stylesheet" type="text/css" />
+  <link href="/public/css/app.min.css" rel="stylesheet" type="text/css" id="light-style" />
+  <link href="/public/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style" />
+  <!-- <link href="/public/css/app-modern.css" rel="stylesheet" type="text/css" /> -->
 
   {{{ meta }}}
   <title>{{ title }}</title>
@@ -26,15 +28,16 @@
   <div id="horizontal-topbar-placeholder"></div>
   <!--vue-ssr-outlet-->
 
-  <script src="/public/vendor/jquery/jquery-3.4.1.min.js"></script>
-  <script src="/public/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="/public/vendor/select2/select2.min.js"></script>
+  <!-- <script src="/public/vendor/jquery/jquery-3.4.1.min.js"></script> -->
+  <!-- <script src="/public/vendor/bootstrap/bootstrap.bundle.min.js"></script> -->
+  <!-- <script src="/public/vendor/select2/select2.min.js"></script> -->
 
+  <script src="/public/js/vendor.min.js"></script>
   <script src="/public/js/app.min.js"></script>
 
   <script type="text/javascript">
-    console.log("$.App.activateHorizontalLayout()")
-    $.App.activateHorizontalLayout();
+    // console.log("$.App.activateHorizontalLayout()")
+    // $.App.activateHorizontalLayout();
   </script>
 
   <!-- third party js -->
