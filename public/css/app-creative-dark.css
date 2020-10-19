@@ -4146,7 +4146,7 @@ input[type="button"].btn-block {
       display: inline-block;
       padding-right: 0.5rem;
       color: #8391a2;
-      content: "󰅂"; }
+      content: ""; }
   .breadcrumb-item + .breadcrumb-item:hover::before {
     text-decoration: underline; }
   .breadcrumb-item + .breadcrumb-item:hover::before {
@@ -9673,46 +9673,6 @@ body[data-layout="topnav"] .container-fluid, body[data-layout="topnav"] .contain
   font-weight: 700;
   border-radius: .25rem .25rem 0 0;
   margin: -1.5rem -1.5rem 1.5rem -1.5rem; }
-
-.custom-checkbox-primary .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-primary .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #3688fc;
-  border-color: #3688fc; }
-
-.custom-checkbox-secondary .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-secondary .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #464f5b;
-  border-color: #464f5b; }
-
-.custom-checkbox-success .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-success .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #42d29d;
-  border-color: #42d29d; }
-
-.custom-checkbox-info .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-info .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #44badc;
-  border-color: #44badc; }
-
-.custom-checkbox-warning .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-warning .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #f9bc0d;
-  border-color: #f9bc0d; }
-
-.custom-checkbox-danger .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-danger .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #fa6767;
-  border-color: #fa6767; }
-
-.custom-checkbox-light .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-light .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #464f5b;
-  border-color: #464f5b; }
-
-.custom-checkbox-dark .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-dark .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #f1f1f1;
-  border-color: #f1f1f1; }
 
 .dropdown-menu {
   -webkit-box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5);

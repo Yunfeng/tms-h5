@@ -9674,46 +9674,6 @@ body[data-layout="topnav"] .container-fluid, body[data-layout="topnav"] .contain
   border-radius: .25rem .25rem 0 0;
   margin: -1.5rem -1.5rem 1.5rem -1.5rem; }
 
-.custom-checkbox-primary .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-primary .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #536de6;
-  border-color: #536de6; }
-
-.custom-checkbox-secondary .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-secondary .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #dee2e6;
-  border-color: #dee2e6; }
-
-.custom-checkbox-success .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-success .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #10c469;
-  border-color: #10c469; }
-
-.custom-checkbox-info .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-info .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #35b8e0;
-  border-color: #35b8e0; }
-
-.custom-checkbox-warning .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-warning .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #f9c851;
-  border-color: #f9c851; }
-
-.custom-checkbox-danger .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-danger .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #ff5b5b;
-  border-color: #ff5b5b; }
-
-.custom-checkbox-light .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-light .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #37404a;
-  border-color: #37404a; }
-
-.custom-checkbox-dark .custom-control-input:checked ~ .custom-control-label:before,
-.custom-radio-dark .custom-control-input:checked ~ .custom-control-label:before {
-  background-color: #f1f1f1;
-  border-color: #f1f1f1; }
-
 .dropdown-menu {
   -webkit-box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5);
           box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5); }
