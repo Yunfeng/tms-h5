@@ -12,13 +12,22 @@ export const getters = {
     let authorizedMenus = []
 
     for (const menu of state.menus) {
+      let h5_mode = menu.h5_mode
+      if (h5_mode === undefined) {
+        h5_mode = 0
+      }
       let mainMenu = {
-        caption: menu.caption,
-        submenus: []
+        'caption': menu.caption,
+        'h5_mode': h5_mode,
+        'submenus': []
       }
 
       let subCount = 0
       for (const submenu of menu.submenus) {
+        if (submenu.h5_mode !== undefined) {
+
+          // console.log(submenu)
+        }
 
         if (submenu.authorized === 1) {
           if (getters.hasPrivileges(submenu.to)) {
@@ -49,6 +58,8 @@ export const getters = {
         authorizedMenus.push(mainMenu)
       }
     }
+
+    // console.log(authorizedMenus)
 
     return authorizedMenus
   },
