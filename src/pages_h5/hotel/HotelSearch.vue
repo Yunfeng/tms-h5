@@ -1,145 +1,169 @@
 <template>
   <div id="hotel-search" class="card mt-5">
-      <div class="card-header py-0 my-0">
-        <nav aria-label="breadcrumb" role="navigation">
-          <ol class="breadcrumb py-1 my-0">
-            <li class="breadcrumb-item" aria-current="page">酒店预订</li>
-            <li class="breadcrumb-item active" aria-current="page">查询条件</li>
-            <li class="breadcrumb-item ml-auto">
-              <router-link to="/h5/hotel/orders">酒店订单</router-link>
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div class="card-body">
-        <form>
-          <div class="form-row mb-1">
-            <label class="col-3">城市</label>
-            <div class="col-9">
-              <my-select-city :cityId.sync="cityId" :cityList="cityList"></my-select-city>
-            </div>
+    <div class="card-header py-0 my-0">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb py-1 my-0">
+          <li class="breadcrumb-item" aria-current="page">酒店预订</li>
+          <li class="breadcrumb-item active" aria-current="page">查询条件</li>
+          <li class="breadcrumb-item ml-auto">
+            <router-link to="/h5/hotel/orders">酒店订单</router-link>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="form-row mb-1">
+          <label class="col-3">城市</label>
+          <div class="col-9">
+            <my-select-city
+              :cityId.sync="cityId"
+              :cityList="cityList"
+            ></my-select-city>
           </div>
+        </div>
 
-          <div class="form-row mb-1">
-            <label  class="col-3">入住日期</label>
-            <div class="col-9">
-              <my-date-picker
-                id="checkInDate"
-                v-model="checkIn"
-                name="sc.beginDate"
-                placeholder="入住日期"
-              ></my-date-picker>
-            </div>
+        <div class="form-row mb-1">
+          <label class="col-3">入住日期</label>
+          <div class="col-9">
+            <my-date-picker
+              id="checkInDate"
+              v-model="checkIn"
+              name="sc.beginDate"
+              placeholder="入住日期"
+            ></my-date-picker>
           </div>
-          <div class="form-row mb-1">
-            <label class="col-3">离店日期</label>
-            <div class="col-9">
-              <my-date-picker
-                id="checkOutDate"
-                v-model="checkOut"
-                name="sc.endDate"
-                placeholder="离店日期"
-              ></my-date-picker>
-            </div>
+        </div>
+        <div class="form-row mb-1">
+          <label class="col-3">离店日期</label>
+          <div class="col-9">
+            <my-date-picker
+              id="checkOutDate"
+              v-model="checkOut"
+              name="sc.endDate"
+              placeholder="离店日期"
+            ></my-date-picker>
           </div>
-          <div class="form-row mb-1">
-            <label class="col-3">房间数</label>
-            <div class="col-9">
-              <select class="form-control form-control-sm" v-model.number="roomCount">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </div>
+        </div>
+        <div class="form-row mb-1">
+          <label class="col-3">房间数</label>
+          <div class="col-9">
+            <select
+              class="form-control form-control-sm"
+              v-model.number="roomCount"
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
           </div>
-          <div class="form-row mb-1">
-            <label class="col-3">住客数</label>
-            <div class="col-9">
-              <select
-                class="form-control form-control-sm"
-                v-model.number="guestCount"
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </select>
-              <span class="text-muted small">每间房入住的人数</span>
-            </div>
+        </div>
+        <div class="form-row mb-1">
+          <label class="col-3">住客数</label>
+          <div class="col-9">
+            <select
+              class="form-control form-control-sm"
+              v-model.number="guestCount"
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <span class="text-muted small">每间房入住的人数</span>
           </div>
-          <div class="form-row mb-1">
-            <label class="col-3">酒店星级</label>
-            <div class="col-9">
-              <select class="form-control form-control-sm" v-model.number="hotelStar">
-                <option value="0">不限</option>
-                <option value="1">一星</option>
-                <option value="2">两星</option>
-                <option value="3">三星</option>
-                <option value="4">四星</option>
-                <option value="5">五星</option>
-              </select>
-            </div>
+        </div>
+        <div class="form-row mb-1">
+          <label class="col-3">酒店星级</label>
+          <div class="col-9">
+            <select
+              class="form-control form-control-sm"
+              v-model.number="hotelStar"
+            >
+              <option value="0">不限</option>
+              <option value="1">一星</option>
+              <option value="2">两星</option>
+              <option value="3">三星</option>
+              <option value="4">四星</option>
+              <option value="5">五星</option>
+            </select>
           </div>
-          <div class="form-row mb-1">
-            <label class="col-3">早餐</label>
-            <div class="col-9">
-              <select class="form-control form-control-sm" v-model.number="breakfast">
-                <option value="0">不限</option>
-                <option value="1">含早</option>
-              </select>
-            </div>
+        </div>
+        <div class="form-row mb-1">
+          <label class="col-3">早餐</label>
+          <div class="col-9">
+            <select
+              class="form-control form-control-sm"
+              v-model.number="breakfast"
+            >
+              <option value="0">不限</option>
+              <option value="1">含早</option>
+            </select>
           </div>
-          <div class="form-row mb-1">
-            <label class="col-3">酒店名称</label>
-            <div class="col-9">
-              <input
-                type="textfield"
-                class="form-control ml-1"
-                size="10"
-                placeholder="酒店名称"
-                v-model.trim="hotelName"
-              />
-            </div>
+        </div>
+        <div class="form-row mb-1">
+          <label class="col-3">酒店名称</label>
+          <div class="col-9">
+            <input
+              type="textfield"
+              class="form-control ml-1"
+              size="10"
+              placeholder="酒店名称"
+              v-model.trim="hotelName"
+            />
           </div>
-          <div class="form-row mb-1">
-            <label class="col-3">行政区</label>
-            <div class="col-9">
-              <input
-                type="textfield"
-                class="form-control ml-1"
-                size="10"
-                placeholder="行政区"
-                v-model.trim="district"
-              />
-            </div>
+        </div>
+        <div class="form-row mb-1">
+          <label class="col-3">行政区</label>
+          <div class="col-9">
+            <input
+              type="textfield"
+              class="form-control ml-1"
+              size="10"
+              placeholder="行政区"
+              v-model.trim="district"
+            />
           </div>
-          <div class="form-row mb-2">
-            <label class="col-3">商圈</label>
-            <div class="col-9">
-              <input
-                type="textfield"
-                class="form-control ml-1"
-                size="10"
-                placeholder="商圈"
-                v-model.trim="businessDistrict"
-              />
-            </div>
+        </div>
+        <div class="form-row mb-2">
+          <label class="col-3">商圈</label>
+          <div class="col-9">
+            <input
+              type="textfield"
+              class="form-control ml-1"
+              size="10"
+              placeholder="商圈"
+              v-model.trim="businessDistrict"
+            />
           </div>
+        </div>
 
-          <div class="form-row">
-            <button type="button" class="btn btn-primary mr-auto ml-auto" @click.stop="search()">查找</button>
-            <button type="button" class="btn btn-sm btn-secondary  mr-auto ml-auto" @click.stop="reset()">重置</button>
-          </div>
-        </form>
-      </div>
+        <div class="form-row">
+          <button
+            type="button"
+            class="btn btn-primary mr-auto ml-auto"
+            @click.stop="search()"
+          >
+            查找
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-secondary mr-auto ml-auto"
+            @click.stop="reset()"
+          >
+            重置
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -205,7 +229,7 @@ export default {
       this.$store.commit("showLoading", { loading: false });
     },
     getAllCity: function () {
-      getAllCity(v => {
+      getAllCity((v) => {
         this.cityList = v;
       });
     },
@@ -213,20 +237,18 @@ export default {
       this.doSearch();
     },
     doSearch: function () {
-      
       this.$router.push({
         path: "/h5/hotel/search-result",
         query: {
-          'cityId': this.cityId,
-          'checkIn': this.checkIn,
-          'checkOut': this.checkOut,
-          'roomCount': this.roomCount,
-          'guestCount': this.guestCount,
-          'hotelStar': this.hotelStar,
-          'hotelName': this.hotelName
+          cityId: this.cityId,
+          checkIn: this.checkIn,
+          checkOut: this.checkOut,
+          roomCount: this.roomCount,
+          guestCount: this.guestCount,
+          hotelStar: this.hotelStar,
+          hotelName: this.hotelName,
         },
       });
-
     },
     reset: function () {
       this.roomCount = 1;
@@ -262,7 +284,7 @@ export default {
           roomCount,
         },
       });
-    }
+    },
   },
 };
 </script>

@@ -75,7 +75,7 @@
   import { searchFlightOrders } from '../../api/flight.js'
   import MyDatePicker from '../../components/my-datepicker.vue'
   import MyPagination from '../../components/my-pagination.vue'
-  import FlightOrderList from '../../components/flight-order-list.vue'
+  import FlightOrderList from '../../components/list/flight-order-list.vue'
 
   export default {
     name: 'MyFlightOrders',
@@ -117,7 +117,11 @@
       }
     },
     activated: function () {
+      if (window.matchMedia('(max-width: 576px)').matches) {
+      this.$router.replace('/h5/flt/orders')
+    } else {
       this.search()
+    }
     },
     methods: {
       showLoading: function (loadingText) {

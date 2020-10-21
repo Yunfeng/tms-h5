@@ -3,16 +3,16 @@ import { authWorkWeixinUser } from '../api/workweixin.js'
 import { searchCustomers } from '../api/customer.js'
 
 export const actions = {
-  init (context, cb) {
+  init(context, cb) {
     // 仅初始化一次
-    if (context.state.initialized) return    
+    if (context.state.initialized) return
     context.state.initialized = true
 
     checkLoginStatus((jsonResult) => {
       // console.log(jsonResult)
       if (jsonResult.status === 'OK') {
         // 初始化，读取cookie中的数据
-        context.commit('readCookies')        
+        context.commit('readCookies')
         cb(false)
 
         const u = {
@@ -33,9 +33,9 @@ export const actions = {
         // context.dispatch('showAlertMsg', {errMsg: '您需要重新登录!'})
         cb(true)
       }
-    })    
+    })
   },
-  setLoginInfo (context, payload) {
+  setLoginInfo(context, payload) {
     context.commit('setUsername', payload)
     context.dispatch('searchPrivileges')
   },
@@ -54,8 +54,8 @@ export const actions = {
       if (payload.errMsgType === 'danger') {
         timeout = 5000
       } else {
-        timeout = 2500  
-      }      
+        timeout = 2500
+      }
     }
 
     setTimeout(() => { context.state.errAlert = false }, timeout)
@@ -65,16 +65,16 @@ export const actions = {
     if (payload === undefined || payload.loadingText === undefined) {
       context.state.loadingText = '数据加载中...'
     } else {
-      context.state.loadingText = payload.loadingText  
+      context.state.loadingText = payload.loadingText
     }
-  },    
+  },
   hideLoading(context) {
     context.state.loading = false
   },
   searchPrivileges(context) {
     searchPrivileges((privileges) => {
       // console.log(privileges)
-      for ( let info of privileges) {
+      for (let info of privileges) {
         context.commit('addPrivilege', info)
       }
     })
@@ -90,7 +90,7 @@ export const actions = {
         resolve()
       })
     })
-  }, 
+  },
   setWorkWxUserid(context, payload) {
     context.state.wxInfo.userid = payload.userid
     $.cookie('userid', payload.userid, { expires: 30, path: '/' })
@@ -104,17 +104,30 @@ export const actions = {
   addPsg(context, p) {
     if (p === undefined || p === null) {
       p = {
+        'index': 0,
         'selected': true,
         'name': '',
-        'firstName': '',
-        'lastName': '',
-        'gender': 0,
         'idNo': '',
         'idType': 1,
         'psgType': 0,
         'mobile': '',
         'ffpNo': ''
       };
+    }
+
+
+    if (p.name.trim().length > 0) {
+      //检查下是否有空位可以更新
+      let index = 0
+      for (const info of context.state.order.psgs) {
+        if (info.name.trim().length === 0) {
+          p.index = index
+          context.commit('updatePsg', p)
+          return
+        }
+
+        index = index + 1
+      }
     }
 
     context.state.order.psgs.push(p);

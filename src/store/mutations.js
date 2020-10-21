@@ -1,5 +1,5 @@
 export const mutations = {
-  readCookies (state) {
+  readCookies(state) {
     const workMode = $.cookie('workMode')
     if (workMode !== undefined) {
       state.workMode = workMode
@@ -19,7 +19,7 @@ export const mutations = {
       if (nickname !== undefined) {
         state.wxInfo.nickname = nickname
       }
-      
+
       const headimgurl = $.cookie('headimgurl')
       if (headimgurl !== undefined) {
         state.wxInfo.headimgurl = headimgurl
@@ -29,34 +29,34 @@ export const mutations = {
     const sid = $.cookie('sid')
     if (sid !== undefined && sid !== null && sid.length > 0) {
       state.sid = sid
-    }  
+    }
   },
-  resetOrderInfo (state) {
+  resetOrderInfo(state) {
     state.order.pnrNo = ''
     state.order.pnrDetail = ''
     state.order.policyId = 0
     state.order.flights.splice(0)
     state.order.psgs.splice(0)
   },
-  jumpToLogin (state, router) {
+  jumpToLogin(state, router) {
     state.historyStep = -1;
     state.username = "",
-    state.logined = false;
+      state.logined = false;
 
     // $.removeCookie('username', { path: '/' }); 
     // $.removeCookie('token', { path: '/' }); 
   },
-  logout(state)  {
+  logout(state) {
     state.historyStep = -1;
     state.username = ""
     state.logined = false;
     state.privileges.splice(0)
     state.roles.splice(0)
 
-    $.removeCookie('username', { path: '/' }); 
-    $.removeCookie('token', { path: '/' }); 
+    $.removeCookie('username', { path: '/' });
+    $.removeCookie('token', { path: '/' });
   },
-  setUsername (state, payload) {
+  setUsername(state, payload) {
     state.username = payload.username
     state.fullname = payload.fullname
     state.logined = payload.logined
@@ -86,7 +86,7 @@ export const mutations = {
   },
   setDdate(state, payload) {
     state.searchParams.ddate = payload;
-  }, 
+  },
   switchCity(state) {
     var cityCode = state.searchParams.acity
     var cityName = state.searchParams.acityName
@@ -104,10 +104,11 @@ export const mutations = {
     state.searchParams.sortBy = payload
   },
   updatePsg(state, p) {
-    state.order.psgs[p.index].psgName = p.name;
+    // console.log(p)
+    state.order.psgs[p.index].name = p.name;
     state.order.psgs[p.index].idType = p.idType;
     state.order.psgs[p.index].idNo = p.idNo;
-  },    
+  },
   deleteFlt(state, index) {
     state.order.flights.splice(index, 1);
   },
@@ -170,7 +171,7 @@ export const mutations = {
     })
 
     if (state.roles.indexOf(payload.role) === -1) {
-      state.roles.push(payload.role)  
+      state.roles.push(payload.role)
     }
   },
   setPrintMode(state, p) {
@@ -193,8 +194,8 @@ export const mutations = {
       if (payload.loadingText === undefined) {
         state.loadingText = '数据加载中...'
       } else {
-        state.loadingText = payload.loadingText  
-      }  
+        state.loadingText = payload.loadingText
+      }
     }
   },
   hideLoading(state) {

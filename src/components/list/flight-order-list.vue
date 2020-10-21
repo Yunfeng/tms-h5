@@ -78,8 +78,8 @@
 </template>
 
 <script>
-  import { PSG_ADU, PSG_CHD, PSG_INF }from '../common/const.js'
-  import { showFlightOrderStatus, showPayType, showItineraryType } from '../common/common.js'
+  import { PSG_ADU, PSG_CHD, PSG_INF }from '../../common/const.js'
+  import { showFlightOrderStatus, showPayType, showItineraryType } from '../../common/common.js'
 
   export default {
     props: {

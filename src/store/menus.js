@@ -5,10 +5,10 @@ export const menus = [
     submenus: [
       { to: '/flt/orders', caption: '机票订单', authorized: 0, 'h5_mode': 1 },
       { to: '', caption: '' },
-      { to: '/flt/refund/orders', caption: '机票退票单', authorized: 0, 'h5_mode': 1 },
-      { to: '/flt/change/orders', caption: '机票改签单', authorized: 0, 'h5_mode': 1 },
+      { to: '/flt/refund/orders', caption: '机票退票单', authorized: 0, 'h5_mode': 0 },
+      { to: '/flt/change/orders', caption: '机票改签单', authorized: 0, 'h5_mode': 0 },
       { to: '', caption: '' },
-      { to: '/insurance/orders', caption: '保险订单', authorized: 1, 'h5_mode': 1 },
+      { to: '/insurance/orders', caption: '保险订单', authorized: 1, 'h5_mode': 0 },
       { to: '', caption: '' },
       { to: '/vas/orders', caption: '服务订单', authorized: 1, 'h5_mode': 0 },
       { to: '/vaas/orders', caption: '机场服务订单', authorized: 0, 'h5_mode': 0 },
@@ -20,15 +20,15 @@ export const menus = [
       { to: '/attractions/ticket/orders', caption: '景点门票订单', authorized: 0, 'h5_mode': 0 },
       { to: '', caption: '' },
       { to: '/hotel/orders', caption: '酒店订单', authorized: 0, 'h5_mode': 1 },
-      { to: '/train/orders', caption: '火车票订单', authorized: 0 , 'h5_mode': 0},
+      { to: '/train/orders', caption: '火车票订单', authorized: 0, 'h5_mode': 0 },
       { to: '/train/refund/orders', caption: '火车退票单', authorized: 0, 'h5_mode': 0 },
     ]
   },
   {
     caption: '账单',
     submenus: [
-      { to: '/bills', caption: '账单', authorized: 1 },   
-      { to: '/ent/settlements', caption: '结算单', authorized: 1 }   
+      { to: '/bills', caption: '账单', authorized: 1 },
+      { to: '/ent/settlements', caption: '结算单', authorized: 1 }
     ]
   },
   {
