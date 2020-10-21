@@ -1,5 +1,5 @@
 <template>
-  <table id="flight-order-list" class="table table-sm table-hover">
+  <table id="flight-order-list" class="table table-sm table-striped table-hover">
     <thead>
       <tr>
         <th>订单号</th>

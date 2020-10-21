@@ -134,7 +134,11 @@
       // this.search()
     },
     activated: function () {
+      if (window.matchMedia('(max-width: 576px)').matches) {
+      this.$router.replace('/h5/hotel/orders')
+    } else {
       this.search()
+    }
     },
     methods: {
       back: function () {

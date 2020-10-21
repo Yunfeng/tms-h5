@@ -138,8 +138,20 @@ export function createRouter () {
       {path: '/my/recharge-result',         component: () => import('../pages/Recharge-result.vue') },
 
       {path: '/data/airports',         component: () => import('../pages/Airports.vue') },
-      {path: '/data/airlines',         component: () => import('../pages/Airlines.vue') }
+      {path: '/data/airlines',         component: () => import('../pages/Airlines.vue') },
 
-    ]
+
+      {path: '/h5/hotel/orders',         component: () => import('../pages_h5/hotel/HotelOrders.vue'), meta: { keepAlive: true }},
+      {path: '/h5/hotel/order/:id',         component: () => import('../pages_h5/hotel/HotelOrder.vue')},
+      {path: '/h5/hotel/order',         component: () => import('../pages_h5/hotel/HotelOrderNew.vue')},
+      {path: '/h5/hotel/search',         component: () => import('../pages_h5/hotel/HotelSearch.vue')},
+      {path: '/h5/hotel/search-result',         component: () => import('../pages_h5/hotel/HotelSearchResult.vue')},
+      {path: '/h5/hotel/detail',         component: () => import('../pages_h5/hotel/HotelDetail.vue')},
+
+    ],
+    scrollBehavior (to, from, savedPosition) {
+      // return desired position
+      return { x: 0, y: 0 }
+    }
   });
 }
