@@ -954,26 +954,6 @@ function($) {
         });
     },
 
-    Components.prototype.initMultiDropdown = function () {
-        $('.dropdown-menu a.dropdown-toggle').on('click', function () {
-            if (
-                !$(this)
-                    .next()
-                    .hasClass('show')
-            ) {
-                $(this)
-                    .parents('.dropdown-menu')
-                    .first()
-                    .find('.show')
-                    .removeClass('show');
-            }
-            var $subMenu = $(this).next('.dropdown-menu');
-            $subMenu.toggleClass('show');
-
-            return false;
-        });
-    },
-
     Components.prototype.initSyntaxHighlight = function() {
         //syntax
         var entityMap = {
@@ -1025,7 +1005,6 @@ function($) {
         this.initToastPlugin(),
         this.initFormValidation(),
         this.initShowHidePassword(),
-        this.initMultiDropdown(),
         this.initSyntaxHighlight();
     },
 

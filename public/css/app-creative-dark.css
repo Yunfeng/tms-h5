@@ -3432,13 +3432,15 @@ input[type="button"].btn-block {
     background-color: #3688fc;
     border: 0;
     border-radius: 1rem;
-    -moz-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     -moz-appearance: none;
          appearance: none; }
     @media (prefers-reduced-motion: reduce) {
       .custom-range::-moz-range-thumb {
-        -moz-transition: none;
+        -webkit-transition: none;
         transition: none; } }
     .custom-range::-moz-range-thumb:active {
       background-color: #e6f0ff; }
@@ -3459,12 +3461,14 @@ input[type="button"].btn-block {
     background-color: #3688fc;
     border: 0;
     border-radius: 1rem;
-    -ms-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     appearance: none; }
     @media (prefers-reduced-motion: reduce) {
       .custom-range::-ms-thumb {
-        -ms-transition: none;
+        -webkit-transition: none;
         transition: none; } }
     .custom-range::-ms-thumb:active {
       background-color: #e6f0ff; }
@@ -6594,6 +6598,7 @@ button.bg-dark:focus {
   position: fixed !important; }
 
 .position-sticky {
+  position: -webkit-sticky !important;
   position: sticky !important; }
 
 .fixed-top {
@@ -6610,8 +6615,9 @@ button.bg-dark:focus {
   left: 0;
   z-index: 1030; }
 
-@supports (position: sticky) {
+@supports ((position: -webkit-sticky) or (position: sticky)) {
   .sticky-top {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1020; } }
@@ -8390,7 +8396,7 @@ body {
   -webkit-transform: translate(0, 0);
           transform: translate(0, 0); }
   .side-nav .menu-arrow:before {
-    content: "\F0142"; }
+    content: "\F142"; }
 
 .side-nav .badge {
   margin-top: 3px; }
@@ -8940,7 +8946,7 @@ body[data-leftbar-theme="dark"][data-leftbar-compact-mode="condensed"] .side-nav
 
 @media (max-width: 767.98px) {
   .navbar-custom {
-    left: 0 !important;
+    left: 0;
     padding: 0; }
   .button-menu-mobile.disable-btn {
     display: inline-block; }
@@ -8950,7 +8956,7 @@ body[data-leftbar-theme="dark"][data-leftbar-compact-mode="condensed"] .side-nav
     .nav-user .account-user-name {
       display: none; } }
 
-@media (max-width: 375px) {
+@media (max-width: 360px) {
   .navbar-custom .topbar-right-menu .nav-link {
     margin: 0 6px; }
   .navbar-custom.topnav-navbar .container-fluid, .navbar-custom.topnav-navbar .container-sm, .navbar-custom.topnav-navbar .container-md, .navbar-custom.topnav-navbar .container-lg, .navbar-custom.topnav-navbar .container-xl {
@@ -9383,9 +9389,7 @@ body[data-layout="topnav"] .container-fluid, body[data-layout="topnav"] .contain
   width: 100%; }
 
 .breadcrumb-item + .breadcrumb-item::before {
-  font-family: "Material Design Icons";
-  font-size: 16px;
-  line-height: 1.3; }
+  font-family: "Material Design Icons"; }
 
 .btn .mdi:before {
   line-height: initial; }
@@ -9836,7 +9840,7 @@ select.form-control-sm:not([size]):not([multiple]) {
 
 .password-eye:before {
   font-family: "Material Design Icons";
-  content: "\F06D0";
+  content: "\F6CF";
   font-style: normal;
   font-weight: 400;
   font-variant: normal;
@@ -9845,7 +9849,7 @@ select.form-control-sm:not([size]):not([multiple]) {
   font-size: 16px; }
 
 .show-password .password-eye:before {
-  content: "\F06D1"; }
+  content: "\F6D0"; }
 
 .modal-title {
   margin-top: 0; }
@@ -12894,10 +12898,6 @@ body.auth-fluid-pages[data-leftbar-compact-mode=condensed] {
 .legend-entry-value {
   fill: #ced4da; }
 
-.calendar {
-  float: left;
-  margin-bottom: 0; }
-
 .fc-view {
   margin-top: 30px; }
 
@@ -12905,17 +12905,14 @@ body.auth-fluid-pages[data-leftbar-compact-mode=condensed] {
   border-top: none; }
 
 .fc-toolbar {
-  margin: 6px 0 5px 0 !important; }
+  margin: 15px 0 5px 0; }
   .fc-toolbar h2 {
-    font-size: 1.25rem !important;
+    font-size: 1.25rem;
     line-height: 1.875rem;
     text-transform: uppercase; }
 
 .fc-day-grid-event .fc-time {
-  font-weight: 600; }
-
-th.fc-day-header {
-  padding: 0.5rem 0; }
+  font-weight: 700; }
 
 .fc-day {
   background: transparent; }
@@ -12928,12 +12925,11 @@ th.fc-day-header {
   z-index: 0; }
 
 .fc th.fc-widget-header {
-  background: #464f5b;
+  background: #3e4853;
   font-size: 13px;
   line-height: 20px;
   padding: 10px 0;
-  text-transform: uppercase;
-  font-weight: 600; }
+  text-transform: uppercase; }
 
 .fc-unthemed th,
 .fc-unthemed td,
@@ -12942,16 +12938,13 @@ th.fc-day-header {
 .fc-unthemed .fc-divider,
 .fc-unthemed .fc-row,
 .fc-unthemed .fc-popover {
-  border-color: #464f5b; }
-
-.fc-unthemed td.fc-today,
-.fc-unthemed .fc-divider {
-  background: #464f5b; }
+  border-color: #404954; }
 
 .fc-button {
-  background: #464f5b;
+  background: #3e4853;
   border: none;
-  color: #dee2e6;
+  color: #aab8c5;
+  text-shadow: none;
   text-transform: capitalize;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -12964,9 +12957,10 @@ th.fc-day-header {
   font-family: inherit;
   font-size: 1rem; }
 
-.fc-state-hover,
-.fc-state-highlight,
-.fc-cell-overlay {
+.fc-state-hover {
+  background: #37404a; }
+
+.fc-state-highlight {
   background: #464f5b; }
 
 .fc-state-down,
@@ -12976,8 +12970,16 @@ th.fc-day-header {
   color: #fff;
   text-shadow: none; }
 
-.fc-unthemed .fc-today {
-  background: #fff; }
+.fc-cell-overlay {
+  background: #464f5b; }
+
+.fc-unthemed td.fc-today {
+  background: #424d59; }
+
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-list-heading td,
+.fc-unthemed .fc-popover .fc-header {
+  background: #404954; }
 
 .fc-event {
   border-radius: 2px;
@@ -12986,15 +12988,13 @@ th.fc-day-header {
   font-size: 0.8125rem;
   margin: 5px 7px;
   padding: 5px 5px;
-  text-align: center;
-  color: #fff; }
+  text-align: center; }
 
 .external-event {
   cursor: move;
   margin: 10px 0;
   padding: 8px 10px;
-  color: #fff;
-  border-radius: 4px; }
+  color: #fff; }
 
 .fc-basic-view td.fc-week-number span {
   padding-right: 8px; }
@@ -13008,7 +13008,7 @@ th.fc-day-header {
 .fc-time-grid-event .fc-content {
   color: #fff; }
 
-.fc-daygrid-day-number {
+.fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
   float: right;
   height: 20px;
   width: 20px;
@@ -13017,47 +13017,18 @@ th.fc-day-header {
   background-color: #404954;
   border-radius: 50%;
   margin: 5px;
-  font-size: 11px;
-  padding: 0 !important; }
-
-.fc-daygrid-event-dot {
-  border-color: #fff; }
-
-.fc-event-time,
-.fc-event-title {
-  color: #fff; }
-
-.table-active, .table-active > td, .table-active > th,
-.fc .fc-list-sticky .fc-list-day > * {
-  background-color: transparent; }
-
-.fc .fc-list-event:hover td {
-  background-color: inherit; }
+  font-size: 11px; }
 
 @media (max-width: 767.98px) {
-  .fc-toolbar {
-    display: block; }
-    .fc-toolbar .fc-left,
-    .fc-toolbar .fc-right,
-    .fc-toolbar .fc-center {
-      float: none;
-      display: block;
-      clear: both;
-      margin: 10px 0; }
+  .fc-toolbar .fc-left, .fc-toolbar .fc-right, .fc-toolbar .fc-center {
+    float: none;
+    display: block;
+    clear: both;
+    margin: 10px 0; }
   .fc .fc-toolbar > * > * {
     float: none; }
   .fc-today-button {
     display: none; } }
-
-.fc-toolbar .btn {
-  padding: 0.28rem 0.8rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  border-radius: 0.15rem; }
-
-.fc-list-item-title,
-.fc-list-item-time {
-  color: #fff; }
 
 .chartjs-chart {
   margin: auto;
@@ -13076,7 +13047,7 @@ table.dataTable {
   table.dataTable thead .sorting_asc_disabled:before,
   table.dataTable thead .sorting_desc_disabled:before {
     right: 0.5rem;
-    content: "\F0360";
+    content: "\F360";
     font-family: "Material Design Icons";
     font-size: 1rem;
     top: 12px; }
@@ -13086,7 +13057,7 @@ table.dataTable {
   table.dataTable thead .sorting_asc_disabled:after,
   table.dataTable thead .sorting_desc_disabled:after {
     right: 0.5em;
-    content: "\F035D";
+    content: "\F35D";
     font-family: "Material Design Icons";
     top: 18px;
     font-size: 1rem; }
@@ -13184,7 +13155,7 @@ div.dt-button-info {
   .daterangepicker select.ampmselect, .daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.secondselect {
     background: #515c69;
     border: 1px solid #515c69;
-    color: #aab8c5; }
+    color: #fff; }
   .daterangepicker.show-ranges .drp-calendar.left {
     border-left: 1px solid #4d5764; }
 
@@ -13289,7 +13260,7 @@ div.dt-button-info {
   text-align: center;
   cursor: move; }
   .dragula-handle:before {
-    content: "\F01DB";
+    content: "\F1DB";
     font-family: "Material Design Icons";
     position: absolute; }
 
