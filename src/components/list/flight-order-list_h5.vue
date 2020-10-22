@@ -6,11 +6,11 @@
         <th class="d-none d-md-table-cell">客户</th>
         <th class="d-none d-md-table-cell">编码</th>
         <th>乘机人</th>
-        <th class="bg-primary text-white">出发</th>
-        <th class="bg-primary text-white">到达</th>
-        <th class="bg-primary text-center text-white">日期</th>
-        <th class="bg-primary text-white">航班</th>
-        <th class="bg-primary text-center text-white d-none d-sm-table-cell">
+        <th>出发</th>
+        <th>到达</th>
+        <th>日期</th>
+        <th>航班</th>
+        <th class="d-none d-sm-table-cell">
           舱位
         </th>
         <th class="d-none d-lg-table-cell">操作员</th>
@@ -124,7 +124,7 @@
               >已销</span
             >
           </td>
-          <td>
+          <td class="text-center">
             <i class="mdi mdi-arrow-right fa-2"></i>
           </td>
         </tr>

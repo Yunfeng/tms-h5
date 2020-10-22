@@ -1,23 +1,25 @@
 <template>
-  <div id="flight-orders" class="card col-12 px-0 mt-5">
+  <div id="flight-orders" class="card mt-5 row bg-transparent">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb pb-0">
-        <li class="breadcrumb-item active ml-1" aria-current="page">
+        <li class="breadcrumb-item ml-1" aria-current="page">
           机票订单
         </li>
-        <li class="breadcrumb-item ml-auto mr-1">
+        <li class="breadcrumb-item active" aria-current="page">
+          列表
+        </li>
+        <li class="breadcrumb-item ml-auto mr-2">
           <router-link to="/h5/flt/search">国内查询</router-link>
         </li>
       </ol>
     </nav>
     <template v-if="filterShowing">
-      <div class="card-body py-1 px-1">
+      <div class="card-body">
         <form>
           <div class="form-group">
             <input
               type="textfield"
-              class="form-control form-control-sm"
-              size="6"
+              class="form-control"
               placeholder="订单号"
               v-model.trim="orderNo"
             />
@@ -25,8 +27,7 @@
           <div class="form-group">
             <input
               type="textfield"
-              class="form-control form-control-sm"
-              size="6"
+              class="form-control"
               placeholder="姓名"
               v-model.trim="name"
             />
@@ -34,8 +35,7 @@
           <div class="form-group">
             <input
               type="textfield"
-              class="form-control form-control-sm"
-              size="6"
+              class="form-control"
               placeholder="证件号"
               v-model.trim="idno"
             />
@@ -43,8 +43,7 @@
           <div class="form-group">
             <input
               type="textfield"
-              class="form-control form-control-sm"
-              size="12"
+              class="form-control"
               placeholder="票号"
               v-model.trim="ticketNo"
             />
@@ -52,8 +51,7 @@
           <div class="form-group">
             <input
               type="textfield"
-              class="form-control form-control-sm"
-              size="10"
+              class="form-control"
               placeholder="航班号"
               v-model.trim="flightNo"
             />
@@ -96,9 +94,8 @@
           </div>
           <div class="form-group">
             <select
-              class="form-control form-control-sm"
+              class="form-control"
               v-model.number="status"
-              name="sc.status"
             >
               <option value="-1">订单状态</option>
               <option value="0">暂不开票</option>
@@ -121,20 +118,24 @@
               <option value="50">50</option>
             </select>
           </div>
-          <button
+          <div class="form-group row">
+
+            <button
             type="button"
-            class="btn btn-primary btn-sm"
+            class="btn btn-primary btn-lg ml-auto mr-auto"
             @click.stop="search()"
           >
             查找
           </button>
           <button
             type="button"
-            class="btn btn-secondary btn-sm ml-2"
+            class="btn btn-secondary btn-sm  ml-auto mr-auto"
             @click.stop="reset()"
           >
             重置
           </button>
+          </div>
+          
         </form>
       </div>
     </template>

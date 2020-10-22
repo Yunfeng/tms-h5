@@ -1,5 +1,5 @@
 <template>
-  <div id="hotel-orders" class="card col-12 px-0 mt-5 bg-transparent">
+  <div id="hotel-orders" class="card mt-5 row bg-transparent">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb pb-0">
         <li class="breadcrumb-item ml-1 active" aria-current="page">酒店订单</li>

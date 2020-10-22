@@ -1,5 +1,5 @@
 <template>
-  <div id="flight-order-detail" class="card col-12 px-0 mt-5">
+  <div id="flight-order-detail" class="card mt-5 row bg-transparent">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb">
         <li class="breadcrumb-item ml-1">
@@ -21,8 +21,8 @@
         </template>
         <template v-else>散客</template>
       </div>
-      <div class="card-body bg-primary text-white m-0 p-0">航班信息</div>
-      <table class="table table-striped table-hover table-sm">
+      <div class="card-body bg-info text-white py-1">航班信息</div>
+      <table class="table table-striped table-hover table-sm mb-1">
         <thead>
           <tr>
             <th>出发</th>
@@ -31,33 +31,29 @@
             <th>航班号</th>
             <th>起飞</th>
             <th class="d-none d-md-table-cell">落地</th>
-            <th>舱位</th>
+            <th class="d-none d-md-table-cell">舱位</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="info in detail.flights" :key="info.id">
             <td>
-              {{ info.dport }}
-              <span class="d-none d-md-inline"
-                >{{ info.dportName }} {{ info.dterm }}</span
-              >
+              {{ info.dportName }}
+              <span class="d-none d-md-inline"> {{ info.dterm }}</span>
             </td>
             <td>
-              <span class="text-success">{{ info.aport }}</span>
-              <span class="d-none d-md-inline"
-                >{{ info.aportName }} {{ info.aterm }}</span
-              >
+              {{ info.aportName }}
+              <span class="d-none d-md-inline"> {{ info.aterm }}</span>
             </td>
             <td>{{ info.ddate }}</td>
             <td>{{ info.flightNo }}</td>
             <td>{{ info.dtime }}</td>
             <td class="d-none d-md-table-cell">{{ info.atime }}</td>
-            <td>{{ info.subclass }}</td>
+            <td class="d-none d-md-table-cell">{{ info.subclass }}</td>
           </tr>
         </tbody>
       </table>
-      <div class="card-body bg-primary text-white m-0 p-0">乘客信息</div>
-      <table class="table table-striped table-hover table-sm">
+      <div class="card-body bg-info text-white py-1">乘客信息</div>
+      <table class="table table-striped table-hover table-sm mb-1">
         <thead>
           <tr>
             <th>姓名</th>
@@ -100,117 +96,49 @@
           </tr>
         </tbody>
       </table>
-      <div class="card-body bg-primary text-white m-0 p-0">价格信息</div>
-      <div class="card-body m-0 p-0">
-        <template v-if="priceEditing === 0">
-          <table class="table table-striped table-hover table-sm">
-            <thead>
-              <tr>
-                <th></th>
-                <th class="d-none d-md-table-cell">票面价</th>
-                <th>销售价</th>
-                <th>税</th>
-                <th class="d-none d-md-table-cell">保险费</th>
-                <th>服务费</th>
-                <th class="d-none d-sm-table-cell">航司代理费</th>
-                <th class="d-none d-sm-table-cell">自定代理费</th>
-                <th class="d-sm-none">代理费</th>
-                <th class="d-none d-md-table-cell">让利</th>
-                <th class="d-none d-md-table-cell">人数</th>
-                <th class="d-none d-md-table-cell">应收</th>
-                <th class="d-none d-md-table-cell">成本</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-if="detail.adultCount > 0">
-                <td>成人</td>
-                <td class="d-none d-md-table-cell">{{ adultPrice.price }}</td>
-                <td>{{ adultPrice.parValue }}</td>
-                <td>{{ adultPrice.tax }}</td>
-                <td class="d-none d-md-table-cell">
-                  {{ adultPrice.insurance }}
-                </td>
-                <td>{{ adultPrice.serviceCharge }}</td>
-                <td class="d-none d-sm-table-cell">
-                  {{ adultPrice.commission }}
-                </td>
-                <td class="d-none d-sm-table-cell">
-                  {{ adultPrice.commission2 }}
-                </td>
-                <td class="d-sm-none">
-                  {{ adultPrice.commission }}/{{ adultPrice.commission2 }}
-                </td>
-                <td class="d-none d-md-table-cell">
-                  {{ adultPrice.discount }}
-                </td>
-                <td class="d-none d-md-table-cell">
-                  {{ adultPrice.ticketCount }}
-                </td>
-                <td class="d-none d-md-table-cell">{{ adultPrice.amount }}</td>
-                <td class="d-none d-md-table-cell">{{ adultPrice.cost }}</td>
-              </tr>
-              <tr v-if="detail.childCount > 0">
-                <td>儿童</td>
-                <td>{{ childPrice.price }}</td>
-                <td>{{ childPrice.parValue }}</td>
-                <td>{{ childPrice.tax }}</td>
-                <td>{{ childPrice.serviceCharge }}</td>
-                <td>{{ childPrice.commission }}</td>
-                <td>{{ childPrice.discount }}</td>
-                <td class="d-none">{{ childPrice.ticketCount }}</td>
-                <td class="d-none">{{ childPrice.amount }}</td>
-                <td class="d-none">{{ childPrice.cost }}</td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="table">
+      <div class="card-body bg-info text-white py-1">价格信息</div>
+      <div class="card-body m-0 p-0 text-center">
+        <table class="table table-striped table-hover table-sm mb-1">
+          <thead>
             <tr>
-              <td>总计: {{ detail.totalAmount }}</td>
-              <td>成本: {{ detail.totalCost }}</td>
-              <td>利润: {{ detail.profit }}</td>
+              <th></th>
+              <th>销售价</th>
+              <th>税</th>
+              <th>服务费</th>
+              <th class="d-none d-md-table-cell">让利</th>
+              <th class="d-none d-md-table-cell">人数</th>
+              <th class="d-none d-md-table-cell">应收</th>
             </tr>
-          </table>
-        </template>
-        <template v-else>
-          <my-price-input
-            psgTypeName="成人"
-            key="adultPriceInput"
-            v-bind.sync="adultPrice"
-            v-if="detail.adultCount > 0"
-          ></my-price-input>
-
-          <my-price-input
-            psgTypeName="儿童"
-            key="childPriceInput"
-            v-bind.sync="childPrice"
-            v-if="detail.childCount > 0"
-          ></my-price-input>
-
-          <my-price-input
-            psgTypeName="婴儿"
-            key="infantPriceInput"
-            v-bind.sync="infantPrice"
-            v-if="detail.infantCount > 0"
-          ></my-price-input>
-
-          <table class="table table-sm">
-            <tr>
-              <td class="text-center">
-                <button class="btn btn-primary" @click.stop="saveNewPrice()">
-                  保存
-                </button>
-                <button
-                  class="btn btn-secondary btn-sm ml-3"
-                  @click.stop="cancelEditPrice()"
-                >
-                  取消
-                </button>
+          </thead>
+          <tbody>
+            <tr v-if="detail.adultCount > 0">
+              <td>成人</td>
+              <td>{{ adultPrice.parValue }}</td>
+              <td>{{ adultPrice.tax }}</td>
+              <td>{{ adultPrice.serviceCharge }}</td>
+              <td class="d-none d-md-table-cell">
+                {{ adultPrice.discount }}
               </td>
+              <td class="d-none d-md-table-cell">
+                {{ adultPrice.ticketCount }}
+              </td>
+              <td class="d-none d-md-table-cell">{{ adultPrice.amount }}</td>
             </tr>
-          </table>
-        </template>
+            <tr v-if="detail.childCount > 0">
+              <td>儿童</td>
+              <td>{{ childPrice.parValue }}</td>
+              <td>{{ childPrice.tax }}</td>
+              <td>{{ childPrice.serviceCharge }}</td>
+              <td>{{ childPrice.commission }}</td>
+              <td>{{ childPrice.discount }}</td>
+              <td class="d-none">{{ childPrice.ticketCount }}</td>
+              <td class="d-none">{{ childPrice.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+        总金额: {{ detail.totalAmount }}
       </div>
-      <div class="card-body px-0">
+      <div class="card-body p-0">
         <ul class="nav nav-tabs nav-bordered mb-3" id="myTab" role="tablist">
           <li class="nav-item">
             <a
@@ -305,25 +233,13 @@
             <dl class="row">
               <dt class="col-4 text-right">编码</dt>
               <dd class="col-8">{{ detail.pnrNo }}</dd>
-
-              <template v-if="detail.status !== 32">
-                <dt class="col-4 text-right">出票时限</dt>
-                <dd class="col-8">{{ detail.tktl }}</dd>
-              </template>
-
               <dt class="col-4 text-right">预订人</dt>
-
               <dd class="col-8">{{ detail.operator }}</dd>
-              <dt class="col-4 text-right">开票人</dt>
-              <dd class="col-8">{{ detail.ticketer }}</dd>
-              <dt class="col-4 text-right">收款方式</dt>
-              <dd class="col-8">{{ getPayTypeDesc(detail.payType) }}</dd>
-              <dt class="col-4 text-right">收款备注</dt>
-              <dd class="col-8">{{ detail.payRemark }}</dd>
-
               <dt class="col-4 text-right">出票日期</dt>
               <dd class="col-8">{{ detail.etdzDate }}</dd>
-              <dt class="col-4 text-right">收款状态</dt>
+              <dt class="col-4 text-right">付款方式</dt>
+              <dd class="col-8">{{ getPayTypeDesc(detail.payType) }}</dd>
+              <dt class="col-4 text-right">付款状态</dt>
               <dd class="col-8">
                 <span class="text-danger" v-if="detail.payStatus === 0"
                   >未收款</span
@@ -337,7 +253,7 @@
               </dd>
               <dt class="col-4 text-right">订单状态</dt>
               <dd class="col-8">{{ getStatusDesc(detail.orderStatus) }}</dd>
-              <dt class="col-4 text-right">代订人</dt>
+              <dt class="col-4 text-right">联系人</dt>
               <dd class="col-8">{{ detail.linkman }}</dd>
               <dt class="col-4 text-right">联系电话</dt>
               <dd class="col-8">{{ detail.linkPhone }}</dd>
@@ -566,7 +482,6 @@ export default {
       childPrice: new PriceInfo(),
       infantPrice: new PriceInfo(),
 
-      priceEditing: 0,
       remark: "",
       commentContent: "",
       comments: [],
@@ -824,7 +739,7 @@ export default {
       }
 
       this.adultPrice.price = priceInfo.price;
-      this.adultPrice.parvalue = priceInfo.parValue;
+      this.adultPrice.parValue = priceInfo.parValue;
       this.adultPrice.tax = priceInfo.tax;
       this.adultPrice.insurance = priceInfo.insurance;
       this.adultPrice.serviceCharge = priceInfo.serviceCharge;
@@ -840,7 +755,7 @@ export default {
     },
     setChildPrice: function () {
       this.childPrice.price = this.detail.chdPrice;
-      this.childPrice.parvalue = this.detail.chdParvalue;
+      this.childPrice.parValue = this.detail.chdParvalue;
       this.childPrice.tax = this.detail.chdTax;
       this.childPrice.insurance = this.detail.chdInsurance;
       this.childPrice.serviceCharge = this.detail.chdServiceCharge;
@@ -854,7 +769,7 @@ export default {
     },
     setInfantPrice: function () {
       this.infantPrice.price = this.detail.infPrice;
-      this.infantPrice.parvalue = this.detail.infParvalue;
+      this.infantPrice.parValue = this.detail.infParvalue;
       this.infantPrice.tax = this.detail.infTax;
       this.infantPrice.insurance = this.detail.infInsurance;
       this.infantPrice.serviceCharge = this.detail.infServiceCharge;
