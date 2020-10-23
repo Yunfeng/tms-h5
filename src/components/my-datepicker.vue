@@ -1,5 +1,6 @@
 <template>
-  <input class="form-control" :id="id" :name="name" type="text" :placeholder="placeholder" :value="value" @input="updateValue($event.target.value)" :class="className" style="min-width: 80px; max-width: 110px">
+  <input class="form-control" :id="id" :name="name" type="text" :placeholder="placeholder" :value="value" 
+  @input="updateValue($event.target.value)" :class="className" :style="`min-width: 80px;` + maxwidth" >
 </template>
 
 <script>
@@ -11,7 +12,8 @@ export default {
     value: '',
     id: '',
     name: '',
-    sizing: ''
+    sizing: '',
+    maxwidth: 'max-width: 120px'
   },
   computed: {
     className: function () {

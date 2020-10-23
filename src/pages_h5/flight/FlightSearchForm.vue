@@ -1,223 +1,225 @@
 <template>
-  <div id="flight-search" class="card mt-5">
+  <div id="flight-search" class="card mt-5 row">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb py-1">
-        <li class="breadcrumb-item active" aria-current="page">机票预订</li>
-        <li class="breadcrumb-item ml-auto">
+        <li class="breadcrumb-item active ml-1" aria-current="page">
+          机票预订
+        </li>
+        <li class="breadcrumb-item ml-auto mr-1">
           <router-link to="/h5/flt/orders">机票订单</router-link>
         </li>
       </ol>
     </nav>
-    <div class="card">
-      <template v-if="showSearchForm">
-        <div class="card-body py-0 my-1">
-          <form class="form-inline">
+    <template v-if="showSearchForm">
+      <div class="card-body py-0 my-1">
+        <form>
+          <div class="form-group">
             <label>出发</label>
-            <input
-              type="text"
-              class="form-control mb-2 mr-sm-2"
-              placeholder="城市或机场三字代码"
-              size="8"
-              v-model.trim="dcity"
-            />
-
+            <my-select-airport
+              :cityCode.sync="dcity"
+              :cityName.sync="dcityName"
+              :id="dcity"
+            ></my-select-airport>
+          </div>
+          <div class="form-group">
             <label>到达</label>
-            <input
-              type="text"
-              class="form-control mb-2 mr-sm-2"
-              placeholder="城市或机场三字代码"
-              size="8"
-              v-model.trim="acity"
-            />
+            <my-select-airport
+              :cityCode.sync="acity"
+              :cityName.sync="acityName"
+              :id="acity"
+            ></my-select-airport>
+          </div>
 
+          <div class="form-group">
             <label>日期</label>
             <my-date-picker
               id="ddate"
               v-model="ddate"
               placeholder="出发日期"
             ></my-date-picker>
-
+          </div>
+          <div class="form-group text-center">
             <button
               type="button"
               @click.stop="search()"
-              class="btn btn-primary"
+              class="btn btn-primary btn-lg"
             >
               搜索
             </button>
-          </form>
-        </div>
-      </template>
-      <template v-else>
-        <div class="card-body text-center py-1 my-0">
-          <span class="float-left" @click.stop="returnSearchForm()">
-            <i class="mdi mdi-arrow-left"></i>
-          </span>
-          {{ dcity }}~{{ acity }}
-          <br />
-          {{ ddate }}
-        </div>
-        <div
-          class="col-12 text-center bg-primary border-1"
-          style="opacity: 0.8"
-        >
-          <span class="float-left" v-if="isToday">
-            <a
-              href="javascript:void(0)"
-              @click.stop="changeDdate(-1)"
-              class="text-white"
-              >前一天</a
+          </div>
+        </form>
+      </div>
+    </template>
+    <template v-else>
+      <div class="card-body text-center py-1 my-0">
+        <span class="float-left" @click.stop="returnSearchForm()">
+          <i class="mdi mdi-arrow-left"></i>
+        </span>
+        {{ dcityName }} ~ {{ acityName }}
+        <br />
+        {{ ddate }}
+      </div>
+      <div class="col-12 text-center bg-primary border-1" style="opacity: 0.8">
+        <span class="float-left" v-if="isToday">
+          <a
+            href="javascript:void(0)"
+            @click.stop="changeDdate(-1)"
+            class="text-white"
+            >前一天</a
+          >
+        </span>
+
+        <span class="text-danger small" v-if="isReplacing">更新中...</span>
+
+        <span class="float-right">
+          <a
+            href="javascript:void(0)"
+            @click.stop="changeDdate(1)"
+            class="text-white fa-2"
+            >后一天</a
+          >
+        </span>
+      </div>
+      <table class="table table-striped table-hover table-sm">
+        <thead class="thead-light">
+          <th class="text-center">时间</th>
+          <th class="text-center">航班</th>
+          <th class="text-center">出发</th>
+          <th class="text-center">到达</th>
+          <th class="text-center d-none d-md-table-cell">时长</th>
+          <th class="text-center d-none d-md-table-cell">机型</th>
+          <th class="text-center d-none d-md-table-cell">经停</th>
+          <th class="text-center">价格</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <template v-for="flight in searchFlightResults">
+            <tr
+              @click="showFlightDetail(flight)"
+              name="flightItem"
+              :key="flight.flightNo"
+              class="table-primary"
             >
-          </span>
+              <td class="text-center">
+                <span class="text-primary fa-2">{{ flight.dtime }}</span>
+                <span class="text-muted">{{ flight.atime }}</span>
+              </td>
+              <td>
+                {{ flight.flightNo }}
+                <span v-if="flight.codeShare === 1" class="small text-muted">{{
+                  flight.opFlightNo
+                }}</span>
+              </td>
+              <td class="text-center">
+                {{ flight.dportName }}
+                <span class="text-muted">{{ flight.dterm }}</span>
+              </td>
+              <td class="text-center">
+                {{ flight.aportName }}
+                <span class="text-muted">{{ flight.aterm }}</span>
+              </td>
 
-          <span class="text-danger small" v-if="isReplacing">更新中...</span>
-
-          <span class="float-right">
-            <a
-              href="javascript:void(0)"
-              @click.stop="changeDdate(1)"
-              class="text-white fa-2"
-              >后一天</a
-            >
-          </span>
-        </div>
-        <table class="table table-striped table-hover table-sm">
-          <thead>
-            <th class="text-center">时间</th>
-            <th class="text-center">航班</th>
-            <th class="text-center">出发</th>
-            <th class="text-center">到达</th>
-            <th class="text-center d-none d-md-table-cell">时长</th>
-            <th class="text-center d-none d-md-table-cell">机型</th>
-            <th class="text-center d-none d-md-table-cell">经停</th>
-            <th class="text-center">价格</th>
-          </thead>
-          <tbody>
-            <template v-for="flight in searchFlightResults">
-              <tr @click="showFlightDetail(flight)" name="flightItem">
-                <td class="text-center">
-                  <span class="text-primary fa-2">{{ flight.dtime }}</span>
-                  <span class="text-muted small">{{ flight.atime }}</span>
-                </td>
-                <td>
-                  {{ flight.flightNo }}
-                  <span v-if="flight.codeShare === 1" class="small">{{
-                    flight.opFlightNo
-                  }}</span>
-                </td>
-                <td class="text-center hidden-sm-down">
-                  {{ flight.dport }}
-                  <span class="small text-primary">{{ flight.dterm }}</span>
-                </td>
-                <td class="text-center hidden-sm-down">
-                  {{ flight.aport }}
-                  <span class="small text-primary">{{ flight.aterm }}</span>
-                </td>
-
-                <td class="text-center d-none d-md-table-cell">
-                  <span class="text-info fa-2">{{ flight.duration }}</span>
-                </td>
-                <td class="text-center d-none d-md-table-cell">
-                  <span class="text-info fa-2">{{ flight.aircraft }}</span>
-                </td>
-                <td class="text-center d-none d-md-table-cell">
-                  <span class="text-info fa-2" v-if="flight.stopover < 1"
-                    >无</span
-                  >
-                </td>
-                <td class="text-center">
-                  <div v-if="flight.subClassList.length > 0">
-                    <template v-if="flight.lowestPrice != null">
-                      <i class="fa fa-rmb"></i>
-                      <span class="text-danger">
-                        <big>
-                          <strong>{{ flight.lowestPrice.price }}</strong>
-                        </big>
-                      </span>
-                      <span class="text-muted"
-                        >{{ flight.lowestPrice.cabinClass
-                        }}{{ flight.lowestPrice.discountRate }}</span
-                      >
-                      <i
-                        class="fa fa-long-arrow-up text-success"
-                        aria-hidden="true"
-                      ></i>
-                    </template>
-                  </div>
-                  <div v-else>
-                    <span class="text-danger">已售完</span>
-                  </div>
-                </td>
-                <td class="text-left fa-2">
-                  <template v-if="detailFlightId !== flight.flightNo">
-                    <i class="mdi mdi-arrow-right"></i>
+              <td class="text-center d-none d-md-table-cell">
+                <span class="text-info fa-2">{{ flight.duration }}</span>
+              </td>
+              <td class="text-center d-none d-md-table-cell">
+                <span class="text-info fa-2">{{ flight.aircraft }}</span>
+              </td>
+              <td class="text-center d-none d-md-table-cell">
+                <span class="text-info fa-2" v-if="flight.stopover < 1"
+                  >无</span
+                >
+              </td>
+              <td class="text-center">
+                <div v-if="flight.subClassList.length > 0">
+                  <template v-if="flight.lowestPrice != null">
+                    <i class="fa fa-rmb"></i>
+                    <span class="text-danger">
+                      <big>
+                        <strong>{{ flight.lowestPrice.price }}</strong>
+                      </big>
+                    </span>
+                    <span class="text-muted"
+                      >{{ flight.lowestPrice.cabinClass
+                      }}{{ flight.lowestPrice.discountRate }}</span
+                    >
+                    <i
+                      class="fa fa-long-arrow-up text-success"
+                      aria-hidden="true"
+                    ></i>
                   </template>
-                  <template v-else>
-                    <i class="mdi mdi-arrow-down"></i>
-                  </template>
-                </td>
-              </tr>
-              <tr v-show="detailFlightId == flight.flightNo">
-                <td colspan="8">
-                  <table class="table table-striped">
-                    <tbody>
-                      <tr v-for="info in sortSubclass(flight.subClassList)">
-                        <td class="text-right px-1">
-                          {{ info.subClass }}
-                          <small
-                            >({{ info.cabinClass
-                            }}{{ info.discountRate }})</small
-                          >
-                        </td>
-                        <td class="text-center">
-                          <span @click="showTGQ(info.tgqInfo)">退改</span>
-                        </td>
-                        <td>
-                          <span @click="showLuggageInfo(info.luggageInfos)"
-                            >行李</span
-                          >
-                        </td>
-                        <td class="text-right">
-                          <template v-if="info.price > 0">
-                            <i class="fa fa-rmb text-warning"></i>
-                            <span class="text-danger fa-2">{{
-                              info.price
-                            }}</span>
-                          </template>
-                          <template v-else>
-                            <span class="text-danger">
-                              <small></small>
-                            </span>
-                          </template>
-                        </td>
-                        <td class="text-right">
-                          <span v-if="info.seatCount < 10" class="text-danger">
-                            <small>{{ info.seatCount }}张</small>
+                </div>
+                <div v-else>
+                  <span class="text-danger">已售完</span>
+                </div>
+              </td>
+              <td class="text-left fa-2">
+                <template v-if="detailFlightId !== flight.flightNo">
+                  <i class="mdi mdi-arrow-right"></i>
+                </template>
+                <template v-else>
+                  <i class="mdi mdi-arrow-down"></i>
+                </template>
+              </td>
+            </tr>
+            <tr v-show="detailFlightId == flight.flightNo">
+              <td colspan="8">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr v-for="info in sortSubclass(flight.subClassList)">
+                      <td class="text-right px-1">
+                        {{ info.subClass }}
+                        <small
+                          >({{ info.cabinClass }}{{ info.discountRate }})</small
+                        >
+                      </td>
+                      <td class="text-center">
+                        <span @click="showTGQ(info.tgqInfo)">退改</span>
+                      </td>
+                      <td>
+                        <span @click="showLuggageInfo(info.luggageInfos)"
+                          >行李</span
+                        >
+                      </td>
+                      <td class="text-right">
+                        <template v-if="info.price > 0">
+                          <i class="fa fa-rmb text-warning"></i>
+                          <span class="text-danger fa-2">{{ info.price }}</span>
+                        </template>
+                        <template v-else>
+                          <span class="text-danger">
+                            <small></small>
                           </span>
+                        </template>
+                      </td>
+                      <td class="text-right">
+                        <span v-if="info.seatCount < 10" class="text-danger">
+                          <small>{{ info.seatCount }}张</small>
+                        </span>
 
-                          <a
-                            @click.stop="bookFlight(flight, info, null)"
-                            :title="info.price + '元，余位' + info.seatStatus"
-                            class="btn btn-outline-info btn-sm"
-                            >预定</a
-                          >
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
-        <div class="card col-12 text-right mt-1 border-0" v-if="totalCount > 0">
-          <span class="text-info">
-            <small>共</small>
-            {{ showCount }}/{{ totalCount }}
-            <small>航班</small>
-          </span>
-        </div>
-      </template>
-    </div>
+                        <a
+                          @click.stop="bookFlight(flight, info, null)"
+                          :title="info.price + '元，余位' + info.seatStatus"
+                          class="btn btn-outline-info btn-sm"
+                          >预定</a
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+      <div class="card col-12 text-right mt-1 border-0" v-if="totalCount > 0">
+        <span class="text-info">
+          <small>共</small>
+          {{ showCount }}/{{ totalCount }}
+          <small>航班</small>
+        </span>
+      </div>
+    </template>
 
     <div class="modal" tabindex="-1" id="tgqModal">
       <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -248,10 +250,12 @@ import MyDatePicker from "../../components/my-datepicker.vue";
 import { getCabinClassDesc, addDate, tomorrow } from "../../common/common.js";
 import { rav, searchTgq } from "../../api/flight.js";
 import $ from "jquery";
+import MySelectAirport from "../../components/my-select2-airport.vue";
 
 export default {
   components: {
     MyDatePicker,
+    MySelectAirport,
   },
   data() {
     return {
@@ -285,7 +289,9 @@ export default {
 
       // testFlights: avResult.flights
       dcity: null,
+      dcityName: null,
       acity: null,
+      acityName: null,
       ddate: null,
     };
   },
@@ -299,15 +305,7 @@ export default {
       return aa > 0;
     },
   }),
-  watch: {
-    ddate: function (newVal, oldVal) {
-      console.log(newVal + ", " + oldVal);
-    },
-  },
   mounted: function () {
-    // console.log('mounted')
-    // console.log(avResult)
-    // console.log(testFlights)
     this.init();
   },
   methods: {
@@ -382,8 +380,14 @@ export default {
       // return
       this.dcity = this.dcity.toUpperCase();
       this.acity = this.acity.toUpperCase();
-      this.$store.commit("setDcity", { cityCode: this.dcity });
-      this.$store.commit("setAcity", { cityCode: this.acity });
+      this.$store.commit("setDcity", {
+        cityCode: this.dcity,
+        cityName: this.dcityName,
+      });
+      this.$store.commit("setAcity", {
+        cityCode: this.acity,
+        cityName: this.acityName,
+      });
       this.$store.commit("setDdate", this.ddate);
 
       this.showLoading();
@@ -592,14 +596,16 @@ export default {
         carrierName: flt0.carrierName,
         ddate: flt0.ddate,
         dport: flt0.dport,
+        dcityName: flt0.dcityName,
+        dportName: flt0.dportName,
         aport: flt0.aport,
+        acityName: flt0.acityName,
+        aportName: flt0.aportName,
         dtime: flt0.dtime,
         showDtime: flt0.dtime,
         atime: flt0.atime,
         showAtime: flt0.atime,
-        dportName: flt0.dportName,
         dterm: flt0.dterm,
-        aportName: flt0.aportName,
         aterm: flt0.aterm,
         subclass: subclass0.subClass,
         price: subclass0.price,
@@ -712,7 +718,8 @@ export default {
       modal.modal("show");
     },
     changeDdate: function (x) {
-      var newDate = addDate(this.ddate, x);
+      let newDate = addDate(this.ddate, x);
+      this.ddate = newDate;
 
       this.$store.commit("setDdate", newDate);
       this.search();

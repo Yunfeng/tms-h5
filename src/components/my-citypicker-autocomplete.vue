@@ -5,7 +5,7 @@
 
 <script>
   import $ from 'jquery'
-  import domCities from '../domCities.js'
+  import domCities from '../data/domCities.js'
 
   export default {
     props: {

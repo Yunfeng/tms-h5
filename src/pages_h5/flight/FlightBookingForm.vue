@@ -1,5 +1,5 @@
 <template>
-  <div id="flight-booking" class="card mt-5">
+  <div id="flight-booking" class="card mt-5 row">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb pb-0">
         <li class="breadcrumb-item">
@@ -35,12 +35,12 @@
           <tr :key="index">
             <td class="d-none d-md-table-cell">{{ index + 1 }}</td>
             <td>
-              {{ flt.dport }}{{ flt.dcityName }}
+              {{ flt.dcityName }}{{ flt.dportName }}
               <small>{{ flt.dterm }}</small>
               {{ flt.showDtime }}
             </td>
             <td>
-              {{ flt.aport }}{{ flt.acityName }}
+              {{ flt.acityName }}{{ flt.aportName }}
               <small>{{ flt.aterm }}</small>
               {{ flt.showAtime }}
             </td>
