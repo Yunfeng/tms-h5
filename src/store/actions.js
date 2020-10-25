@@ -1,5 +1,6 @@
 import { checkLoginStatus, searchPrivileges } from '../api/user.js'
 import { authWorkWeixinUser } from '../api/workweixin.js'
+import { getWxsOpenid } from '../api/wx.js'
 import { searchCustomers } from '../api/customer.js'
 
 export const actions = {
@@ -78,6 +79,24 @@ export const actions = {
         context.commit('addPrivilege', info)
       }
     })
+  },
+  getWxsOpenId(context, payload) {
+    //获取微信服务号用户的openid
+    return new Promise((resolve, reject) => {
+      const params = {
+        'code': payload.code,
+        'state': payload.state
+      }
+
+      getWxsOpenid(params, v => {
+        context.dispatch('setWxsOpenId', v)
+        resolve()
+      })
+    })
+  },
+  setWxsOpenId(context, payload) {
+    context.state.wxInfo.openid = payload.openid
+    $.cookie('userid', payload.userid, { expires: 30, path: '/' })
   },
   getWorkWxUserId(context, payload) {
     return new Promise((resolve, reject) => {

@@ -1,7 +1,7 @@
 import { WEBAPP_NAME, callService } from '../common/common.js'
 
-export function getWxOpenid(params, cbDone) {
-  const url = WEBAPP_NAME + '/weixin/getOpenId'
+export function getWxsOpenid(params, cbDone) {
+  const url = WEBAPP_NAME + '/wx-service/getOpenId'
   callService(url, {
     data: params,
     cbDone: cbDone
@@ -32,7 +32,7 @@ export function initJsSdkParam(url, done, fail, always) {
   })
 }
 
-export function getDomainUrl (cb) {
+export function getDomainUrl(cb) {
   $.ajax({
     type: 'post',
     url: '/Flight/pay/domain',
@@ -40,5 +40,5 @@ export function getDomainUrl (cb) {
     success: function (jsonResult) {
       cb(jsonResult)
     }
-  })    
+  })
 }
