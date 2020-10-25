@@ -1,5 +1,5 @@
 // will remove to const.js
-const WEBAPP_NAME = '/api/eotms'
+const WEBAPP_NAME = '/eotms'
 
 import $ from 'jquery'
 
