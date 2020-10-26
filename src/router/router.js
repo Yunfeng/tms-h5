@@ -141,6 +141,8 @@ export function createRouter() {
       { path: '/data/airlines', component: () => import('../pages/Airlines.vue') },
 
 
+      { path: '/h5/home', component: () => import('../pages_h5/home.vue') },
+
       { path: '/h5/hotel/orders', component: () => import('../pages_h5/hotel/HotelOrders.vue'), meta: { keepAlive: true } },
       { path: '/h5/hotel/order/:id', component: () => import('../pages_h5/hotel/HotelOrder.vue') },
       { path: '/h5/hotel/order', component: () => import('../pages_h5/hotel/HotelOrderNew.vue') },

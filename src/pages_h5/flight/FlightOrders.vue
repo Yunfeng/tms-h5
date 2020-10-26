@@ -2,14 +2,12 @@
   <div id="flight-orders" class="card mt-5 row bg-transparent">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb pb-0">
-        <li class="breadcrumb-item ml-1" aria-current="page">
-          机票订单
+        <li class="breadcrumb-item" aria-current="page">
+          <router-link to="/h5/home">Home</router-link>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">
-          列表
-        </li>
+        <li class="breadcrumb-item active" aria-current="page">机票订单</li>
         <li class="breadcrumb-item ml-auto mr-2">
-          <router-link to="/h5/flt/search">国内查询</router-link>
+          <router-link to="/h5/flt/search">国内预订</router-link>
         </li>
       </ol>
     </nav>
@@ -93,10 +91,7 @@
             </select>
           </div>
           <div class="form-group">
-            <select
-              class="form-control"
-              v-model.number="status"
-            >
+            <select class="form-control" v-model.number="status">
               <option value="-1">订单状态</option>
               <option value="0">暂不开票</option>
               <option value="1">待开票审核</option>
@@ -119,23 +114,21 @@
             </select>
           </div>
           <div class="form-group row">
-
             <button
-            type="button"
-            class="btn btn-primary btn-lg ml-auto mr-auto"
-            @click.stop="search()"
-          >
-            查找
-          </button>
-          <button
-            type="button"
-            class="btn btn-secondary btn-sm  ml-auto mr-auto"
-            @click.stop="reset()"
-          >
-            重置
-          </button>
+              type="button"
+              class="btn btn-primary btn-lg ml-auto mr-auto"
+              @click.stop="search()"
+            >
+              查找
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm ml-auto mr-auto"
+              @click.stop="reset()"
+            >
+              重置
+            </button>
           </div>
-          
         </form>
       </div>
     </template>
