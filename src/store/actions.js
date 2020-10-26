@@ -89,14 +89,17 @@ export const actions = {
       }
 
       getWxsOpenid(params, v => {
+        console.log(v)
         context.dispatch('setWxsOpenId', v)
         resolve()
       })
     })
   },
   setWxsOpenId(context, payload) {
+    console.log(payload)
     context.state.wxInfo.openid = payload.openid
-    $.cookie('userid', payload.userid, { expires: 30, path: '/' })
+    console.log(context.state.wxInfo)
+    // $.cookie('userid', payload.userid, { expires: 30, path: '/' })
   },
   getWorkWxUserId(context, payload) {
     return new Promise((resolve, reject) => {

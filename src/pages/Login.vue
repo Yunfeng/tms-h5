@@ -46,8 +46,27 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="wxs-openid">openid</label>
-                  {{ wxsOpenId }}
+                  <template v-if="openid">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        v-model="bindOpenid"
+                      />
+                      <label class="form-check-label"> 绑定微信号 </label>
+                    </div>
+                  </template>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-model="bindOpenid"
+                    />
+                    <label class="form-check-label">
+                      绑定当前微信号{{ bindOpenid }}
+                    </label>
+                  </div>
+                  <span class="text-muted">绑定后可自动登录</span>
                 </div>
 
                 <div class="form-group mb-0 text-center">
@@ -84,6 +103,7 @@ export default {
     return {
       username: "",
       password: "",
+      bindOpenid: true,
       errMsg: "",
       errAlert: false,
       justLogout: false,
@@ -91,7 +111,7 @@ export default {
     };
   },
   computed: {
-    wxsOpenid() {
+    openid() {
       return this.$store.state.wxInfo.openid;
     },
   },
@@ -101,7 +121,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$store.commit("readCookies");
+    // this.$store.commit("readCookies");
   },
   methods: {
     showErrMsg: function (msg, msgType) {
@@ -115,7 +135,8 @@ export default {
       const params = {
         username: this.username,
         password: this.password,
-        wxsOpenid: this.wxsOpenid,
+        openid: this.openid,
+        bindOpenid: this.bindOpenid,
       };
 
       login(
