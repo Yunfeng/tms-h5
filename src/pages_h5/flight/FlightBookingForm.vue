@@ -674,8 +674,8 @@ export default {
       this.pageNo = pageNo;
 
       const params = {
-        "sc.name": searchWord,
-        "sc.pageNo": this.pageNo,
+        "name": searchWord,
+        "pageNo": this.pageNo,
       };
       searchPassengers(params, (v) => {
         if (v !== null) {
