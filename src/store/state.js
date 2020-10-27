@@ -52,7 +52,7 @@ export const state = {
     state: '',
     openid: '',
     nickname: '',
-    headimgurl: '',
+    avatar: '',
     subscribe: 0
   },
   // 申请退票信息

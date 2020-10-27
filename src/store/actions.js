@@ -98,6 +98,7 @@ export const actions = {
   setWxsOpenId(context, payload) {
     console.log(payload)
     context.state.wxInfo.openid = payload.openid
+    context.state.wxInfo.avatar = payload.headimgurl
     console.log(context.state.wxInfo)
     // $.cookie('userid', payload.userid, { expires: 30, path: '/' })
   },

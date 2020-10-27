@@ -3,14 +3,14 @@
     <template  v-if="logined">
       <div class="card col-12">
         <div class="media card-block border-0" v-if="openid.length === 0">
-          <img class="d-flex align-self-center mr-3" :src="headimgurl" style="width: 5rem; height: 5rem">
+          <img class="d-flex align-self-center mr-3" :src="avatar" style="width: 5rem; height: 5rem">
           <div class="media-body">
             <h5 class="mt-0">{{fullname}}</h5>
             <small>当前用户：{{sessionUsername}}</small>
           </div>
         </div>
         <div class="media card-block border-0"  v-if="openid.length > 0">
-          <img class="d-flex align-self-center mr-3" :src="headimgurl" style="width: 5rem; height: 5rem">
+          <img class="d-flex align-self-center mr-3" :src="avatar" style="width: 5rem; height: 5rem">
           <div class="media-body">
             <h5 class="mt-0">{{nickname}}</h5>
             <small>当前用户：{{sessionUsername}}</small>
@@ -81,9 +81,8 @@ export default {
       var nickname = this.$store.state.wxInfo.nickname
       return nickname
     },
-    headimgurl () {
-      var headimgurl = this.$store.state.wxInfo.headimgurl
-      return headimgurl
+    avatar () {
+      return this.$store.state.wxInfo.avatar
     }
   },
   mounted: function () {
