@@ -530,7 +530,6 @@ export default {
     // console.log(mobile);
     // console.log(this.logined);
     this.searchOrderDetail();
-    this.searchComments();
   },
   updated: function () {
     $('[data-toggle="tooltip"]').tooltip();
@@ -577,12 +576,14 @@ export default {
         searchFlightOrder(this.id, (val) => {
           this.detail = val;
           this.setAdultPrice();
+          this.searchComments();
         });
       } else {
         searchFlightOrderDetailByOrderNo(this.orderNo, (v) => {
           this.detail = v;
           this.id = this.detail.id;
           this.setAdultPrice();
+          this.searchComments();
         });
       }
     },
