@@ -17,6 +17,15 @@ export function searchFlightOrder(id, cbDone) {
   })
 }
 
+export function searchFlightOrderByAuthCode(id, params, cbDone) {
+  const url = APP_FLIGHT_PATH + '/self-service/flight/order/' + id
+  callService(url, {
+    type: 'GET',
+    data: params,
+    cbDone: cbDone
+  })
+}
+
 export function createFlightOrder(params, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/flight/order'
   callService(url, {
@@ -41,7 +50,7 @@ export function submitFlightOrder(id, cbDone, cbAlways) {
     cbDone: cbDone,
     cbAlways: cbAlways
   })
-} 
+}
 
 export function approveFlightOrder(id, params, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/flight/order/' + id + '/approve'
@@ -50,7 +59,7 @@ export function approveFlightOrder(id, params, cbDone, cbAlways) {
     cbDone: cbDone,
     cbAlways: cbAlways
   })
-} 
+}
 
 
 
@@ -120,7 +129,7 @@ export function updateFlightOrderRemark(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 export function updateFlightOrderPnr(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/pnr'
@@ -128,19 +137,19 @@ export function updateFlightOrderPnr(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 export function incFlightOrderPrintCount(id, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/print'
   callService(url, {
     cbDone: cbDone
   })
-} 
+}
 
 export function cancelFlightOrder(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/status/canceled'
   callService(url, {
-  	data: params,
+    data: params,
     cbDone: cbDone
   })
 }
@@ -151,7 +160,7 @@ export function setFlightOrderPaid(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 
 
@@ -162,7 +171,7 @@ export function toticketFlightOrder(id, cbDone, cbAlways) {
     cbDone: cbDone,
     cbAlways: cbAlways
   })
-} 
+}
 
 export function finishFlightOrder(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/finish'
@@ -170,7 +179,7 @@ export function finishFlightOrder(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 
 export function outputFlightOrder2Bill(id, cbDone) {
@@ -179,7 +188,7 @@ export function outputFlightOrder2Bill(id, cbDone) {
     data: { id: id },
     cbDone: cbDone
   })
-} 
+}
 
 export function updateFlightOrderCustomer(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/customer'
@@ -187,7 +196,7 @@ export function updateFlightOrderCustomer(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 export function updateFlightOrderIntl(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/intlTicket'
@@ -227,7 +236,7 @@ export function updateFlightOrderPaymentMethod(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 export function updateFlightOrderTicket(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/ticket'
@@ -236,7 +245,7 @@ export function updateFlightOrderTicket(id, params, cbDone) {
     contentType: 'application/json',
     cbDone: cbDone
   })
-} 
+}
 
 export function agreeFlightOrderCancelRequest(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/agreeCancelRequest'
@@ -244,7 +253,7 @@ export function agreeFlightOrderCancelRequest(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 export function denyFlightOrderCancelRequest(id, params, cbDone) {
   const url = APP_FLIGHT_PATH + '/order/flight/' + id + '/denyCancelRequest'
@@ -252,7 +261,7 @@ export function denyFlightOrderCancelRequest(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 // 机票订单的行程单已邮寄
 export function finishFlightOrderDelivery(id, params, cbDone) {
@@ -261,7 +270,7 @@ export function finishFlightOrderDelivery(id, params, cbDone) {
     data: params,
     cbDone: cbDone
   })
-} 
+}
 
 export function searchTpr(params, cbDone, cbAlways) {
   const url = APP_FLIGHT_PATH + '/tprs'
@@ -288,7 +297,7 @@ export function statFlightOrderStatus(cbDone) {
 }
 
 export function rav(params, done, fail, always) {
-  const url =  '/api/gds/rav'
+  const url = '/api/gds/rav'
   callService(url, {
     timeout: 10000,
     data: params,
@@ -299,7 +308,7 @@ export function rav(params, done, fail, always) {
 }
 
 export function searchOne(params, done, fail, always) {
-  const url =  '/api/gds/searchOne'
+  const url = '/api/gds/searchOne'
   callService(url, {
     timeout: 10000,
     data: params,

@@ -431,6 +431,7 @@ import { cancelFlightOrder } from "../../api/flight.js";
 import {
   searchFlightOrder,
   searchFlightOrderDetailByOrderNo,
+  searchFlightOrderByAuthCode,
 } from "../../api/flight.js";
 import {
   payForFlightOrder,
@@ -477,6 +478,8 @@ export default {
       detail: null,
       id: 0,
       orderNo: "",
+      authCode: null,
+      mobile: null,
 
       adultPrice: new PriceInfo(),
       childPrice: new PriceInfo(),
@@ -494,6 +497,9 @@ export default {
     };
   },
   computed: {
+    logined() {
+      return this.$store.state.logined;
+    },
     isAdmin() {
       return this.$store.getters.isAdmin;
     },
@@ -509,12 +515,20 @@ export default {
   },
   mounted: function () {
     this.id = parseInt(this.$route.params.id);
-    // console.log(this.id)
-    // console.log(this.$route)
     if (this.id === 0) {
       this.orderNo = this.$route.query.orderNo;
-      // console.log(this.orderNo)
     }
+    let authCode = this.$route.query.auth_code;
+    let mobile = this.$route.query.mobile;
+    if (authCode !== undefined) {
+      this.authCode = authCode;
+    }
+    if (mobile !== undefined) {
+      this.mobile = mobile;
+    }
+    // console.log(authCode);
+    // console.log(mobile);
+    // console.log(this.logined);
     this.searchOrderDetail();
     this.searchComments();
   },
@@ -541,6 +555,24 @@ export default {
       this.$store.commit("showLoading", { loading: false });
     },
     searchOrderDetail: function () {
+      console.log("this.authCode: " + this.authCode);
+      if (this.authCode !== null) {
+        //使用授权码查看订单信息
+        const params = {
+          authCode: this.authCode,
+          mobile: this.mobile,
+        };
+        searchFlightOrderByAuthCode(this.id, params, (v) => {
+          if (v.errcode === 0) {
+            this.detail = v;
+            this.id = this.detail.id;
+            this.setAdultPrice();
+          } else {
+            this.showErrMsg(v.errmsg, "danger");
+          }
+        });
+        return;
+      }
       if (this.id > 0) {
         searchFlightOrder(this.id, (val) => {
           this.detail = val;
@@ -550,6 +582,7 @@ export default {
         searchFlightOrderDetailByOrderNo(this.orderNo, (v) => {
           this.detail = v;
           this.id = this.detail.id;
+          this.setAdultPrice();
         });
       }
     },
@@ -724,7 +757,7 @@ export default {
     },
     setAdultPrice: function () {
       let priceInfo = null;
-      console.log(this.detail.prices);
+      // console.log(this.detail.prices);
       for (let i = 0; i < this.detail.prices.length; i++) {
         if (this.detail.prices[i].priceType === 0) {
           priceInfo = this.detail.prices[i];
@@ -732,7 +765,7 @@ export default {
         }
       }
 
-      console.log(priceInfo);
+      // console.log(priceInfo);
 
       if (priceInfo === null) {
         return;
@@ -751,7 +784,7 @@ export default {
       this.adultPrice.cost = priceInfo.cost;
       this.adultPrice.ticketCount = this.detail.adultCount;
 
-      console.log(this.adultPrice);
+      // console.log(this.adultPrice);
     },
     setChildPrice: function () {
       this.childPrice.price = this.detail.chdPrice;
