@@ -88,7 +88,7 @@
           <th class="text-center">到达</th>
           <th class="text-center d-none d-md-table-cell">时长</th>
           <th class="text-center d-none d-md-table-cell">机型</th>
-          <th class="text-center d-none d-md-table-cell">经停</th>
+          <th class="text-center"></th>
           <th class="text-center">价格</th>
           <th></th>
         </thead>
@@ -98,7 +98,7 @@
               @click="showFlightDetail(flight)"
               name="flightItem"
               :key="flight.flightNo"
-              class="table-primary"
+              class="table-light"
             >
               <td class="text-center">
                 <span class="text-primary fa-2">{{ flight.dtime }}</span>
@@ -125,12 +125,12 @@
               <td class="text-center d-none d-md-table-cell">
                 <span class="text-info fa-2">{{ flight.aircraft }}</span>
               </td>
-              <td class="text-center d-none d-md-table-cell">
-                <span class="text-info fa-2" v-if="flight.stopover < 1"
-                  >无</span
-                >
-              </td>
               <td class="text-center">
+                <span v-if="flight.stopover > 0 && flight.codeShare !== 1">
+                  {{ flight.stopover }}
+                </span>
+              </td>
+              <td class="">
                 <div v-if="flight.subClassList.length > 0">
                   <template v-if="flight.lowestPrice != null">
                     <i class="fa fa-rmb"></i>
@@ -139,7 +139,7 @@
                         <strong>{{ flight.lowestPrice.price }}</strong>
                       </big>
                     </span>
-                    <span class="text-muted"
+                    <span class="text-muted d-none d-md-table-cell"
                       >{{ flight.lowestPrice.cabinClass
                       }}{{ flight.lowestPrice.discountRate }}</span
                     >
@@ -162,8 +162,33 @@
                 </template>
               </td>
             </tr>
-            <tr v-show="detailFlightId == flight.flightNo">
+            <tr
+              v-show="detailFlightId == flight.flightNo"
+              :key="flight.flightNo + `_detail`"
+            >
               <td colspan="8">
+                <div
+                  class="card m-0"
+                  v-if="flight.stopover > 0 && flight.codeShare !== 1"
+                >
+                  <div class="card-header">航班经停信息</div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>机场</th>
+                        <th>到达时间</th>
+                        <th>出发时间</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="info of ffFlights" :key="`FF_` + info.airport">
+                        <td>{{ info.airportName }}</td>
+                        <td>{{ info.atime }}</td>
+                        <td>{{ info.dtime }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
                 <table class="table table-striped">
                   <tbody>
                     <tr v-for="info in sortSubclass(flight.subClassList)">
@@ -248,7 +273,7 @@
 import { mapState } from "vuex";
 import MyDatePicker from "../../components/my-datepicker.vue";
 import { getCabinClassDesc, addDate, tomorrow } from "../../common/common.js";
-import { rav, searchTgq } from "../../api/flight.js";
+import { rav, searchStopover } from "../../api/flight.js";
 import $ from "jquery";
 import MySelectAirport from "../../components/my-select2-airport.vue";
 
@@ -293,6 +318,8 @@ export default {
       acity: null,
       acityName: null,
       ddate: null,
+
+      ffFlights: [], //FF指令的航班信息
     };
   },
   computed: mapState({
@@ -729,8 +756,32 @@ export default {
     },
     showFlightDetail: function (fltInfo) {
       // 显示某一航班详情
-      if (this.detailFlightId === fltInfo.flightNo) this.detailFlightId = "";
-      else this.detailFlightId = fltInfo.flightNo;
+      if (this.detailFlightId === fltInfo.flightNo) {
+        this.detailFlightId = "";
+        return;
+      } else {
+        this.detailFlightId = fltInfo.flightNo;
+      }
+
+      this.ffFlights.splice(0);
+      if (fltInfo.stopover > 0) {
+        const params = {
+          flightNo: fltInfo.flightNo,
+          ddate: fltInfo.ddate,
+        };
+
+        searchStopover(params, (v) => {
+          console.log(this.ffFlights);
+          console.log(v);
+          this.ffFlights.concat(v.flights);
+          v.flights.forEach((value, index, array) => {
+            console.log(value);
+            // console.log(`value:${value}    index:${index}     array:${array}`);
+            this.ffFlights.push(value);
+          });
+          console.log(this.ffFlights);
+        });
+      }
     },
     closeDetail: function () {
       this.detailShowing = false;

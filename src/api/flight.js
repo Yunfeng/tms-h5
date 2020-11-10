@@ -307,6 +307,18 @@ export function rav(params, done, fail, always) {
   })
 }
 
+export function searchStopover(params, done, fail, always) {
+  const url = '/api/gds/eterm/ff'
+  callService(url, {
+    type: 'get',
+    timeout: 10000,
+    data: params,
+    cbDone: done,
+    cbFail: fail,
+    cbAlways: always
+  })
+}
+
 export function searchOne(params, done, fail, always) {
   const url = '/api/gds/searchOne'
   callService(url, {
