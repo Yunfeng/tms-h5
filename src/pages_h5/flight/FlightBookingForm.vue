@@ -434,6 +434,7 @@ export default {
       remark: "",
       address: "",
       serviceProductCodes: [],
+      gpTicket: 0, //是否开gp票
 
       //服务产品总额
       // serviceProductTotal: 0,
@@ -586,6 +587,7 @@ export default {
         intlTicket: this.intlTicket,
 
         policyCode: policyCode,
+        gpTicket: this.gpTicket,
         itineraryType: this.itineraryType,
         address: this.address,
         remark: this.remark,
