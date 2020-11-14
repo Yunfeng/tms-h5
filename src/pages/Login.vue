@@ -55,18 +55,8 @@
                       />
                       <label class="form-check-label"> 绑定微信号 </label>
                     </div>
+                    <span class="text-muted">绑定后下次访问时可自动登录</span>
                   </template>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      v-model="bindOpenid"
-                    />
-                    <label class="form-check-label">
-                      绑定当前微信号{{ bindOpenid }}
-                    </label>
-                  </div>
-                  <span class="text-muted">绑定后可自动登录</span>
                 </div>
 
                 <div class="form-group mb-0 text-center">
@@ -167,6 +157,7 @@ export default {
               enterpriseId: jsonResult.enterpriseId,
               userId: jsonResult.userId,
               sid: jsonResult.sid,
+              gpMode: jsonResult.gpMode,
             };
             this.$store.dispatch("setLoginInfo", u);
             if (this.workMode === "h5") {

@@ -10,6 +10,7 @@ export const state = {
   logined: false,
   username: '',
   fullname: '',
+  gpMode: 0,
   sid: '458559',
   redmineUrl: '',
   userInfo: {
@@ -43,7 +44,7 @@ export const state = {
   errAlert: false,
   errMsg: '',
   errMsgType: 'warning',
-  
+
   loading: false,
   loadingText: '数据加载中',
 

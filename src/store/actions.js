@@ -24,7 +24,8 @@ export const actions = {
           'enterpriseId': jsonResult.enterpriseId,
           'userId': jsonResult.userId,
           'sid': jsonResult.sid,
-          'redmineUrl': jsonResult.redmineUrl
+          'redmineUrl': jsonResult.redmineUrl,
+          'gpMode': jsonResult.gpMode
         }
         context.dispatch('setLoginInfo', u)
 
@@ -37,6 +38,7 @@ export const actions = {
     })
   },
   setLoginInfo(context, payload) {
+    console.log(payload)
     context.commit('setUsername', payload)
     context.dispatch('searchPrivileges')
   },

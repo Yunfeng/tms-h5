@@ -218,6 +218,37 @@
         </div>
       </div>
     </div>
+    <template v-if="gpMode > 0">
+      <div class="card-body bg-info text-white py-1">
+        政府采购机票 {{ gpMode }}
+      </div>
+      <div class="card-body py-2">
+        <div class="form-group">
+          <label class="control-label text-right">是否政府采购机票</label>
+          <div class>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                value="0"
+                v-model.number="gpTicket"
+              />
+              <label class="form-check-label">否</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                value="1"
+                v-model.number="gpTicket"
+              />
+              <label class="form-check-label">是</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
     <div class="card-body bg-info text-white py-1">发票需求</div>
     <div class="card-body py-2">
       <div class="form-group">
@@ -460,6 +491,7 @@ export default {
     dcity: (state) => state.searchParams.dcity,
     acity: (state) => state.searchParams.acity,
     ddate: (state) => state.searchParams.ddate,
+    gpMode: (state) => state.gpMode,
     fltCount() {
       return this.flights.length;
     },
@@ -676,8 +708,8 @@ export default {
       this.pageNo = pageNo;
 
       const params = {
-        "name": searchWord,
-        "pageNo": this.pageNo,
+        name: searchWord,
+        pageNo: this.pageNo,
       };
       searchPassengers(params, (v) => {
         if (v !== null) {

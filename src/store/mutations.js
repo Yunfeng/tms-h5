@@ -57,10 +57,12 @@ export const mutations = {
     $.removeCookie('token', { path: '/' });
   },
   setUsername(state, payload) {
+    console.log(payload)
     state.username = payload.username
     state.fullname = payload.fullname
     state.logined = payload.logined
     state.isRoot = payload.enterpriseId === payload.userId
+    state.gpMode = payload.gpMode
     state.sid = payload.sid
     state.redmineUrl = payload.redmineUrl
 

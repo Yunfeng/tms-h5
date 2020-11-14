@@ -231,6 +231,11 @@
             v-if="detail !== null"
           >
             <dl class="row">
+              <dt class="col-4 text-right">GP机票</dt>
+              <dd class="col-8">
+                <span v-if="detail.gpTicket === 1">是</span>
+                <span v-else>否</span>
+              </dd>
               <dt class="col-4 text-right">编码</dt>
               <dd class="col-8">{{ detail.pnrNo }}</dd>
               <dt class="col-4 text-right">预订人</dt>
