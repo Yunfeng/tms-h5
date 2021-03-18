@@ -2,7 +2,9 @@
   <div id="hotel-orders" class="card mt-5 row bg-transparent">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb pb-0">
-        <li class="breadcrumb-item ml-1" aria-current="page"><router-link to='/h5/home'>Home</router-link></li>
+        <li class="breadcrumb-item ml-2" aria-current="page">
+          <router-link to='/h5/home'>主页</router-link>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">酒店订单</li>
         <li class="breadcrumb-item ml-auto mr-2"><router-link to='/h5/hotel/search'>国内酒店</router-link></li>
       </ol>

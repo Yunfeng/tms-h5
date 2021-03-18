@@ -2,8 +2,8 @@
   <div id="flight-orders" class="card mt-5 row bg-transparent">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb pb-0">
-        <li class="breadcrumb-item" aria-current="page">
-          <router-link to="/h5/home">Home</router-link>
+        <li class="breadcrumb-item ml-2" aria-current="page">
+          <router-link to="/h5/home">主页</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">机票订单</li>
         <li class="breadcrumb-item ml-auto mr-2">
@@ -145,7 +145,7 @@
 
       <flight-order-list :dataList="dataList"></flight-order-list>
 
-      <nav id="pagination-box" class="float-right">
+      <nav id="pagination-box" class="float-right mr-2">
         <my-pagination
           name="pagination"
           :row-count="sc.rowCount"
@@ -181,7 +181,7 @@ export default {
       sc: {
         rowCount: 0,
         pageNo: 1,
-        pageSize: 20,
+        pageSize: 10,
         pageTotal: 0,
       },
 
