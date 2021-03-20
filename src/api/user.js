@@ -111,6 +111,8 @@ export function validateWwUser(params, done) {
 export function checkLoginStatus(cbDone) {
   const url = APP_FLIGHT_PATH + '/checkLoginStatus'
   callService(url, {
+    type: 'get',
+    cache: false,
     cbDone: cbDone
   })
 }
@@ -152,7 +154,7 @@ export function incPoints(params, cbDone, fail, cbAlways) {
 }
 
 export function checkIn(done) {
-  callService(APP_FLIGHT_PATH + '/userCheckIn.do', {'cbDone': done})
+  callService(APP_FLIGHT_PATH + '/userCheckIn.do', { 'cbDone': done })
 }
 
 
@@ -169,7 +171,7 @@ export function getZmxyInfo(done) {
   const url = APP_FLIGHT_PATH + '/getZmxyInfo.do'
   callService(url, {
     cbDone: cbDone
-  })  
+  })
 }
 
 
