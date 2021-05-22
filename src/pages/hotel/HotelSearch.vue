@@ -19,7 +19,7 @@
             <my-select-city :cityId.sync="cityId"></my-select-city>
           </div>
            
-          <div class="form-group">      
+          <div class="row mb-2">      
             <my-date-picker id="checkInDate" v-model="checkIn" name="sc.beginDate" placeholder="入住日期"></my-date-picker>
             <my-date-picker id="checkOutDate" v-model="checkOut" name="sc.endDate" placeholder="离店日期"></my-date-picker>
           </div>
@@ -57,7 +57,7 @@
           <input type="textfield" class="form-control ml-1" size="10" placeholder="行政区" v-model.trim="district">
           <input type="textfield" class="form-control ml-1" size="10" placeholder="商圈" v-model.trim="businessDistrict">
 
-          <div class="form-group">
+          <div class="row mb-2">
               <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
               <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div> 
@@ -114,7 +114,7 @@
                         <div class="card-header" :id="`heading-` + roomTypeInfo.roomTypeId">
                             <h5 class="m-0">
                                 <a class="custom-accordion-title d-block py-1" :class="{collapsed: index !==0}"
-                                    data-toggle="collapse" :href="`#collapse-` + roomTypeInfo.roomTypeId">
+                                    data-bs-toggle="collapse" :href="`#collapse-` + roomTypeInfo.roomTypeId">
                                     {{roomTypeInfo.roomTypeName}} ({{roomTypeInfo.supplierRoomTypeId}}, {{roomTypeInfo.ratePlans.length}}) <i class="mdi mdi-chevron-down accordion-arrow"></i>
                                 </a>
                             </h5>

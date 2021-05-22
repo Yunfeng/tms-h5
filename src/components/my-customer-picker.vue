@@ -14,10 +14,10 @@
 
     <ul class="nav nav-tabs bg-faded" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#user" role="tab">已注册用户({{psgs.length}})</a>
+        <a class="nav-link active" data-bs-toggle="tab" href="#user" role="tab">已注册用户({{psgs.length}})</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#weixin" role="tab">微信用户({{subscribers.length}})</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#weixin" role="tab">微信用户({{subscribers.length}})</a>
       </li>
     </ul>
 

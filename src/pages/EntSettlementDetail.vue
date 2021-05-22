@@ -56,25 +56,25 @@
       </div>
       <ul class="nav nav-tabs nav-bordered mb-3" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="bills-tab" data-toggle="tab" href="#bills" role="tab" aria-controls="bills" aria-selected="true">所有账单</a>
+          <a class="nav-link active" id="bills-tab" data-bs-toggle="tab" href="#bills" role="tab" aria-controls="bills" aria-selected="true">所有账单</a>
         </li>
         <li class="nav-item" v-if="ticketCount > 0">
-          <a class="nav-link" id="flight-tab" data-toggle="tab" href="#flight" role="tab" aria-controls="flight" aria-selected="false">机票 <small>({{ticketCount}},{{totalTicketAmount}})</small></a>
+          <a class="nav-link" id="flight-tab" data-bs-toggle="tab" href="#flight" role="tab" aria-controls="flight" aria-selected="false">机票 <small>({{ticketCount}},{{totalTicketAmount}})</small></a>
         </li>
         <li class="nav-item" v-if="refundCount > 0">
-          <a class="nav-link" id="refund-tab" data-toggle="tab" href="#refund" role="tab" aria-controls="refund" aria-selected="false">退票 <small>({{refundCount}},{{totalRefundAmount}})</small></a>
+          <a class="nav-link" id="refund-tab" data-bs-toggle="tab" href="#refund" role="tab" aria-controls="refund" aria-selected="false">退票 <small>({{refundCount}},{{totalRefundAmount}})</small></a>
         </li>
         <li class="nav-item" v-if="changeCount>0">
-          <a class="nav-link" id="change-tab" data-toggle="tab" href="#change" role="tab" aria-controls="change" aria-selected="false">改签 <small>({{changeCount}},{{totalChangeAmount}})</small></a>
+          <a class="nav-link" id="change-tab" data-bs-toggle="tab" href="#change" role="tab" aria-controls="change" aria-selected="false">改签 <small>({{changeCount}},{{totalChangeAmount}})</small></a>
         </li>
         <li class="nav-item" v-if="vasCount>0">
-          <a class="nav-link" id="vas-tab" data-toggle="tab" href="#vas" role="tab" aria-controls="vas" aria-selected="false">服务<small>({{vasCount}},{{totalVasAmount}})</small></a>
+          <a class="nav-link" id="vas-tab" data-bs-toggle="tab" href="#vas" role="tab" aria-controls="vas" aria-selected="false">服务<small>({{vasCount}},{{totalVasAmount}})</small></a>
         </li>
         <li class="nav-item" v-if="hotelCount>0">
-          <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">酒店<small>({{hotelCount}},{{totalHotelAmount}})</small></a>
+          <a class="nav-link" id="hotel-tab" data-bs-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">酒店<small>({{hotelCount}},{{totalHotelAmount}})</small></a>
         </li>
         <li class="nav-item" v-if="trainCount>0">
-          <a class="nav-link" id="train-tab" data-toggle="tab" href="#train" role="tab" aria-controls="train" aria-selected="false">火车票<small>({{trainCount}},{{totalTrainAmount}})</small></a>
+          <a class="nav-link" id="train-tab" data-bs-toggle="tab" href="#train" role="tab" aria-controls="train" aria-selected="false">火车票<small>({{trainCount}},{{totalTrainAmount}})</small></a>
         </li>
 
       </ul>
@@ -152,7 +152,7 @@
               <form class="form-inline">
                 <input type="textfield" class="form-control" size="10" placeholder="票号" v-model.trim="ticketNo">
                 <input type="textfield" class="form-control" size="10" placeholder="姓名" v-model.trim="passengerName">
-                <div class="form-group">
+                <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchTickets()">查找</button>
                   <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset3()">重置</button>
                 </div> 
@@ -227,7 +227,7 @@
           <div class="card">
             <div class="card-body">
               <form class="form-inline">
-                <div class="form-group">
+                <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchRefunds()">查找</button>
                 </div> 
               </form>
@@ -301,7 +301,7 @@
           <div class="card">
             <div class="card-body">
               <form class="form-inline">
-                <div class="form-group">
+                <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchChanges()">查找</button>
                 </div> 
               </form>
@@ -375,7 +375,7 @@
           <div class="card">
             <div class="card-body">
               <form class="form-inline">
-                <div class="form-group">
+                <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchVases()">查找</button>
                 </div> 
               </form>
@@ -417,7 +417,7 @@
           <div class="card">
             <div class="card-body">
               <form class="form-inline">
-                <div class="form-group">
+                <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchHotels()">查找</button>
                 </div> 
               </form>
@@ -464,7 +464,7 @@
           <div class="card">
             <div class="card-body">
               <form class="form-inline">
-                <div class="form-group">
+                <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchTrains()">查找</button>
                 </div> 
               </form>

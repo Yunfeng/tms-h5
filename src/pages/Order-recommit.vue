@@ -1,5 +1,5 @@
 <template>  
-	<div id="order-recommit" class="row">
+	<div id="order-recommit" class="row mb-2">
     <div class="card col-12 border-0 px-0">
       <div class="card-header text-center">重新提交</div>
       <div class="card-block">

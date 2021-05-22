@@ -13,7 +13,7 @@
               </div>
               <div class="modal-body">
                   <form id = "uploadFileForm" method="post" enctype="multipart/form-data">                      
-                      <div class="form-group">
+                      <div class="row mb-2">
                           <label>选择需要上传的文件</label>
                           <input type="file" class="form-control-file" name="upfile" id="inputFileName">
                           <span class="text-muted small">

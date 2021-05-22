@@ -1,5 +1,5 @@
 <template>
-	<div id="pnr-list" class="row">
+	<div id="pnr-list" class="row mb-2">
     
     <div class="col-12 bg-info text-white text-center fa-2">
       <span @click='back()' class="float-left">

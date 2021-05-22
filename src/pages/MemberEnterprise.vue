@@ -9,7 +9,7 @@
     </nav>
 
     <div class="card"  v-if="info !== null">
-      <dl class="row">
+      <dl class="row mb-2">
         <dt class="col-3 text-right">ID</dt>
         <dd class="col-9">{{info.id}}</dd>
         <dt class="col-3 text-right">名称</dt>

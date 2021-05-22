@@ -12,7 +12,7 @@
     <div class="card">
       <div class="card-body bg-info text-white py-1">酒店信息</div>
       <div class="card-body">
-        <dl class="row">
+        <dl class="row mb-2">
           <dt class="col-3 text-right">酒店名称</dt>
           <dd class="col-9">
             <input type="text" class="form-control" v-model="hotelName" />

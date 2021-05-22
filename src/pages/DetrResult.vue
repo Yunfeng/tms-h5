@@ -6,7 +6,7 @@
       </div>
       <div class="card-body">
           <form class="form-inline">
-              <div class="form-group">
+              <div class="row mb-2">
                   <label>使用状态</label>
                   <select name="sc.ticketStatus" class="form-control" v-model.number="ticketStatus">
                       <option value="-1">全部</option>
@@ -14,7 +14,7 @@
                       <option value="1">已使用</option>
                   </select>
               </div>
-              <div class="form-group">
+              <div class="row mb-2">
                 <my-date-picker id="searchDate" v-model="searchDate" placeholder="创建日期"></my-date-picker>
                 <my-date-picker id="sellDate" v-model="sellDate" placeholder="销售日期"></my-date-picker>
               </div>
@@ -26,7 +26,7 @@
               <option value="5000">5000</option>
               </select>
 
-              <div class="form-group">
+              <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
               </div>
               <span class="ml-auto">

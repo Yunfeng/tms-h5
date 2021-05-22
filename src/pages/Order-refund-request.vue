@@ -1,5 +1,5 @@
 <template>  
-	<div id="order-refund" class="row">
+	<div id="order-refund" class="row mb-2">
     <div class="col-12 bg-info text-center text-white sticky-top fa-2">
       <span @click="back()" class="float-left fa-2">
         <i class="fa fa-angle-left" aria-hidden="true"></i>

@@ -13,7 +13,7 @@
             <option value="0">停用</option>
             <option value="1">启用</option>
           </select>
-          <div class="form-group">
+          <div class="row mb-2">
               <button type="button" class="btn btn-primary ml-1" v-on:click="search()">查找</button>
           </div>
           

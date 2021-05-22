@@ -1,12 +1,12 @@
 <template>
 <div id="app" class="wrapper">
   <!-- ========== Left Sidebar Start ========== -->
-  <div class="left-side-menu d-md-none" v-if="logined">
+  <div class="leftside-menu d-md-none" v-if="logined">
 
-    <div class="h-100" id="left-side-menu-container" data-simplebar>
+    <div class="h-100" id="leftside-menu-container" data-simplebar>
 
       <!--- Sidemenu -->
-      <ul class="metismenu side-nav">
+      <ul class="side-nav">
         <template v-for="info in menus">
 
           <li class="side-nav-item" v-if="info.h5_mode === 1">
@@ -68,7 +68,7 @@
 
           <ul class="list-unstyled topbar-right-menu float-right mb-0" v-if="logined">
             <li class="dropdown notification-list">
-              <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+              <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
                   <img src="/public/images/users/avatar-100.jpg" alt="user-image" class="rounded-circle">
                 </span>
@@ -163,10 +163,10 @@ export default {
   watch: {
     menus: function () {
       this.$nextTick(function () {
-        setTimeout(() => {
-          // console.log("menus changed: metisMenu")
-          $('.side-nav').metisMenu();
-        }, 500);
+        // setTimeout(() => {
+        //   // console.log("menus changed: metisMenu")
+        //   $('.side-nav').metisMenu();
+        // }, 500);
       })
     },
   },
@@ -176,7 +176,7 @@ export default {
       this.$store.dispatch('init', () => {})
     }
 
-    $(document).on('click', '.left-side-menu ul li ul li a', function (e) {
+    $(document).on('click', '.leftside-menu ul li ul li a', function (e) {
       // console.log(e)
       $('.button-menu-mobile').click()
     })

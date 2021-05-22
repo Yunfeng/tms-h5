@@ -14,7 +14,7 @@ const server = express();
 
 console.log('isProd: ' + isProd)
 
-function createRenderer (bundle, options) {
+function createRenderer(bundle, options) {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
   return createBundleRenderer(bundle, Object.assign(options, {
     // for component caching
@@ -63,10 +63,10 @@ const serve = (path, cache) => express.static(resolve(path), {
 
 //tomcat应用设置的cookie在这个路径下
 if (!isProd) {
-  // server.use('/eotms', proxy({
-  //   target: 'http://localhost:8080',
-  //   changeOrigin: true
-  // }))
+  server.use('/eotms', proxy({
+    target: 'http://localhost:8080',
+    changeOrigin: true
+  }))
   server.use('/api', proxy({
     target: 'http://localhost:8000',
     changeOrigin: true
@@ -82,7 +82,8 @@ server.use('/public', serve('./public', true));
 server.get('*', (req, res) => {
   const s = Date.now()
   console.log('url:' + req.url)
-  const context = { url: req.url, 
+  const context = {
+    url: req.url,
     meta: `<meta description="企业在线差旅管理系统 Enterprise Online Travel Management System TMS vuejs ssr">`,
     title: '企业差旅系统 - EOTMS'
   }

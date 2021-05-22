@@ -16,7 +16,7 @@
         <a href="javascript:void(0)" class="weui-search-bar__cancel-btn" id="search_cancel" @click="searchPsg()">查找</a>
     </div>
     <div class="weui-cells weui-cells_access container mt-0" id="search_show">
-      <div class="row">
+      <div class="row mb-2">
         <div class="card col-12 px-0">
           <template v-if="psgs.length > 0">
             <div class="card-block pb-0 border-bottom-1" v-for="(psg,index) in psgs">

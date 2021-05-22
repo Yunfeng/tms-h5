@@ -14,7 +14,7 @@
     <template v-if="filterShowing">
       <div class="card-body">
         <form>
-          <div class="form-group">
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control"
@@ -22,7 +22,7 @@
               v-model.trim="orderNo"
             />
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control"
@@ -30,7 +30,7 @@
               v-model.trim="name"
             />
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control"
@@ -38,7 +38,7 @@
               v-model.trim="idno"
             />
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control"
@@ -46,7 +46,7 @@
               v-model.trim="ticketNo"
             />
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control"
@@ -54,7 +54,7 @@
               v-model.trim="flightNo"
             />
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <my-date-picker
               id="ddate"
               v-model="ddate"
@@ -62,7 +62,7 @@
               sizing="sm"
             ></my-date-picker>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <my-date-picker
               id="beginDate"
               name="sc.beginDate"
@@ -71,7 +71,7 @@
               sizing="sm"
             ></my-date-picker>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <my-date-picker
               id="endDate"
               name="sc.endDate"
@@ -80,7 +80,7 @@
               sizing="sm"
             ></my-date-picker>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <select
               class="form-control form-control-sm"
               v-model.number="intlTicket"
@@ -90,7 +90,7 @@
               <option value="1">国际</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <select class="form-control" v-model.number="status">
               <option value="-1">订单状态</option>
               <option value="0">暂不开票</option>
@@ -102,7 +102,7 @@
               <option value="32">已完成</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <select
               class="form-control form-control-sm"
               v-model.number="sc.pageSize"

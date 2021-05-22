@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header" role="tab" id="navTmcHeading" >
             <h6 class="mb-0">             
-                <a role="button" data-toggle="collapse" href="#navTmcBody" aria-expanded="true" aria-controls="navTmcBody">
+                <a role="button" data-bs-toggle="collapse" href="#navTmcBody" aria-expanded="true" aria-controls="navTmcBody">
                 差旅管理系统 >
                 </a>
             </h6>
@@ -76,7 +76,7 @@
     <div class="card">
         <div class="card-header" role="tab" id="nav1Heading" >
             <h6 class="mb-0">             
-                <a role="button" data-toggle="collapse" href="#nav1Body" aria-expanded="true" aria-controls="nav1Body">
+                <a role="button" data-bs-toggle="collapse" href="#nav1Body" aria-expanded="true" aria-controls="nav1Body">
                 同行采购 >
                 </a>
             </h6>
@@ -127,7 +127,7 @@
         <div class="card-header" role="tab" id="nav4Heading">
             <h6 class="mb-0">   
                 
-                <a role="button" data-toggle="collapse" href="#nav4Body" aria-expanded="true" aria-controls="nav4Body">
+                <a role="button" data-bs-toggle="collapse" href="#nav4Body" aria-expanded="true" aria-controls="nav4Body">
                     系统管理 >
                 </a>
             </h6>
@@ -165,7 +165,7 @@
     <div class="card" id="divAdminMenu" style="display:none">
         <div class="card-header" role="tab" id="navAdminHeading">
             <h5 class="mb-0">            
-                <a role="button" data-toggle="collapse" href="#navAdminBody" aria-expanded="true" aria-controls="navAdminBody">
+                <a role="button" data-bs-toggle="collapse" href="#navAdminBody" aria-expanded="true" aria-controls="navAdminBody">
                     管理区 >
                 </a>
             </h5>

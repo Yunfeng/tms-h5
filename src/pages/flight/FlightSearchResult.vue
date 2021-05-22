@@ -1,5 +1,5 @@
 <template>
-	<div id="flight-result" class="row">
+	<div id="flight-result" class="row mb-2">
 
       <div class="col-12 bg-info text-center text-white">
           <span @click="back()" class="float-left fa-2">

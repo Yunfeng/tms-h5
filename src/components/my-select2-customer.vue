@@ -1,5 +1,5 @@
 <template>
-  <select class="form-control select2" data-toggle="select2" :id="id" :disabled="disabled" :class="className">      
+  <select class="form-control select2" data-bs-toggle="select2" :id="id" :disabled="disabled" :class="className">      
     <option :value="-1" v-if="minId === -1">所有客户</option>  
     <option :value="0" v-if="minId <= 0">散客</option>  
     <template v-for="info in showingCustomers">

@@ -1,5 +1,5 @@
 <template>
-	<div id="searching" class="row">
+	<div id="searching" class="row mb-2">
     <div class="col-12 bg-info text-center text-white mb-1">
       <span class="fa-2">国内航班预定</span>
     </div> 

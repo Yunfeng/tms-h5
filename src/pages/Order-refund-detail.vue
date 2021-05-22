@@ -1,5 +1,5 @@
 <template>
-	<div id="order-detail" class="row">
+	<div id="order-detail" class="row mb-2">
     <template v-if="info !== null">
       <div class="col-12 bg-info text-center text-white sticky-top">
         <span @click="back()" class="float-left fa-2">

@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <form class="form-inline">
-          <div class="form-group">
+          <div class="row mb-2">
             <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
           </div>
 

@@ -6,7 +6,7 @@
       </div>
       <div class="card-body">
         <form class="form-inline">
-          <div class="form-group">
+          <div class="row mb-2">
               <input type="textfield" class="form-control" placeholder="航司" v-model.trim="carrier" size="4">
           </div>
           <select class="form-control form-control-sm ml-1" v-model.number="status" name="sc.status">

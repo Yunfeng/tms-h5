@@ -9,7 +9,7 @@
     <template v-if="detail !== null">
       <div class="card">
         <div class="card-body py-0">
-          <dl class="row">
+          <dl class="row mb-2">
             <dt class="col-4">询价单号</dt>
             <dd class="col-8">{{detail.orderNo}} {{getStatusDesc(detail.status)}}</dd>
 
@@ -54,7 +54,7 @@
           </dl>
         </div>        
         <div class="card-body py-0" v-if="detail.status === 2 || detail.status === 8">
-          <dl class="row">
+          <dl class="row mb-2">
             <dt class="col-4">车牌</dt>
             <dd class="col-8">{{detail.vehicleNo}}</dd>
 

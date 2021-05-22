@@ -36,7 +36,7 @@
       <div class="card-body py-1" v-show="searchOption">
         <form>
           
-          <div class="form-group">
+          <div class="row mb-2">
             <my-date-picker
               id="beginDate"
               v-model="beginDate"
@@ -44,10 +44,10 @@
               placeholder="开始日期"
             ></my-date-picker>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control"
@@ -56,10 +56,10 @@
               v-model.trim="orderNo"
             />
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <my-select-customer :customerId.sync="customerId" :enterpriseType="1"></my-select-customer>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control ml-1"
@@ -68,7 +68,7 @@
               v-model.trim="name"
             />
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control ml-1"
@@ -77,7 +77,7 @@
               v-model.trim="hotelName"
             />
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <select class="form-control form-control-sm" v-model.number="status" name="sc.status">
               <option value="-1">订单状态</option>
               <option value="0">未提交</option>
@@ -89,7 +89,7 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="row mb-2">
             <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
             <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div>

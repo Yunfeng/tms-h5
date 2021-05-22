@@ -84,7 +84,7 @@
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 </div>
                 <div class="modal-body">
-                  <div class="form-group">
+                  <div class="row mb-2">
                     <label for="exampleFormControlTextarea1">tpr指令结果</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" v-model.trim="tprContent"></textarea>
                     <span class="text-muted small">请将tpr指令结果完全复制</span>
@@ -110,7 +110,7 @@
                 <div class="modal-body">
                     <form id = "uploadFileForm" method="post" enctype="multipart/form-data">                      
                       <input type="hidden" name="fileContentType" value="100">
-                        <div class="form-group">
+                        <div class="row mb-2">
                             <label class="control-label">
                                 供应商    
                             </label>
@@ -123,7 +123,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="row mb-2">
                             <label class="control-label">
                                 Excel格式    
                             </label>
@@ -138,7 +138,7 @@
                               格式二（六列）：票号、乘机人、PNR、航班号、支付金额、出票日期；数据从第二行开始）<br/>
                             </span>
                         </div>
-                        <div class="form-group">
+                        <div class="row mb-2">
                             <label>选择需要上传的文件</label>
                             <input type="file" class="form-control-file" name="upfile" id="inputFileName">
                             <span class="text-muted small">

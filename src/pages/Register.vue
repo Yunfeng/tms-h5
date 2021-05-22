@@ -20,29 +20,29 @@
 
                           <form id="frmRegister">
 
-                              <div class="form-group">
+                              <div class="row mb-2">
                                   <label for="fullname">全名</label>
                                   <input class="form-control" name="user.empname" type="text" placeholder="输入你的姓名" required>
                               </div>
 
-                              <div class="form-group">
+                              <div class="row mb-2">
                                   <label for="emailaddress">电子邮件地址</label>
                                   <input class="form-control" type="email" name="user.email" required placeholder="输入你的电子邮件地址">
                               </div>
 
-                              <div class="form-group">
+                              <div class="row mb-2">
                                   <label for="emailaddress">手机</label>
                                   <input class="form-control" type="text" name="user.mobileNo" required placeholder="输入你的手机号码">
                               </div>
 
-                              <div class="form-group">
+                              <div class="row mb-2">
                                   <label for="emailaddress">用户名</label>
                                   <input class="form-control" type="text" name="user.username" required placeholder="输入登录系统时的用户名">
                               </div>
 
-                              <div class="form-group">
+                              <div class="row mb-2">
                                   <label for="emailaddress">验证码</label>
-                                  <div class="row">
+                                  <div class="row mb-2">
                                     <div class="col-4 pr-0">
                                       <input type="text" id="captchaValue" name="captchaValue" class="form-control" placeholder="验证码" />
                                     </div>

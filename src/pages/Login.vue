@@ -22,7 +22,7 @@
               </div>
 
               <form action="#">
-                <div class="form-group">
+                <div class="row mb-2">
                   <label for="username">用户名</label>
                   <input
                     id="username"
@@ -34,7 +34,7 @@
                   />
                 </div>
 
-                <div class="form-group">
+                <div class="row mb-2">
                   <label for="password">密码</label>
                   <input
                     id="password"
@@ -45,7 +45,7 @@
                   />
                 </div>
 
-                <div class="form-group">
+                <div class="row mb-2">
                   <template v-if="openid">
                     <div class="form-check">
                       <input

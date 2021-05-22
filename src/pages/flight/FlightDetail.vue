@@ -1,5 +1,5 @@
 <template>
-	<div id="flight-result" class="row">
+	<div id="flight-result" class="row mb-2">
       <div class="col-12 bg-info text-center text-white">
         <span @click="back()" class="float-left fa-2">
           <i class="fa fa-angle-left fa-2" aria-hidden="true"></i>
@@ -9,7 +9,7 @@
       </div>           
     
       <div class="card col-12">
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-4 text-nowrap">
             <span class="time text-success">{{flt.showDepTime}}</span>
             <small>出发</small>
@@ -25,7 +25,7 @@
           </div>
           <div class="clear"></div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-4 text-nowrap">
             <span class="time text-success">{{flt.depPortName}}</span>
             <small>{{flt.depTerminal}}</small>
@@ -39,7 +39,7 @@
           </div>
           <div class="clear"></div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-3 text-right text-nowrap"> {{flt.carrierName}} </div>
           <div class="col-3 text-center text-nowrap">机型：{{flt.planeType}} </div>
           <div class="col-3 text-center text-nowrap">

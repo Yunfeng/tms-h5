@@ -14,7 +14,7 @@
     </nav>
     <div class="card">
       <div class="card-body">
-        <div class="form-group">
+        <div class="row mb-2">
           <label>编码内容</label>
           <textarea class="form-control" rows="6" v-model.trim="pnrDetail"></textarea>
           <button type="button" class="btn btn-primary" @click.stop="processPnrDetail()">分析编码内容</button>

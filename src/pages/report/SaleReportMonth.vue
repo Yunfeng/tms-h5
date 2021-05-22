@@ -15,37 +15,37 @@
       </div>
     </div>
     <nav class="nav nav-tabs" id="myTab" role="tablist">
-      <a class="nav-item nav-link active" data-toggle="tab" href="#nav-flight">
+      <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-flight">
         机票
         <template v-if="ticketCount > 0">
           <small class="text-success">({{ticketCount}}, {{totalTicketAmount}})</small>
         </template>
       </a>
-      <a class="nav-item nav-link" data-toggle="tab" href="#nav-change">
+      <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-change">
         改签
         <template v-if="changeCount > 0">
           <small class="text-success">({{changeCount}}, {{totalChangeAmount}})</small>
         </template>
       </a>
-      <a class="nav-item nav-link" data-toggle="tab" href="#nav-refund">
+      <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-refund">
         退票
         <template v-if="refundCount > 0">
           <small class="text-success">({{refundCount}}, {{totalRefundAmount}})</small>
         </template>
       </a>
-      <a class="nav-item nav-link" data-toggle="tab" href="#nav-vas">
+      <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-vas">
         服务
         <template v-if="vasCount > 0">
           <small class="text-success">({{vasCount}}, {{totalVasAmount}})</small>
         </template>
       </a>
-      <a class="nav-item nav-link" data-toggle="tab" href="#nav-hotel">
+      <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-hotel">
         酒店
         <template v-if="hotelCount > 0">
           <small class="text-success">({{hotelCount}}, {{totalHotelAmount}})</small>
         </template>
       </a>
-      <a class="nav-item nav-link" data-toggle="tab" href="#nav-train">
+      <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-train">
         火车票
         <template v-if="trainCount > 0">
           <small class="text-success">({{trainCount}}, {{totalTrainAmount}})</small>

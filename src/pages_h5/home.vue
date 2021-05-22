@@ -2,7 +2,7 @@
   <div id="home" class="card mt-5">
     <template v-if="logined">
       <div class="card col-12">
-        <div class="media card-block border-0" v-if="openid.length === 0">
+        <div class="media card-body border-0" v-if="openid.length === 0">
           <img
             class="d-flex align-self-center mr-3"
             :src="avatar"
@@ -13,7 +13,7 @@
             <small>当前用户：{{ sessionUsername }}</small>
           </div>
         </div>
-        <div class="media card-block border-0" v-if="openid.length > 0">
+        <div class="media card-body border-0" v-if="openid.length > 0">
           <img
             class="d-flex align-self-center mr-3"
             :src="avatar"
@@ -26,16 +26,18 @@
         </div>
 
         <table class="table">
-          <tr>
-            <td colspan="3">
-              <router-link to="/h5/flt/orders">机票订单</router-link>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="3">
-              <router-link to="/h5/hotel/orders">酒店订单</router-link>
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <router-link to="/h5/flt/orders">机票订单</router-link>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <router-link to="/h5/hotel/orders">酒店订单</router-link>
+              </td>
+            </tr>
+          </tbody>
         </table>
 
         <div class="card-footer">

@@ -7,7 +7,7 @@
           <router-link to="/my/trans/histories" class="float-right">交易记录</router-link>
       </div>
       <div class="card-body py-1">
-          <div class="row">
+          <div class="row mb-2">
               <div class="col-3">
                   <label>当前账户</label>
                   <span id="curUsername">{{enterpriseName}}</span>

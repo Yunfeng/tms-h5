@@ -102,7 +102,7 @@
               </tbody>
             </table>
             <div>
-              <div class="row">
+              <div class="row mb-2">
                 <div class="col-10">
                   <input type="text" class="form-control form-control-sm" placeholder="快速录入" v-model.trim="quickInput" />
                 </div>

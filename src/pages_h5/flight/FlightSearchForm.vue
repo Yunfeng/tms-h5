@@ -13,7 +13,7 @@
     <template v-if="showSearchForm">
       <div class="card-body py-0 my-1">
         <form>
-          <div class="form-group">
+          <div class="row mb-2">
             <label>出发</label>
             <my-select-airport
               :cityCode.sync="dcity"
@@ -21,7 +21,7 @@
               :id="dcity"
             ></my-select-airport>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <label>到达</label>
             <my-select-airport
               :cityCode.sync="acity"
@@ -30,7 +30,7 @@
             ></my-select-airport>
           </div>
 
-          <div class="form-group">
+          <div class="row mb-2">
             <label>日期</label>
             <my-date-picker
               id="ddate"

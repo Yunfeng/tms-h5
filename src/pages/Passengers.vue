@@ -8,13 +8,13 @@
         <form class="form-inline" id="frmSearchUser">
           <input type="hidden" name="sc.pageNo" v-model.number="sc.pageNo">
           <input type="hidden" name="sc.pageSize" v-model.number="sc.pageSize">
-          <div class="form-group">
+          <div class="row mb-2">
               <input type="textfield" class="form-control" placeholder="姓名" v-model.trim="searchName" size="15">
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
               <input type="textfield" class="form-control" placeholder="证件号" v-model.trim="idNo" size="15">
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
               <button type="button" class="btn btn-primary ml-1" @click="search()">查找</button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button type="button" class="btn btn-secondary btn-sm" title="清空查找条件" @click="reset();">重置</button>

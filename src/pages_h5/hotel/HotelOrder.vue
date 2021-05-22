@@ -11,7 +11,7 @@
     </nav>
     <template v-if="detail !== null">
       <div class="card-body py-0">
-        <dl class="row">
+        <dl class="row mb-2">
           <dt class="col-4 text-right">订单号</dt>
           <dd class="col-8">{{ detail.orderNo }}</dd>
           <dt class="col-4 text-right">客户</dt>
@@ -114,7 +114,7 @@
           <a
             class="nav-link active"
             id="order-tab"
-            data-toggle="tab"
+            data-bs-toggle="tab"
             href="#orderDetailTab"
             role="tab"
             aria-controls="home"
@@ -131,7 +131,7 @@
           aria-labelledby="order-tab"
         >
           <div class="card">
-            <dl class="row">
+            <dl class="row mb-2">
               <dt class="col-4 text-right">成本中心</dt>
               <dd class="col-8">{{ detail.costCenter }}</dd>
               <dt class="col-4 text-right">项目名称</dt>

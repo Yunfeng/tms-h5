@@ -1,5 +1,5 @@
 <template>  
-	<div id="order-buyer" class="row">
+	<div id="order-buyer" class="row mb-2">
     <div class="card col-12 px-0 border-0">
       <div class="card-header text-center">指定买家 通知付款</div>
         <div class="card-block px-0">

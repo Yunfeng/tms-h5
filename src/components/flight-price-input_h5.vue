@@ -1,5 +1,5 @@
 <template>
-  <dl class="row" :id="id">
+  <dl class="row mb-2" :id="id">
     <dt class="col-4 text-right">{{ psgTypeName }}价格</dt>
     <dd class="col-8"></dd>
     <dt class="col-4 text-right">票面价</dt>

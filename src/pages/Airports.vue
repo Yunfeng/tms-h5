@@ -3,12 +3,12 @@
     <div class="card">
       <div class="card-body">
         <form class="form-inline">
-          <div class="form-group">
+          <div class="row mb-2">
             <input type="textfield" class="form-control" placeholder="名称" size="12" v-model.trim="name">
               <input type="textfield" class="form-control" placeholder="三字代码" size="8" v-model.trim="threeCode">
               <input type="textfield" class="form-control" placeholder="国家代码" size="8" v-model.trim="countryCode">
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
               <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
               <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
           </div>

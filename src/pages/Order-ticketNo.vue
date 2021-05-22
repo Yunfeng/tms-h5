@@ -19,7 +19,7 @@
           <input type='hidden' :name="'tmcOrder.passengers[' + index + '].id'" :value='psg.id' />
           <input type='hidden' :name="'tmcOrder.passengers[' + index + '].psgName'" :value='psg.psgName' />
 
-          <div class="form-group" >
+          <div class="row mb-2" >
             <label class="form-control-label"><span class="text-info small">乘客:</span> {{psg.psgName}}</label>
             <input class='form-control' :name="'tmcOrder.passengers[' + index + '].ticketNo'" v-model='psg.ticketNo' placeholder='填写票号' />
               <div class="form-control-feedback"><strong>{{psg.ticketNo}}</strong></div>

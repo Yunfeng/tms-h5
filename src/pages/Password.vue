@@ -1,5 +1,5 @@
 <template>
-  <div id="register" class="row">
+  <div id="register" class="row mb-2">
 
     <div class="card col-12">
       <div class="card-header text-center">
@@ -7,11 +7,11 @@
       </div>
       <div class="card-block">
         <form>
-          <div class="form-group">
+          <div class="row mb-2">
             <input type="input" class="form-control" placeholder="手机号"  v-model="mobile">
             <small class="form-text text-muted">注册时填写的手机号</small>
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <div class="row no-gutters">
               <div class="col-6">
                 <input type="input" class="form-control" placeholder="验证码" v-model="vcode">

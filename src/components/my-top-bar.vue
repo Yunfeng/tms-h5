@@ -10,7 +10,7 @@
           </li>
 
           <li class="nav-item dropdown active" v-for="info in menus">
-            <a class="nav-link dropdown-toggle arrow-none" href="javascript: void(0);" role="button" data-toggle="dropdown">
+            <a class="nav-link dropdown-toggle arrow-none" href="javascript: void(0);" role="button" data-bs-toggle="dropdown">
               {{info.caption}} <div class="arrow-down"></div>
             </a>
             <div class="dropdown-menu">

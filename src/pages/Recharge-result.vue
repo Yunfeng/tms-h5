@@ -2,7 +2,7 @@
   <div id="register" class="container-fluid">
     <div class="weui-toptips weui-toptips_warn" style="display:block" v-show="errAlert">{{errMsg}}</div>
 
-    <div class="row">
+    <div class="row mb-2">
       <div class="card col-12 border-0" style="padding-left: 0; padding-right: 0;">
         <div class="card-header text-center">
           充值结果

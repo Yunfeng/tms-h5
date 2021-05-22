@@ -60,7 +60,7 @@
                 <a
                   class="custom-accordion-title d-block py-1"
                   :class="{collapsed: index !==0}"
-                  data-toggle="collapse"
+                  data-bs-toggle="collapse"
                   :href="`#collapse-` + roomTypeInfo.supplierRoomTypeId"
                 >
                   <i class="mdi mdi-chevron-down accordion-arrow"></i>

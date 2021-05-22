@@ -62,7 +62,7 @@
 
       <ul class="nav nav-tabs nav-bordered mb-3" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="order-tab" data-toggle="tab" href="#orderDetailTab" role="tab" aria-controls="home" aria-selected="true">内容</a>
+          <a class="nav-link active" id="order-tab" data-bs-toggle="tab" href="#orderDetailTab" role="tab" aria-controls="home" aria-selected="true">内容</a>
         </li>      
       </ul>
       <div class="tab-content" id="myTabContent">

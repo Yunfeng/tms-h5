@@ -9,19 +9,19 @@
     </nav>
     <ul class="nav nav-tabs nav-bordered mb-3" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="order-tab" data-toggle="tab" href="#orderDetailTab" role="tab" aria-controls="home" aria-selected="true">订单内容</a>
+        <a class="nav-link active" id="order-tab" data-bs-toggle="tab" href="#orderDetailTab" role="tab" aria-controls="home" aria-selected="true">订单内容</a>
       </li>
       <li class="nav-item" v-if="detail !== null && detail.refunds.length > 0">
-        <a class="nav-link" id="refund-tab" data-toggle="tab" href="#refundTab" role="tab" aria-controls="refund" aria-selected="false">退票({{detail.refunds.length}})</a>
+        <a class="nav-link" id="refund-tab" data-bs-toggle="tab" href="#refundTab" role="tab" aria-controls="refund" aria-selected="false">退票({{detail.refunds.length}})</a>
       </li>
       <li class="nav-item" v-if="detail !== null && detail.changes.length > 0">
-        <a class="nav-link" id="change-tab" data-toggle="tab" href="#changeTab" role="tab" aria-controls="change" aria-selected="false">改签({{detail.changes.length}})</a>
+        <a class="nav-link" id="change-tab" data-bs-toggle="tab" href="#changeTab" role="tab" aria-controls="change" aria-selected="false">改签({{detail.changes.length}})</a>
       </li>
       <li class="nav-item" v-if="detail !== null && detail.services.length > 0">
-        <a class="nav-link" id="service-tab" data-toggle="tab" href="#serviceTab" role="tab" aria-controls="service" aria-selected="false">服务及保险({{detail.services.length}})</a>
+        <a class="nav-link" id="service-tab" data-bs-toggle="tab" href="#serviceTab" role="tab" aria-controls="service" aria-selected="false">服务及保险({{detail.services.length}})</a>
       </li>
       <li class="nav-item" v-if="detail !== null">
-        <a class="nav-link" id="comment-tab" data-toggle="tab" href="#commentTab" role="tab" aria-controls="comment" aria-selected="false">留言({{comments.length}})</a>
+        <a class="nav-link" id="comment-tab" data-bs-toggle="tab" href="#commentTab" role="tab" aria-controls="comment" aria-selected="false">留言({{comments.length}})</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -280,21 +280,21 @@
         <vas-order-list :dataList="detail.services"></vas-order-list>
       </div>
       <div class="tab-pane fade" id="commentTab" role="tabpanel" aria-labelledby="comment-tab" v-if="detail !== null">
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-12">
             <ul class="nav nav-tabs nav-bordered mb-3" role="tablist">
               <li class="nav-item">
-                <a class="nav-link" id="detail-tab" data-toggle="tab" href="#newComment">新建留言</a>
+                <a class="nav-link" id="detail-tab" data-bs-toggle="tab" href="#newComment">新建留言</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link active" id="login-tab" data-toggle="tab" href="#comments">留言列表</a>
+                <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#comments">留言列表</a>
               </li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade show" id="newComment">
                 <div class="card">
                   <div class="card-body">
-                    <div class="form-group">
+                    <div class="row mb-2">
                      
                       <textarea class="form-control" rows="3" v-model.trim="commentContent"></textarea>
                     </div>
@@ -411,7 +411,7 @@
       this.searchComments()
     },
     updated: function () {
-      $('[data-toggle="tooltip"]').tooltip()
+      $('[data-bs-toggle="tooltip"]').tooltip()
     },
     methods: {
       back: function () {

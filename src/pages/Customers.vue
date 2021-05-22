@@ -7,10 +7,10 @@
       <div class="card-body">
         <form class="form-inline" id="frmSearchUser">
           <input type="hidden" name="sc.pageNo" v-model.number="sc.pageNo">
-          <div class="form-group">
+          <div class="row mb-2">
               <input type="textfield" class="form-control" placeholder="公司名称" name="sc.name" v-model.trim="name" size="15">
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <select class="form-control form-control-sm ml-1" v-model.number="enterpriseType">
               <option value="-1">所有</option>
               <option value="0">企业散客</option>
@@ -37,7 +37,7 @@
               <option value="100">100</option>
               <option value="200">200</option>
           </select>
-          <div class="form-group">
+          <div class="row mb-2">
               <button type="button" class="btn btn-primary ml-1" @click="search()">查找</button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button type="button" class="btn btn-secondary btn-sm" title="清空查找条件" @click="reset();">重置</button>

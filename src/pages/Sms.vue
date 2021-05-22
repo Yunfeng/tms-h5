@@ -16,7 +16,7 @@
 
               <input type="textfield" class="form-control ml-2" placeholder="内容" size=10 v-model.trim="remark">
 
-              <div class="form-group">
+              <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
                   <button type="button" class="btn btn-secondary btn-sm ml-1" @click.stop="reset()">重置</button>
               </div>

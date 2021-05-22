@@ -115,7 +115,7 @@
     </div>
     <div class="card-body" :key="index" v-for="(psg, index) in psgInfos">
       乘机人{{ index + 1 }}
-      <div class="form-group">
+      <div class="row mb-2">
         <input
           type="text"
           class="form-control"
@@ -123,14 +123,14 @@
           v-model.trim="psg.name"
         />
       </div>
-      <div class="form-group">
+      <div class="row mb-2">
         <select class="form-control" v-model.number="psg.idType">
           <option value="1">身份证</option>
           <option value="2">护照</option>
           <option value="99">其它</option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="row mb-2">
         <input
           type="text"
           class="form-control"
@@ -138,7 +138,7 @@
           v-model.trim="psg.idNo"
         />
       </div>
-      <div class="form-group">
+      <div class="row mb-2">
         <input
           type="text"
           class="form-control"
@@ -146,7 +146,7 @@
           v-model.trim="psg.mobile"
         />
       </div>
-      <div class="form-group">
+      <div class="row mb-2">
         <select class="form-control" v-model.number="psg.psgType">
           <option value="0">成人</option>
           <option value="1">儿童</option>
@@ -194,7 +194,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="row mb-2">
         <label class="control-label text-right">付款方式</label>
         <div>
           <div class="form-check form-check-inline">
@@ -223,7 +223,7 @@
         政府采购机票 {{ gpMode }}
       </div>
       <div class="card-body py-2">
-        <div class="form-group">
+        <div class="row mb-2">
           <label class="control-label text-right">是否政府采购机票</label>
           <div class>
             <div class="form-check form-check-inline">
@@ -251,7 +251,7 @@
     </template>
     <div class="card-body bg-info text-white py-1">发票需求</div>
     <div class="card-body py-2">
-      <div class="form-group">
+      <div class="row mb-2">
         <label class="control-label text-right">发票类型</label>
         <div class>
           <div class="form-check form-check-inline">
@@ -365,7 +365,7 @@
       <span>联系人</span>
     </div>
     <div class="card-body px-0">
-      <div class="form-group">
+      <div class="row mb-2">
         <input
           type="text"
           class="form-control"
@@ -373,7 +373,7 @@
           placeholder="联系人"
         />
       </div>
-      <div class="form-group">
+      <div class="row mb-2">
         <input
           type="text"
           class="form-control"
@@ -381,7 +381,7 @@
           placeholder="联系电话"
         />
       </div>
-      <div class="form-group">
+      <div class="row mb-2">
         <input
           type="text"
           class="form-control"
@@ -389,7 +389,7 @@
           placeholder="备注"
         />
       </div>
-      <div class="form-group">
+      <div class="row mb-2">
         <input
           type="text"
           class="form-control"

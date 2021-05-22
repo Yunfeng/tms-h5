@@ -10,7 +10,7 @@
                     </template>
                 </select>
 
-                <div class="form-group">
+                <div class="row mb-2">
                     <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
                 </div>
 

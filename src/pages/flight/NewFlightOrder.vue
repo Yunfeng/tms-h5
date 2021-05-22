@@ -9,7 +9,7 @@
     </nav>
     <div class="card" v-if="editing === false">
       <div class="card-body py-0">
-        <div class="form-group">
+        <div class="row mb-2">
           <textarea class="form-control" rows="12" v-model.trim="pnrDetail" placeholder="请将编码内容粘帖到此处"></textarea>
           <button type="button" class="btn btn-primary btn-sm mt-1" :disabled="btnDisabled" @click.stop="processPnrDetail();">导入编码内容</button>
           <button type="button" class="btn btn-info  btn-sm mt-1 float-right" @click.stop="inputPnr()">手工录入</button> 
@@ -320,7 +320,7 @@
       }
     },
     mounted: function () {
-      $('[data-toggle="tooltip"]').tooltip()
+      $('[data-bs-toggle="tooltip"]').tooltip()
     },
     methods: {
       back: function () {

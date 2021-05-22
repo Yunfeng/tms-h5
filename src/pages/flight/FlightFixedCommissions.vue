@@ -6,14 +6,14 @@
           <form class="form-inline" id="frmSearch">
               <input type="hidden" id="frmSearch_sc_pageNo" name="sc.pageNo" value="1">
               <input type="hidden" id="frmSearch_sc_pageSize" name="sc.pageSize" value="20">
-              <div class="form-group">
+              <div class="row mb-2">
                   <input type="textfield" class="form-control" id="frmSearch_carrier" placeholder="航空公司"  name="sc.carrier"  size="10">
               </div>
-              <div class="form-group">
+              <div class="row mb-2">
                   <input type="textfield" class="form-control" id="frmSearch_subClass" placeholder="舱位"  name="sc.subClass"  size="6">
               </div>
               
-              <div class="form-group">
+              <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
               </div>
               

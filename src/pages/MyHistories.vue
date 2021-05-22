@@ -7,7 +7,7 @@
                 <input type="hidden" id="frmSearchHistory_sc_pageNo" name="sc.pageNo" v-model.number="sc.pageNo">
                 <input type="hidden" id="frmSearchHistory_sc_pageSize" name="sc.pageSize" v-model.number="sc.pageSize">
 
-              <div class="form-group">
+              <div class="row mb-2">
                 <input type="text" class="form-control" id="frmSearchHistory_sc_remark" name="sc.remark" placeholder="备注" size="10" v-model.trim="remark">
               </div>
               <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>

@@ -1,5 +1,5 @@
 <template>
-	<div id="order" class="row">
+	<div id="order" class="row mb-2">
     <div class="col-12 bg-info text-center text-white">
         <span class="fa-2">租车</span>
     </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="modal-body">
                     <form role="form" class="form-horizontal">
-                      <div class="form-group">
+                      <div class="row mb-2">
                         <label>订单状态</label>
                         <select class="form-control" v-model.number="status">
                         <option value="-1">所有订单</option>
@@ -83,19 +83,19 @@
                       </select>
                       </div>
                       
-                      <div class="form-group">
+                      <div class="row mb-2">
                         <label>订单号</label>
                         <input type="text" class="form-control" v-model.trim="orderNo">
                       </div>
-                      <div class="form-group">
+                      <div class="row mb-2">
                         <label>联系人</label>
                         <input type="text" class="form-control" v-model.trim="linkman">
                       </div>
-                      <div class="form-group">
+                      <div class="row mb-2">
                         <label>手机号</label>
                         <input type="text" class="form-control" v-model.trim="mobile">
                       </div>
-                      <div class="form-group">
+                      <div class="row mb-2">
                         <label>用车日期</label>
                         <input type="text" class="form-control" v-model.trim="ddate">
                       </div>

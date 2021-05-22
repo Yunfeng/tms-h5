@@ -37,13 +37,13 @@
       </table>
       <ul class="nav nav-tabs  nav-bordered mb-3">
         <li class="nav-item">
-          <a class="nav-item nav-link active" data-toggle="tab" href="#nav-settlement">结算单</a>
+          <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-settlement">结算单</a>
         </li>
         <li class="nav-item">
-          <a class="nav-item nav-link" data-toggle="tab" href="#nav-bill">账单</a>
+          <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-bill">账单</a>
         </li>
         <li class="nav-item">
-          <a class="nav-item nav-link" data-toggle="tab" href="#nav-flight">账单-机票</a>
+          <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-flight">账单-机票</a>
         </li>
       </ul>
       <div class="tab-content" id="nav-tabContent">
@@ -91,14 +91,14 @@
           <div class="card">
             <div class="card-body">
               <form class="form-inline">
-                <div class="form-group">
+                <div class="row mb-2">
                   <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
                   <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
                 </div>
                 <input type="textfield" class="form-control" size="6" placeholder="账单号" v-model.trim="billNum">
                 <input type="textfield" class="form-control" size="6" placeholder="订单号" v-model.trim="orderNo">
                 <input type="textfield" class="form-control" size="8" placeholder="原始单号" v-model.trim="flightOrderNo">
-                <div class="form-group">
+                <div class="row mb-2">
                   <label class="form-check-label">
                       <input type="radio" class="form-check-input" value="-1" v-model.number="billType">全部
                   </label>
@@ -121,7 +121,7 @@
                       <input type="radio" class="form-check-input" value="3" v-model.number="billType">火车票
                   </label>
                 </div>
-                <div class="form-group">
+                <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchBill()">查找</button>
                   <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
                 </div> 
@@ -174,7 +174,7 @@
               <form class="form-inline">
                 <input type="textfield" class="form-control" size="10" placeholder="票号" v-model.trim="ticketNo">
                 <input type="textfield" class="form-control" size="10" placeholder="姓名" v-model.trim="name">
-                <div class="form-group">
+                <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchTicket()">查找</button>
                   <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset3()">重置</button>
                 </div> 

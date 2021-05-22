@@ -12,7 +12,7 @@
         <img class="d-flex mr-3 rounded-circle" src="" alt="图片" height="64">
         <div class="media-body">
             <h5 class="mt-0">{{info.name}}</h5>
-            <dl class="row">
+            <dl class="row mb-2">
               <dt class="col-sm-3">地址</dt>
               <dd class="col-sm-9">{{info.address}}</dd>
 

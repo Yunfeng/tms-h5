@@ -8,7 +8,7 @@
             <form class="form-inline">
                 <input type="hidden" v-model.number="sc.pageNo">
                 <input type="hidden" v-model.number="sc.pageSize">
-                <div class="form-group">
+                <div class="row mb-2">
                     <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
                 </div>
 
@@ -132,14 +132,14 @@
                   </div>
                   <div class="modal-body">
                       <form>                          
-                          <div class="form-group">
+                          <div class="row mb-2">
                             <label for="exampleFormControlSelect1">包含以下成员：</label>
                             <select class="form-control" v-model.number="userId0">
                               <option v-for="info in groupUsers" :value="info.id">{{info.name}}</option>       
                             </select>
                             <button type="button" class="btn btn-danger mt-1" @click.stop="delUserFromGroup()">从组删除</button>
                           </div>                        
-                          <div class="form-group">
+                          <div class="row mb-2">
                             <label>不包含以下成员:</label>
                             <select class="form-control" v-model.number="userId">
                               <option value="0">选择</option>

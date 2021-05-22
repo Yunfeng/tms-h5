@@ -6,10 +6,10 @@
       </div>
       <div class="card-body">
         <form class="form-inline">
-          <div class="form-group">
+          <div class="row mb-2">
               <input type="textfield" class="form-control" placeholder="公司名称" name="sc.name" v-model.trim="name" size="15">
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <select class="form-control ml-1" v-model.number="sc.pageSize">
               <option value="5">5</option>
               <option value="10">10</option>
@@ -17,7 +17,7 @@
               <option value="50">50</option>
             </select>          
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
               <button type="button" class="btn btn-primary ml-1" @click="search()">查找</button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button type="button" class="btn btn-secondary btn-sm" title="清空查找条件" @click="reset();">重置</button>

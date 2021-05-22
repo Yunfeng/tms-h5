@@ -13,7 +13,7 @@
         <form class="form-inline" id="frmSearch">
           <input type="hidden" id="frmSearch_sc_pageNo" name="sc.pageNo" v-model="sc.pageNo">
           <input type="hidden" id="frmSearch_sc_pageSize" name="sc.pageSize" value="50" v-model="sc.pageSize">
-          <div class="form-group">      
+          <div class="row mb-2">      
             <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
             <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
           </div>
@@ -28,7 +28,7 @@
             <option value="4">已取消</option>
           </select>
 
-          <div class="form-group">
+          <div class="row mb-2">
               <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
               <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div> 

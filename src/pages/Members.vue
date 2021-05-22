@@ -9,10 +9,10 @@
     <div class="card">
       <div class="card-body">
         <form class="form-inline">
-          <div class="form-group">
+          <div class="row mb-2">
             <input type="text" class="form-control mr-sm-2" size="11" placeholder="用户名" v-model.trim="username">
           </div>
-          <div class="form-group">
+          <div class="row mb-2">
             <input type="text" class="form-control mr-sm-2" size="11" placeholder="手机" v-model.trim="mobile">
           </div>
           <select class="form-control form-control mr-sm-2" v-model.number="userType">
@@ -21,7 +21,7 @@
             <option value="1">企业</option>
           </select>
 
-          <div class="form-group">
+          <div class="row mb-2">
             <button type="button" class="btn btn-primary  mr-sm-2" @click.stop="search()">查找</button>
             <button type="button" class="btn btn-secondary btn-sm" @click.stop="reset()">重置</button>
           </div>

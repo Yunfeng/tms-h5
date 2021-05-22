@@ -1,5 +1,5 @@
 <template>
-  <div id="book-form" class="row">
+  <div id="book-form" class="row mb-2">
     <div class="col-12 bg-info text-center text-white">
       <span @click="back()" class="float-left fa-2">
         <i class="fa fa-angle-left fa-2" aria-hidden="true"></i>
@@ -261,16 +261,16 @@
           <span>联系人</span>
         </div>
       <div class="card-body px-0">
-        <div class="form-group">
+        <div class="row mb-2">
           <input type="text" class="form-control" v-model.trim="linkman" placeholder="联系人"/>
         </div>
-        <div class="form-group">
+        <div class="row mb-2">
           <input type="text" class="form-control" v-model.trim="linkPhone" placeholder="联系电话"/>
         </div>
-        <div class="form-group">
+        <div class="row mb-2">
           <input type="text" class="form-control" v-model.trim="remark" placeholder="备注" />
         </div>
-        <div class="form-group">
+        <div class="row mb-2">
           <input type="text" class="form-control" v-model.trim="address" placeholder="地址"/>
           <span class="text-muted small">行程单或发票邮寄的地址、邮编等</span>
         </div>

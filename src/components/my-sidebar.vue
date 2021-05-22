@@ -1,8 +1,8 @@
 <template>  
-  <div id="accordion" role="tablist" class="row">
+  <div id="accordion" role="tablist" class="row mb-2">
     <div class="card col-12 px-0">
       <div class="card-header" role="tab" id="heading2">
-          <a data-toggle="collapse" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
+          <a data-bs-toggle="collapse" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
               机票 <i class="fa fa-angle-right" aria-hidden="true"></i>
           </a>
       </div>
@@ -55,7 +55,7 @@
     </div>
     <div class="card col-12 px-0">
       <div class="card-header" role="tab" id="headingTrip">
-        <a data-toggle="collapse" href="#collapseTrip" aria-expanded="true" aria-controls="collapseTrip">
+        <a data-bs-toggle="collapse" href="#collapseTrip" aria-expanded="true" aria-controls="collapseTrip">
           旅游 <i class="fa fa-angle-right" aria-hidden="true"></i>
         </a>
       </div>
@@ -80,7 +80,7 @@
     </div>
     <div class="card col-12 px-0">
       <div class="card-header" role="tab" id="headingOne">
-          <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <a data-bs-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             PNR管理 <i class="fa fa-angle-right" aria-hidden="true"></i>
           </a>
       </div>
@@ -133,7 +133,7 @@
 
     <div class="card col-12 px-0">
       <div class="card-header" role="tab" id="heading4">
-          <a data-toggle="collapse" href="#collapse4" aria-expanded="true" aria-controls="collapse4">
+          <a data-bs-toggle="collapse" href="#collapse4" aria-expanded="true" aria-controls="collapse4">
               系统管理 <i class="fa fa-angle-right" aria-hidden="true"></i>
           </a>
       </div>
@@ -170,7 +170,7 @@
     </div>
     <div class="card col-12 px-0">
       <div class="card-header" role="tab" id="headingArt">
-          <a data-toggle="collapse" href="#collapseArt" aria-expanded="true" aria-controls="collapseArt">
+          <a data-bs-toggle="collapse" href="#collapseArt" aria-expanded="true" aria-controls="collapseArt">
               文章 <i class="fa fa-angle-right" aria-hidden="true"></i>
           </a>
       </div>
@@ -200,7 +200,7 @@
     </div>
     <div class="card col-12 px-0">
       <div class="card-header" role="tab" id="heading5">
-          <a data-toggle="collapse" href="#collapse5" aria-expanded="true" aria-controls="collapse5">
+          <a data-bs-toggle="collapse" href="#collapse5" aria-expanded="true" aria-controls="collapse5">
               公众号管理 <i class="fa fa-angle-right" aria-hidden="true"></i>
           </a>
       </div>

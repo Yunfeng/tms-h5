@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <form class="form-inline">
-          <div class="form-group">
+          <div class="row mb-2">
             <input type="textfield" class="form-control" placeholder="用户名" v-model.trim="username" size="10">
           </div>
           <div class="form-group ml-1">
@@ -20,7 +20,7 @@
                   <option value="500">500</option>
               </select>
           </div>          
-          <div class="form-group">
+          <div class="row mb-2">
             <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
             <button type="button" class="btn btn-secondary btn-sm ml-1" @click.stop="reset()">重置</button>
           </div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="register" class="row">
+  <div id="register" class="row mb-2">
     <div class="card col-12 px-0">
       <div class="card-header text-center">
         租车
@@ -104,7 +104,7 @@
     </div>
     <div class="card col-12" v-if="step === 1">
       <div class="card-body py-0">
-        <dl class="row">
+        <dl class="row mb-2">
           <dt class="col-4">询价单号</dt>
           <dd class="col-8">{{orderInfo.orderNo}}</dd>
 

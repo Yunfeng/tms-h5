@@ -6,7 +6,7 @@
           <router-link to="/h5/flt/orders">机票订单</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">详情</li>
-        <span class="ml-auto mr-1" @click.stop="back()">返回</span>
+        <span class="ms-auto mr-1" @click.stop="back()">返回</span>
       </ol>
     </nav>
 
@@ -144,7 +144,7 @@
             <a
               class="nav-link active"
               id="order-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#orderDetailTab"
               role="tab"
               aria-controls="home"
@@ -156,7 +156,7 @@
             <a
               class="nav-link"
               id="pnr-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#pnrDetailTab"
               role="tab"
               aria-controls="pnr"
@@ -171,7 +171,7 @@
             <a
               class="nav-link"
               id="refund-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#refundTab"
               role="tab"
               aria-controls="refund"
@@ -186,7 +186,7 @@
             <a
               class="nav-link"
               id="change-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#changeTab"
               role="tab"
               aria-controls="change"
@@ -201,7 +201,7 @@
             <a
               class="nav-link"
               id="service-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#serviceTab"
               role="tab"
               aria-controls="service"
@@ -213,7 +213,7 @@
             <a
               class="nav-link"
               id="comment-tab"
-              data-toggle="tab"
+              data-bs-toggle="tab"
               href="#commentTab"
               role="tab"
               aria-controls="comment"
@@ -230,7 +230,7 @@
             aria-labelledby="order-tab"
             v-if="detail !== null"
           >
-            <dl class="row">
+            <dl class="row mb-2">
               <dt class="col-4 text-right">GP机票</dt>
               <dd class="col-8">
                 <span v-if="detail.gpTicket === 1">是</span>
@@ -316,14 +316,14 @@
             aria-labelledby="comment-tab"
             v-if="detail !== null"
           >
-            <div class="row">
+            <div class="row mb-2">
               <div class="col-12">
                 <ul class="nav nav-tabs nav-bordered mb-3" role="tablist">
                   <li class="nav-item">
                     <a
                       class="nav-link"
                       id="detail-tab"
-                      data-toggle="tab"
+                      data-bs-toggle="tab"
                       href="#newComment"
                       >新建留言</a
                     >
@@ -332,7 +332,7 @@
                     <a
                       class="nav-link active"
                       id="login-tab"
-                      data-toggle="tab"
+                      data-bs-toggle="tab"
                       href="#comments"
                       >留言列表</a
                     >
@@ -342,7 +342,7 @@
                   <div class="tab-pane fade show" id="newComment">
                     <div class="card">
                       <div class="card-body">
-                        <div class="form-group">
+                        <div class="row mb-2">
                           <textarea
                             class="form-control"
                             rows="3"
@@ -431,8 +431,7 @@
 
 <script>
 import $ from "jquery";
-import { APP_FLIGHT_PATH, SUPPLIER_FLIGHT } from "../../common/const.js";
-import { cancelFlightOrder } from "../../api/flight.js";
+import { APP_FLIGHT_PATH } from "../../common/const.js";
 import {
   searchFlightOrder,
   searchFlightOrderDetailByOrderNo,
@@ -453,12 +452,7 @@ import {
 } from "../../common/common.js";
 import { createRefundOrderMulti } from "../../api/flight-refund.js";
 import { createChangeOrderMulti } from "../../api/flight-change.js";
-import {
-  sendFlightOrderSms,
-  sendFlightOrderApprovalSms,
-} from "../../api/sms.js";
 import { saveComment, searchComments } from "../../api/comment.js";
-import { rollbackFlightOrderStatus } from "../../api/admin.js";
 
 import PriceInfo from "../../common/PriceInfo.js";
 
@@ -531,13 +525,10 @@ export default {
     if (mobile !== undefined) {
       this.mobile = mobile;
     }
-    // console.log(authCode);
-    // console.log(mobile);
-    // console.log(this.logined);
     this.searchOrderDetail();
   },
   updated: function () {
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-bs-toggle="tooltip"]').tooltip();
   },
   methods: {
     back: function () {

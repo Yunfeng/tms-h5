@@ -1,7 +1,7 @@
 <template>
-  <div id="workbench" class="row">
+  <div id="workbench" class="row mb-2">
     <div class="col-xl-5 col-lg-6 offset-lg-3">
-      <div class="row">
+      <div class="row mb-2">
         <div class="col-lg-6">
           <div class="card widget-flat" @click.stop="jumpToAttractions()">
             <div class="card-body">
