@@ -22,7 +22,36 @@
         <template v-else>散客</template>
       </div>
       <div class="card-body bg-info text-white py-1">航班信息</div>
-      <table class="table table-striped table-hover table-sm mb-1">
+      <div class="card-body d-md-none">
+        <template v-for="(info, index) in detail.flights">
+          <dl :key="`flt_info_` + index" class="row">
+            <h5>第 {{ index + 1 }} 程</h5>
+            <dt class="col-3">出发机场</dt>
+            <dd class="col-9">
+              {{ info.dportName }}
+              <span class=""> {{ info.dterm }}</span>
+            </dd>
+            <dt class="col-3">到达机场</dt>
+            <dd class="col-9">
+              {{ info.aportName }}
+              <span class=""> {{ info.aterm }}</span>
+            </dd>
+            <dt class="col-3">出发时间</dt>
+            <dd class="col-9">
+              {{ info.ddate }} {{ info.dtime }} - {{ info.atime }}
+            </dd>
+            <dt class="col-3">航班号</dt>
+            <dd class="col-9">
+              {{ info.flightNo }}
+            </dd>
+            <dt class="col-3">舱位</dt>
+            <dd class="col-9">
+              {{ info.subclass }} ({{info.cabinClass}})
+            </dd>
+          </dl>
+        </template>
+      </div>
+      <table class="table table-striped table-hover table-sm mb-1 d-none d-md-table ">
         <thead>
           <tr>
             <th>出发</th>
@@ -53,7 +82,30 @@
         </tbody>
       </table>
       <div class="card-body bg-info text-white py-1">乘客信息</div>
-      <table class="table table-striped table-hover table-sm mb-1">
+       <div class="card-body d-md-none">
+        <template v-for="(info, index) in detail.passengers">
+          <dl :key="`flt_info_` + index" class="row">
+            <h5>乘机人{{ index + 1 }}</h5>
+            <dt class="col-3">姓名</dt>
+            <dd class="col-9">
+              {{ info.name }}
+            </dd>
+            <dt class="col-3">证件号</dt>
+            <dd class="col-9">
+              {{ info.idNo }}
+            </dd>
+            <dt class="col-3">手机号</dt>
+            <dd class="col-9">
+              {{ info.mobile }}
+            </dd>
+            <dt class="col-3">票号</dt>
+            <dd class="col-9">
+              {{ info.ticketNo }}
+            </dd>
+          </dl>
+        </template>
+      </div>
+      <table class="table table-striped table-hover table-sm mb-1 d-none d-md-table">
         <thead>
           <tr>
             <th>姓名</th>
@@ -74,7 +126,7 @@
                 <a
                   href="javascript:void(0)"
                   @click.stop="editPsg(index)"
-                  class="small ml-auto mr-auto d-none"
+                  class="small ms-auto me-auto d-none"
                   >修改</a
                 >
               </template>
@@ -82,13 +134,13 @@
                 <a
                   href="javascript:void(0)"
                   @click.stop="changeTicket(index)"
-                  class="btn btn-sm btn-warning ml-auto"
+                  class="btn btn-sm btn-warning ms-auto"
                   >改签</a
                 >
                 <a
                   href="javascript:void(0)"
                   @click.stop="multiRefundTicket(index)"
-                  class="btn btn-sm btn-danger ml-auto"
+                  class="btn btn-sm btn-danger ms-auto"
                   >退票</a
                 >
               </template>
@@ -392,7 +444,7 @@
 
         <template v-if="detail.orderStatus === 0">
           <button
-            class="btn btn-primary btn-sm ml-2 mr-auto"
+            class="btn btn-primary btn-sm ml-2 me-auto"
             :disabled="btnDisabled"
             @click.stop="submitOrder()"
           >
@@ -401,7 +453,7 @@
         </template>
         <template v-if="detail.orderStatus === 1">
           <button
-            class="btn btn-primary btn-sm ml-2 mr-auto"
+            class="btn btn-primary btn-sm ml-2 me-auto"
             :disabled="btnDisabled"
             @click.stop="approveOrder()"
           >

@@ -6,7 +6,7 @@
           <router-link to="/h5/hotel/orders">酒店订单</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">新建</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
     <div class="card">

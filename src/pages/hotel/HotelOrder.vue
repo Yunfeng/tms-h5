@@ -4,7 +4,7 @@
       <ol class="breadcrumb ">
         <li class="breadcrumb-item"><router-link to='/hotel/orders'>酒店订单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">详情</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
     <template v-if="detail !== null">
@@ -93,15 +93,15 @@
         <div class="card-body py-0">
             备注: {{detail.remark}}
             <ul class="list-inline row">
-              <li class="list-inline-item mr-auto">最晚到店时间: {{detail.lastArriveTime}}</li>
-              <li class="list-inline-item mr-auto">联系人: {{detail.linkman}}</li>
-              <li class="list-inline-item mr-auto">联系电话: {{detail.contactPhone}}</li>
+              <li class="list-inline-item me-auto">最晚到店时间: {{detail.lastArriveTime}}</li>
+              <li class="list-inline-item me-auto">联系人: {{detail.linkman}}</li>
+              <li class="list-inline-item me-auto">联系电话: {{detail.contactPhone}}</li>
             </ul>
             <ul class="list-inline row">
-              <li class="list-inline-item mr-auto">价格校验: {{detail.priceCheckedStatus}}, {{detail.priceCheckedTime}}</li>
-              <li class="list-inline-item mr-auto">指定审批人: {{detail.specifiedApprover}}</li>
-              <li class="list-inline-item mr-auto">审批结果: {{detail.approvalStatus}}, {{detail.approvalDenyReason}}</li>
-              <li class="list-inline-item mr-auto">合规性校验: {{detail.violationStatus}}, {{detail.violationReason}}</li>
+              <li class="list-inline-item me-auto">价格校验: {{detail.priceCheckedStatus}}, {{detail.priceCheckedTime}}</li>
+              <li class="list-inline-item me-auto">指定审批人: {{detail.specifiedApprover}}</li>
+              <li class="list-inline-item me-auto">审批结果: {{detail.approvalStatus}}, {{detail.approvalDenyReason}}</li>
+              <li class="list-inline-item me-auto">合规性校验: {{detail.violationStatus}}, {{detail.violationReason}}</li>
             </ul>
         </div>
       </div>
@@ -109,14 +109,14 @@
       <div class="card">
         <div class="card-body small"> 
           <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 0">
-            <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
-            <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="submitOrder()">提交订单</button>
+            <button class="btn btn-danger btn-sm ms-autome-auto" @click.stop="cancelOrder()">取消订单</button>
+            <button class="btn btn-primary btn-sm ms-auto me-auto" @click.stop="submitOrder()">提交订单</button>
           </div>
           <div class="d-flex flex-row  justify-content-around" v-else-if="detail.status === 10">
-            <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
-            <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="approveOrder()">审批订单</button>
+            <button class="btn btn-danger btn-sm ms-autome-auto" @click.stop="cancelOrder()">取消订单</button>
+            <button class="btn btn-primary btn-sm ms-auto me-auto" @click.stop="approveOrder()">审批订单</button>
           </div>
-          <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="onlinePay()">支付订单</button>
+          <button class="btn btn-primary btn-sm ms-auto me-auto" @click.stop="onlinePay()">支付订单</button>
         </div>
       </div>
       

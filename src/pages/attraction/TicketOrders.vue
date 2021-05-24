@@ -5,7 +5,7 @@
         <li class="breadcrumb-item"><router-link to='/attractions/ticket/orders'>景点门票订单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">列表</li>
 
-        <li class="breadcrumb-item ml-auto"><router-link to='/attractions'>景点</router-link></li>
+        <li class="breadcrumb-item ms-auto"><router-link to='/attractions'>景点</router-link></li>
       </ol>
     </nav>       
 
@@ -32,7 +32,7 @@
               <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div> 
 
-          <button type="button" class="btn btn-primary ml-auto" @click.stop="importExcel()">导入Excel</button>
+          <button type="button" class="btn btn-primary ms-auto" @click.stop="importExcel()">导入Excel</button>
 
           
         </form>

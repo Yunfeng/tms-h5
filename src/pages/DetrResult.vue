@@ -29,7 +29,7 @@
               <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="search()">查找</button>
               </div>
-              <span class="ml-auto">
+              <span class="ms-auto">
                 <button type="button" class="btn btn-primary ml-2" @click.stop="importExcel()">导入Excel</button>
                 <button type="button" class="btn btn-success ml-5" @click.stop="downloadResult()">下载</button> 
               </span>

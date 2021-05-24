@@ -4,7 +4,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><router-link to='/delivery/notes'>配送单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">新建</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>      
 

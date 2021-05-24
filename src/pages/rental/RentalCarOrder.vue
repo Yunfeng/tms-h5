@@ -77,14 +77,14 @@
         </div>
         <div class="card-body py-1">
             <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 10">
-              <button class="btn btn-danger btn-sm ml-auto mr-auto" @click.stop="cancelOrder()">取消订单</button>
-              <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="approveOrder()">审批订单</button>
+              <button class="btn btn-danger btn-sm ms-auto me-auto" @click.stop="cancelOrder()">取消订单</button>
+              <button class="btn btn-primary btn-sm ms-auto me-auto" @click.stop="approveOrder()">审批订单</button>
             </div>
             <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 1">
-              <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
+              <button class="btn btn-danger btn-sm ms-autome-auto" @click.stop="cancelOrder()">取消订单</button>
             </div>
             
-            <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="onlinePay()">支付订单</button>
+            <button class="btn btn-primary btn-sm ms-auto me-auto" @click.stop="onlinePay()">支付订单</button>
         </div>
       </div>
       <div class="card">

@@ -4,7 +4,7 @@
       <ol class="breadcrumb ">
         <li class="breadcrumb-item"><router-link to='/attractions/ticket/orders'>门票订单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">详情</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
     <template v-if="detail !== null">
@@ -73,8 +73,8 @@
       <div class="card">
         <div class="card-body small"> 
           <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 0">
-            <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
-            <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="onlinePay()">支付订单</button>
+            <button class="btn btn-danger btn-sm ms-autome-auto" @click.stop="cancelOrder()">取消订单</button>
+            <button class="btn btn-primary btn-sm ms-auto me-auto" @click.stop="onlinePay()">支付订单</button>
           </div>
           
         </div>

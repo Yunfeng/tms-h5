@@ -14,7 +14,7 @@
                     <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
                 </div>
 
-                <span class="ml-auto">
+                <span class="ms-auto">
                       <a href="javascript:void(0)" @click.stop="add();" class="btn btn-success btn-lg">增加</a> 
                   </span> 
             </form>

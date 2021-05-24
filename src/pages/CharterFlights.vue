@@ -19,7 +19,7 @@
           <div class="form-group ml-1">
               <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
           </div>
-          <span class="ml-auto">
+          <span class="ms-auto">
             <router-link to="/charter-flight/new" class="btn btn-success">新建</router-link>
           </span>
         </form>

@@ -4,7 +4,7 @@
       <ol class="breadcrumb ">
         <li class="breadcrumb-item"><router-link to='/admin/members'>会员</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">会员企业信息</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
 

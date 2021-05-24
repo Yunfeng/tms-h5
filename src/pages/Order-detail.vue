@@ -59,7 +59,7 @@
               <dt class='col-4 text-right px-0'>票号</dt>
               <dd class='col-8 text-success'>
                 {{psg.ticketNo}}
-                <div class="float-right mr-2">
+                <div class="float-right me-2">
                   <span class="text-warning small" @click.stop="applyChange(psg.ticketNo, psg.psgName, info.id)">改签</span>
                   <span class="text-danger small" @click.stop="applyRefund(psg.ticketNo, psg.psgName, info.id)">退票</span>
                 </div>

@@ -5,7 +5,7 @@
         <ol class="breadcrumb py-1 my-0">
           <li class="breadcrumb-item" aria-current="page">酒店预订</li>
           <li class="breadcrumb-item active" aria-current="page">查询条件</li>
-          <li class="breadcrumb-item ml-auto">
+          <li class="breadcrumb-item ms-auto">
             <router-link to="/h5/hotel/orders">酒店订单</router-link>
           </li>
         </ol>
@@ -149,14 +149,14 @@
         <div class="form-row">
           <button
             type="button"
-            class="btn btn-primary mr-auto ml-auto"
+            class="btn btn-primary me-auto ms-auto"
             @click.stop="search()"
           >
             查找
           </button>
           <button
             type="button"
-            class="btn btn-sm btn-secondary mr-auto ml-auto"
+            class="btn btn-sm btn-secondary me-auto ms-auto"
             @click.stop="reset()"
           >
             重置

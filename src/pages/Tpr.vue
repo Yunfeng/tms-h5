@@ -13,7 +13,7 @@
         <input class="form-control m-1" type="text" placeholder="eterm用户名" size="10" v-model="etermUsername">
         <input class="form-control m-1" type="text" placeholder="设备号" size="4" v-model="deviceId">
         <input class="form-control m-1" type="text" placeholder="票号" size="12" v-model.trim="ticketNo">
-        <button type="button" class="btn btn-success mr-2" @click.stop="search()">确定</button>
+        <button type="button" class="btn btn-success me-2" @click.stop="search()">确定</button>
         <button type="button" class="btn btn-info btn-sm" @click.stop="reset()">重置</button>  
       </form>
       

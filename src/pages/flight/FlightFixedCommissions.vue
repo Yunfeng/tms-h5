@@ -18,7 +18,7 @@
               </div>
               
 
-                  <a href="javascript:void(0)" class="btn btn-success ml-auto" @click="newFixedPoilcy()">录入新政策</a> 
+                  <a href="javascript:void(0)" class="btn btn-success ms-auto" @click="newFixedPoilcy()">录入新政策</a> 
           </form>
       </div>
     </div>

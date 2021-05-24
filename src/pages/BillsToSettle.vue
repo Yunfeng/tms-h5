@@ -45,8 +45,8 @@
 
             <button type="button" class="btn btn-primary ml-1" @click.stop="searchBills()">查找账单</button>
             <button type="button" class="btn btn-secondary btn-sm ml-1" @click.stop="reset()">重置</button>
-            <a class="btn btn-success ml-auto invisible" @click.stop="downloadBillInfo()" href="#" title="a">下载</a> 
-            <button type="button" class="btn btn-warning btn-sm ml-auto" @click.stop="checkPayStatus()" title="检查散客订单的收款状态" :disabled="btnDisabled">收款状态</button> 
+            <a class="btn btn-success ms-auto invisible" @click.stop="downloadBillInfo()" href="#" title="a">下载</a> 
+            <button type="button" class="btn btn-warning btn-sm ms-auto" @click.stop="checkPayStatus()" title="检查散客订单的收款状态" :disabled="btnDisabled">收款状态</button> 
         </form>
       </div>                
       <table class="table table-striped table-hover table-sm small">
@@ -135,7 +135,7 @@
                 <!-- 显示订单详情：主要是人名 -->
                 <!-- 机票账单 -->
                 <template v-if="info.billType === '0' && info.tickets.length > 0">                    
-                  <table class="mb-0 ml-auto mr-auto">
+                  <table class="mb-0 ms-auto me-auto">
                     <tr v-for="detail in info.tickets">
                       <td>{{detail.passengerName}}</td>
                       <td>{{detail.balanceCode}}-{{(detail.ticketNo)}}</td>
@@ -144,7 +144,7 @@
                 </template>
                 <!-- 酒店账单 -->
                 <template v-else-if="info.billType === '2' && info.hotelBookings.length > 0">                    
-                  <table class="mb-0 ml-auto mr-auto">
+                  <table class="mb-0 ms-auto me-auto">
                     <tr v-for="detail in info.hotelBookings">
                       <td>{{detail.passengerName}}</td>
                       <td>{{detail.hotelName}}</td>
@@ -153,7 +153,7 @@
                 </template>
                 <!-- 火车票账单 -->
                 <template v-else-if="info.billType === '3' && info.trainTickets.length > 0">                    
-                  <table class="mb-0 ml-auto mr-auto">
+                  <table class="mb-0 ms-auto me-auto">
                     <tr v-for="detail in info.trainTickets">
                       <td>{{detail.passengerName}}</td>
                       <td>{{detail.trainNo}}</td>
@@ -162,7 +162,7 @@
                 </template>
                 <!-- 退票账单 -->
                 <template v-else-if="info.billType === '5' && info.refundTickets.length > 0">                    
-                  <table class="mb-0 ml-auto mr-auto">
+                  <table class="mb-0 ms-auto me-auto">
                     <tr v-for="detail in info.refundTickets">
                       <td>{{detail.psgName}}</td>
                       <td>{{detail.balanceCode}}-{{(detail.ticketNo)}}</td>
@@ -171,7 +171,7 @@
                 </template>
                 <!-- 服务账单 -->
                 <template v-else-if="info.billType === '6' && info.vasOrders.length > 0">                    
-                  <table class="mb-0 ml-auto mr-auto">
+                  <table class="mb-0 ms-auto me-auto">
                     <tr v-for="detail in info.vasOrders">
                       <td>{{detail.productName}}</td>
                       <td>{{detail.remark}}</td>
@@ -180,7 +180,7 @@
                 </template>
                 <!-- 服务账单 -->
                 <template v-else-if="info.billType === '7' && info.changeOrders.length > 0">                    
-                  <table class="mb-0 ml-auto mr-auto">
+                  <table class="mb-0 ms-auto me-auto">
                     <tr v-for="detail in info.changeOrders">
                       <td>{{detail.psgName}}</td>
                       <td>{{detail.balanceCode}}-{{(detail.ticketNo)}}</td>

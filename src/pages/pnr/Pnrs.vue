@@ -35,7 +35,7 @@
             <option value="4">更新时间降序</option>
           </select>
 
-          <button type="button" class="btn btn-success ml-2 mr-2" @click.stop="search()">确定</button>
+          <button type="button" class="btn btn-success ml-2 me-2" @click.stop="search()">确定</button>
           <button type="button" class="btn btn-info btn-sm" @click.stop="resetFilter()">重置</button>          
 
 

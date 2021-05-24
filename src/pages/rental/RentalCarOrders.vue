@@ -16,15 +16,15 @@
           <input type="textfield" class="form-control form-control-sm" size="10" placeholder="联系人" v-model.trim="linkman">
           <input type="textfield" class="form-control form-control-sm" size="10" placeholder="手机号" v-model.trim="mobile">
           <my-date-picker id="ddate" v-model="ddate" class="form-control form-control-sm" placeholder="用车日期"></my-date-picker>
-          <button type="button" class="btn btn-primary mr-2" @click.stop="search()">查找</button>
+          <button type="button" class="btn btn-primary me-2" @click.stop="search()">查找</button>
           <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
-          <router-link class="btn btn-success ml-auto" to="/rental/car">询价</router-link>
+          <router-link class="btn btn-success ms-auto" to="/rental/car">询价</router-link>
         </form>        
     </div> 
     <div class="card col-12 d-block d-md-none">
         <form class="form-inline">
-          <button type="button" class="btn btn-primary mr-2" @click.stop="showSearch()">查找</button>
-          <router-link class="btn btn-success ml-auto" to="/rental/car">询价</router-link>
+          <button type="button" class="btn btn-primary me-2" @click.stop="showSearch()">查找</button>
+          <router-link class="btn btn-success ms-auto" to="/rental/car">询价</router-link>
         </form>        
     </div>    
 
@@ -102,7 +102,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary mr-2" @click.stop="search()">查找</button>
+                    <button type="button" class="btn btn-primary me-2" @click.stop="search()">查找</button>
                     <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>

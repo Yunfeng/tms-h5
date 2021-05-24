@@ -114,7 +114,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <div class="form-check mr-auto">
+          <div class="form-check me-auto">
             <input class="form-check-input" type="checkbox" v-model="keepOpening">
             <label class="form-check-label">
               保存成功后继续录入

@@ -4,7 +4,7 @@
       <ol class="breadcrumb ">
         <li class="breadcrumb-item"><router-link to='/vaas/orders'>机场服务订单（第三方服务）</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">新建</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
 
@@ -149,7 +149,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <span class="ml-auto mr-auto">订单总额：<b>{{total}}</b></span>
+          <span class="ms-auto me-auto">订单总额：<b>{{total}}</b></span>
         </div>
       </div>
       <div class="card-footer">        

@@ -82,7 +82,7 @@
         </tbody>
       </table>
       <div class="card-footer">        
-        <span class="ml-auto mr-auto">
+        <span class="ms-auto me-auto">
           <a href="javascript:void(0);" @click.stop="addFlt()" class="btn btn-sm btn-success">增加航段</a>
         </span>
       </div>

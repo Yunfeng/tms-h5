@@ -18,7 +18,7 @@
           </div>
           
 
-          <a href="javascript:void(0)" class="btn btn-success ml-auto" v-on:click="newPayment()">新建</a> 
+          <a href="javascript:void(0)" class="btn btn-success ms-auto" v-on:click="newPayment()">新建</a> 
         </form>
       </div>
     </div>

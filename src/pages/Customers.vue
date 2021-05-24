@@ -43,7 +43,7 @@
               <button type="button" class="btn btn-secondary btn-sm" title="清空查找条件" @click="reset();">重置</button>
           </div>
 
-          <router-link to="/customer" class="btn btn-success ml-auto">新建</router-link>
+          <router-link to="/customer" class="btn btn-success ms-auto">新建</router-link>
         </form>
       </div>
     </div>

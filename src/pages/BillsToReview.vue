@@ -36,7 +36,7 @@
           </select>
 
             <button type="button" class="btn btn-primary ml-1" @click.stop="searchBills()">查找账单</button>
-            <button type="button" class="btn btn-danger btn-sm ml-auto" @click.stop="autoReview()" :disabled="autoReviewing">
+            <button type="button" class="btn btn-danger btn-sm ms-auto" @click.stop="autoReview()" :disabled="autoReviewing">
               <template v-if="autoReviewing">
                 自动审核中...
               </template>
@@ -44,7 +44,7 @@
                 自动审核 
               </template>    
             </button> 
-            <a class="btn btn-success ml-auto" @click.stop="downloadBillInfo()" href="#">下载</a> 
+            <a class="btn btn-success ms-auto" @click.stop="downloadBillInfo()" href="#">下载</a> 
         </form>
       </div>                
       <table class="table table-striped table-hover table-sm small">

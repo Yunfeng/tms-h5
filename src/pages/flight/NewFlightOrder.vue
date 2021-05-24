@@ -4,7 +4,7 @@
       <ol class="breadcrumb pb-0">
         <li class="breadcrumb-item"><router-link to='/flt/orders'>机票订单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">新建</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
     <div class="card" v-if="editing === false">

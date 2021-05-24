@@ -18,7 +18,7 @@
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button type="button" class="btn btn-secondary btn-sm" title="清空查找条件" @click="reset();">重置</button>
 
-          <a href="javascript:void(0)" v-on:click="newNote();" class="btn btn-success ml-auto">新建</a> 
+          <a href="javascript:void(0)" v-on:click="newNote();" class="btn btn-success ms-auto">新建</a> 
         </form>
       </div>
     </div>

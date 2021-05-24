@@ -7,7 +7,7 @@
             <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
           </div>
 
-          <span class="ml-auto" v-if="false">
+          <span class="ms-auto" v-if="false">
             <a href="javascript:void(0)" v-on:click="newUser();" class="btn btn-success btn-lg">新建</a> 
           </span> 
         </form>

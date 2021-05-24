@@ -17,7 +17,7 @@
               <button type="button" class="btn btn-secondary btn-sm" title="清空查找条件" @click="reset();">重置</button>
           </div>
 
-          <a href="javascript:void(0)" v-on:click="newDept();" class="btn btn-success ml-auto">新建</a> 
+          <a href="javascript:void(0)" v-on:click="newDept();" class="btn btn-success ms-auto">新建</a> 
           <a href="javascript:void(0)" v-on:click="syncDept();" class="btn btn-secondary ml-5" title="把企业微信中的部门信息下载到系统中">同步</a> 
         </form>
       </div>

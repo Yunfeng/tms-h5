@@ -4,7 +4,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><router-link to='/hotel/orders'>酒店</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">查找</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>  
 
@@ -174,7 +174,7 @@
                   </template>
                 </template>
                 <template v-else>
-                  <span class="float-right text-danger ml-auto">无可用价格</span>
+                  <span class="float-right text-danger ms-auto">无可用价格</span>
                 </template>  
               </td>
             </tr>

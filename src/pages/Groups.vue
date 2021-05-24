@@ -14,7 +14,7 @@
 
                  
 
-                <span class="ml-auto">
+                <span class="ms-auto">
                     <a href="javascript:void(0)" @click.stop="newGroup();" class="btn btn-success btn-lg">新建</a> 
                 </span> 
             </form>

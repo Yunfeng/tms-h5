@@ -77,7 +77,7 @@
       <!-- end container -->
 
 
-      <div class="col-10 mr-auto alert alert-success text-center" v-if="step === 1">
+      <div class="col-10 me-auto alert alert-success text-center" v-if="step === 1">
             <h1>注册成功！</h1>
             <span class="text-danger small">用户名和密码将发到您的注册手机上, 请查收!</span>
             <br />

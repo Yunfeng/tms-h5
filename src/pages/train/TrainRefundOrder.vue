@@ -4,7 +4,7 @@
       <ol class="breadcrumb ">
         <li class="breadcrumb-item"><router-link to='/train/refund/orders'>火车票退票</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">详情</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
     <template v-if="detail !== null">
@@ -142,14 +142,14 @@
       <div class="card">
         <div class="card-body small"> 
           <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 0">
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editPrice()">修改价格</button>
-              <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="processOrder()">处理订单</button>
-              <button class="btn btn-danger btn-sm ml-automr-auto" @click.stop="cancelOrder()">取消订单</button>
+              <button class="btn btn-info btn-sm ms-auto me-auto" @click.stop="editPrice()">修改价格</button>
+              <button class="btn btn-primary btn-sm ms-auto me-auto" @click.stop="processOrder()">处理订单</button>
+              <button class="btn btn-danger btn-sm ms-autome-auto" @click.stop="cancelOrder()">取消订单</button>
             </div>
             <div class="d-flex flex-row  justify-content-around" v-else-if="detail.status === 1">
-              <button class="btn btn-info btn-sm ml-auto mr-auto" @click.stop="editPrice()">修改价格</button>
-              <button class="btn btn-primary btn-sm ml-auto mr-auto" @click.stop="finishOrder()">处理完毕</button>
-              <button class="btn btn-danger btn-sm ml-auto mr-auto" @click.stop="cancelOrder()">取消订单</button>
+              <button class="btn btn-info btn-sm ms-auto me-auto" @click.stop="editPrice()">修改价格</button>
+              <button class="btn btn-primary btn-sm ms-auto me-auto" @click.stop="finishOrder()">处理完毕</button>
+              <button class="btn btn-danger btn-sm ms-auto me-auto" @click.stop="cancelOrder()">取消订单</button>
             </div>
             <div class="d-flex flex-row  justify-content-around" v-if="detail.status === 2 && detail.payStatus !== 2">
               <button class="btn btn-danger btn-sm ml-2" @click.stop="rollbackStatus()" v-if="isAdmin">

@@ -4,7 +4,7 @@
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><router-link to='/ent/settlements'>结算单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">详情</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
     <template v-if="detail !== null">

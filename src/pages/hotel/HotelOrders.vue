@@ -4,7 +4,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><router-link to='/hotel/orders'>酒店订单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">列表</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>       
 
@@ -33,7 +33,7 @@
               <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div> 
 
-          <router-link to='/hotel/search' class="btn btn-warning ml-auto">查询酒店</router-link>
+          <router-link to='/hotel/search' class="btn btn-warning ms-auto">查询酒店</router-link>
         </form>
       </div>
       <table class="table table-striped table-sm small">

@@ -27,7 +27,7 @@
               <button type="button" class="btn btn-muted btn-sm ml-5" @click.stop="reset0()">重置</button>
             </div>
             
-            <a href="javascript:void(0)" class="btn btn-success ml-auto" @click="newSupplier()">新建</a> 
+            <a href="javascript:void(0)" class="btn btn-success ms-auto" @click="newSupplier()">新建</a> 
         </form>
       </div>
     </div>

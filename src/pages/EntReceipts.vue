@@ -42,7 +42,7 @@
           <button type="button" class="btn btn-secondary btn-sm ml-1" @click.stop="reset()">重置</button>
 
 
-          <span class="ml-auto">
+          <span class="ms-auto">
               <button class="btn btn-success" @click.stop.prevent="newReceipt()">录入</button> 
           </span>
         </form>

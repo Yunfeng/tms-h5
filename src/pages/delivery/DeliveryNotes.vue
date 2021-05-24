@@ -5,8 +5,8 @@
         <li class="breadcrumb-item"><router-link to='/delivery/notes'>配送单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">列表</li>
 
-        <router-link to='/flt/orders/delivery' class="ml-auto mr-auto">原待送票订单</router-link>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <router-link to='/flt/orders/delivery' class="ms-auto me-auto">原待送票订单</router-link>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>       
 
@@ -24,7 +24,7 @@
               <button type="button" class="btn btn-sm btn-secondary ml-1" @click.stop="reset()">重置</button>
           </div> 
 
-          <router-link to='/delivery/note' class="btn btn-success ml-auto">新建</router-link>
+          <router-link to='/delivery/note' class="btn btn-success ms-auto">新建</router-link>
         </form>
       </div>
       <table class="table table-striped table-sm">

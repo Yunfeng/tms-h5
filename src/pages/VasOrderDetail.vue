@@ -12,7 +12,7 @@
             </template>
           </li>
           <li class="breadcrumb-item active" aria-current="page">详情</li>
-          <span class="ml-auto" @click.stop="back()">返回</span>
+          <span class="ms-auto" @click.stop="back()">返回</span>
         </ol>
       </nav>
 

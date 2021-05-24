@@ -4,7 +4,7 @@
         <ol class="breadcrumb py-2 my-0">
           <li class="breadcrumb-item" aria-current="page"><router-link to="/h5/hotel/search">酒店预订</router-link></li>
           <li class="breadcrumb-item active" aria-current="page">查询结果</li>
-          <span class="ml-auto mr-1" @click.stop="back()">返回</span>
+          <span class="ms-auto mr-1" @click.stop="back()">返回</span>
         </ol>
       </nav>
 

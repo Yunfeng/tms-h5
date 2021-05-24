@@ -6,7 +6,7 @@
           <router-link to="/h5/home">主页</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">机票订单</li>
-        <li class="breadcrumb-item ml-auto mr-2">
+        <li class="breadcrumb-item ms-auto me-2">
           <router-link to="/h5/flt/search">国内预订</router-link>
         </li>
       </ol>
@@ -116,14 +116,14 @@
           <div class="form-group row">
             <button
               type="button"
-              class="btn btn-primary btn-lg ml-auto mr-auto"
+              class="btn btn-primary btn-lg ms-auto me-auto"
               @click.stop="search()"
             >
               查找
             </button>
             <button
               type="button"
-              class="btn btn-secondary btn-sm ml-auto mr-auto"
+              class="btn btn-secondary btn-sm ms-auto me-auto"
               @click.stop="reset()"
             >
               重置
@@ -145,7 +145,7 @@
 
       <flight-order-list :dataList="dataList"></flight-order-list>
 
-      <nav id="pagination-box" class="float-right mr-2">
+      <nav id="pagination-box" class="float-right me-2">
         <my-pagination
           name="pagination"
           :row-count="sc.rowCount"

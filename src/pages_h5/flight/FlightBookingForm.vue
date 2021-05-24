@@ -6,7 +6,7 @@
           <router-link to="/h5/flt/search">机票预订</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">填写订单</li>
-        <li class="breadcrumb-item ml-auto">
+        <li class="breadcrumb-item ms-auto">
           <router-link to="/h5/flt/orders">机票订单</router-link>
         </li>
       </ol>

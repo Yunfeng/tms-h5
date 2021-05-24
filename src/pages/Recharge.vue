@@ -43,7 +43,7 @@
                   </div>
               </div>                  
               <div class="form-group row">
-                  <div class="col-6 ml-auto mr-auto">
+                  <div class="col-6 ms-auto me-auto">
                       <span class="help-block">
                           <ul class="list-unstyled">
                               <li>&nbsp;</li>

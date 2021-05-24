@@ -6,7 +6,7 @@
           <router-link to="/h5/hotel/orders">酒店订单</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">详情</li>
-        <span class="ml-auto mr-1" @click.stop="back()">返回</span>
+        <span class="ms-auto mr-1" @click.stop="back()">返回</span>
       </ol>
     </nav>
     <template v-if="detail !== null">
@@ -192,14 +192,14 @@
             "
           >
             <button
-              class="btn btn-primary btn-sm ml-auto mr-auto"
+              class="btn btn-primary btn-sm ms-auto me-auto"
               @click.stop="submitOrder()"
               v-if="detail.status === 0"
             >
               提交订单
             </button>
             <button
-              class="btn btn-primary btn-sm ml-auto mr-auto"
+              class="btn btn-primary btn-sm ms-auto me-auto"
               @click.stop="approveOrder()"
               v-if="detail.status === 10"
             >
@@ -207,7 +207,7 @@
             </button>
 
             <button
-              class="btn btn-danger btn-sm ml-automr-auto"
+              class="btn btn-danger btn-sm ms-autome-auto"
               @click.stop="cancelOrder()"
             >
               取消订单

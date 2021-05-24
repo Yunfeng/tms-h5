@@ -25,7 +25,7 @@
             <button type="button" class="btn btn-secondary btn-sm ml-1" @click.stop="reset()">重置</button>
           </div>
 
-          <span class="ml-auto">
+          <span class="ms-auto">
             <button type="button" v-on:click="newUser();" class="btn btn-success btn-lg" id="btnNewUser">新建</button> 
           </span> 
         </form>

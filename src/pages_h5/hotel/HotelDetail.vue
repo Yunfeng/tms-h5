@@ -5,7 +5,7 @@
         <ol class="breadcrumb py-1 my-0">
           <li class="breadcrumb-item" aria-current="page"><router-link to="/h5/hotel/search">酒店预订</router-link></li>
           <li class="breadcrumb-item active" aria-current="page">酒店详情</li>
-          <span class="ml-auto mr-1" @click.stop="back()">返回</span>
+          <span class="ms-auto mr-1" @click.stop="back()">返回</span>
         </ol>
       </nav>
     </div>
@@ -145,7 +145,7 @@
                   <template v-else>
                     <span class="float-right">
                       <template v-if="ratePlan.rates.length > 0">
-                        <span class="text-danger mr-2">
+                        <span class="text-danger me-2">
                           <small>¥</small>
                           <strong>{{ratePlan.rates[0].inclusiveAmount}}</strong>
                         </span>

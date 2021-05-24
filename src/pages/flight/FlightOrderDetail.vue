@@ -4,7 +4,7 @@
       <ol class="breadcrumb pb-0">
         <li class="breadcrumb-item"><router-link to='/flt/orders'>机票订单</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">详情</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
     <ul class="nav nav-tabs nav-bordered mb-3" id="myTab" role="tablist">
@@ -243,10 +243,10 @@
               <li>备注: {{detail.remark}}</li>
             </ul>
             <ul class="list-inline row">
-              <li class="list-inline-item mr-auto">价格校验: {{detail.priceCheckedStatus}}, {{detail.priceCheckedTime}}</li>
-              <li class="list-inline-item mr-auto">指定审批人: {{detail.specifiedApprover}}</li>
-              <li class="list-inline-item mr-auto">审批结果: {{detail.approvalStatus}}, {{detail.approvalDenyReason}}</li>
-              <li class="list-inline-item mr-auto">合规性校验: {{detail.violationStatus}}, {{detail.violationReason}}</li>
+              <li class="list-inline-item me-auto">价格校验: {{detail.priceCheckedStatus}}, {{detail.priceCheckedTime}}</li>
+              <li class="list-inline-item me-auto">指定审批人: {{detail.specifiedApprover}}</li>
+              <li class="list-inline-item me-auto">审批结果: {{detail.approvalStatus}}, {{detail.approvalDenyReason}}</li>
+              <li class="list-inline-item me-auto">合规性校验: {{detail.violationStatus}}, {{detail.violationReason}}</li>
             </ul>
             <ul class="list-unstyled" v-if="detail.policyCode !== null">
               <li>机票优惠代码：{{detail.policyCode}}</li>
@@ -260,10 +260,10 @@
               <button class="btn btn-sm btn-success ml-2" @click.stop="onlinePay()" v-if="detail.orderStatus === 0 && detail.payType === 1">支付</button>
 
               <template v-if="detail.orderStatus === 0">
-                <button class="btn btn-primary btn-sm ml-2 mr-auto" :disabled="btnDisabled" @click.stop="submitOrder()">申请开票</button>
+                <button class="btn btn-primary btn-sm ml-2 me-auto" :disabled="btnDisabled" @click.stop="submitOrder()">申请开票</button>
               </template>
               <template v-if="detail.orderStatus === 1">
-                <button class="btn btn-primary btn-sm ml-2 mr-auto" :disabled="btnDisabled" @click.stop="approveOrder()">审批</button>
+                <button class="btn btn-primary btn-sm ml-2 me-auto" :disabled="btnDisabled" @click.stop="approveOrder()">审批</button>
               </template>
 
               <button class="btn btn-sm btn-primary ml-2 float-right" @click.stop="addExtraService2()" v-if="detail.orderStatus !== 4">增加机场服务</button>

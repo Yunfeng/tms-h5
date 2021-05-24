@@ -6,7 +6,7 @@
           <router-link to='/h5/home'>主页</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">酒店订单</li>
-        <li class="breadcrumb-item ml-auto mr-2"><router-link to='/h5/hotel/search'>国内酒店</router-link></li>
+        <li class="breadcrumb-item ms-auto me-2"><router-link to='/h5/hotel/search'>国内酒店</router-link></li>
       </ol>
     </nav>
     <template v-if="searchOption === false">

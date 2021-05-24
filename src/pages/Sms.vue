@@ -3,7 +3,7 @@
     <nav aria-label="breadcrumb" role="navigation">
         <ol class="breadcrumb ">
           <li class="breadcrumb-item"><router-link to='/tool/sms'>短信</router-link></li>
-          <span class="ml-auto" @click.stop="back()">返回</span>
+          <span class="ms-auto" @click.stop="back()">返回</span>
         </ol>
       </nav>
     <div class="card">

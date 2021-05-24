@@ -4,7 +4,7 @@
       <ol class="breadcrumb my-0">
         <li class="breadcrumb-item"><router-link to='/attractions'>景点</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">价格详情</li>
-        <span class="ml-auto" @click.stop="back()">返回</span>
+        <span class="ms-auto" @click.stop="back()">返回</span>
       </ol>
     </nav>
 
@@ -138,7 +138,7 @@
           </div>
           <div class="card-body">                  
             <div class="form-group row">
-              <span class="ml-auto mr-auto">订单总额：<b>{{total}}</b></span>
+              <span class="ms-auto me-auto">订单总额：<b>{{total}}</b></span>
             </div>
           </div>
           <div class="card-footer text-center">        

@@ -4,7 +4,7 @@
       <span class="fa-2">国内航班预定</span>
     </div> 
 
-    <div class="card ml-auto mr-auto col-8">
+    <div class="card ms-auto me-auto col-8">
       <div class="card-body">
         <form>
           <!-- <label>出发</label> -->

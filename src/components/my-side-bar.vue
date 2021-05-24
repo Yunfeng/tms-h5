@@ -23,7 +23,7 @@
                             </li>
                             <li>
                                 &nbsp;&nbsp;
-                                <router-link to="/flt/refunds" class="ml-auto text-right">退票</router-link>
+                                <router-link to="/flt/refunds" class="ms-auto text-right">退票</router-link>
                             </li>
                             <li>
                                 <router-link to="/train/tickets">火车票</router-link>

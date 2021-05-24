@@ -6,26 +6,26 @@
       <div class="card-body" id="divPassword">
           <form id="frmUpdatePassword" class="form-horizontal">
           <div class="form-group row">
-              <label class="control-label col-2 ml-auto text-right">当前用户</label>
-              <div class="col-4 mr-auto">
+              <label class="control-label col-2 ms-auto text-right">当前用户</label>
+              <div class="col-4 me-auto">
                   {{username}}
               </div>
           </div>
           <div class="form-group row">
-              <label class="control-label col-2 ml-auto text-right">当前密码</label>
-              <div class="col-4 mr-auto">
+              <label class="control-label col-2 ms-auto text-right">当前密码</label>
+              <div class="col-4 me-auto">
                   <input type="password" name="currentPassword" class="form-control" v-model.trim="curPassword" />
               </div>
           </div>
           <div class="form-group row">
-              <label class="control-label col-2 ml-auto text-right">新密码</label>
-              <div class="col-4 mr-auto">
+              <label class="control-label col-2 ms-auto text-right">新密码</label>
+              <div class="col-4 me-auto">
                   <input type="password" name="newPassword" class="form-control" v-model.trim="newPassword" />
               </div>
           </div>
           <div class="form-group row">                        
-              <label class="control-label col-2 ml-auto text-right">确认密码</label>
-              <div class="col-4 mr-auto">
+              <label class="control-label col-2 ms-auto text-right">确认密码</label>
+              <div class="col-4 me-auto">
                   <input type="password" name="confirmPassword" class="form-control" v-model.trim="confirmPassword" />
               </div>
           </div>
