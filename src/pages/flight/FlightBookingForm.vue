@@ -144,7 +144,7 @@
         付款方式
       </div>
       <div class="card-body py-2">
-          <div class="form-group row" v-if="costCenters.length > 0">
+          <div class=" row" v-if="costCenters.length > 0">
             <label class="col-2 control-label text-right">成本中心</label>
             <div class="col-8">
               <select class="form-control" v-model="costCenter">
@@ -153,7 +153,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group row" v-if="projectNames.length > 0">
+          <div class=" row" v-if="projectNames.length > 0">
             <label class="col-2 control-label text-right">项目名称</label>
             <div class="col-8">
               <select class="form-control" v-model="projectName">
@@ -162,7 +162,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group row">
+          <div class=" row">
             <label class="col-2 control-label text-right">付款方式</label>
             <div class="col-10">
               <div class="form-check form-check-inline">
@@ -183,7 +183,7 @@
         发票需求
       </div>
       <div class="card-body py-2">
-          <div class="form-group row">
+          <div class=" row">
             <label class="col-2 control-label text-right">发票类型</label>
             <div class="col-10">
               <div class="form-check form-check-inline">

@@ -5,7 +5,7 @@
         保险订单
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearch">
+        <form class="" id="frmSearch">
           <input type="hidden" id="frmSearch_sc_pageNo" name="sc.pageNo" v-model="sc.pageNo">
           <input type="hidden" id="frmSearch_sc_pageSize" name="sc.pageSize" v-model="sc.pageSize">
 

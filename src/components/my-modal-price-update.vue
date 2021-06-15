@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">
                 <slot name="price1Title">
                   价格1
@@ -22,7 +22,7 @@
                 <input type="text" class="form-control" v-model.number="price1">
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">
                 <slot name="price2Title">
                   价格2

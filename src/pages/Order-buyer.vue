@@ -3,7 +3,7 @@
     <div class="card col-12 px-0 border-0">
       <div class="card-header text-center">指定买家 通知付款</div>
         <div class="card-block px-0">
-          <div class="form-group border-bottom-1">
+          <div class=" border-bottom-1">
             <input class="form-control border-0 bg-info text-white" type="text" placeholder="点击此处 指定买家" v-model="buyerName" @focus="buyerFocusedEvent()">
             <small id="fileHelp" class="form-text text-muted">{{buyerNameDesc}}</small>
           </div>

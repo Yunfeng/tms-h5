@@ -11,7 +11,7 @@
 
     <div class="card">
       <div class="card-body py-1">
-        <form class="form-inline" id="frmSearch">
+        <form class="" id="frmSearch">
           <input type="hidden" id="frmSearch_sc_pageNo" name="sc.pageNo" v-model="sc.pageNo">
           <input type="hidden" id="frmSearch_sc_pageSize" name="sc.pageSize" value="50" v-model="sc.pageSize">
           <div class="row mb-2">      

@@ -5,7 +5,7 @@
         待审核账单-机票
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearch">
+        <form class="" id="frmSearch">
           <input type="hidden" id="frmSearch_sc_pageNo" name="sc.pageNo" v-model="sc.pageNo">
           <input type="hidden" id="frmSearch_sc_pageSize" name="sc.pageSize" value="50" v-model="sc.pageSize">
 
@@ -111,9 +111,9 @@
 </template>
 
 <script>
-  import { searchUnreviewedTickets, auditBillByBillNum } from '../api/bill.js'
-  import MyDatePicker from '../components/my-datepicker.vue'
-  import MyPagination from '../components/my-pagination.vue'
+  import { searchUnreviewedTickets, auditBillByBillNum } from '@/api/bill.js'
+  import MyDatePicker from '@/components/my-datepicker.vue'
+  import MyPagination from '@/components/my-pagination.vue'
 
   export default {
     name: 'BillTickets',

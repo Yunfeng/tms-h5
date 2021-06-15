@@ -3,14 +3,14 @@
     <div class="card col-12 border-0 px-0">
       <div class="card-header text-center">重新提交</div>
       <div class="card-block">
-        <div class="form-group row">
+        <div class=" row">
           <label class="col-4 col-form-label text-right">票款总额</label>
           <div class="col-8">
             <input type="text" class="form-control" placeholder="" v-model="ticketAmount" />
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class=" row">
           <label class="col-4 col-form-label text-right">备注</label>
           <div class="col-8">
             <input type="text" class="form-control" placeholder="" v-model="remark" />

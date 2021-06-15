@@ -19,19 +19,19 @@
           <template v-for="(flt, index) in info.flights">
             <span v-if="flt.flightType === 1" class="text-success">新:</span>
             <span v-else-if="flt.flightType === 0" class="text-danger">原:</span>
-            {{flt.flight.departureAirport}}
+            {{flt.dport}}
             <template v-if="index < info.flights.length - 1 "><br/></template>
           </template>
         </td>
         <td>
             <template v-for="(flt, index) in info.flights">
-              {{flt.flight.arrivalAirport}}
+              {{flt.aport}}
               <template v-if="index < info.flights.length - 1 "><br/></template>
             </template>
         </td>
         <td>
             <template v-for="(flt, index) in info.flights">
-              {{flt.flight.flightNo}}
+              {{flt.flightNo}}
               <template v-if="index < info.flights.length - 1 "><br/></template>
             </template>
         </td>

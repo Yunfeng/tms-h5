@@ -12,28 +12,28 @@
         </div>
         <div class="modal-body">
           <form role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">监控频率</label>
               <div class="col-9">
                 <input type="text" class="form-control" v-model.trim="monitorInterval" placeholder="" />
                 <span class="small text-muted">隔多久监控一次（单位：分钟）</span>
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">底价</label>
               <div class="col-9">
                 <input type="text" class="form-control" v-model.trim="bottomPrice" placeholder="" />
                 <span class="small text-muted"></span>
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">出发日期</label>
               <div class="col-9">
                 <input type="text" class="form-control" v-model.trim="outboundDate" placeholder="" />
                 <span class="small text-muted">日期格式：2019-04-17 多个日期用逗号隔开</span>
               </div>
             </div>
-            <div class="form-group row" v-if="policyType ===2">
+            <div class=" row" v-if="policyType ===2">
               <label class="col-3 col-form-label text-right">回程日期</label>
               <div class="col-9">
                 <input type="text" class="form-control" v-model.trim="inboundDate" placeholder="" />

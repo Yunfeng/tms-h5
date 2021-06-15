@@ -29,6 +29,34 @@
           <dd class="col-8">{{ detail.totalAmount }}</dd>
         </dl>
       </div>
+      <div class="card-body bg-info text-white py-1">航班信息及票号</div>
+      <div class="card-body">
+        <template v-for="(info, index) in detail.tickets">
+          <dl :key="`ticket_info_` + index" class="row">
+            <h5>{{ info.passengerName }} {{ info.ticketNo }}</h5>
+            <dt class="col-4 text-end">出发/到达</dt>
+            <dd class="col-8">
+              {{info.dport}} {{ info.dportName }}
+              <span class=""> {{ info.dterm }}</span> 
+              - 
+              {{info.aport}} {{ info.aportName }}
+              <span class=""> {{ info.aterm }}</span>
+            </dd>
+            <dt class="col-4 text-end">出发时间</dt>
+            <dd class="col-8">
+              {{ info.ddate }} {{ info.dtime }} - {{ info.atime }}
+            </dd>
+            <dt class="col-4 text-end">航班</dt>
+            <dd class="col-8">
+              {{ info.flightNo }}
+              ( {{ info.subclass }}/{{ info.cabinClass }} )
+            </dd>
+            <dt class="col-4 text-end">状态</dt>
+            <dd class="col-8">{{ showTicketStatus(info.ticketStatus) }}</dd>
+            
+          </dl>
+        </template>
+      </div>
       <div class="card-body bg-info text-white py-1">航班信息</div>
       <div class="card-body d-md-none">
         <template v-for="(info, index) in detail.flights">
@@ -182,7 +210,9 @@
           </dl>
         </template>
       </div>
-      <table class="table table-striped table-hover table-sm mb-1  d-none d-md-table">
+      <table
+        class="table table-striped table-hover table-sm mb-1 d-none d-md-table"
+      >
         <thead>
           <tr>
             <th></th>
@@ -531,6 +561,7 @@ import {
   showIdTypeDesc,
   showOrderTypeDesc,
   showItineraryType,
+  showTicketStatus,
 } from "../../common/common.js";
 import { createRefundOrderMulti } from "../../api/flight-refund.js";
 import { createChangeOrderMulti } from "../../api/flight-change.js";
@@ -633,6 +664,9 @@ export default {
     },
     hideLoading: function () {
       this.$store.commit("showLoading", { loading: false });
+    },
+    showTicketStatus: function (status) {
+      return showTicketStatus(status);
     },
     searchOrderDetail: function () {
       console.log("this.authCode: " + this.authCode);

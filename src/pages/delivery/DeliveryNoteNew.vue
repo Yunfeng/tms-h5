@@ -11,7 +11,7 @@
     <div class="card">      
       <div class="card-body">
         <form id="frmDelivery" role="form" class="form-horizontal">          
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                    订单号   
               </label>
@@ -20,7 +20,7 @@
                 <span class="small text-muted">配送单需要配送的内容</span>
               </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   配送内容    
               </label>
@@ -28,7 +28,7 @@
                   <input type="text" class="form-control" v-model="deliveryContent" />
               </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   配送日期    
               </label>
@@ -37,7 +37,7 @@
                   <span class="small text-muted">日期格式：2019-08-08</span>
               </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   收件人    
               </label>
@@ -45,7 +45,7 @@
                   <input type="text" class="form-control" v-model="receiver" />
               </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   电话    
               </label>
@@ -53,7 +53,7 @@
                   <input type="text" class="form-control" v-model="mobile" />
               </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   地址    
               </label>
@@ -61,7 +61,7 @@
                   <input type="text" class="form-control" v-model="address" />
               </div>
           </div>          
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   备注    
               </label>

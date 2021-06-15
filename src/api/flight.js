@@ -90,7 +90,7 @@ export function searchFlightOrdersToDelivery(params, cbDone) {
 
 
 export function searchFlightOrderDetailByOrderNo(orderNo, cbDone) {
-  const url = APP_FLIGHT_PATH + '/order/flight/orderNo/' + orderNo
+  const url = APP_FLIGHT_PATH + '/flight/order/orderNo/' + orderNo
   callService(url, {
     cbDone: cbDone
   })

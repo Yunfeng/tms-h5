@@ -14,7 +14,7 @@
         </div>
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right">
                     企业*    
                 </label>
@@ -22,7 +22,7 @@
                     <my-select-customer :minId="0" :status="1" :customerId.sync="customerId"></my-select-customer>
                 </div>
             </div>
-            <div class="form-group row  mb-1" v-if="costCenters.length > 0">
+            <div class=" row  mb-1" v-if="costCenters.length > 0">
               <label class="col-3 control-label text-right">成本中心</label>
               <div class="col-9">
                 <select class="form-control" v-model="costCenter">
@@ -31,7 +31,7 @@
                 </select>
               </div>
             </div>
-            <div class="form-group row  mb-1" v-if="projectNames.length > 0">
+            <div class=" row  mb-1" v-if="projectNames.length > 0">
               <label class="col-3 control-label text-right">项目名称</label>
               <div class="col-9">
                 <select class="form-control" v-model="projectName">
@@ -41,7 +41,7 @@
               </div>
             </div>
 
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
               <label class="control-label col-3 text-right">
                   入住人*    
               </label>
@@ -49,7 +49,7 @@
                   <input type="text" class="form-control" v-model="psgName" />
               </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right">
                     酒店名称*    
                 </label>
@@ -57,7 +57,7 @@
                     <input type="text" class="form-control" v-model="hotelName" />
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right">
                     房型*    
                 </label>
@@ -65,7 +65,7 @@
                     <input type="text" class="form-control" v-model="roomType" />
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right">
                     房间数量*    
                 </label>
@@ -73,7 +73,7 @@
                     <input type="text" class="form-control" v-model.number="roomCount" />
                 </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     入住日期*    
                 </label>
@@ -81,7 +81,7 @@
                   <my-date-picker id="ddate" v-model="ddate" sizing="sm"></my-date-picker>
                 </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     离店日期*    
                 </label>
@@ -90,20 +90,20 @@
                 </div>
             </div>
             
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
               <label class="control-label col-3 text-right">供应商*</label>
               <div class="col-9">
                 <my-select-supplier :supplierId.sync="supplierId"></my-select-supplier>
               </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
               <label class="control-label col-3 text-right">支出方式*</label>
               <div class="col-9">
                 <my-select-payment :paymentId.sync="paymentId"></my-select-payment>
                 <span class="small text-muted">成本支出方式</span>
               </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
               <label class="col-3 control-label text-right">收款方式*</label>
               <div class="col-9">
                 <div class="form-check form-check-inline">
@@ -124,14 +124,14 @@
                 </div>
               </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
               <label class="col-3 control-label text-right">收款备注</label>
               <div class="col-9">
                 <my-select-income :incomeRemark.sync="payRemark"></my-select-income>
                 <span class="small text-muted">客户付款的具体途径</span>
               </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     销售价/间夜    
                 </label>
@@ -139,7 +139,7 @@
                     <input type="text" class="form-control" v-model.number="price" />
                 </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     底价/间夜    
                 </label>
@@ -147,7 +147,7 @@
                     <input type="text" class="form-control" v-model.number="bottomPrice" />
                 </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     服务费    
                 </label>
@@ -155,7 +155,7 @@
                     <input type="text" class="form-control" v-model.number="serviceCharge" />
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right mb-0">
                     间夜数    
                 </label>
@@ -163,7 +163,7 @@
                     {{count}}
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right mb-0">
                     实收总额    
                 </label>
@@ -171,7 +171,7 @@
                     {{totalAmount}}
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right mb-0">
                     总成本    
                 </label>
@@ -179,7 +179,7 @@
                     {{totalCost}}
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right mb-0">
                     利润    
                 </label>
@@ -187,7 +187,7 @@
                     {{profit}}
                 </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     备注    
                 </label>

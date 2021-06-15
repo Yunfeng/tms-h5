@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-3 text-right">
                   <slot name="title2">
                     预订人    

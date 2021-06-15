@@ -5,7 +5,7 @@
         待结算账单
       </div>
       <div class="card-body px-1">
-        <form class="form-inline">
+        <form class="">
           <select class="form-control" v-model.number="billType">
             <option value="-1">所有</option>
             <option value="0">机票</option>
@@ -234,13 +234,13 @@
 </template>
 
 <script>
-  import { APP_FLIGHT_PATH } from '../common/common.js'
-  import { searchSuppliers } from '../api/basic-data.js'
-  import { searchBillsToSettle, getBillTypeDesc, createSettlement, checkPayStatus, searchBillDetail } from '../api/bill.js'
-  import MyPagination from '../components/my-pagination.vue'
-  import MyDatePicker from '../components/my-datepicker.vue'
-  import MyModalCreateSettlement from '../components/my-modal-settlement-create.vue'
-  import MySelectCustomer from '../components/my-select2-customer.vue'
+  import { APP_FLIGHT_PATH } from '@/common/common.js'
+  import { searchSuppliers } from '@/api/basic-data.js'
+  import { searchBillsToSettle, getBillTypeDesc, createSettlement, checkPayStatus, searchBillDetail } from '@/api/bill.js'
+  import MyPagination from '@/components/my-pagination.vue'
+  import MyDatePicker from '@/components/my-datepicker.vue'
+  import MyModalCreateSettlement from '@/components/my-modal-settlement-create.vue'
+  import MySelectCustomer from '@/components/my-select2-customer.vue'
 
   export default {
     components: {

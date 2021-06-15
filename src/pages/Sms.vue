@@ -8,7 +8,7 @@
       </nav>
     <div class="card">
       <div class="card-body py-1">
-          <form class="form-inline">
+          <form class="">
               <input type="hidden" v-model.number="sc.pageNo">
               <input type="hidden" v-model.number="sc.pageSize">
 

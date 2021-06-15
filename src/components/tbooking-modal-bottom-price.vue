@@ -14,7 +14,7 @@
           <form role="form" class="form-horizontal">
             <input type="hidden" id="frmPolicyManage_id" class="form-control" name="id" />
 
-            <div class="form-group row">
+            <div class=" row">
                 <label class="col-3 col-form-label text-right">
                     航空公司*    
                 </label>
@@ -23,7 +23,7 @@
                 </div>
             </div>
   
-            <div class="form-group row">
+            <div class=" row">
                 <label class="col-3 col-form-label text-right">
                     舱位*    
                 </label>
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class=" row">
                 <label class="col-3 col-form-label text-right">
                     行程类型    
                 </label>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="col-3 col-form-label text-right">
                             出发机场    
                         </label>
@@ -52,7 +52,7 @@
                             <input type="text" class="form-control" v-model.trim="dport" placeholder="机场三字代码，只支持一个，可不填"/>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="col-3 col-form-label text-right">
                             到达机场    
                         </label>
@@ -61,7 +61,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="col-3 col-form-label text-right">
                             最大扣率    
                         </label>
@@ -70,7 +70,7 @@
                             <span class="help-block">普通政策填写最大扣率</span>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="col-3 col-form-label text-right">
                             最低价格    
                         </label>
@@ -79,7 +79,7 @@
                             <span class="text-muted small">特殊政策填写最低价格</span>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="col-3 col-form-label text-right">
                             距今天数    
                         </label>
@@ -88,7 +88,7 @@
                             <span class="text-muted small">-1:不限, 0:今天, 1: 明天, 2: 后天, 以此类推</span>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="col-3 col-form-label text-right">
                             航班号   
                         </label>

@@ -5,7 +5,7 @@
         客户信息
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearchUser">
+        <form class="" id="frmSearchUser">
           <input type="hidden" name="sc.pageNo" v-model.number="sc.pageNo">
           <div class="row mb-2">
               <input type="textfield" class="form-control" placeholder="公司名称" name="sc.name" v-model.trim="name" size="15">

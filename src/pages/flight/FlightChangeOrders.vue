@@ -5,7 +5,7 @@
         改签单
       </div>
       <div class="card-body">
-        <form class="form-inline" >
+        <form class="" >
           <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
           <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
           <input type="textfield" class="form-control" size="8" placeholder="改签单号" v-model.trim="changeOrderNo">
@@ -87,7 +87,11 @@
       this.search()
     },
     activated: function () {
+      if (window.matchMedia('(max-width: 576px)').matches) {
+      this.$router.replace('/h5/flt/change/orders')
+    } else {
       this.search()
+    }
     },
     methods: {
       showErrMsg: function (msg, msgType) {

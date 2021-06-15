@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form role="form" class="form-horizontal">
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="control-label col-3 text-right">
                       企业    
                   </label>
@@ -20,7 +20,7 @@
                       <my-select-customer :minId="0" :customerId.sync="customerId" :enterpriseType="1"></my-select-customer>
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="control-label col-3 text-right">
                       金额    
                   </label>
@@ -29,7 +29,7 @@
                       <span class="text-muted small">金额为负数时表示退款单，仅限于退票账单销账用</span>
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="control-label col-3 text-right">
                       收款银行    
                   </label>
@@ -37,7 +37,7 @@
                       <input type="text" class="form-control" v-model="receiptBank" />
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="control-label col-3 text-right">
                       收款日期    
                   </label>
@@ -45,7 +45,7 @@
                     <my-date-picker id="receiptDate" v-model="receiptDate" sizing="sm" placeholder="格式：2017-01-23"></my-date-picker>
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="control-label col-3 text-right">
                       备注*
                   </label>

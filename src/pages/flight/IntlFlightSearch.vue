@@ -7,7 +7,7 @@
     <div class="card col-12">
       <div class="card-body">
         <form>
-          <div class="form-row col-12">
+          <div class=" col-12">
           	<div>
 	          	<div class="form-check form-check-inline">
 	              <input class="form-check-input" type="radio" value="1" v-model.number="routeType">
@@ -27,14 +27,14 @@
               <input class="form-control" type="text" v-model="acity" id="acity" placeholder="到达机场">
             </div>
 
-            <div class="form-group col-2 px-0">
+            <div class=" col-2 px-0">
               <input class="form-control" type="text" placeholder="出发日期" v-model="ddate" id="ddate">
             </div>
 
-            <div class="form-group col-2 px-0">
+            <div class=" col-2 px-0">
               <input class="form-control" type="text" placeholder="返程日期" v-model="adate" id="adate">
             </div>
-            <div class="form-group col-2 px-0">
+            <div class=" col-2 px-0">
               <select v-model="sortBy" class="form-control" >
                       <option value="0">起飞时间升序</option>
                       <option value="1">起飞时间降序</option>
@@ -42,7 +42,7 @@
                       <option value="3">最低价格降序</option>
               </select>
             </div>
-            <div class="form-group col">
+            <div class=" col">
             	<button type="button" @click.stop="search()" class="btn btn-primary">搜索</button>
         	</div>
           </div>     

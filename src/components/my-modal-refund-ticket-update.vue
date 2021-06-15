@@ -15,7 +15,7 @@
         <div class="modal-body">
           <div class="card py-0">
             <div class="card-body py-0">
-              <div class="form-group row mb-0">
+              <div class=" row mb-0">
                   <label class="col-form-label col-4 text-right">
                       票号    
                   </label>
@@ -23,7 +23,7 @@
                       <input type="text" readonly class="form-control-plaintext" v-model.trim="ticketNo" />
                   </div>
               </div>
-              <div class="form-group row mb-0">
+              <div class=" row mb-0">
                   <label class="col-form-label col-4 text-right">
                       乘客姓名    
                   </label>
@@ -31,7 +31,7 @@
                       <input type="text" readonly class="form-control-plaintext" v-model="psgName" />
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       金额    
                   </label>

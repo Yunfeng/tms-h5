@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="form-group row mb-1">
+    <div class=" row mb-1">
         <label class="control-label col-3 text-right">
             企业*    
         </label>
@@ -8,7 +8,7 @@
             <my-select-customer :minId="0" :status="1" :customerId.sync="localCustomerId"></my-select-customer>
         </div>
     </div>
-    <div class="form-group row  mb-1" v-if="costCenters.length > 0">
+    <div class=" row  mb-1" v-if="costCenters.length > 0">
       <label class="col-3 control-label text-right">成本中心</label>
       <div class="col-9">
         <select class="form-control" v-model="localCostCenter">
@@ -17,7 +17,7 @@
         </select>
       </div>
     </div>
-    <div class="form-group row  mb-1" v-if="projectNames.length > 0">
+    <div class=" row  mb-1" v-if="projectNames.length > 0">
       <label class="col-3 control-label text-right">项目名称</label>
       <div class="col-9">
         <select class="form-control" v-model="localProjectName">

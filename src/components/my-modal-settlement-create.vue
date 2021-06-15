@@ -13,7 +13,7 @@
         <div class="modal-body">
           <div class="card py-0">
             <div class="card-body py-0">
-              <div class="form-group row mb-0">
+              <div class=" row mb-0">
                   <label class="col-form-label col-3 text-right">
                       已有结算单     
                   </label>
@@ -26,7 +26,7 @@
                     </select>
                   </div>
               </div>
-              <div class="form-group row mb-0">
+              <div class=" row mb-0">
                   <label class="col-form-label col-3 text-right">
                       金额     
                   </label>
@@ -34,7 +34,7 @@
                       <input type="text" readonly class="form-control-plaintext"  v-model.number="amount" />
                   </div>
               </div>
-              <div class="form-group row mb-1" v-if="settlementId == 0">
+              <div class=" row mb-1" v-if="settlementId == 0">
                   <label class="col-form-label col-3 text-right">
                       结算单编号    
                   </label>
@@ -43,7 +43,7 @@
                       <span class="text-muted small">最大长度20，不能重复</span>
                   </div>
               </div>
-              <div class="form-group row mb-1" v-if="settlementId == 0">
+              <div class=" row mb-1" v-if="settlementId == 0">
                   <label class="col-form-label col-3 text-right">
                       结算单名称    
                   </label>

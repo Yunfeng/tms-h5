@@ -79,7 +79,7 @@
               </tbody>
             </table>
             <div class="card-body py-0">
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       类型    
                   </label>
@@ -94,7 +94,7 @@
                     </div>
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       {{labelReasonDesc}}    
                   </label>

@@ -5,7 +5,7 @@
         火车票订单
       </div>
       <div class="card-body mb-0">
-        <form class="form-inline" id="frmSearch">
+        <form class="" id="frmSearch">
           <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
           <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
           <input type="textfield" class="form-control" size="6" placeholder="订单号" v-model.trim="orderNo" />

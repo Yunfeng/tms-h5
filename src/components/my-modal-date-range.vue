@@ -12,20 +12,20 @@
         </div>
         <div class="modal-body">
           <form role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label">客户</label>
               <div class="col-9">
                 <my-select-customer :customerId.sync="customerId"></my-select-customer>
               </div>
             </div>
 
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label">开始日期</label>
               <div class="col-9">
                 <my-date-picker id="dateRangeBegin" v-model.trim="beginDate"></my-date-picker>
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label">截止日期</label>
               <div class="col-9">
                 <my-date-picker id="dateRangeEnd" v-model.trim="endDate"></my-date-picker>

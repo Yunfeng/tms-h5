@@ -82,7 +82,7 @@
         </tbody>
       </table>  
       <div class="card-body py-2">
-          <div class="form-group row">
+          <div class=" row">
             <label class="col-2 control-label text-right">付款方式</label>
             <div class="col-10">
               <div class="form-check form-check-inline">
@@ -97,7 +97,7 @@
 
           </div>
   
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   最晚到店时间    
               </label>
@@ -106,7 +106,7 @@
                   <span class="small text-muted">格式示例:  18:30</span>
               </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   联系人    
               </label>
@@ -114,7 +114,7 @@
                   <input type="text" class="form-control" v-model.trim="linkman" />
               </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   联系电话    
               </label>
@@ -122,7 +122,7 @@
                   <input type="text" class="form-control" v-model.trim="contactPhone" />
               </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   备注    
               </label>

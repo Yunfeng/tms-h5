@@ -5,8 +5,8 @@ export const menus = [
     submenus: [
       { to: '/flt/orders', caption: '机票订单', authorized: 0, 'h5_mode': 1 },
       { to: '', caption: '' },
-      { to: '/flt/refund/orders', caption: '机票退票单', authorized: 0, 'h5_mode': 0 },
-      { to: '/flt/change/orders', caption: '机票改签单', authorized: 0, 'h5_mode': 0 },
+      { to: '/flt/refund/orders', caption: '机票退票单', authorized: 0, 'h5_mode': 1 },
+      { to: '/flt/change/orders', caption: '机票改签单', authorized: 0, 'h5_mode': 1 },
       { to: '', caption: '' },
       { to: '/insurance/orders', caption: '保险订单', authorized: 1, 'h5_mode': 0 },
       { to: '', caption: '' },

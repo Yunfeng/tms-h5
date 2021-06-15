@@ -5,7 +5,7 @@
         企业员工信息
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearchUser">
+        <form class="" id="frmSearchUser">
           <input type="hidden" name="sc.pageNo" v-model.number="sc.pageNo">
           <input type="hidden" name="sc.pageSize" v-model.number="sc.pageSize">
           <div class="row mb-2">

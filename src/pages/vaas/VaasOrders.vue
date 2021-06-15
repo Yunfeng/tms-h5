@@ -5,7 +5,7 @@
         机场服务订单（第三方服务）
       </div>
       <div class="card-body py-1">
-        <form class="form-inline">
+        <form class="">
           <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
           <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
           <input type="textfield" class="form-control" size="6" placeholder="服务单号" v-model.trim="orderNo" />

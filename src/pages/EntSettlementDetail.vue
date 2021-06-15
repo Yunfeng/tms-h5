@@ -82,7 +82,7 @@
         <div class="tab-pane fade show active" id="bills" role="tabpanel" aria-labelledby="bills-tab">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <my-date-picker id="billDate0" v-model="billDate0" placeholder="账单日期"></my-date-picker>
                 <input type="textfield" class="form-control ml-1" size="6" placeholder="账单号" v-model.trim="billNum">
                 <input type="textfield" class="form-control ml-1" size="6" placeholder="订单号" v-model.trim="orderNo">
@@ -149,7 +149,7 @@
         <div class="tab-pane fade" id="flight" role="tabpanel" aria-labelledby="flight-tab">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <input type="textfield" class="form-control" size="10" placeholder="票号" v-model.trim="ticketNo">
                 <input type="textfield" class="form-control" size="10" placeholder="姓名" v-model.trim="passengerName">
                 <div class="row mb-2">
@@ -226,7 +226,7 @@
         <div class="tab-pane fade" id="refund" role="tabpanel" aria-labelledby="refund-tab">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchRefunds()">查找</button>
                 </div> 
@@ -300,7 +300,7 @@
         <div class="tab-pane fade" id="change" role="tabpanel" aria-labelledby="change-tab">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchChanges()">查找</button>
                 </div> 
@@ -374,7 +374,7 @@
         <div class="tab-pane fade" id="vas" role="tabpanel" aria-labelledby="vas-tab">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchVases()">查找</button>
                 </div> 
@@ -416,7 +416,7 @@
         <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchHotels()">查找</button>
                 </div> 
@@ -463,7 +463,7 @@
         <div class="tab-pane fade" id="train" role="tabpanel" aria-labelledby="train-tab">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <div class="row mb-2">
                   <button type="button" class="btn btn-primary ml-1" @click.stop="searchTrains()">查找</button>
                 </div> 

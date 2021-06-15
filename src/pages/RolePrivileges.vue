@@ -2,7 +2,7 @@
   <div id="role-privileges">
     <div class="card">
         <div class="card-body">
-            <form class="form-inline" id="frmSearchUser">
+            <form class="" id="frmSearchUser">
                 <select class="form-control" v-model="roleName">
                   <option value="">所有</option>
                   <template v-for="role in roles" >
@@ -58,7 +58,7 @@
                   </div>
                   <div class="modal-body">
                       <form id="frmUser" role="form" class="form-horizontal">
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-4 text-right">
                                   角色   
                               </label>
@@ -70,7 +70,7 @@
                                 </select>
                               </div>
                           </div>   
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-4 text-right">
                                   权限   
                               </label>

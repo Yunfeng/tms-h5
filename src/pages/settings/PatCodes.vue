@@ -2,7 +2,7 @@
   <div id="pat-codes">
     <div class="card">
       <div class="card-body">
-        <form class="form-inline">
+        <form class="">
           <div class="row mb-2">
             <button type="button" class="btn btn-primary" @click.stop="search()">查找</button>
           </div>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="frmUser" role="form" class="form-horizontal">
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4">
                                 航司*    
                             </label>
@@ -64,7 +64,7 @@
                                 <input type="text" id="frmUser_username" class="form-control" name="user.username" placeholder="用户名" v-model="carrier" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4">
                                 旅行代码 
                             </label>
@@ -73,7 +73,7 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4">
                                  PAT 代码   
                             </label>
@@ -81,7 +81,7 @@
                                 <input type="text" id="frmUser_mobile" class="form-control" name="user.mobileNo" v-model="patCode" placeholder="" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4">
                                 出票类型    
                             </label>
@@ -97,7 +97,7 @@
 
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4">
                                 德付通密码    
                             </label>
@@ -105,7 +105,7 @@
                                 <input type="text" id="frmUser_email" class="form-control" name="user.email" v-model="dpayPassword" placeholder="" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4">
                                 德付通金额    
                             </label>
@@ -113,7 +113,7 @@
                                 <input type="text" id="frmUser_email" class="form-control" name="user.email" v-model="dpayAmount" placeholder="" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4">
                                 最小德付通金额    
                             </label>
@@ -121,7 +121,7 @@
                                 <input type="text" id="frmUser_email" class="form-control" name="user.email" v-model="minDpayAmount" placeholder="" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4">
                                 启用状态    
                             </label>

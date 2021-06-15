@@ -15,7 +15,7 @@
         <div class="modal-body py-0">
           <div class="card py-0">
           <form role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">
                 <slot name="priceTitle">
                   编码
@@ -25,7 +25,7 @@
                 <input type="text" class="form-control" v-model.number="pnr">
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">
                 <slot name="remarkTitle">
                   监控类型

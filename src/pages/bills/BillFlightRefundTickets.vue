@@ -5,7 +5,7 @@
         机票退票
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearch">
+        <form class="" id="frmSearch">
           <input type="hidden" id="frmSearch_sc_pageNo" name="sc.pageNo" v-model="sc.pageNo">
           <input type="hidden" id="frmSearch_sc_pageSize" name="sc.pageSize" value="50" v-model="sc.pageSize">
 
@@ -74,7 +74,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="frmUser" role="form" class="form-horizontal">
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 票号    
                             </label>
@@ -84,7 +84,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 乘客姓名    
                             </label>
@@ -92,7 +92,7 @@
                                 <input type="text" class="form-control" v-model="psgName" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 客户名称    
                             </label>
@@ -100,7 +100,7 @@
                                 {{vipName}}
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 账单号    
                             </label>
@@ -108,7 +108,7 @@
                                 {{billNum}}
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 账单金额    
                             </label>
@@ -116,7 +116,7 @@
                                 {{billSum}}
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 原付金额     
                             </label>
@@ -124,7 +124,7 @@
                                 <input type="text" class="form-control"  v-model.number="accountRecv" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 航司退票费    
                             </label>
@@ -132,7 +132,7 @@
                                 <input type="text" class="form-control" v-model.nuber="airRefundFee" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 退票服务费    
                             </label>
@@ -140,7 +140,7 @@
                                 <input type="text" class="form-control" v-model.number="serviceCharge" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-md-4 text-right">
                                 备注    
                             </label>
@@ -162,11 +162,11 @@
 </template>
 
 <script>
-  import { searchFlightTicket, searchBillSum } from '../api/user.js'
-  import { searchCustomers } from '../api/customer.js'
-  import { createFlightRefund, processRefund, submitRefund, setRefundAirlineRefunded, setRefundPassengerRefunded, searchBillRefundTickets } from '../api/flight-refund.js'
-  import MyDatePicker from '../components/my-datepicker.vue'
-  import MyPagination from '../components/my-pagination.vue'
+  import { searchFlightTicket, searchBillSum } from '@/api/user.js'
+  import { searchCustomers } from '@/api/customer.js'
+  import { createFlightRefund, processRefund, submitRefund, setRefundAirlineRefunded, setRefundPassengerRefunded, searchBillRefundTickets } from '@/api/flight-refund.js'
+  import MyDatePicker from '@/components/my-datepicker.vue'
+  import MyPagination from '@/components/my-pagination.vue'
   import $ from 'jquery'
 
   export default {

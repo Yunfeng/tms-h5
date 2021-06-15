@@ -5,7 +5,7 @@
         月报
       </div>
       <div class="card-body py-1">
-        <form class="form-inline">
+        <form class="">
           <label>日期</label>
           <my-date-picker id="beginDate" v-model="beginDate" placeholder="开始日期" sizing="sm"></my-date-picker>
           <my-date-picker id="endDate" v-model="endDate" placeholder="截止日期" sizing="sm"></my-date-picker>

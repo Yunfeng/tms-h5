@@ -5,8 +5,8 @@
         机票订单
       </div>
       <div class="card-body py-1 px-1">
-        <form  class="form-inline">
-          <div class="form-row">
+        <form  class="">
+          <div class="">
               <input type="textfield" class="form-control form-control-sm" size="6" placeholder="订单号" v-model.trim="orderNo">
               <input type="textfield" class="form-control form-control-sm" size="6" placeholder="姓名" v-model.trim="name">
               <input type="textfield" class="form-control form-control-sm" size="6" placeholder="证件号" v-model.trim="idno">
@@ -53,7 +53,7 @@
             </div>
           </div>
           
-          <div class="form-row">
+          <div class="">
             <button type="button" class="btn btn-secondary btn-sm ml-2" @click.stop="reset()">重置</button>
           </div>
 

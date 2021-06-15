@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body" v-if="hideBody === false">
           <form role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <div class="col-12">
                 <input type="text" class="form-control" v-model.trim="remark" placeholder="请在此输入内容" />
               </div>

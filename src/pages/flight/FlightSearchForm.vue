@@ -8,26 +8,26 @@
       <div class="card-body">
         <form>
           <!-- <label>出发</label> -->
-          <div class="form-row col-12">
-            <div class="form-group col-4 px-0">
+          <div class=" col-12">
+            <div class=" col-4 px-0">
               <label>出发</label>
               <my-city-select2 :target="`Dcity`"></my-city-select2>
             </div>
 
             <!-- <label class="ml-1">到达</label> -->
-            <div class="form-group col-4 px-0">
+            <div class=" col-4 px-0">
               <label>到达</label>
               <my-city-select2 :target="`Acity`"></my-city-select2>
             </div>
 
-            <div class="form-group col-4 px-0">
+            <div class=" col-4 px-0">
               <label>日期</label>
               <input class="form-control" type="text" placeholder="出发日期" v-model="ddate" id="ddate">
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group col-4 px-0 ml-1">
+          <div class="">
+            <div class=" col-4 px-0 ml-1">
               <label>航空公司</label>
               <select class="form-control" v-model="onlyCarrier">
                   <option value="">不限</option>
@@ -63,7 +63,7 @@
               </select>
             </div>
             
-            <div class="form-group col-4 px-0">
+            <div class=" col-4 px-0">
               <label>排序方式</label>
               <select v-model="sortBy" class="form-control" >
                       <option value="0">起飞时间升序</option>

@@ -10,7 +10,7 @@
         </div>
         <div class="modal-body">
           <form role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <div class="col-12">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" value="0" v-model.number="denyCode">
@@ -24,7 +24,7 @@
             </div>
 
 
-            <div class="form-group row">
+            <div class=" row">
               <div class="col-12">
                 <input type="text" class="form-control" v-model.trim="denyReason" placeholder="如果拒绝，请输入拒绝的原因，不少于3个字" />
               </div>

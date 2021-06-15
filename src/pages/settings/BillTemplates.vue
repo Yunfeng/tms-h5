@@ -62,7 +62,7 @@
                       </div>
                     </div>
                     <div class="card-body">
-                      <div class="form-row">
+                      <div class="">
                         <label>模板名称：</label>
                         <input type="text" class="form-control" v-model.trim="templateName">
                       </div>

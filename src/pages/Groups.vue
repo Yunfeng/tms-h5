@@ -5,7 +5,7 @@
           组管理
         </div>
         <div class="card-body">
-            <form class="form-inline">
+            <form class="">
                 <input type="hidden" v-model.number="sc.pageNo">
                 <input type="hidden" v-model.number="sc.pageSize">
                 <div class="row mb-2">
@@ -75,7 +75,7 @@
                   </div>
                   <div class="modal-body">
                       <form id="frmUser" role="form" class="form-horizontal">
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-md-4">
                                   组名    
                               </label>
@@ -102,7 +102,7 @@
                   </div>
                   <div class="modal-body">
                       <form id="frmUser" role="form" class="form-horizontal">
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-4 text-right">
                                   角色   
                               </label>

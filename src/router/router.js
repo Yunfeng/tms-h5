@@ -78,19 +78,19 @@ export function createRouter() {
       { path: '/delivery/note/:id', component: () => import('../pages/delivery/DeliveryNote.vue') },
       { path: '/delivery/note', component: () => import('../pages/delivery/DeliveryNoteNew.vue') },
 
-      { path: '/bills', component: () => import('../pages/Bills.vue'), meta: { keepAlive: true } },
-      { path: '/bills/unreviewed', component: () => import('../pages/BillsToReview.vue') },
-      { path: '/bills/toSettle', component: () => import('../pages/BillsToSettle.vue') },
+      { path: '/bills', component: () => import('../pages/bills/Bills.vue'), meta: { keepAlive: true } },
+      { path: '/bills/unreviewed', component: () => import('../pages/bills/BillsToReview.vue') },
+      { path: '/bills/toSettle', component: () => import('../pages/bills/BillsToSettle.vue') },
 
-      { path: '/bill/detail/:id', component: () => import('../pages/BillDetail.vue') },
+      { path: '/bill/detail/:id', component: () => import('../pages/bills/BillDetail.vue') },
 
-      { path: '/flt/tickets', component: () => import('../pages/BillFlightTickets.vue'), meta: { keepAlive: true } },
+      { path: '/flt/tickets', component: () => import('../pages/bills/BillFlightTickets.vue'), meta: { keepAlive: true } },
 
-      { path: '/flt/refunds', component: () => import('../pages/BillFlightRefundTickets.vue') },
+      { path: '/flt/refunds', component: () => import('../pages/bills/BillFlightRefundTickets.vue') },
 
-      { path: '/train/tickets', component: () => import('../pages/BillTrainTickets.vue') },
+      { path: '/train/tickets', component: () => import('../pages/bills/BillTrainTickets.vue') },
 
-      { path: '/hotel/bills', component: () => import('../pages/BillHotels.vue') },
+      { path: '/hotel/bills', component: () => import('../pages/bills/BillHotels.vue') },
 
       { path: '/ent/receipts', component: () => import('../pages/EntReceipts.vue'), meta: { keepAlive: true } },
       { path: '/ent/receipt/:id/history', component: () => import('../pages/EntReceiptHistory.vue') },
@@ -115,9 +115,6 @@ export function createRouter() {
       { path: '/flt/commissions/fixed', component: () => import('../pages/flight/FlightFixedCommissions.vue') },
       { path: '/setting/bill-templates', component: () => import('../pages/settings/BillTemplates.vue') },
 
-      { path: '/suppliers', component: () => import('../pages/Suppliers.vue') },
-      { path: '/payments', component: () => import('../pages/Payments.vue') },
-
 
       { path: '/tool/sms', component: () => import('../pages/Sms.vue') },
       { path: '/tool/pnrs', component: () => import('../pages/pnr/Pnrs.vue'), meta: { keepAlive: true } },
@@ -137,9 +134,6 @@ export function createRouter() {
       { path: '/my/recharge', component: () => import('../pages/Recharge.vue') },
       { path: '/my/recharge-result', component: () => import('../pages/Recharge-result.vue') },
 
-      { path: '/data/airports', component: () => import('../pages/Airports.vue') },
-      { path: '/data/airlines', component: () => import('../pages/Airlines.vue') },
-
 
       { path: '/h5/home', component: () => import('../pages_h5/home.vue') },
 
@@ -155,6 +149,13 @@ export function createRouter() {
       { path: '/h5/flt/search', component: () => import('../pages_h5/flight/FlightSearchForm.vue') },
       { path: '/h5/flt/search-result', component: () => import('../pages_h5/flight/FlightSearchResult.vue') },
       { path: '/h5/flt/booking', component: () => import('../pages_h5/flight/FlightBookingForm.vue') },
+
+      { path: '/h5/flt/refund/orders', component: () => import('../pages_h5/flight/FlightRefundOrders.vue'), meta: { keepAlive: true } },
+      { path: '/h5/flt/refund/order/:id', component: () => import('../pages_h5/flight/FlightRefundOrderDetail.vue') },
+
+      { path: '/h5/flt/change/orders', component: () => import('../pages_h5/flight/FlightChangeOrders.vue'), meta: { keepAlive: true } },
+      { path: '/h5/flt/change/order/:id', component: () => import('../pages_h5/flight/FlightChangeOrderDetail.vue') },
+      
 
     ],
     scrollBehavior(to, from, savedPosition) {

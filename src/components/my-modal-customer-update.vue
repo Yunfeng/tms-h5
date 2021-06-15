@@ -12,13 +12,13 @@
         </div>
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row mb-0 mt-1">
+            <div class=" row mb-0 mt-1">
               <label class="col-3 control-label text-right">客户</label>
               <div class="col-9" v-if="canShowSelect2 === 1">
                 <my-select-customer :customerId.sync="customerId" :minId="0"></my-select-customer>
               </div>
             </div>
-            <div class="form-group row mb-0 mt-1" v-if="costCenters.length > 0">
+            <div class=" row mb-0 mt-1" v-if="costCenters.length > 0">
               <label class="col-3 control-label text-right">成本中心</label>
               <div class="col-9">
                 <select class="form-control" v-model="costCenter">
@@ -27,7 +27,7 @@
                 </select>
               </div>
             </div>
-            <div class="form-group row mb-0 mt-1" v-if="projectNames.length > 0">
+            <div class=" row mb-0 mt-1" v-if="projectNames.length > 0">
               <label class="col-3 control-label text-right">项目名称</label>
               <div class="col-9">
                 <select class="form-control" v-model="projectName">

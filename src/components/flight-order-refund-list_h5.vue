@@ -19,19 +19,19 @@
               </td>
               <td>
                 <template v-for="(flt, index) in info.flights">
-                  <span class="text-success">{{flt.flight.departureAirport}}</span>
+                  <span class="text-success">{{flt.dport}}</span>
                   <template v-if="index < info.flights.length - 1 "><br/></template>
                 </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    <span class="text-success">{{flt.flight.arrivalAirport}}</span>
+                    <span class="text-success">{{flt.aport}}</span>
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
               <td>
                   <template v-for="(flt, index) in info.flights">
-                    {{flt.flight.flightNo}}
+                    {{flt.flightNo}}
                     <template v-if="index < info.flights.length - 1 "><br/></template>
                   </template>
               </td>
@@ -45,8 +45,8 @@
 </template>
 
 <script>
-  import { showRefundOrderStatus, showReasonCodeDesc } from '../api/flight-refund.js'
-  import { showCustomerName } from '../common/common.js'
+  import { showRefundOrderStatus, showReasonCodeDesc } from '@/api/flight-refund.js'
+  import { showCustomerName } from '@/common/common.js'
 
   export default {
     props: {

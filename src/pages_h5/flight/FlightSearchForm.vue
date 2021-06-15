@@ -38,7 +38,7 @@
               placeholder="出发日期"
             ></my-date-picker>
           </div>
-          <div class="form-group text-center">
+          <div class=" text-center">
             <button
               type="button"
               @click.stop="search()"

@@ -1,6 +1,6 @@
 <template>
   <div id="component-supplier-payment">
-    <div class="form-group row">
+    <div class=" row">
         <label class="control-label col-3 text-right">
             供应商
         </label>
@@ -8,7 +8,7 @@
             <my-select-supplier :supplierId.sync="supplierId0" :supplierType="supplierType" :paymentMethodId.sync="paymentMethodId0"></my-select-supplier>
         </div>
     </div>
-    <div class="form-group row">
+    <div class=" row">
         <label class="control-label col-3 text-right">
             支付方式    
         </label>

@@ -3,7 +3,7 @@
       <div class="card">
         <div class="card-header">操作日志</div>
         <div class="card-body">
-            <form class="form-inline" id="frmSearchHistory">
+            <form class="" id="frmSearchHistory">
                 <input type="hidden" id="frmSearchHistory_sc_pageNo" name="sc.pageNo" v-model.number="sc.pageNo">
                 <input type="hidden" id="frmSearchHistory_sc_pageSize" name="sc.pageSize" v-model.number="sc.pageSize">
 

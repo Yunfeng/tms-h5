@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header bg-info text-white">机票定额代理费</div>
       <div class="card-body">
-          <form class="form-inline" id="frmSearch">
+          <form class="" id="frmSearch">
               <input type="hidden" id="frmSearch_sc_pageNo" name="sc.pageNo" value="1">
               <input type="hidden" id="frmSearch_sc_pageSize" name="sc.pageSize" value="20">
               <div class="row mb-2">
@@ -61,7 +61,7 @@
                   <div class="modal-body">
                       <form id="frmPolicy" role="form" class="form-horizontal">
                           <input type="hidden" name="fixedPolicy.id" v-model="id" />                        
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-4 text-right">
                                   航司    
                               </label>
@@ -69,7 +69,7 @@
                                   <input type="text" class="form-control" name="fixedPolicy.carrier" v-model="carrier" />
                               </div>
                           </div>
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label  col-4 text-right">
                                   舱位性质    
                               </label>
@@ -78,7 +78,7 @@
                                   <span class="text-muted small">F,C,Y等</span>
                               </div>
                           </div>
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label  col-4 text-right">
                                   舱位    
                               </label>
@@ -86,7 +86,7 @@
                                   <input type="text" class="form-control" name="fixedPolicy.subclass" v-model="subclass" />
                               </div>
                           </div>
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label  col-4 text-right">
                                   航司定额    
                               </label>
@@ -95,7 +95,7 @@
                                   <span class="text-muted small">航司给的定额代理费，单位：元</span>
                               </div>
                           </div>
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label  col-4 text-right">
                                   让利金额    
                               </label>
@@ -104,7 +104,7 @@
                                   <span class="text-muted small">卖家给开票的返利金额，单位：元</span>
                               </div>
                           </div>
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label  col-4 text-right">
                                   备注    
                               </label>

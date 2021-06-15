@@ -18,7 +18,7 @@
     <div class="card">
         <div class="modal-body">
           <form class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     公司名称*
                 </label>
@@ -26,7 +26,7 @@
                   <input type="text" class="form-control" v-model="customer.vipName" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     公司全称
                 </label>
@@ -34,7 +34,7 @@
                   <input type="text" class="form-control" v-model="customer.fullName" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     客户编号   
                 </label>
@@ -42,7 +42,7 @@
                   <input type="text" class="form-control" v-model="customer.customerCode" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     客户类型   
                 </label>
@@ -57,7 +57,7 @@
                   </div>
                 </div>
             </div>  
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     排序拼音   
                 </label>
@@ -66,7 +66,7 @@
                   <span class="text-muted small">最多10个字符，用于显示时的排序</span>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     服务项目   
                 </label>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     销售员   
                 </label>
@@ -84,7 +84,7 @@
                   <small class="form-text text-muted">客户开发人</small>
                 </div>
             </div>                    
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     客户维护人  
                 </label>
@@ -92,7 +92,7 @@
                   <input type="text" class="form-control" v-model="customer.customerMaintainer" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     协议开始日期   
                 </label>
@@ -101,7 +101,7 @@
                 </div>
             </div>
             
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     协议结束日期   
                 </label>
@@ -109,7 +109,7 @@
                   <my-date-picker id="endDate" v-model="customer.agreementEndDate"></my-date-picker>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     合同负责人    
                 </label>
@@ -117,7 +117,7 @@
                     <input type="text" class="form-control" v-model="customer.contractLinkman"  />
                 </div>
             </div>                    
-            <div class="form-group row">
+            <div class=" row">
               <label class="control-label col-4 text-right">
                   联系电话    
               </label>
@@ -126,7 +126,7 @@
                   <small class="form-text text-muted">合同负责人的联系电话</small>
               </div>
             </div>                    
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     账单联系人  
                 </label>
@@ -135,7 +135,7 @@
                 </div>
             </div>
             
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     联系电话   
                 </label>
@@ -143,7 +143,7 @@
                   <input type="text" class="form-control" v-model="customer.phone" />
                 </div>
             </div>                    
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     电子邮箱   
                 </label>
@@ -151,7 +151,7 @@
                   <input type="text" class="form-control" v-model="customer.email" />
                 </div>
             </div>                    
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     邮寄地址   
                 </label>
@@ -159,7 +159,7 @@
                   <input type="text" class="form-control" v-model="customer.address" />
                 </div>
             </div>   
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     结算方式   
                 </label>
@@ -178,7 +178,7 @@
                   </div>
                 </div>
             </div>                                     
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     结算方式   
                 </label>
@@ -187,7 +187,7 @@
                   <small class="form-text text-muted">（送票POS，月结）</small>
                 </div>
             </div>                                     
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     结算周期   
                 </label>
@@ -195,7 +195,7 @@
                   <input type="text" class="form-control" v-model="customer.settlementPeriod" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="control-label col-4 text-right">
                   出票审核    
               </label>
@@ -212,7 +212,7 @@
                 <small class="form-text text-muted">开票之前是否需要事先审批</small>
               </div>
             </div>   
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     审核方式   
                 </label>
@@ -236,7 +236,7 @@
 
                 </div>
             </div>   
-            <div class="form-group row">
+            <div class=" row">
               <label class="control-label col-4 text-right">
                   审核方式备注    
               </label>
@@ -245,7 +245,7 @@
                   <small class="form-text text-muted">出票审核方式</small>
               </div>
             </div>    
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     行程单   
                 </label>
@@ -268,7 +268,7 @@
                   </div>
                 </div>
             </div>      
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-4 text-right">
                     短网址   
                 </label>
@@ -283,7 +283,7 @@
                   </div>
                 </div>
             </div>                
-            <div class="form-group row" v-if="id > 0">
+            <div class=" row" v-if="id > 0">
                 <label class="control-label col-4 text-right">
                     状态   
                 </label>
@@ -298,7 +298,7 @@
                   </div>
                 </div>
             </div>                  
-            <div class="form-group row">
+            <div class=" row">
               <label class="control-label col-4 text-right">
                   备注    
               </label>

@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label">短信格式</label>
               <div class="col-9">
                 <select class="custom-select" v-model.number="smsFormat">
@@ -26,7 +26,7 @@
                 </select>
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <div class="col-12">
                 <label class="small">
                   短信内容：
@@ -35,7 +35,7 @@
                 <textarea class="form-control" rows="5" v-model="smsContent"></textarea>
               </div>
             </div>
-            <div class="form-group form-check row mb-1">
+            <div class=" form-check row mb-1">
                 <div class="col-12">
                   <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" v-model="useMySmsContent">
@@ -43,7 +43,7 @@
                   </label>
                 </div>
             </div>            
-            <div class="form-group row">
+            <div class=" row">
               <div class="col-12">
                 <input type="text" class="form-control" v-model.trim="mobile" placeholder="请在此输入接受信息的手机号" />
                 <span class="small text-muted">请输入手机号（留空则使用订单中对应乘机人的手机号）</span>

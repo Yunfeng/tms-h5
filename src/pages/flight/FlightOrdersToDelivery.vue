@@ -5,7 +5,7 @@
         机票送票单
       </div>
       <div class="card-body">
-        <form class="form-inline">
+        <form class="">
           <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
           <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
           <button type="button" class="btn btn-primary ml-2" @click.stop="search()">查找</button>

@@ -11,7 +11,7 @@
     <div class="card col-12 border-0">
       <div class="card-header text-center">拒单理由</div>
       <div class="card-block">
-        <div class="form-group row">
+        <div class=" row">
           <label class="col-4 col-form-label text-right">理由类别</label>
           <div class="col-8">
             <select class="form-control" v-model="denyCode">
@@ -25,7 +25,7 @@
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class=" row">
           <label class="col-4 col-form-label text-right">理由说明</label>
           <div class="col-8">
             <input type="text" class="form-control" placeholder="拒绝理由详细说明" v-model="denyReason" />

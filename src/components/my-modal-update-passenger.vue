@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-md-4 text-right">
                     姓名    
                 </label>
@@ -20,7 +20,7 @@
                     <input type="text" class="form-control" v-model.trim="psgInfo.name" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-md-4 text-right">
                     证件号    
                 </label>
@@ -28,7 +28,7 @@
                     <input type="text" class="form-control" v-model.trim="psgInfo.idNo" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-md-4 text-right">
                     常旅客号    
                 </label>
@@ -36,7 +36,7 @@
                     <input type="text" class="form-control" v-model.trim="psgInfo.ffpNo" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-md-4 text-right">
                     手机    
                 </label>
@@ -44,7 +44,7 @@
                     <input type="text" class="form-control" v-model.trim="psgInfo.mobile" />
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-md-4 text-right">
                     备注   
                 </label>

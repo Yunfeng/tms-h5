@@ -9,7 +9,7 @@
     </div> 
     <div class="card card-outline-info col-12 border-0 px-0">
       <div class="card-block">
-        <div class="form-group row">
+        <div class=" row">
             <label class="col-3 col-form-label text-right px-0">
                 票号   
             </label>
@@ -17,7 +17,7 @@
                 <input type="text" class="form-control" :value="info.ticketNo" readonly />
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="col-3 col-form-label text-right px-0">
                 乘客姓名    
             </label>
@@ -25,7 +25,7 @@
                 <input type="text" class="form-control" :value="info.psgName" readonly />
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="col-3 col-form-label text-right px-0">
                 退票原因
             </label>
@@ -34,7 +34,7 @@
                 <p class="form-text text-muted small">退票理由：自愿，非自愿(具体原因)。</p>
             </div>
         </div>        
-        <div class="form-group row">
+        <div class=" row">
             <label class="col-3 col-form-label text-right px-0">
                 备注    
             </label>

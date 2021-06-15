@@ -12,19 +12,19 @@
         </div>
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">销售价</label>
               <div class="col-9">
                 <input type="text" class="form-control" v-model.number="price">
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">成本</label>
               <div class="col-9">
                 <input type="text" class="form-control" v-model.number="cost">
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">服务费</label>
               <div class="col-9">
                 <input type="text" class="form-control" v-model.number="serviceCharge">

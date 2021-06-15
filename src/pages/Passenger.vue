@@ -24,7 +24,7 @@
           <div class="card-body">
               <input type="hidden" v-model.number="id" />
               
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     部门    
                 </label>
@@ -37,7 +37,7 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group row">
+              <div class=" row">
                   <label class="control-label col-3 text-right">
                       中文名    
                   </label>
@@ -45,7 +45,7 @@
                       <input type="text" class="form-control" v-model="nameCn"  />
                   </div>
               </div>
-              <div class="form-group row">
+              <div class=" row">
                   <label class="control-label col-3 text-right">
                       英文名    
                   </label>
@@ -54,7 +54,7 @@
                       <small class="form-text text-muted">一般指护照上的英文名</small>
                   </div>
               </div>
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     性别    
                 </label>
@@ -65,7 +65,7 @@
                   </select>
                 </div>
               </div>                                        
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     手机    
                 </label>
@@ -74,7 +74,7 @@
                     <small class="form-text text-muted">手机号</small>
                 </div>
               </div>
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     电话    
                 </label>
@@ -83,7 +83,7 @@
                     <small class="form-text text-muted">联系电话</small>
                 </div>
               </div>                    
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     电子邮件    
                 </label>
@@ -92,7 +92,7 @@
                   <small class="form-text text-muted"></small>
                 </div>
               </div>   
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     生日    
                 </label>
@@ -101,7 +101,7 @@
                     <small class="form-text text-muted">格式：yyyy-MM-dd 示例：2017-12-01</small>
                 </div>
               </div>                    
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     国家/地区    
                 </label>
@@ -121,7 +121,7 @@
           </div>
           <div class="card-body" v-for="(info, index) in idInfos">    
           <!-- this.idInfos.push({ 'idType': 1, 'idNo': '', 'idIssueNation': '', 'idValidDate': '' })         -->
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     证件类型    
                 </label>
@@ -137,7 +137,7 @@
                   <a href="javascript:void(0)" @click.stop="deleteIdInfo(index)"  class="btn btn-sm btn-danger float-right">删除</a>
                 </div>
               </div>                    
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     证件号    
                 </label>
@@ -146,7 +146,7 @@
                 </div>
               </div>                    
                                
-              <div class="form-group row" v-if="info.idType !== 1">
+              <div class=" row" v-if="info.idType !== 1">
                 <label class="control-label col-3 text-right">
                     签发国家/地区    
                 </label>
@@ -154,7 +154,7 @@
                   <input type="text" class="form-control" v-model="info.idIssueNation" />
                 </div>
               </div>  
-              <div class="form-group row" v-if="info.idType !== 1">
+              <div class=" row" v-if="info.idType !== 1">
                 <label class="control-label col-3 text-right">
                     有效期    
                 </label>
@@ -169,7 +169,7 @@
             其它信息
           </div>
           <div class="card-body">
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     VIP级别    
                 </label>
@@ -191,7 +191,7 @@
                 </div>
               </div>                    
                               
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     常旅客卡号    
                 </label>
@@ -200,7 +200,7 @@
                     <small class="form-text text-muted">航司代码+卡号，多个航司用逗号分隔</small>
                 </div>
               </div>                    
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     飞机等级    
                 </label>
@@ -209,7 +209,7 @@
                     <small class="form-text text-muted"></small>
                 </div>
               </div>  
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     火车等级    
                 </label>
@@ -218,7 +218,7 @@
                     <small class="form-text text-muted"></small>
                 </div>
               </div>  
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     喜好    
                 </label>
@@ -227,7 +227,7 @@
                     <small class="form-text text-muted"></small>
                 </div>
               </div>  
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-3 text-right">
                     备注    
                 </label>

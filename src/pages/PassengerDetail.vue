@@ -55,7 +55,7 @@
           证件信息
         </div>
         <div class="card-body" v-for="(info, index) in psgInfo.idInfos">    
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-4 text-right">
                     证件类型    
                 </label>
@@ -68,7 +68,7 @@
                   </select>
                 </div>
               </div>                    
-              <div class="form-group row">
+              <div class=" row">
                 <label class="control-label col-4 text-right">
                     证件号    
                 </label>
@@ -77,7 +77,7 @@
                 </div>
               </div>                    
                                
-              <div class="form-group row" v-if="info.idType !== 1">
+              <div class=" row" v-if="info.idType !== 1">
                 <label class="control-label col-4 text-right">
                     签发国家/地区    
                 </label>
@@ -85,7 +85,7 @@
                   {{info.idIssueNation}}
                 </div>
               </div>  
-              <div class="form-group row" v-if="info.idType !== 1">
+              <div class=" row" v-if="info.idType !== 1">
                 <label class="control-label col-4 text-right">
                     有效期    
                 </label>

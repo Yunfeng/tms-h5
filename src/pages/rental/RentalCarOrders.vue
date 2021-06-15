@@ -4,7 +4,7 @@
         <span class="fa-2">租车</span>
     </div>
     <div class="card col-12 d-none d-md-block">
-        <form class="form-inline">
+        <form class="">
           <select class="form-control form-control-sm col-3" v-model.number="status">
             <option value="-1">所有订单</option>
             <option value="1">待处理</option>
@@ -22,7 +22,7 @@
         </form>        
     </div> 
     <div class="card col-12 d-block d-md-none">
-        <form class="form-inline">
+        <form class="">
           <button type="button" class="btn btn-primary me-2" @click.stop="showSearch()">查找</button>
           <router-link class="btn btn-success ms-auto" to="/rental/car">询价</router-link>
         </form>        

@@ -5,7 +5,7 @@
         企业部门信息
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearchUser">
+        <form class="" id="frmSearchUser">
           <input type="hidden" name="sc.pageNo" v-model.number="sc.pageNo">
           <input type="hidden" name="sc.pageSize" v-model.number="sc.pageSize">
           <div class="row mb-2">
@@ -71,7 +71,7 @@
                   <form id="frmUser" role="form" class="form-horizontal">
                     <input type="hidden" id="frmUser_id" name="user.id" v-model.number="id" />
                     
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="control-label col-3 text-right">
                             部门名称*    
                         </label>
@@ -80,7 +80,7 @@
                           <small class="form-text text-muted"></small>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="control-label col-3 text-right">
                             联系人    
                         </label>
@@ -89,7 +89,7 @@
                             <small class="form-text text-muted">联系人</small>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                       <label class="control-label col-3 text-right">
                           手机    
                       </label>
@@ -98,7 +98,7 @@
                           <small class="form-text text-muted">手机号</small>
                       </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                       <label class="control-label col-3 text-right">
                           电话    
                       </label>
@@ -107,7 +107,7 @@
                           <small class="form-text text-muted">联系电话</small>
                       </div>
                     </div>                    
-                    <div class="form-group row">
+                    <div class=" row">
                       <label class="control-label col-3 text-right">
                           电子邮件    
                       </label>
@@ -116,7 +116,7 @@
                         <small class="form-text text-muted"></small>
                       </div>
                     </div>                    
-                    <div class="form-group row">
+                    <div class=" row">
                       <label class="control-label col-3 text-right">
                           备注    
                       </label>

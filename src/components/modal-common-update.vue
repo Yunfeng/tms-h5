@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-3 col-form-label text-right">
               	<slot name="label1">字段1</slot>
               </label>
@@ -20,7 +20,7 @@
                 <input type="text" class="form-control" v-model="field1">
               </div>
             </div>
-            <div class="form-group row" v-if="itemCount > 1">
+            <div class=" row" v-if="itemCount > 1">
               <label class="col-3 col-form-label text-right">
               	<slot name="label2">字段2</slot>
               </label>
@@ -28,7 +28,7 @@
                 <input type="text" class="form-control" v-model="field2">
               </div>
             </div>
-            <div class="form-group row" v-if="itemCount > 2">
+            <div class=" row" v-if="itemCount > 2">
               <label class="col-3 col-form-label text-right">
               	<slot name="label3">字段3</slot>
               </label>
@@ -36,7 +36,7 @@
                 <input type="text" class="form-control" v-model="field3">
               </div>
             </div>
-            <div class="form-group row"  v-if="itemCount > 3">
+            <div class=" row"  v-if="itemCount > 3">
               <label class="col-3 col-form-label text-right">
               	<slot name="label4">字段4</slot>
               </label>

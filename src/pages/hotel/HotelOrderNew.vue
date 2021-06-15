@@ -80,20 +80,20 @@
         </select-customer>        
       </div>
       <div class="card-body py-2">
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
             <label class="control-label col-3 text-right">供应商*</label>
             <div class="col-9">
               <my-select-supplier :supplierId.sync="supplierId" :supplierType="supplierType"></my-select-supplier>
             </div>
           </div>
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="control-label col-3 text-right">支出方式*</label>
             <div class="col-9">
               <my-select-payment :paymentId.sync="paymentId"></my-select-payment>
               <span class="small text-muted">成本支出方式</span>
             </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
             <label class="col-3 control-label text-right">收款方式*</label>
             <div class="col-9">
               <div class="form-check form-check-inline">
@@ -114,7 +114,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
             <label class="col-3 control-label text-right">收款备注</label>
             <div class="col-9">
               <my-select-income :incomeRemark.sync="payRemark"></my-select-income>
@@ -122,7 +122,7 @@
             </div>
           </div>
           
-          <div class="form-group row  mb-1">
+          <div class=" row  mb-1">
               <label class="control-label col-3 text-right">
                   备注    
               </label>

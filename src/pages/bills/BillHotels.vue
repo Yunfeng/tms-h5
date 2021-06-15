@@ -5,7 +5,7 @@
         酒店账单
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearch">
+        <form class="" id="frmSearch">
           <input type="hidden" id="frmSearch_sc_pageNo" name="sc.pageNo" v-model="sc.pageNo">
           <input type="hidden" id="frmSearch_sc_pageSize" name="sc.pageSize" value="50" v-model="sc.pageSize">
           <div class="row mb-2">      
@@ -83,12 +83,12 @@
 </template>
 
 <script>
-  import MyDatePicker from '../components/my-datepicker.vue'
-  import MyPagination from '../components/my-pagination.vue'
-  import MyHotelBookingNew from '../components/my-modal-hotel-booking-create.vue'
-  import { searchHotelBills } from '../api/hotel.js'
+  import MyDatePicker from '@/components/my-datepicker.vue'
+  import MyPagination from '@/components/my-pagination.vue'
+  import MyHotelBookingNew from '@/components/my-modal-hotel-booking-create.vue'
+  import { searchHotelBills } from '@/api/hotel.js'
 
-  import MySelectCustomer from '../components/my-select2-customer.vue'
+  import MySelectCustomer from '@/components/my-select2-customer.vue'
 
   export default {
     components: {

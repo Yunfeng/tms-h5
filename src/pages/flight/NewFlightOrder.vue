@@ -152,7 +152,7 @@
 
         <div class="card-body bg-info text-white py-1">行程单/发票</div>
         <div class="card-body py-0">
-          <div class="form-group row mb-0">
+          <div class=" row mb-0">
             <label class="col-2 control-label text-right">是否需要行程单或发票?</label>
             <div class="col-10">
               <div class="form-check form-check-inline">
@@ -178,7 +178,7 @@
 
         <div class="card-body bg-info text-white py-1">其它</div>
         <div class="card-body py-1">
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-2 control-label text-right">备注</label>
             <div class="col-8">
                 <input type="text" class="form-control" v-model.trim="memo">
@@ -188,7 +188,7 @@
 
         <div class="card-body">
         
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-2 control-label text-right">记录编码</label>
             <div class="col-8">
                 <input type="text" class="form-control" v-model.trim="pnrNo">

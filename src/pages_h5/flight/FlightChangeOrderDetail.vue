@@ -65,7 +65,7 @@
               </td>
               <td>
                 
-                <router-link :to="`/flt/order/0?orderNo=` + detail.orderNo">{{detail.orderNo}}</router-link>
+                <router-link :to="`/h5/flt/order/0?orderNo=` + detail.orderNo">{{detail.orderNo}}</router-link>
               </td>
               <td>
                 <span class="text-danger" v-if="detail.intlTicket === 1">国际</span>

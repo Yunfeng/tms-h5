@@ -2,17 +2,17 @@
   <div id="users">
     <div class="card">
       <div class="card-body">
-        <form class="form-inline">
+        <form class="">
           <div class="row mb-2">
             <input type="textfield" class="form-control" placeholder="用户名" v-model.trim="username" size="10">
           </div>
-          <div class="form-group ml-1">
+          <div class=" ml-1">
             <input type="textfield" class="form-control" placeholder="手机" v-model.trim="mobile" size="10">
           </div>
-          <div class="form-group ml-1">
+          <div class=" ml-1">
             <input type="textfield" class="form-control" placeholder="eterm用户名" v-model.trim="etermUsername" size="10">
           </div>
-          <div class="form-group ml-1">
+          <div class=" ml-1">
               <select class="form-control" v-model.number="sc.pageSize">
                   <option value="25">25</option>
                   <option value="50">50</option>
@@ -101,7 +101,7 @@
                 <div class="modal-body">
                     <form id="frmUser" role="form" class="form-horizontal">
                         <input type="hidden" id="frmUser_id" name="user.id" v-model="user.id" />
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 用户名*    
                             </label>
@@ -110,7 +110,7 @@
                                 <span class="help-block">登录系统用的用户名</span>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 真实姓名*    
                             </label>
@@ -119,7 +119,7 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 手机    
                             </label>
@@ -127,7 +127,7 @@
                                 <input type="text" id="frmUser_mobile" class="form-control" name="user.mobileNo" v-model="user.mobileNo" placeholder="手机号" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 电子邮件    
                             </label>
@@ -135,7 +135,7 @@
                                 <input type="text" id="frmUser_email" class="form-control" name="user.email" v-model="user.email" placeholder="电子邮件" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 eterm用户名    
                             </label>
@@ -143,7 +143,7 @@
                                 <input type="text" id="frmUser_email" class="form-control" name="user.etermUsername" v-model="user.etermUsername" placeholder="eterm用户名" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 部门    
                             </label>
@@ -155,7 +155,7 @@
                               </select>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 职位    
                             </label>
@@ -163,7 +163,7 @@
                                 <input type="text" class="form-control" v-model="user.position" placeholder="职务" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 状态    
                             </label>
@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class=" row">
                             <label class="control-label col-3 text-right">
                                 与企业微信同步
                             </label>

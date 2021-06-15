@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
               <div class="col-12">
                 <label class="small">编码内容：</label>
                 <textarea class="form-control" rows="5" v-model="content"></textarea>

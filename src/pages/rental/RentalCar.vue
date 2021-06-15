@@ -8,7 +8,7 @@
     <div class="card col-12" v-if="step === 0">
       <div class="card-body">
         <form>
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-sm-2 col-form-label pb-0">类型</label>
             <div class="col-sm-10">              
               <div class="form-check form-check-inline">
@@ -21,7 +21,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-sm-2 col-form-label pb-0">
                 城市    
             </label>
@@ -33,7 +33,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group row mb-1" v-if="useType === 2">
+          <div class=" row mb-1" v-if="useType === 2">
             <label class="col-sm-2 col-form-label pb-0 text-danger">
               出发    
             </label>
@@ -42,7 +42,7 @@
               <span class="text-muted small">出发地详细地址</span>
             </div>
           </div>          
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-sm-2 col-form-label pb-0">
               机场    
             </label>
@@ -51,7 +51,7 @@
               <span class="text-muted small">机场代码，比如：PVG</span>
             </div>
           </div>
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-sm-2 col-form-label pb-0">
               航站楼
             </label>
@@ -60,7 +60,7 @@
               <span class="text-muted small">机场航站楼，若无可空</span>
             </div>
           </div>
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-sm-2 col-form-label pb-0">
               航班号
             </label>
@@ -69,7 +69,7 @@
             </div>
           </div>
 
-          <div class="form-group row mb-1" v-if="useType === 1">
+          <div class=" row mb-1" v-if="useType === 1">
             <label class="col-sm-2 col-form-label pb-0 text-success">
               到达    
             </label>
@@ -78,7 +78,7 @@
               <span class="text-muted small">目的地详细地址</span>
             </div>
           </div>
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-sm-2 col-form-label pb-0">
               日期    
             </label>
@@ -87,7 +87,7 @@
               <span class="text-muted small">使用日期, 例如：2019-12-31</span>
             </div>
           </div>
-          <div class="form-group row mb-1">
+          <div class=" row mb-1">
             <label class="col-sm-2 col-form-label pb-0">
               时间    
             </label>
@@ -146,7 +146,7 @@
       </ul>
       <div class="card-body py-1">
 
-        <div class="form-group row mb-1">
+        <div class=" row mb-1">
           <label class="col-sm-2 col-form-label">
             联系人    
           </label>
@@ -154,7 +154,7 @@
             <input type="input" class="form-control" v-model="linkMan">
           </div>
         </div>
-        <div class="form-group row mb-1">
+        <div class=" row mb-1">
           <label class="col-sm-2 col-form-label">
             联系电话    
           </label>
@@ -162,7 +162,7 @@
             <input type="input" class="form-control" v-model="linkPhone">
           </div>
         </div>
-        <div class="form-group row mb-1">
+        <div class=" row mb-1">
           <label class="col-sm-2 col-form-label">
             电子邮件    
           </label>
@@ -170,7 +170,7 @@
             <input type="input" class="form-control" v-model="email">
           </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="col-2 control-label text-right">付款方式</label>
             <div class="col-10">
               <div class="form-check form-check-inline">
@@ -184,7 +184,7 @@
             </div>
 
         </div>
-        <div class="form-group row mb-1">
+        <div class=" row mb-1">
           <label class="col-sm-2 col-form-label">
             备注    
           </label>

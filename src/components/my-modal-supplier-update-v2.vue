@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-3 text-right">
                     供应商
                 </label>
@@ -20,7 +20,7 @@
                     <my-select-supplier :supplierId.sync="supplierId" :supplierType="supplierType" :paymentMethodId.sync="payMethodId"></my-select-supplier>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-3 text-right">
                     支付方式    
                 </label>
@@ -28,7 +28,7 @@
                   <my-select-payment :paymentId.sync="payMethodId"></my-select-payment>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-3 text-right">
                     BSP自动开票
                 </label>
@@ -45,7 +45,7 @@
                   <span class="text-muted small">支持国内、单程、成人订单</span>
                 </div>
             </div>
-            <div class="form-group row" v-if="autoTicketing === 1">
+            <div class=" row" v-if="autoTicketing === 1">
                 <label class="control-label col-3 text-right align-center">
                     开票价格
                 </label>

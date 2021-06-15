@@ -7,7 +7,7 @@
     </div>
 
     <div class="card col-12 hidden-md-down">
-      <form class="form-inline">
+      <form class="">
         <my-date-picker :id="'beginDate'" :class="'form-control m-1'" :placeholder="'开始日期'" v-model="beginDate"></my-date-picker> 
         <my-date-picker :id="'endDate'" :class="'form-control m-1'" :placeholder="'截止日期'" v-model="endDate"></my-date-picker> 
         <input class="form-control m-1" type="text" placeholder="eterm用户名" size="10" v-model="etermUsername">

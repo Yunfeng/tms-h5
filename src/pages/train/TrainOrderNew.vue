@@ -90,19 +90,19 @@
       </div>
       <div class="card-body py-2">
          <form id="frmUser" role="form" class="form-horizontal">
-              <div class="form-group row mb-2">
+              <div class=" row mb-2">
                 <label class="control-label col-3 text-right">供应商</label>
                 <div class="col-9">
                   <my-select-supplier :supplierId.sync="supplierId"></my-select-supplier>
                 </div>
               </div>
-              <div class="form-group row mb-2">
+              <div class=" row mb-2">
                 <label class="control-label col-3 text-right">支付方式</label>
                 <div class="col-9">
                   <my-select-payment :paymentId.sync="paymentId"></my-select-payment>
                 </div>
               </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     外部订单号    
                 </label>
@@ -110,7 +110,7 @@
                     <input type="text" class="form-control" v-model="externalOrderNo" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     备注    
                 </label>
@@ -121,7 +121,7 @@
           </form>
       </div>
       <div class="card-footer text-center">
-        <div class="form-group form-check">
+        <div class=" form-check">
           <input type="checkbox" class="form-check-input" v-model="keepOpening">
           <label class="form-check-label">成功后继续录入</label>
         </div>

@@ -14,7 +14,7 @@
         </div>
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
               <label class="control-label col-3 text-right">
                   出发机场    
               </label>
@@ -22,7 +22,7 @@
                   <input type="text" class="form-control" v-model="info.dport" />
               </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
               <label class="control-label col-3 text-right">
                   出发航站楼    
               </label>
@@ -30,7 +30,7 @@
                   <input type="text" class="form-control" v-model="info.dterm" />
               </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right">
                     到达机场    
                 </label>
@@ -38,7 +38,7 @@
                     <input type="text" class="form-control" v-model="info.aport" />
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right">
                     到达航站楼    
                 </label>
@@ -46,7 +46,7 @@
                     <input type="text" class="form-control" v-model="info.aterm" />
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right">
                     航班号   
                 </label>
@@ -54,7 +54,7 @@
                     <input type="text" class="form-control" v-model="info.flightNo" />
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class=" row mb-1">
                 <label class="control-label col-3 text-right">
                     舱位    
                 </label>
@@ -62,7 +62,7 @@
                     <input type="text" class="form-control" v-model="info.subClass" />
                 </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     出发日期   
                 </label>
@@ -70,7 +70,7 @@
                   <my-date-picker id="ddate" v-model="info.ddate" sizing="sm"></my-date-picker>
                 </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     出发时间    
                 </label>
@@ -78,7 +78,7 @@
                   <input type="text" class="form-control" v-model="info.dtime" />
                 </div>
             </div>
-            <div class="form-group row  mb-1">
+            <div class=" row  mb-1">
                 <label class="control-label col-3 text-right">
                     到达时间    
                 </label>

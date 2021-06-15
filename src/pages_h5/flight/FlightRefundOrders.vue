@@ -1,31 +1,45 @@
 <template>
-  <div id="flight-orders" class="card mt-5 row bg-transparent">
+  <div id="flight-refund-orderss" class="card mt-5 row bg-transparent">
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb pb-0">
         <li class="breadcrumb-item ml-2" aria-current="page">
           <router-link to="/h5/home">主页</router-link>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">机票订单</li>
-        <li class="breadcrumb-item ms-auto me-2">
-          <router-link to="/h5/flt/search">国内预订</router-link>
-        </li>
+        <li class="breadcrumb-item active" aria-current="page">退票单</li>
       </ol>
     </nav>
+
     <template v-if="filterShowing">
       <div class="card-body">
         <form>
           <div class="row mb-2">
+            <my-date-picker
+              id="beginDate"
+              v-model="beginDate"
+              placeholder="开始日期"
+            ></my-date-picker>
+          </div>
+          <div class="row mb-2">
+            <my-date-picker
+              id="endDate"
+              v-model="endDate"
+              placeholder="截止日期"
+            ></my-date-picker>
+          </div>
+          <div class="row mb-2">
             <input
               type="textfield"
               class="form-control"
-              placeholder="订单号"
-              v-model.trim="orderNo"
+              size="8"
+              placeholder="退票单号"
+              v-model.trim="refundOrderNo"
             />
           </div>
           <div class="row mb-2">
             <input
               type="textfield"
               class="form-control"
+              size="6"
               placeholder="姓名"
               v-model.trim="name"
             />
@@ -34,6 +48,7 @@
             <input
               type="textfield"
               class="form-control"
+              size="10"
               placeholder="证件号"
               v-model.trim="idno"
             />
@@ -42,88 +57,37 @@
             <input
               type="textfield"
               class="form-control"
+              size="10"
               placeholder="票号"
               v-model.trim="ticketNo"
             />
           </div>
           <div class="row mb-2">
-            <input
-              type="textfield"
-              class="form-control"
-              placeholder="航班号"
-              v-model.trim="flightNo"
-            />
-          </div>
-          <div class="row mb-2">
-            <my-date-picker
-              id="ddate"
-              v-model="ddate"
-              placeholder="航班日期"
-              sizing="sm"
-            ></my-date-picker>
-          </div>
-          <div class="row mb-2">
-            <my-date-picker
-              id="beginDate"
-              name="sc.beginDate"
-              v-model="beginDate"
-              placeholder="开始日期"
-              sizing="sm"
-            ></my-date-picker>
-          </div>
-          <div class="row mb-2">
-            <my-date-picker
-              id="endDate"
-              name="sc.endDate"
-              v-model="endDate"
-              placeholder="截止日期"
-              sizing="sm"
-            ></my-date-picker>
-          </div>
-          <div class="row mb-2">
-            <select
-              class="form-select"
-              v-model.number="intlTicket"
-            >
-              <option value="-1">所有</option>
+            <select class="form-select" v-model.number="intlTicket">
+              <option value="-1">属性</option>
               <option value="0">国内</option>
               <option value="1">国际</option>
             </select>
           </div>
           <div class="row mb-2">
-            <select class="form-select" v-model.number="status">
-              <option value="-1">订单状态</option>
-              <option value="0">暂不开票</option>
-              <option value="1">待开票审核</option>
-              <option value="2">待开票</option>
-              <option value="4">已取消</option>
-              <option value="8">开票中</option>
-              <option value="16">已开票</option>
-              <option value="32">已完成</option>
-            </select>
-          </div>
-          <div class="row mb-2">
-            <select
-              class="form-select"
-              v-model.number="sc.pageSize"
-            >
+            <select class="form-select" v-model.number="sc.pageSize">
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="50">50</option>
             </select>
           </div>
-          <div class=" row">
+          <div class="row mb-2">
             <button
               type="button"
-              class="btn btn-primary ms-auto me-auto mb-2"
+              class="btn btn-primary mb-2"
               @click.stop="search()"
             >
               查找
             </button>
             <button
               type="button"
-              class="btn btn-secondary ms-auto me-auto"
+              class="btn btn-secondary"
               @click.stop="reset()"
             >
               重置
@@ -143,9 +107,9 @@
         </button>
       </div>
 
-      <flight-order-list :dataList="dataList"></flight-order-list>
+      <flight-refund-list :dataList="dataList"></flight-refund-list>
 
-      <nav id="pagination-box" class="float-right me-2">
+      <nav id="pagination-box" class="float-right">
         <my-pagination
           name="pagination"
           :row-count="sc.rowCount"
@@ -161,55 +125,55 @@
 </template>
 
 <script>
-import { searchFlightOrders } from "../../api/flight.js";
-import MyDatePicker from "../../components/my-datepicker.vue";
-import MyPagination from "../../components/my-pagination_h5.vue";
-import FlightOrderList from "../../components/list/flight-order-list_h5.vue";
+import {
+  showRefundOrderStatus,
+  searchRefundOrders,
+} from "@/api/flight-refund.js";
+import MyDatePicker from "@/components/my-datepicker.vue";
+import MyPagination from "@/components/my-pagination_h5.vue";
+import FlightRefundList from "@/components/flight-order-refund-list_h5.vue";
 
 export default {
-  name: "MyFlightOrders",
+  name: "MyFlightRefundOrders",
   components: {
     MyDatePicker,
     MyPagination,
-    FlightOrderList,
+    FlightRefundList,
   },
   data() {
     return {
       filterShowing: false,
       dataList: [],
-
       sc: {
         rowCount: 0,
         pageNo: 1,
         pageSize: 10,
         pageTotal: 0,
       },
-
       beginDate: "",
       endDate: "",
-      name: "",
-      idno: "",
+
+      showMode: 0,
+      intlTicket: -1,
       ticketNo: "",
       pnrNo: "",
       status: -1,
-      customerId: -1,
-      customerType: -1,
-      intlTicket: -1,
-      workStatus: 0,
-      onlyMine: 0,
-      op1: "",
-      orderNo: "",
-      payStatus: -1,
-      flightNo: "",
-      ddate: "",
-
-      stat: null,
+      airRefundStatus: -1,
+      name: "",
+      idno: "",
+      refundOrderNo: "",
     };
   },
-  activated: function () {
+  mounted: function () {
     this.search();
   },
   methods: {
+    showErrMsg: function (msg, msgType) {
+      this.$store.dispatch("showAlertMsg", {
+        errMsg: msg,
+        errMsgType: msgType,
+      });
+    },
     showLoading: function (loadingText) {
       this.$store.commit("showLoading", {
         loading: true,
@@ -224,29 +188,23 @@ export default {
     },
     search: function () {
       this.filterShowing = false;
+      this.showLoading();
+
       const params = {
         "sc.pageNo": this.sc.pageNo,
         "sc.pageSize": this.sc.pageSize,
         "sc.beginDate": this.beginDate,
         "sc.endDate": this.endDate,
+        "sc.intlTicket": this.intlTicket,
+        "sc.ticketNo": this.ticketNo,
+        "sc.pnrNo": this.pnrNo,
+        "sc.status": this.status,
+        "sc.airRefundStatus": this.airRefundStatus,
         "sc.name": this.name,
         "sc.idno": this.idno,
-        "sc.status": this.status,
-        "sc.customerId": this.customerId,
-        "sc.customerType": this.customerType,
-        "sc.ticketNo": this.ticketNo,
-        "sc.intlTicket": this.intlTicket,
-        "sc.pnrNo": this.pnrNo,
-        "sc.workStatus": this.workStatus,
-        "sc.onlyMine": this.onlyMine,
-        "sc.op1": this.op1,
-        "sc.orderNo": this.orderNo,
-        "sc.payStatus": this.payStatus,
-        "sc.departureDate": this.ddate,
-        "sc.flightNo": this.flightNo,
+        "sc.refundOrderNo": this.refundOrderNo,
       };
-      this.showLoading("查询中");
-      searchFlightOrders(
+      searchRefundOrders(
         params,
         (jsonResult) => {
           this.dataList = jsonResult.dataList;
@@ -258,23 +216,18 @@ export default {
       );
     },
     reset: function () {
+      this.sc.pageNo = 1;
       this.beginDate = "";
       this.endDate = "";
-      this.name = "";
-      this.idno = "";
+      this.status = -1;
       this.ticketNo = "";
       this.pnrNo = "";
-      this.status = -1;
-      this.sc.pageNo = 1;
-      this.onlyMine = 0;
-      this.op1 = "";
-      this.orderNo = "";
-
-      this.ddate = "";
-      this.flightNo = "";
-
-      this.customerId = -1;
-      // this.search()
+      this.name = "";
+      this.idno = "";
+      this.refundOrderNo = "";
+    },
+    getStatus: function (status) {
+      return showRefundOrderStatus(status);
     },
     prevPage: function () {
       this.sc.pageNo = this.sc.pageNo - 1;
@@ -288,6 +241,28 @@ export default {
     directPage: function (pageNo) {
       this.sc.pageNo = pageNo;
       this.search();
+    },
+    commonShowMessage: function (jsonResult) {
+      if (jsonResult.status !== "OK") {
+        this.showErrMsg("失败：" + jsonResult.errmsg);
+      } else {
+        if (jsonResult.desc !== "") {
+          this.showErrMsg(jsonResult.desc);
+        } else {
+          this.showErrMsg("操作成功");
+        }
+        this.search();
+      }
+    },
+    doCreateRefundOrder: function (info) {
+      createRefundOrder(JSON.stringify(info), (jsonResult) => {
+        if (jsonResult.status !== "OK") {
+          this.showErrMsg(jsonResult.errmsg);
+        } else {
+          console.log(jsonResult);
+          this.$router.push("/flt/refund/order/" + jsonResult.returnCode);
+        }
+      });
     },
   },
 };

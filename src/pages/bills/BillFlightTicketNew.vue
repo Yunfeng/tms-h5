@@ -129,7 +129,7 @@
           <div class="card-body">
             <!-- <my-price-input :ticketCount.sync="ticketCount" :price.sync="price" :parvalue.sync="parvalue" :tax.sync="tax" :insurance.sync="insurance" :serviceCharge.sync="serviceCharge" :commRate.sync="commRate" :commission.sync="commission" :discountRate.sync="discountRate" :discount.sync="discount" :amount.sync="amount" :totalAmount.sync="totalAmount" :profit.sync="profit" :totalProfit.sync="totalProfit" :bottomPrice.sync="bottomPrice"></my-price-input> -->
             <my-price-input v-bind.sync="priceInfo"></my-price-input>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-2 control-label text-right">保存方式</label>
               <div class="col-10">
                   <label class="form-check-label">
@@ -145,7 +145,7 @@
       <div class="card">
           <div class="card-header">客户信息</div>
           <div class="card-body">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-2 control-label">客户</label>
               <div class="col-10">
                 <select class="form-control" v-model.number="customerId">
@@ -160,7 +160,7 @@
       <div class="card">
           <div class="card-header">备注</div>
           <div class="card-body">
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-2 control-label text-right">供应商</label>
               <div class="col-10">
                 <select class="form-control" v-model.number="supplierId">
@@ -171,14 +171,14 @@
                 </select>
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-2 control-label text-right">出票备注</label>
               <div class="col-10">
                   <input type="text" class="form-control" v-model.trim="etdzMemo">
                   <span class="help-text">出票地、出票方式等内容</span>
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-2 control-label text-right">支付方式</label>
               <div class="col-10">
                 <select class="form-control" v-model.number="paymentMethodId">
@@ -189,7 +189,7 @@
                 </select>
               </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
               <label class="col-2 control-label text-right">付款备注</label>
               <div class="col-10">
                   <input type="text" class="form-control" v-model.trim="payMemo">
@@ -205,9 +205,9 @@
 </template>
 
 <script>
-  import { processPnrDetail, searchFlightFixedCommission, searchCustomers, createFlightBill } from '../api/user.js'
-  import { searchSuppliers, searchPaymentMethods } from '../api/basic-data.js'
-  import MyPriceInput from '../components/flight-price-input.vue'
+  import { processPnrDetail, searchFlightFixedCommission, searchCustomers, createFlightBill } from '@/api/user.js'
+  import { searchSuppliers, searchPaymentMethods } from '@/api/basic-data.js'
+  import MyPriceInput from '@/components/flight-price-input.vue'
 
   export default {
     components: {

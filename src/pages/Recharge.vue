@@ -31,18 +31,18 @@
       <div class="tab-content">
           <div class="tab-pane active" id="alipay">
               <div class="alert alert-info">支付宝可实时到账，支付前请确认您已开通支付宝，并确保金额不超过您的支付限额。</div>
-              <div class="form-group row">
+              <div class=" row">
                   <label class="offset-md-2 col-2 control-label text-right" for="amount">金额(元)</label>
                   <div class="col-4">
                       <input type="textfield" name="amount" class="form-control" v-model.number="amount" />
                   </div>
               </div>
-              <div class="form-group row">
+              <div class=" row">
                   <div class="offset-md-4 col-4 text-center">
                       <button type="button" class="btn btn-primary btn-block" @click.stop.prevent="recharge()">充值</button>
                   </div>
               </div>                  
-              <div class="form-group row">
+              <div class=" row">
                   <div class="col-6 ms-auto me-auto">
                       <span class="help-block">
                           <ul class="list-unstyled">

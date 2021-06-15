@@ -54,7 +54,7 @@
                               </div>
 
 
-                              <div class="form-group mb-0 text-center">
+                              <div class=" mb-0 text-center">
                                 <button type="button" class="btn btn-primary btn-block" @click.stop="register()">注 册</button>
                               </div>
 

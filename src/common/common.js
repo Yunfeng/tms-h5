@@ -313,6 +313,25 @@ function showPassengerName(name, mode = 1) {
   }
 }
 
+function showTicketStatus (status) {  
+  if (status === 0) {
+    return '未使用'
+  } else if (status === 1) {
+    return '已使用'
+  } else if (status === 2) {
+    return '已改签'
+  } else if (status === 3) {
+    return '已退票'
+  } else if (status === 4) {
+    return '已作废'
+  } else if (status === 128) {
+    return '终态'
+  } else {
+    return status
+  }
+}
+
+
 //是否为正整数  
 function isPositiveNum(s) {
   var re = /^[0-9]*[1-9][0-9]*$/;
@@ -369,6 +388,7 @@ export {
   showIdTypeDesc,
   showCustomerName,
   showPassengerName,
+  showTicketStatus,
   today,
   tomorrow,
   getCabinClassDesc,

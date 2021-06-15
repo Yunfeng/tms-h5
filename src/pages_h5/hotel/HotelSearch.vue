@@ -13,7 +13,7 @@
     </div>
     <div class="card-body">
       <form>
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">城市</label>
           <div class="col-9">
             <my-select-city
@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">入住日期</label>
           <div class="col-9">
             <my-date-picker
@@ -34,7 +34,7 @@
             ></my-date-picker>
           </div>
         </div>
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">离店日期</label>
           <div class="col-9">
             <my-date-picker
@@ -45,7 +45,7 @@
             ></my-date-picker>
           </div>
         </div>
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">房间数</label>
           <div class="col-9">
             <select
@@ -60,7 +60,7 @@
             </select>
           </div>
         </div>
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">住客数</label>
           <div class="col-9">
             <select
@@ -81,7 +81,7 @@
             <span class="text-muted small">每间房入住的人数</span>
           </div>
         </div>
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">酒店星级</label>
           <div class="col-9">
             <select
@@ -97,7 +97,7 @@
             </select>
           </div>
         </div>
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">早餐</label>
           <div class="col-9">
             <select
@@ -109,7 +109,7 @@
             </select>
           </div>
         </div>
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">酒店名称</label>
           <div class="col-9">
             <input
@@ -121,7 +121,7 @@
             />
           </div>
         </div>
-        <div class="form-row mb-1">
+        <div class=" mb-1">
           <label class="col-3">行政区</label>
           <div class="col-9">
             <input
@@ -133,7 +133,7 @@
             />
           </div>
         </div>
-        <div class="form-row mb-2">
+        <div class=" mb-2">
           <label class="col-3">商圈</label>
           <div class="col-9">
             <input
@@ -146,7 +146,7 @@
           </div>
         </div>
 
-        <div class="form-row">
+        <div class="">
           <button
             type="button"
             class="btn btn-primary me-auto ms-auto"

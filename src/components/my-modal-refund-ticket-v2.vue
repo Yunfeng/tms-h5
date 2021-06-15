@@ -47,15 +47,15 @@
               </tr>
             </table>
             <div class="card-body">
-              <div class="form-group row mb-0 mt-1">
+              <div class=" row mb-0 mt-1">
                 <label>客户</label>
                 <my-select-customer :customerId.sync="customerId"></my-select-customer>
               </div>
-              <div class="form-group row mb-0 mt-1">
+              <div class=" row mb-0 mt-1">
                 <label>供应商</label>
                 <my-select-supplier :supplierId.sync="supplierId"></my-select-supplier>
               </div>
-              <div class="form-group row mb-0 mt-1">
+              <div class=" row mb-0 mt-1">
                 <label>支付方式</label>
                 <my-select-payment :paymentId.sync="paymentId"></my-select-payment>
               </div>
@@ -97,7 +97,7 @@
               </tr>
             </table>
             <div class="card-body py-0">
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       退（废）票类型    
                   </label>
@@ -116,7 +116,7 @@
                     </div>
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       退(废）票备注    
                   </label>
@@ -124,7 +124,7 @@
                     <input type="text" class="form-control form-control-sm" v-model.trim="reasonDesc" />
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       航司退票费率（%）    
                   </label>
@@ -133,7 +133,7 @@
                       <span class="text-muted small">退票费率，用于计算退票费</span>
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       航司退(废）票费    
                   </label>
@@ -141,7 +141,7 @@
                       <input type="text" class="form-control form-control-sm" v-model.number="airRefundFee" />
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       代理服务费    
                   </label>
@@ -149,7 +149,7 @@
                       <input type="text" class="form-control form-control-sm" v-model.number="serviceCharge" />
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-4 text-right">
                       备注    
                   </label>

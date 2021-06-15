@@ -5,7 +5,7 @@
         收(退)款单
       </div>
       <div class="card-body">
-        <form class="form-inline">
+        <form class="">
           <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
           <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
           <div class="col-2 px-0">

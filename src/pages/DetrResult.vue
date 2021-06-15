@@ -5,7 +5,7 @@
         DETR结果(客票使用状态)
       </div>
       <div class="card-body">
-          <form class="form-inline">
+          <form class="">
               <div class="row mb-2">
                   <label>使用状态</label>
                   <select name="sc.ticketStatus" class="form-control" v-model.number="ticketStatus">

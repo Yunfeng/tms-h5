@@ -5,7 +5,7 @@
         企业-订单备注
       </div>
       <div class="card-body">
-        <form class="form-inline">
+        <form class="">
             <div class="col-2">
               <my-select-customer :customerId.sync="customerId0" :minId="-1"></my-select-customer>
             </div>
@@ -68,7 +68,7 @@
                 <div class="modal-body">
                   <form id="frmUser" role="form" class="form-horizontal">
                     <input type="hidden" id="frmUser_id" name="user.id" v-model.number="id" />
-                    <div class="form-group row">
+                    <div class=" row">
                       <label class="control-label col-3 text-right">
                         公司    
                       </label>
@@ -76,7 +76,7 @@
                         <my-select-customer :customerId.sync="customerId" :minId="1" :disabled="id > 0"></my-select-customer>
                       </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="control-label col-3 text-right">
                             类型
                         </label>
@@ -87,7 +87,7 @@
                           </select>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="control-label col-3 text-right">
                             名称
                         </label>

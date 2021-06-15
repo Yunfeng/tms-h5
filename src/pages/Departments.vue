@@ -5,7 +5,7 @@
         部门信息
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearchUser">
+        <form class="" id="frmSearchUser">
           <input type="hidden" name="sc.pageNo" v-model.number="sc.pageNo">
           <input type="hidden" name="sc.pageSize" v-model.number="sc.pageSize">
           <div class="row mb-2">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="modal-body">
                   <form id="frmUser" role="form" class="form-horizontal">
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="control-label col-3 text-right">
                             部门ID*    
                         </label>
@@ -81,7 +81,7 @@
                           <span class="text-muted small">数字,企业微信的部门ID,0表示系统自动生成</span>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="control-label col-3 text-right">
                             上级部门ID*    
                         </label>
@@ -90,7 +90,7 @@
                           <span class="text-muted small">数字,企业微信的上级部门ID</span>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="control-label col-3 text-right">
                             部门名称*    
                         </label>
@@ -99,7 +99,7 @@
                           <small class="form-text text-muted"></small>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class=" row">
                         <label class="control-label col-3 text-right">
                             备注   
                         </label>

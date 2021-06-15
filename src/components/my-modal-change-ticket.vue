@@ -99,7 +99,7 @@
               </tr>
             </table>
             <div class="card-body py-0 small">
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-3 text-right">
                       改签类型    
                   </label>
@@ -118,7 +118,7 @@
                     </div>
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-3 text-right">
                       航司收费    
                   </label>
@@ -126,7 +126,7 @@
                       <input type="text" class="form-control form-control-sm" v-model.number="airChangeFee" />
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-3 text-right">
                       我司服务费    
                   </label>
@@ -135,7 +135,7 @@
                       <span class="text-muted small">我司的利润</span>
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-3 text-right">
                       实收客户   
                   </label>
@@ -144,7 +144,7 @@
                       <span class="text-muted small">实收客户金额，用于计算我司服务费</span>
                   </div>
               </div>              
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-3 text-right">
                       备注    
                   </label>

@@ -5,7 +5,7 @@
         企业客户授信
       </div>
       <div class="card-body">
-        <form class="form-inline">
+        <form class="">
           <div class="row mb-2">
               <input type="textfield" class="form-control" placeholder="公司名称" name="sc.name" v-model.trim="name" size="15">
           </div>
@@ -74,7 +74,7 @@
                   <div class="modal-body">
                       <form id="frmModifyEntCashBalance" role="form" class="form-horizontal">
                           <input type="hidden" name="id" v-model="authorizee" />
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-md-4">
                                   +/-   
                               </label>
@@ -83,7 +83,7 @@
                                       <input type="radio" name="opMode" value="1" v-model="opMode">充值
                               </div>
                           </div>
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-md-4">
                                   调整金额    
                               </label>
@@ -93,7 +93,7 @@
                               </div>
                           </div>
                           
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-md-4">
                                   备注(调整事由)    
                               </label>
@@ -124,7 +124,7 @@
                   </div>
                   <div class="modal-body">
                       <form id="frmUser" role="form" class="form-horizontal">
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-md-4">
                                   授权给
                               </label>
@@ -137,7 +137,7 @@
                                   </select>
                               </div>
                           </div>
-                          <div class="form-group row">
+                          <div class=" row">
                               <label class="control-label col-md-4">
                                   信用额度    
                               </label>

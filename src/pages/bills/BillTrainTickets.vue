@@ -5,7 +5,7 @@
         火车票
       </div>
       <div class="card-body">
-        <form class="form-inline" id="frmSearch">
+        <form class="" id="frmSearch">
           <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
           <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
           <div class="col-2">
@@ -68,11 +68,11 @@
 
 <script>
   import $ from 'jquery'
-  import { searchTrainTickets } from '../api/train.js'
-  import MyDatePicker from '../components/my-datepicker.vue'
-  import MyPagination from '../components/my-pagination.vue'
+  import { searchTrainTickets } from '@/api/train.js'
+  import MyDatePicker from '@/components/my-datepicker.vue'
+  import MyPagination from '@/components/my-pagination.vue'
   
-  import MySelectCustomer from '../components/my-select2-customer.vue'
+  import MySelectCustomer from '@/components/my-select2-customer.vue'
 
   export default {
     components: {

@@ -14,7 +14,7 @@
           <div class="card">
             <div class="card-body">
               <form>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-3 text-right">
                       新编码    
                   </label>
@@ -22,7 +22,7 @@
                       <input type="text" class="form-control form-control-sm" v-model.trim="pnrNo" />
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-3 text-right">
                       新票号    
                   </label>
@@ -30,7 +30,7 @@
                       <input type="text" class="form-control form-control-sm" v-model.trim="ticketNo" />
                   </div>
               </div>
-              <div class="form-group row mb-1">
+              <div class=" row mb-1">
                   <label class="col-form-label col-3 text-right">
                   </label>
                   <div class="col-9">

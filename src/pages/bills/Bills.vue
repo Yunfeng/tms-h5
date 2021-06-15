@@ -5,7 +5,7 @@
         账单
       </div>
       <div class="card-body px-1">
-        <form class="form-inline">
+        <form class="">
           <select class="form-control" v-model.number="billType">
             <option value="-1">类别</option>
             <option value="0">机票</option>
@@ -117,9 +117,9 @@
 </template>
 
 <script>
-  import { searchBills, getBillTypeDesc } from '../api/bill.js'
-  import MyPagination from '../components/my-pagination.vue'
-  import MyDatePicker from '../components/my-datepicker.vue'
+  import { searchBills, getBillTypeDesc } from '@/api/bill.js'
+  import MyPagination from '@/components/my-pagination.vue'
+  import MyDatePicker from '@/components/my-datepicker.vue'
 
   export default {
     name: 'MyBills',

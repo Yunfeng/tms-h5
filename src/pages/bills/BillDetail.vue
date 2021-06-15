@@ -468,8 +468,8 @@
 </template>
 
 <script>
-  import { BILL_FLIGHT, BILL_HOTEL, BILL_TRAIN, BILL_REFUND, BILL_VAS, BILL_CHANGE } from '../common/const.js'  
-  import { searchBillDetail } from '../api/bill.js'
+  import { BILL_FLIGHT, BILL_HOTEL, BILL_TRAIN, BILL_REFUND, BILL_VAS, BILL_CHANGE } from '@/common/const.js'  
+  import { searchBillDetail } from '@/api/bill.js'
   import $ from 'jquery'
 
   export default {

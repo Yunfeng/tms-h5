@@ -10,7 +10,7 @@
 
     <div class="card">
       <div class="card-body">
-        <div class="form-group row">
+        <div class=" row">
           <label class="control-label col-md-4 text-right">
               服务项目    
           </label>
@@ -22,7 +22,7 @@
             <span class="text-muted small">{{productDesc}}</span>
           </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 价格    
             </label>
@@ -30,7 +30,7 @@
                 <input type="text" class="form-control" v-model.number="price">
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 折扣
             </label>
@@ -38,7 +38,7 @@
                 <input type="text" class="form-control" v-model.number="discount">
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 数量    
             </label>
@@ -46,7 +46,7 @@
                 <input type="text" class="form-control" v-model.number="count" readonly="">
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 备注    
             </label>
@@ -134,7 +134,7 @@
     </div>
     <div class="card">
       <div class="card-body">      
-        <div class="form-group row">
+        <div class=" row">
 
           <label class="col-2 control-label text-right">付款方式</label>
           <div class="col-8">
@@ -148,7 +148,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
           <span class="ms-auto me-auto">订单总额：<b>{{total}}</b></span>
         </div>
       </div>

@@ -16,7 +16,7 @@
       
     <div class="card col-12 hidden-md-down">
       <div class="card-body">
-        <form class="form-inline">
+        <form class="">
           <input class="form-control col-1" type="text" placeholder="编码" v-model="pnrNo">
           <input class="form-control ml-1 col-1" type="text" placeholder="航司" v-model="carrier">
           <input class="form-control ml-1 col-1" type="text" placeholder="用户名" v-model="etermUsername">

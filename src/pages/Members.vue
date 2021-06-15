@@ -8,7 +8,7 @@
 
     <div class="card">
       <div class="card-body">
-        <form class="form-inline">
+        <form class="">
           <div class="row mb-2">
             <input type="text" class="form-control mr-sm-2" size="11" placeholder="用户名" v-model.trim="username">
           </div>

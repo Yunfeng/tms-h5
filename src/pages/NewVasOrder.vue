@@ -10,7 +10,7 @@
 
     <div class="card">
       <div class="card-body">
-        <div class="form-group row">
+        <div class=" row">
           <label class="control-label col-md-4 text-right">
               服务项目    
           </label>
@@ -21,7 +21,7 @@
             </select>
           </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 原价    
             </label>
@@ -29,7 +29,7 @@
                 <input type="text" class="form-control" v-model.number="price">
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 折扣金额
             </label>
@@ -37,7 +37,7 @@
                 <input type="text" class="form-control" v-model.number="discount">
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 成本    
             </label>
@@ -45,7 +45,7 @@
                 <input type="text" class="form-control" v-model.number="cost">
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 数量    
             </label>
@@ -53,7 +53,7 @@
                 <input type="text" class="form-control" v-model.number="count" readonly="">
             </div>
         </div>
-        <div class="form-group row">
+        <div class=" row">
             <label class="control-label col-md-4 text-right">
                 备注    
             </label>
@@ -134,13 +134,13 @@
 
       </div>
         <div class="card-body">
-          <div class="form-group row mb-2">
+          <div class=" row mb-2">
             <label class="control-label col-3 text-right">供应商</label>
             <div class="col-9">
               <my-select-supplier :supplierId.sync="supplierId"></my-select-supplier>
             </div>
           </div>
-          <div class="form-group row mb-2">
+          <div class=" row mb-2">
             <label class="control-label col-3 text-right">支付方式</label>
             <div class="col-9">
               <my-select-payment :paymentId.sync="paymentId"></my-select-payment>
@@ -148,7 +148,7 @@
           </div>
 
           
-          <div class="form-group row">
+          <div class=" row">
             <label class="col-2 control-label text-right">付款方式</label>
             <div class="col-8">
               <div class="form-check form-check-inline">
@@ -169,7 +169,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group row">
+          <div class=" row">
             <span class="ms-auto me-auto">订单总额：<b>{{total}}</b></span>
           </div>
         </div>

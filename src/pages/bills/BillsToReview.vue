@@ -5,7 +5,7 @@
         待审核账单
       </div>
       <div class="card-body px-0">
-        <form class="form-inline">
+        <form class="">
           <select class="form-control" v-model.number="billtype">
             <option value="0">机票</option>
             <option value="5">机票退票</option>
@@ -173,14 +173,14 @@
 </template>
 
 <script>
-  import { APP_FLIGHT_PATH } from '../common/common.js'
-  import { searchSuppliers } from '../api/basic-data.js'
-  import { searchUnreviewedBills, reviewBillInfoPassed, autoReviewBillInfo } from '../api/bill.js'
-  import MyPagination from '../components/my-pagination.vue'
-  import MyDatePicker from '../components/my-datepicker.vue'
-  import MyModalPrompt from '../components/my-modal-prompt.vue'
-  import MySelectCustomer from '../components/my-select2-customer.vue'
-  import MySelectOp2 from '../components/my-select-operator.vue'
+  import { APP_FLIGHT_PATH } from '@/common/common.js'
+  import { searchSuppliers } from '@/api/basic-data.js'
+  import { searchUnreviewedBills, reviewBillInfoPassed, autoReviewBillInfo } from '@/api/bill.js'
+  import MyPagination from '@/components/my-pagination.vue'
+  import MyDatePicker from '@/components/my-datepicker.vue'
+  import MyModalPrompt from '@/components/my-modal-prompt.vue'
+  import MySelectCustomer from '@/components/my-select2-customer.vue'
+  import MySelectOp2 from '@/components/my-select-operator.vue'
 
   export default {
     components: {

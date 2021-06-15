@@ -23,13 +23,13 @@
                           </span>
                       </div> 
 
-                      <div class="form-group row mb-2">
+                      <div class=" row mb-2">
                         <label class="control-label col-3 text-right">供应商</label>
                         <div class="col-9">
                           <my-select-supplier :supplierId.sync="supplierId" name="supplierId"></my-select-supplier>
                         </div>
                       </div>
-                      <div class="form-group row mb-2">
+                      <div class=" row mb-2">
                         <label class="control-label col-3 text-right">支付方式</label>
                         <div class="col-9">
                           <my-select-payment :paymentId.sync="paymentId" name="paymentMethodId"></my-select-payment>

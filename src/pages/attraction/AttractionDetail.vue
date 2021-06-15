@@ -77,7 +77,7 @@
             </tbody>
           </table> 
           <div class="card-body">
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-md-4 text-right">
                     价格    
                 </label>
@@ -85,7 +85,7 @@
                     <input type="text" class="form-control" v-model.number="price"  readonly="">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-md-4 text-right">
                     数量    
                 </label>
@@ -93,7 +93,7 @@
                     <input type="text" class="form-control" v-model.number="count" readonly="">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class=" row">
                 <label class="control-label col-md-4 text-right">
                     备注    
                 </label>
@@ -137,7 +137,7 @@
             </span>
           </div>
           <div class="card-body">                  
-            <div class="form-group row">
+            <div class=" row">
               <span class="ms-auto me-auto">订单总额：<b>{{total}}</b></span>
             </div>
           </div>

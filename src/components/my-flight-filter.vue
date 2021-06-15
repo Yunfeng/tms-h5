@@ -11,7 +11,7 @@
           <div class="card py-0">
           <form role="form" class="form-horizontal">
 
-        <div class="form-group row mt-2">
+        <div class=" row mt-2">
           <label class="col-4 text-right">共享航班</label>
           <div class="col-6">
             <div class="form-check">
@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class=" row">
           <label class="col-4 col-form-label text-right">排序</label>
           <div class="col-6 px-0" style="border-bottom: 1px solid #5bc0de;">
             <select v-model="filter.sortBy" class="form-control  border-0" >
@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class=" row">
           <label class="col-4 col-form-label text-right">航空公司</label>
           <div class="col-6 px-0" style="border-bottom: 1px solid #5bc0de;">
             <select v-model="filter.filterByCarrier" class="form-control  border-0" >
@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class=" row">
           <label class="col-4 col-form-label text-right">起飞时间</label>
           <div class="col-6 px-0"  style="border-bottom: 1px solid #5bc0de;">
             <select v-model="filter.filterByTime" class="form-control  border-0" >

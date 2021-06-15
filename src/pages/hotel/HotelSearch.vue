@@ -13,9 +13,9 @@
 
     <div class="card">
       <div class="card-body py-1">
-        <form class="form-inline" id="frmSearch">
+        <form class="" id="frmSearch">
           城市
-          <div class="form-group col-1"> 
+          <div class=" col-1"> 
             <my-select-city :cityId.sync="cityId"></my-select-city>
           </div>
            

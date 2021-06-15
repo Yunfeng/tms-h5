@@ -90,7 +90,7 @@
         <div class="tab-pane fade" id="nav-bill">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <div class="row mb-2">
                   <my-date-picker id="beginDate" v-model="beginDate" name="sc.beginDate" placeholder="开始日期"></my-date-picker>
                   <my-date-picker id="endDate" v-model="endDate" name="sc.endDate" placeholder="截止日期"></my-date-picker>
@@ -171,7 +171,7 @@
         <div class="tab-pane fade" id="nav-flight">
           <div class="card">
             <div class="card-body">
-              <form class="form-inline">
+              <form class="">
                 <input type="textfield" class="form-control" size="10" placeholder="票号" v-model.trim="ticketNo">
                 <input type="textfield" class="form-control" size="10" placeholder="姓名" v-model.trim="name">
                 <div class="row mb-2">

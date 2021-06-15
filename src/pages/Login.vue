@@ -59,7 +59,7 @@
                   </template>
                 </div>
 
-                <div class="form-group mb-0 text-center">
+                <div class=" mb-0 text-center">
                   <button
                     id="btnLogin"
                     type="button"

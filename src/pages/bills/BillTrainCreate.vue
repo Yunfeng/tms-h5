@@ -11,7 +11,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <form id="frmUser" role="form" class="form-horizontal">
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     企业    
                 </label>
@@ -19,7 +19,7 @@
                     <my-select-customer :minId="0" :status="1" :customerId.sync="customerId"></my-select-customer>
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     乘客姓名    
                 </label>
@@ -27,7 +27,7 @@
                     <input type="text" class="form-control" v-model="psgName" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     火车班次    
                 </label>
@@ -35,7 +35,7 @@
                     <input type="text" class="form-control" v-model="trainNo" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     出发地    
                 </label>
@@ -43,7 +43,7 @@
                     <input type="text" class="form-control" v-model="dcity" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     目的地    
                 </label>
@@ -51,7 +51,7 @@
                     <input type="text" class="form-control" v-model="acity" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     日期    
                 </label>
@@ -59,7 +59,7 @@
                   <my-date-picker id="ddate" v-model="ddate" sizing="sm"></my-date-picker>
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     座位等级    
                 </label>
@@ -67,7 +67,7 @@
                     <input type="text" class="form-control" v-model="seatClass" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     成本价    
                 </label>
@@ -75,7 +75,7 @@
                     <input type="text" class="form-control" v-model.number="price" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     服务费    
                 </label>
@@ -83,7 +83,7 @@
                     <input type="text" class="form-control" v-model.number="serviceCharge" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     实收客户    
                 </label>
@@ -91,19 +91,19 @@
                     <input type="text" class="form-control" v-model.number="amount" />
                 </div>
             </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">供应商</label>
                 <div class="col-9">
                   <my-select-supplier :supplierId.sync="supplierId"></my-select-supplier>
                 </div>
               </div>
-              <div class="form-group row mb-2">
+              <div class=" row mb-2">
                 <label class="control-label col-3 text-right">支付方式</label>
                 <div class="col-9">
                   <my-select-payment :paymentId.sync="paymentId"></my-select-payment>
                 </div>
               </div>
-            <div class="form-group row mb-2">
+            <div class=" row mb-2">
                 <label class="control-label col-3 text-right">
                     备注    
                 </label>
@@ -134,13 +134,13 @@
 
 <script>
   import $ from 'jquery'
-  import MyDatePicker from '../components/my-datepicker.vue'
+  import MyDatePicker from '@/components/my-datepicker.vue'
   
-  import MySelectCustomer from '../components/my-select2-customer.vue'
+  import MySelectCustomer from '@/components/my-select2-customer.vue'
 
-  import { createTrainTicket } from '../api/train.js'
-  import MySelectSupplier from '../components/my-select-supplier.vue'
-  import MySelectPayment from '../components/my-select-payment.vue'
+  import { createTrainTicket } from '@/api/train.js'
+  import MySelectSupplier from '@/components/my-select-supplier.vue'
+  import MySelectPayment from '@/components/my-select-payment.vue'
 
 
   export default {
