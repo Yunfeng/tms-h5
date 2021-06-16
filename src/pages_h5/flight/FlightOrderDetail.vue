@@ -29,163 +29,224 @@
           <dd class="col-8">{{ detail.totalAmount }}</dd>
         </dl>
       </div>
-      <div class="card-body bg-info text-white py-1">航班信息及票号</div>
-      <div class="card-body">
-        <template v-for="(info, index) in detail.tickets">
-          <dl :key="`ticket_info_` + index" class="row">
-            <h5>{{ info.passengerName }} {{ info.ticketNo }}</h5>
-            <dt class="col-4 text-end">出发/到达</dt>
-            <dd class="col-8">
-              {{info.dport}} {{ info.dportName }}
-              <span class=""> {{ info.dterm }}</span> 
-              - 
-              {{info.aport}} {{ info.aportName }}
-              <span class=""> {{ info.aterm }}</span>
-            </dd>
-            <dt class="col-4 text-end">出发时间</dt>
-            <dd class="col-8">
-              {{ info.ddate }} {{ info.dtime }} - {{ info.atime }}
-            </dd>
-            <dt class="col-4 text-end">航班</dt>
-            <dd class="col-8">
-              {{ info.flightNo }}
-              ( {{ info.subclass }}/{{ info.cabinClass }} )
-            </dd>
-            <dt class="col-4 text-end">状态</dt>
-            <dd class="col-8">{{ showTicketStatus(info.ticketStatus) }}</dd>
-            
-          </dl>
-        </template>
-      </div>
-      <div class="card-body bg-info text-white py-1">航班信息</div>
-      <div class="card-body d-md-none">
-        <template v-for="(info, index) in detail.flights">
-          <dl :key="`flt_info_` + index" class="row">
-            <h5>第 {{ index + 1 }} 程</h5>
-            <dt class="col-4 text-end">出发机场</dt>
-            <dd class="col-8">
-              {{ info.dportName }}
-              <span class=""> {{ info.dterm }}</span>
-            </dd>
-            <dt class="col-4 text-end">到达机场</dt>
-            <dd class="col-8">
-              {{ info.aportName }}
-              <span class=""> {{ info.aterm }}</span>
-            </dd>
-            <dt class="col-4 text-end">出发时间</dt>
-            <dd class="col-8">
-              {{ info.ddate }} {{ info.dtime }} - {{ info.atime }}
-            </dd>
-            <dt class="col-4 text-end">航班号</dt>
-            <dd class="col-8">
-              {{ info.flightNo }}
-            </dd>
-            <dt class="col-4 text-end">舱位</dt>
-            <dd class="col-8">{{ info.subclass }} ({{ info.cabinClass }})</dd>
-          </dl>
-        </template>
-      </div>
-      <table
-        class="table table-striped table-hover table-sm mb-1 d-none d-md-table"
-      >
-        <thead>
-          <tr>
-            <th>出发</th>
-            <th>到达</th>
-            <th>日期</th>
-            <th>航班号</th>
-            <th>起飞</th>
-            <th class="d-none d-md-table-cell">落地</th>
-            <th class="d-none d-md-table-cell">舱位</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="info in detail.flights" :key="info.id">
-            <td>
-              {{ info.dportName }}
-              <span class="d-none d-md-inline"> {{ info.dterm }}</span>
-            </td>
-            <td>
-              {{ info.aportName }}
-              <span class="d-none d-md-inline"> {{ info.aterm }}</span>
-            </td>
-            <td>{{ info.ddate }}</td>
-            <td>{{ info.flightNo }}</td>
-            <td>{{ info.dtime }}</td>
-            <td class="d-none d-md-table-cell">{{ info.atime }}</td>
-            <td class="d-none d-md-table-cell">{{ info.subclass }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="card-body bg-info text-white py-1">乘客信息</div>
-      <div class="card-body d-md-none">
-        <template v-for="(info, index) in detail.passengers">
-          <dl :key="`flt_info_` + index" class="row">
-            <h5>乘机人{{ index + 1 }}</h5>
-            <dt class="col-4 text-end">姓名</dt>
-            <dd class="col-8">
-              {{ info.name }}
-            </dd>
-            <dt class="col-4 text-end">证件号</dt>
-            <dd class="col-8">
-              {{ info.idNo }}
-            </dd>
-            <dt class="col-4 text-end">手机号</dt>
-            <dd class="col-8">
-              {{ info.mobile }}
-            </dd>
-            <dt class="col-4 text-end">票号</dt>
-            <dd class="col-8">
-              {{ info.ticketNo }}
-            </dd>
-          </dl>
-        </template>
-      </div>
-      <table
-        class="table table-striped table-hover table-sm mb-1 d-none d-md-table"
-      >
-        <thead>
-          <tr>
-            <th>姓名</th>
-            <th class="d-none d-md-table-cell">证件号</th>
-            <th class="d-none d-md-table-cell">手机号</th>
-            <th>票号</th>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(info, index) in detail.passengers" :key="info.id">
-            <td>{{ info.name }}</td>
-            <td class="d-none d-md-table-cell">{{ info.idNo }}</td>
-            <td class="d-none d-md-table-cell">{{ info.mobile }}</td>
-            <td>{{ info.ticketNo }}</td>
-            <td class="px-0">
-              <template v-if="detail.status === 0">
-                <a
-                  href="javascript:void(0)"
-                  @click.stop="editPsg(index)"
-                  class="small ms-auto me-auto d-none"
-                  >修改</a
-                >
+      <ul class="nav nav-tabs nav-bordered mb-3" id="myTab0" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="flight-tab"
+            data-bs-toggle="tab"
+            href="#orderFlightTab"
+            role="tab"
+            aria-controls="flight"
+            aria-selected="true"
+          >
+            航班信息
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="passenger-tab"
+            data-bs-toggle="tab"
+            href="#orderPassengerTab"
+            role="tab"
+            aria-controls="passenger"
+            aria-selected="false"
+          >
+            乘客信息
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content px-0" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="orderFlightTab"
+          role="tabpanel"
+          aria-labelledby="flight-tab"
+          v-if="detail !== null"
+        >
+          <template v-if="detail.tickets.length > 0">
+            <table class="table table-sm table-striped">
+              <thead>
+                <tr>
+                  <th>出发机场</th>
+                  <th>到达机场</th>
+                  <th>出发日期</th>
+                  <th>航班号</th>
+                  <th>状态</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template v-for="(info, index) in detail.tickets">
+                  <tr :key="`ticket_info_psg_` + index">
+                    <td colspan="2">{{ info.passengerName }}</td>
+                    <td colspan="3" class="text-end small">
+                      {{ info.ticketNo }}
+                    </td>
+                  </tr>
+                  <tr :key="`ticket_info_flt_` + index">
+                    <td>{{ info.dport }} {{ info.dportName }}</td>
+                    <td>{{ info.aport }} {{ info.aportName }}</td>
+                    <td>{{ info.ddate }}<br />{{ info.dtime }}</td>
+                    <td>{{ info.flightNo }}</td>
+                    <td>{{ showTicketStatus(info.ticketStatus) }}</td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </template>
+          <template v-else>
+            <div class="card-body d-md-none">
+              <template v-for="(info, index) in detail.flights">
+                <dl :key="`flt_info_` + index" class="row">
+                  <h5>第 {{ index + 1 }} 程</h5>
+                  <dt class="col-4 text-end">出发机场</dt>
+                  <dd class="col-8">
+                    {{ info.dportName }}
+                    <span class=""> {{ info.dterm }}</span>
+                  </dd>
+                  <dt class="col-4 text-end">到达机场</dt>
+                  <dd class="col-8">
+                    {{ info.aportName }}
+                    <span class=""> {{ info.aterm }}</span>
+                  </dd>
+                  <dt class="col-4 text-end">出发时间</dt>
+                  <dd class="col-8">
+                    {{ info.ddate }} {{ info.dtime }} - {{ info.atime }}
+                  </dd>
+                  <dt class="col-4 text-end">航班号</dt>
+                  <dd class="col-8">
+                    {{ info.flightNo }}
+                  </dd>
+                  <dt class="col-4 text-end">舱位</dt>
+                  <dd class="col-8">
+                    {{ info.subclass }} ({{ info.cabinClass }})
+                  </dd>
+                </dl>
               </template>
-              <template v-if="detail.status === 32">
-                <a
-                  href="javascript:void(0)"
-                  @click.stop="changeTicket(index)"
-                  class="btn btn-sm btn-warning ms-auto"
-                  >改签</a
-                >
-                <a
-                  href="javascript:void(0)"
-                  @click.stop="multiRefundTicket(index)"
-                  class="btn btn-sm btn-danger ms-auto"
-                  >退票</a
-                >
-              </template>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+            <table
+              class="
+                table table-striped table-hover table-sm
+                mb-1
+                d-none d-md-table
+              "
+            >
+              <thead>
+                <tr>
+                  <th>出发</th>
+                  <th>到达</th>
+                  <th>日期</th>
+                  <th>航班号</th>
+                  <th>起飞</th>
+                  <th class="d-none d-md-table-cell">落地</th>
+                  <th class="d-none d-md-table-cell">舱位</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="info in detail.flights" :key="info.id">
+                  <td>
+                    {{ info.dportName }}
+                    <span class="d-none d-md-inline"> {{ info.dterm }}</span>
+                  </td>
+                  <td>
+                    {{ info.aportName }}
+                    <span class="d-none d-md-inline"> {{ info.aterm }}</span>
+                  </td>
+                  <td>{{ info.ddate }}</td>
+                  <td>{{ info.flightNo }}</td>
+                  <td>{{ info.dtime }}</td>
+                  <td class="d-none d-md-table-cell">{{ info.atime }}</td>
+                  <td class="d-none d-md-table-cell">{{ info.subclass }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </template>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="orderPassengerTab"
+          role="tabpanel"
+          aria-labelledby="passenger-tab"
+          v-if="detail !== null"
+        >
+          <div class="card-body d-md-none">
+            <template v-for="(info, index) in detail.passengers">
+              <dl :key="`flt_info_` + index" class="row">
+                <template v-if="detail.passengers.length > 1">
+                  <h5>乘机人{{ index + 1 }}</h5>
+                </template>
+                <dt class="col-4 text-end">姓名</dt>
+                <dd class="col-8">
+                  {{ info.name }}
+                </dd>
+                <dt class="col-4 text-end">证件号</dt>
+                <dd class="col-8">
+                  {{ info.idNo }}
+                </dd>
+                <dt class="col-4 text-end">手机号</dt>
+                <dd class="col-8">
+                  {{ info.mobile }}
+                </dd>
+                <dt class="col-4 text-end">票号</dt>
+                <dd class="col-8">
+                  {{ info.ticketNo }}
+                </dd>
+              </dl>
+            </template>
+          </div>
+          <table
+            class="
+              table table-striped table-hover table-sm
+              mb-1
+              d-none d-md-table
+            "
+          >
+            <thead>
+              <tr>
+                <th>姓名</th>
+                <th class="d-none d-md-table-cell">证件号</th>
+                <th class="d-none d-md-table-cell">手机号</th>
+                <th>票号</th>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(info, index) in detail.passengers" :key="info.id">
+                <td>{{ info.name }}</td>
+                <td class="d-none d-md-table-cell">{{ info.idNo }}</td>
+                <td class="d-none d-md-table-cell">{{ info.mobile }}</td>
+                <td>{{ info.ticketNo }}</td>
+                <td class="px-0">
+                  <template v-if="detail.status === 0">
+                    <a
+                      href="javascript:void(0)"
+                      @click.stop="editPsg(index)"
+                      class="small ms-auto me-auto d-none"
+                      >修改</a
+                    >
+                  </template>
+                  <template v-if="detail.status === 32">
+                    <a
+                      href="javascript:void(0)"
+                      @click.stop="changeTicket(index)"
+                      class="btn btn-sm btn-warning ms-auto"
+                      >改签</a
+                    >
+                    <a
+                      href="javascript:void(0)"
+                      @click.stop="multiRefundTicket(index)"
+                      class="btn btn-sm btn-danger ms-auto"
+                      >退票</a
+                    >
+                  </template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="card-body bg-info text-white py-1">价格信息</div>
       <div class="card-body d-md-none">
         <template v-if="detail.adultCount > 0">
