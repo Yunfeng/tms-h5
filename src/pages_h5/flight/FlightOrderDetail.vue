@@ -25,8 +25,6 @@
             </template>
             <template v-else>散客</template>
           </dd>
-          <dt class="col-4 text-end">订单金额</dt>
-          <dd class="col-8">{{ detail.totalAmount }}</dd>
         </dl>
       </div>
       <ul class="nav nav-tabs nav-bordered mb-3" id="myTab0" role="tablist">
@@ -251,7 +249,7 @@
       <div class="card-body d-md-none">
         <template v-if="detail.adultCount > 0">
           <dl class="row">
-            <h5>成人价格</h5>
+            <h5>销售价格</h5>
             <dt class="col-4 text-end">销售价</dt>
             <dd class="col-8">
               {{ adultPrice.parValue }}
@@ -267,6 +265,44 @@
             <dt class="col-4 text-end">让利</dt>
             <dd class="col-8">
               {{ adultPrice.discount }}
+            </dd>
+          </dl>
+        </template>
+        <template v-for="(info, index) of detail.changes">
+          <dl class="row" :key="`price_change_` + index">
+            <h5>改签费用({{info.orderNo}})</h5>
+            <dt class="col-4 text-end">姓名</dt>
+            <dd class="col-8">
+              {{ info.psgName }}
+            </dd>
+            <dt class="col-4 text-end">票号</dt>
+            <dd class="col-8">
+              {{ info.balanceCode }}-{{ info.ticketNo }}
+            </dd>
+            <dt class="col-4 text-end">改签费</dt>
+            <dd class="col-8">
+              {{ info.airChangeCharge }}
+            </dd>
+            <dt class="col-4 text-end">服务费</dt>
+            <dd class="col-8">
+              {{ info.serviceCharge }}
+            </dd>
+          </dl>
+        </template>
+        <template v-for="(info, index) of detail.refunds">
+          <dl class="row" :key="`price_refund_` + index">
+            <h5>退票费用({{info.orderNo}})</h5>
+            <dt class="col-4 text-end">姓名</dt>
+            <dd class="col-8">
+              {{ info.psgName }}
+            </dd>
+            <dt class="col-4 text-end">票号</dt>
+            <dd class="col-8">
+              {{ info.balanceCode }}-{{ info.ticketNo }}
+            </dd>
+            <dt class="col-4 text-end">实际退款</dt>
+            <dd class="col-8">
+              {{ info.passengerRefundAmount }}
             </dd>
           </dl>
         </template>
