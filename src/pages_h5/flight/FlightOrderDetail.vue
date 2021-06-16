@@ -107,7 +107,7 @@
             <div class="card-body d-md-none">
               <template v-for="(info, index) in detail.flights">
                 <dl :key="`flt_info_` + index" class="row">
-                  <h5>第 {{ index + 1 }} 程</h5>
+                  <h5 v-if="detail.flights.length > 1">第 {{ index + 1 }} 程</h5>
                   <dt class="col-4 text-end">出发机场</dt>
                   <dd class="col-8">
                     {{ info.dportName }}
