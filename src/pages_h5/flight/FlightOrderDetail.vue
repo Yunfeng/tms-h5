@@ -83,8 +83,18 @@
                     </td>
                   </tr>
                   <tr :key="`ticket_info_flt_` + index">
-                    <td>{{ info.dport }} {{ info.dportName }}</td>
-                    <td>{{ info.aport }} {{ info.aportName }}</td>
+                    <td>
+                      <template v-if="info.dportName === null">
+                        {{ info.dport }}
+                      </template>
+                      {{ info.dportName }}
+                    </td>
+                    <td>
+                      <template v-if="info.aportName === null">
+                        {{ info.aport }}
+                      </template>
+                      {{ info.aportName }}
+                    </td>
                     <td>{{ info.ddate }}<br />{{ info.dtime }}</td>
                     <td>{{ info.flightNo }}</td>
                     <td>{{ showTicketStatus(info.ticketStatus) }}</td>
@@ -270,15 +280,13 @@
         </template>
         <template v-for="(info, index) of detail.changes">
           <dl class="row" :key="`price_change_` + index">
-            <h5>改签费用({{info.orderNo}})</h5>
+            <h5>改签费用({{ info.orderNo }})</h5>
             <dt class="col-4 text-end">姓名</dt>
             <dd class="col-8">
               {{ info.psgName }}
             </dd>
             <dt class="col-4 text-end">票号</dt>
-            <dd class="col-8">
-              {{ info.balanceCode }}-{{ info.ticketNo }}
-            </dd>
+            <dd class="col-8">{{ info.balanceCode }}-{{ info.ticketNo }}</dd>
             <dt class="col-4 text-end">改签费</dt>
             <dd class="col-8">
               {{ info.airChangeCharge }}
@@ -291,15 +299,13 @@
         </template>
         <template v-for="(info, index) of detail.refunds">
           <dl class="row" :key="`price_refund_` + index">
-            <h5>退票费用({{info.orderNo}})</h5>
+            <h5>退票费用({{ info.orderNo }})</h5>
             <dt class="col-4 text-end">姓名</dt>
             <dd class="col-8">
               {{ info.psgName }}
             </dd>
             <dt class="col-4 text-end">票号</dt>
-            <dd class="col-8">
-              {{ info.balanceCode }}-{{ info.ticketNo }}
-            </dd>
+            <dd class="col-8">{{ info.balanceCode }}-{{ info.ticketNo }}</dd>
             <dt class="col-4 text-end">实际退款</dt>
             <dd class="col-8">
               {{ info.passengerRefundAmount }}
