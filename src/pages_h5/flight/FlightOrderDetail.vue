@@ -107,7 +107,9 @@
             <div class="card-body d-md-none">
               <template v-for="(info, index) in detail.flights">
                 <dl :key="`flt_info_` + index" class="row">
-                  <h5 v-if="detail.flights.length > 1">第 {{ index + 1 }} 程</h5>
+                  <h5 v-if="detail.flights.length > 1">
+                    第 {{ index + 1 }} 程
+                  </h5>
                   <dt class="col-4 text-end">出发机场</dt>
                   <dd class="col-8">
                     {{ info.dportName }}
@@ -352,6 +354,53 @@
             <td class="d-none">{{ childPrice.amount }}</td>
           </tr>
         </tbody>
+      </table>
+      <table
+        class="table table-striped table-hover table-sm mb-1 d-none d-md-table"
+        v-if="detail.changes.length > 0"
+      >
+        <tr>
+          <th></th>
+          <th>姓名</th>
+          <th>票号</th>
+          <th>改签费</th>
+          <th>服务费</th>
+        </tr>
+        <tr
+          :key="`price_change_` + index"
+          v-for="(info, index) of detail.changes"
+        >
+          <td>改签({{ info.orderNo }})</td>
+          <td>
+            {{ info.psgName }}
+          </td>
+          <td>{{ info.balanceCode }}-{{ info.ticketNo }}</td>
+          <td>
+            {{ info.airChangeCharge }}
+          </td>
+          <td>
+            {{ info.serviceCharge }}
+          </td>
+        </tr>
+      </table>
+      <table
+        class="table table-striped table-hover table-sm mb-1 d-none d-md-table"
+        v-if="detail.refunds.length > 0"
+      >
+        <tr>
+          <th></th>
+          <th>姓名</th>
+          <th>票号</th>
+          <th>实退金额</th>
+        </tr>
+        <template v-for="(info, index) of detail.refunds">
+          <tr :key="`price_refund_` + index">
+            <td>退票({{ info.orderNo }})</td>
+            <td>{{ info.psgName }}</td>
+            <td>{{ info.balanceCode }}-{{ info.ticketNo }}</td>
+            <td>{{ info.passengerRefundAmount }}</td>
+          </tr>
+        </template>
       </table>
       <div class="card-body p-0" v-if="!isReadOnly">
         <ul class="nav nav-tabs nav-bordered mb-3" id="myTab" role="tablist">
