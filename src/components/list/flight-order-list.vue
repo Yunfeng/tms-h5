@@ -3,7 +3,6 @@
     <thead>
       <tr>
         <th>订单号</th>
-        <th>客户</th>
         <th>乘机人</th>
         <th colspan="5" class="bg-info text-center text-white">行程</th>
         <th>订单日期</th>
@@ -20,16 +19,7 @@
             <span class="text-danger" v-if="info.intlTicket === 1"><br />国际</span>
           </td>
           <td>
-            {{info.customer.name}}
-            <template v-if="info.customerType === 0">散客</template>
-            <template v-else-if= "info.customer !== null">
-              <template v-if="info.customer.enterpriseType === 1">
-                <b>{{info.customer.vipName}}</b>
-              </template>
-              <template v-else>
-                {{info.customer.vipName}}
-              </template>      
-            </template>
+            
           </td>
           <td>
               <template v-for="psg in info.passengers">
@@ -42,7 +32,7 @@
               </template>
           </td>
           <td colspan="5">
-            <table class="table m-0 p-0 table-borderless small" style="background-color: transparent;">
+            <table class="table m-0 p-0 table-borderless" style="background-color: transparent;">
               <tbody>
                 <tr :key="flt.id" v-for="flt in info.flights">
                   <td class="m-0 p-0" width="30%">

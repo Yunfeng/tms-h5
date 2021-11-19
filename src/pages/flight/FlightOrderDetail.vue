@@ -85,7 +85,6 @@
             <thead>
               <tr>
                 <th>订单号</th>
-                <th>客户</th>
                 <th>成本中心</th>
                 <th>项目名称</th>
                 <th>国际?</th>
@@ -99,9 +98,6 @@
             <tbody>
               <tr>
                 <td>{{ detail.orderNo }}</td>
-                <td>
-                  {{ detail.customer.name }}
-                </td>
                 <td>{{ detail.costCenter }}</td>
                 <td>{{ detail.projectName }}</td>
                 <td>
@@ -239,49 +235,7 @@
               </tr>
             </tbody>
           </table>
-          <template v-if="detail.tickets.length > 0">
-            <div class="card-body bg-info text-white py-1">航班信息及票号</div>
-            <table class="table table-striped table-hover table-sm mb-0">
-              <thead>
-                <tr>
-                  <th class="text-end">姓名</th>
-                  <th>票号</th>
-                  <th>出发</th>
-                  <th>到达</th>
-                  <th>航班号</th>
-                  <th>日期</th>
-                  <th>时间</th>
-                  <th>时间</th>
-                  <th>舱位</th>
-                  <th>状态</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(info, index) in detail.tickets"
-                  :key="index"
-                  :class="{
-                    'text-decoration-line-through': info.ticketStatus === 2,
-                  }"
-                >
-                  <td class="text-end">
-                    {{ info.passengerName }}
-                  </td>
-                  <td>
-                    {{ info.ticketNo }}
-                  </td>
-                  <td>{{ info.dport }} {{ info.dportName }}</td>
-                  <td>{{ info.aport }} {{ info.aportName }}</td>
-                  <td>{{ info.flightNo }}</td>
-                  <td>{{ info.ddate }}</td>
-                  <td>{{ info.dtime }}</td>
-                  <td>{{ info.atime }}</td>
-                  <td>{{ info.subclass }}</td>
-                  <td>{{ showTicketStatus(info.ticketStatus) }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </template>
+         
           <div class="card-body bg-info text-white py-0">航班信息</div>
           <table class="table table-striped table-hover table-sm mb-0">
             <thead>
@@ -593,30 +547,9 @@
 
 <script>
 import $ from "jquery";
-import { APP_FLIGHT_PATH, SUPPLIER_FLIGHT } from "@/common/const.js";
-import {
-  updateFlightOrderPrice,
-  updateFlightOrderPassenger,
-  updateFlightOrderRemark,
-  updateFlightOrderSupplier,
-  updateFlightOrderTicket,
-  cancelFlightOrder,
-  toticketFlightOrder,
-  agreeFlightOrderCancelRequest,
-  denyFlightOrderCancelRequest,
-  finishFlightOrderDelivery,
-  updateFlightOrderPaymentMethod,
-  updateFlightOrderPnr,
-  updateFlightOrderCustomer,
-  finishFlightOrder,
-  updateFlightOrderIntl,
-  updateFlightOrderDeliveryDate,
-  updateFlightOrderTicketer,
-  setFlightOrderPaid,
-} from "@/api/flight.js";
+import { APP_FLIGHT_PATH } from "@/common/const.js";
 import {
   searchFlightOrder,
-  outputFlightOrder2Bill,
   searchFlightOrderDetailByOrderNo,
 } from "@/api/flight.js";
 import {
@@ -635,9 +568,7 @@ import {
 } from "@/common/common.js";
 import { createRefundOrderMulti } from "@/api/flight-refund.js";
 import { createChangeOrderMulti } from "@/api/flight-change.js";
-import { sendFlightOrderSms, sendFlightOrderApprovalSms } from "@/api/sms.js";
 import { saveComment, searchComments } from "@/api/comment.js";
-import { rollbackFlightOrderStatus } from "@/api/admin.js";
 
 import PriceInfo from "@/common/PriceInfo.js";
 

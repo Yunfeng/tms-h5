@@ -3,22 +3,22 @@
     <div class="card">
       <div class="card-header bg-info text-white">退票单</div>
       <div class="card-body">
-        <div class="">
-          <div class="col">
+        <div class="row">
+          <div class="col-1">
             <my-date-picker
               id="beginDate"
               v-model="beginDate"
               placeholder="开始日期"
             ></my-date-picker>
           </div>
-          <div class="col">
+          <div class="col-1">
             <my-date-picker
               id="endDate"
               v-model="endDate"
               placeholder="截止日期"
             ></my-date-picker>
           </div>
-          <div class="col">
+          <div class="col-1">
             <input
               type="textfield"
               class="form-control"
@@ -27,7 +27,7 @@
               v-model.trim="refundOrderNo"
             />
           </div>
-          <div class="col">
+          <div class="col-1">
             <input
               type="textfield"
               class="form-control"
@@ -36,7 +36,7 @@
               v-model.trim="name"
             />
           </div>
-          <div class="col">
+          <div class="col-1">
             <input
               type="textfield"
               class="form-control"
@@ -45,7 +45,7 @@
               v-model.trim="idno"
             />
           </div>
-          <div class="col">
+          <div class="col-1">
             <input
               type="textfield"
               class="form-control"
@@ -54,14 +54,14 @@
               v-model.trim="ticketNo"
             />
           </div>
-          <div class="col">
+          <div class="col-1">
             <select class="form-control" v-model.number="intlTicket">
               <option value="-1">属性</option>
               <option value="0">国内</option>
               <option value="1">国际</option>
             </select>
           </div>
-          <div class="col">
+          <div class="col-1">
             <select class="form-control" v-model.number="sc.pageSize">
               <option value="5">5</option>
               <option value="10">10</option>
@@ -69,7 +69,7 @@
               <option value="50">50</option>
             </select>
           </div>
-          <div class="col">
+          <div class="col-1">
             <button
               type="button"
               class="btn btn-primary"
