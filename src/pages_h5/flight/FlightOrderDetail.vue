@@ -15,16 +15,7 @@
         <dl class="row">
           <dt class="col-4 text-end">订单号</dt>
           <dd class="col-8">{{ detail.orderNo }}</dd>
-          <dt class="col-4 text-end">客户</dt>
-          <dd class="col-8">
-            <template v-if="detail.customer !== null">
-              {{ detail.customer.name }}
-              <span class="text-danger small">{{
-                detail.customer.customerCode
-              }}</span>
-            </template>
-            <template v-else>散客</template>
-          </dd>
+          
         </dl>
       </div>
       <ul class="nav nav-tabs nav-bordered mb-3" id="myTab0" role="tablist">

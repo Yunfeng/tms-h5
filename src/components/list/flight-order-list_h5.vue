@@ -3,16 +3,13 @@
     <thead>
       <tr>
         <th class="d-none d-lg-table-cell">订单号</th>
-        <th class="d-none d-md-table-cell">客户</th>
         <th class="d-none d-md-table-cell">编码</th>
         <th>乘机人</th>
         <th>出发</th>
         <th>到达</th>
         <th>日期</th>
         <th>航班</th>
-        <th class="d-none d-sm-table-cell">
-          舱位
-        </th>
+        <th class="d-none d-sm-table-cell">舱位</th>
         <th class="d-none d-lg-table-cell">操作员</th>
         <th class="d-none d-lg-table-cell">发票</th>
         <th class="d-none d-md-table-cell">订单日期</th>
@@ -25,19 +22,12 @@
     </thead>
     <tbody>
       <template v-for="info in dataList">
-        <tr
-          :class="{ 'bg-info text-white': info.orderStatus !== 32 }"
-          :key="info.id"
-          @click.stop="showDetail(info.id)"
-        >
+        <tr :key="info.id" @click.stop="showDetail(info.id)">
           <td class="d-none d-lg-table-cell">
             {{ info.orderNo }}
             <span class="text-danger" v-if="info.intlTicket === 1"
               ><br />国际</span
             >
-          </td>
-          <td class="d-none d-md-table-cell">
-            {{ showCustomerName(info) }}
           </td>
           <td class="d-none d-md-table-cell">
             {{ info.pnrNo }}
@@ -48,22 +38,20 @@
           <td>
             <template v-for="(psg, index) in info.passengers">
               {{ showPassengerName(psg.name) }}
-              <template v-if="index < info.passengers.length - 1"
-                ><br
-              /></template>
+              <template v-if="index < info.passengers.length - 1">
+                <br />
+              </template>
             </template>
           </td>
           <td class="px-0">
             <template v-for="(flt, index) in info.flights">
-              {{ flt.dportName
-              }}<span class="text-success d-none">{{ flt.dport }}</span>
+              {{ flt.dport }}{{ flt.dportName }}
               <template v-if="index < info.flights.length - 1"><br /></template>
             </template>
           </td>
           <td class="px-0">
             <template v-for="(flt, index) in info.flights">
-              {{ flt.aportName
-              }}<span class="text-success d-none">{{ flt.aport }}</span>
+              {{ flt.aport }} {{ flt.aportName }}
               <template v-if="index < info.flights.length - 1"><br /></template>
             </template>
           </td>
