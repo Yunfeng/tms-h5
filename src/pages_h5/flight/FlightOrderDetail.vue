@@ -250,24 +250,24 @@
 
       <div class="card-body bg-info text-white py-1">价格信息</div>
       <div class="card-body d-md-none">
-        <template v-if="detail.adultCount > 0">
-          <dl class="row">
-            <h5>销售价格</h5>
+        <template v-for="(p, index) of detail.prices">
+          <dl class="row" :key="`price` + index">
+            <h5>销售价格<span v-if="p.priceType === 0" class="text-info">(成人)</span></h5>
             <dt class="col-4 text-end">销售价</dt>
             <dd class="col-8">
-              {{ adultPrice.parValue }}
+              {{ p.parValue }}
             </dd>
             <dt class="col-4 text-end">税</dt>
             <dd class="col-8">
-              {{ adultPrice.tax }}
+              {{ p.tax }}
             </dd>
             <dt class="col-4 text-end">服务费</dt>
             <dd class="col-8">
-              {{ adultPrice.serviceCharge }}
+              {{ p.serviceCharge }}
             </dd>
             <dt class="col-4 text-end">让利</dt>
             <dd class="col-8">
-              {{ adultPrice.discount }}
+              {{ p.discount }}
             </dd>
           </dl>
         </template>

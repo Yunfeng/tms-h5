@@ -48,7 +48,7 @@ exports[`Tpr.vue matches snapshot 1`] = `
           <h4 id="myModalLabel" class="modal-title">导入tpr指令结果</h4> <button type="button" data-dismiss="modal" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
         </div>
         <div class="modal-body">
-          <div class="form-group"><label for="exampleFormControlTextarea1">tpr指令结果</label> <textarea id="exampleFormControlTextarea1" rows="10" class="form-control"></textarea> <span class="text-muted small">请将tpr指令结果完全复制</span></div>
+          <div class="row mb-2"><label for="exampleFormControlTextarea1">tpr指令结果</label> <textarea id="exampleFormControlTextarea1" rows="10" class="form-control"></textarea> <span class="text-muted small">请将tpr指令结果完全复制</span></div>
         </div>
         <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default">取消</button> <button type="button" class="btn btn-primary">保存</button></div>
       </div>
@@ -62,14 +62,14 @@ exports[`Tpr.vue matches snapshot 1`] = `
         </div>
         <div class="modal-body">
           <form id="uploadFileForm" method="post" enctype="multipart/form-data"><input type="hidden" name="fileContentType" value="100">
-            <div class="form-group"><label class="control-label">
+            <div class="row mb-2"><label class="control-label">
                 供应商
               </label>
               <div><select name="supplierId" class="form-control">
                   <option value="0">请选择供应商</option>
                 </select></div>
             </div>
-            <div class="form-group"><label class="control-label">
+            <div class="row mb-2"><label class="control-label">
                 Excel格式
               </label>
               <div><select name="formatNo" class="form-control">
@@ -79,7 +79,7 @@ exports[`Tpr.vue matches snapshot 1`] = `
                               格式一（六列）：出票日期、开始票号、截止票号、票数、支付金额、支付备注；数据从第二行开始）<br>
                               格式二（六列）：票号、乘机人、PNR、航班号、支付金额、出票日期；数据从第二行开始）<br></span>
             </div>
-            <div class="form-group"><label>选择需要上传的文件</label> <input type="file" name="upfile" id="inputFileName" class="form-control-file"> <span class="text-muted small">
+            <div class="row mb-2"><label>选择需要上传的文件</label> <input type="file" name="upfile" id="inputFileName" class="form-control-file"> <span class="text-muted small">
                               文件名请不要有中文或全角字符，请使用字母或数字命名文件名。
                             </span></div>
           </form>
