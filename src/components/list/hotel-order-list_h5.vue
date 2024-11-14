@@ -22,7 +22,7 @@
     </thead>
     <tbody>
       <template v-for="info in dataList">
-        <tr :class="{'bg-info text-white': info.status !== 2 && info.status !== 4}" :key="info.id">
+        <tr  :key="info.id">
           <td class="d-none d-lg-table-cell">
             <router-link :to="`/hotel/order/` + info.id">{{info.orderNo}}</router-link>
           </td>

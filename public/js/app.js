@@ -300,7 +300,7 @@ function ($) {
         if (config) {
             // sideBarTheme
 
-            $('input[type=checkbox]').prop('checked',false);
+            $('.end-bar input[type=checkbox]').prop('checked',false);
 
             switch (config.sideBarTheme) {
                 case 'default':
@@ -658,8 +658,13 @@ function ($) {
             self.body.css('visibility', 'visible');
         }, 500);
         
-        $.LeftSidebar.activateDarkTheme();
-        this._saveConfig({ isDarkModeEnabled: true, sideBarTheme: SIDEBAR_THEME_DARK });
+
+        if (!this.body.attr('data-layout') === "detached") {
+            $.LeftSidebar.activateDarkTheme();
+            this._saveConfig({ isDarkModeEnabled: true, sideBarTheme: SIDEBAR_THEME_DARK });
+        } else {
+            this._saveConfig({ isDarkModeEnabled: true });
+        }
     }
 
     /**

@@ -15,7 +15,8 @@
         <dl class="row">
           <dt class="col-4 text-end">订单号</dt>
           <dd class="col-8">{{ detail.orderNo }}</dd>
-          
+          <dt class="col-4 text-end">总费用</dt>
+          <dd class="col-8">{{ detail.totalAmount }}</dd>
         </dl>
       </div>
       <ul class="nav nav-tabs nav-bordered mb-3" id="myTab0" role="tablist">
@@ -247,7 +248,6 @@
           </table>
         </div>
       </div>
-
       <div class="card-body bg-info text-white py-1">价格信息</div>
       <div class="card-body d-md-none">
         <template v-for="(p, index) of detail.prices">
@@ -265,7 +265,7 @@
             <dd class="col-8">
               {{ p.serviceCharge }}
             </dd>
-            <dt class="col-4 text-end">让利</dt>
+            <dt class="col-4 text-end">优惠</dt>
             <dd class="col-8">
               {{ p.discount }}
             </dd>
@@ -316,34 +316,23 @@
             <th>税</th>
             <th>服务费</th>
             <th class="d-none d-md-table-cell">让利</th>
-            <th class="d-none d-md-table-cell">人数</th>
-            <th class="d-none d-md-table-cell">应收</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-if="detail.adultCount > 0">
-            <td>成人</td>
-            <td>{{ adultPrice.parValue }}</td>
-            <td>{{ adultPrice.tax }}</td>
-            <td>{{ adultPrice.serviceCharge }}</td>
-            <td class="d-none d-md-table-cell">
-              {{ adultPrice.discount }}
+          <tr v-for="(p, index) of detail.prices" :key="`tr_price_` + index">
+            <td>
+              <span v-if="p.priceType === 0" class="text-info">成人</span>
+              <span v-if="p.priceType === 1" class="text-info">儿童</span>
+              <span v-if="p.priceType === 2" class="text-info">婴儿</span>
             </td>
+            <td>{{ p.parValue }}</td>
+            <td>{{ p.tax }}</td>
+            <td>{{ p.serviceCharge }}</td>
             <td class="d-none d-md-table-cell">
-              {{ adultPrice.ticketCount }}
+              {{ p.discount }}
             </td>
-            <td class="d-none d-md-table-cell">{{ adultPrice.amount }}</td>
           </tr>
-          <tr v-if="detail.childCount > 0">
-            <td>儿童</td>
-            <td>{{ childPrice.parValue }}</td>
-            <td>{{ childPrice.tax }}</td>
-            <td>{{ childPrice.serviceCharge }}</td>
-            <td>{{ childPrice.commission }}</td>
-            <td>{{ childPrice.discount }}</td>
-            <td class="d-none">{{ childPrice.ticketCount }}</td>
-            <td class="d-none">{{ childPrice.amount }}</td>
-          </tr>
+         
         </tbody>
       </table>
       <table
@@ -686,7 +675,8 @@
 
 <script>
 import $ from "jquery";
-import { APP_FLIGHT_PATH } from "../../common/const.js";
+import { APP_FLIGHT_PATH } from "@/common/const.js";
+import { checkLoginStatus } from "@/api/user.js"
 import {
   searchFlightOrder,
   searchFlightOrderDetailByOrderNo,
@@ -810,6 +800,20 @@ export default {
     },
     showTicketStatus: function (status) {
       return showTicketStatus(status);
+    },
+    checkLoginStatus: function () {
+      checkLoginStatus((v) => {
+        console.log(v);
+        if (v.status === "OK") {
+          const u = {
+            username: v.username,
+            logined: true,
+            fullname: v.fullname,
+            gpMode: v.gpMode,
+          };
+          this.$store.commit("setUsername", u);
+        }
+      });
     },
     searchOrderDetail: function () {
       console.log("this.authCode: " + this.authCode);
