@@ -4,9 +4,16 @@
 
 > Online Travel Management System for Customers
 
+## Runtime
+node v22.11.0
+
 ## Build Setup
 
 ``` bash
+# npm install
+## set npm registry mirror
+npm config set registry https://registry.npmmirror.com
+
 # install dependencies
 npm install
 
@@ -17,4 +24,9 @@ npm run dev
 npm run build
 ```
 
+# 升级package.json所有包到最新稳定版本
 
+```
+npm-check-updates -u
+
+```
