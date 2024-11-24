@@ -62,7 +62,7 @@
     "i": "^0.3.6",
     "jquery": "^3.7.1",
     "moment": "^2.30.1",
-    "vue": "^2.6.11",
+    "vue": "^3.0.0",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.1.5",
     "vue-server-renderer": "^2.6.11",
