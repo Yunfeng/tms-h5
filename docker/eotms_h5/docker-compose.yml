@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  eotms:
+    image: eotms_h5:0.0.1
+    environment:
+      TZ: "Asia/Shanghai"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    ulimits:
+      core: 0
+    ports:
+      - 8090:8090
