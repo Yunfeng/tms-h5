@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "axios": "^1.7.7",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "http-proxy-middleware": "^0.21.0",
     "i": "^0.3.6",
     "jquery": "^3.7.1",
